@@ -1,0 +1,43 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "bundle_save": {
+      "type": "bundle-save",
+      "settings": {
+        "banner_image_desktop": "shopify://shop_images/Group_346.png",
+        "section_title": "Bundle the Love",
+        "section_subtitle": "Curated bundles that deliver more of what you love—for less.",
+        "collection": "bundle-save",
+        "product_enable_limit": false,
+        "product_products_to_show": 6,
+        "product_section_width": 1250,
+        "product_grid_gap": 50,
+        "product_title_size": 19,
+        "product_title_weight": "700",
+        "product_title_color": "#000000",
+        "product_price_size": 19,
+        "product_price_weight": "700",
+        "product_price_color": "#00000080",
+        "product_star_size": 18,
+        "product_star_color": "#000000",
+        "product_rating_size": 19,
+        "product_rating_color": "#00000080",
+        "bg_color": "#ffffff",
+        "padding_y": 60,
+        "product_padding_top": 20,
+        "product_padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "bundle_save"
+  ]
+}

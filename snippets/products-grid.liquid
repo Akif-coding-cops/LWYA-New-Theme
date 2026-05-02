@@ -1,0 +1,150 @@
+{% comment %}
+  Reusable Product Grid Component
+  Props:
+    - products: array of product objects
+    - settings (optional): object with UI settings
+  Defaults are used if settings not provided
+{% endcomment %}
+
+{% if settings != blank %}
+  {% assign s = settings %}
+{% else %}
+  {% assign s = '' %}
+{% endif %}
+
+{%- comment -%} Layout {%- endcomment -%}
+{% assign product_padding_top = s.product_padding_top | default: 20 %}
+{% assign product_padding_bottom = s.product_padding_bottom | default: 60 %}
+{% assign product_section_width = s.product_section_width | default: 1250 %}
+{% assign product_grid_gap = s.product_grid_gap | default: 50 %}
+
+{%- comment -%} Title {%- endcomment -%}
+{% assign product_title_size = s.product_title_size | default: 19 %}
+{% assign product_title_weight = s.product_title_weight | default: '700' %}
+{% assign product_title_color = s.product_title_color | default: '#000000' %}
+
+{%- comment -%} Price {%- endcomment -%}
+{% assign product_price_size = s.product_price_size | default: 19 %}
+{% assign product_price_weight = s.product_price_weight | default: '700' %}
+{% assign product_price_color = s.product_price_color | default: '#00000080' %}
+
+{%- comment -%} Rating {%- endcomment -%}
+{% assign product_star_size = s.product_star_size | default: 18 %}
+{% assign product_star_color = s.product_star_color | default: '#000000' %}
+{% assign product_rating_size = s.product_rating_size | default: 19 %}
+{% assign product_rating_color = s.product_rating_color | default: '#00000080' %}
+
+{% style %}
+  .collection-grid-section {
+    padding-top: {{ product_padding_top }}px;
+    padding-bottom: {{ product_padding_bottom }}px;
+  }
+  .collection-grid-container {
+    max-width: {{ product_section_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ product_grid_gap }}px;
+  }
+  .product-card {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .product-card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+
+  .product-card__img-wrapper {
+    position: relative;
+  }
+  .product-title {
+    width: 80%;
+    font-family: 'Gotham';
+    font-size: {{ product_title_size }}px;
+    font-weight: {{ product_title_weight }};
+    margin-top: 10px;
+    color: {{ product_title_color }};
+  }
+  .product-price {
+    font-family: 'Gotham';
+    font-size: {{ product_price_size }}px;
+    font-weight: {{ product_price_weight }};
+    color: {{ product_price_color }};
+  }
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .stars {
+    color: {{ product_star_color }};
+    font-size: {{ product_star_size }}px;
+  }
+  .rating-count {
+    font-size: {{ product_rating_size }}px;
+    color: {{ product_rating_color }};
+  }
+  .card-variant-count {
+    font-size: 1rem;
+    color: #777;
+  }
+  @media(max-width: 1024px){
+    .collection-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media(max-width: 768px){
+    .collection-grid { grid-template-columns: 1fr; }
+  }
+{% endstyle %}
+
+<section class="collection-grid-section">
+  <div class="collection-grid-container">
+    <div class="collection-grid">
+      {% for product in products %}
+        {% assign badge = product.metafields.custom.product_badge.value %}
+        <div class="product-card">
+          <a href="{{ product.url }}" class="product-card__img-wrapper">
+            <img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.title }}" loading="lazy">
+            {% if badge != blank %}
+              {% render 'badge', position: 'top-right', text: badge.text, bg_color: badge.background_color %}
+            {% endif %}
+          </a>
+          <div class="product-title">{{ product.title }}</div>
+          <div class="product-price">
+            {% if product.price > 0 %}
+              {{ product.price | money }}
+              {% if product.compare_at_price > product.price %}
+                <s style="font-size:16px; color:#9b9b9b; margin-left:8px;">
+                  {{ product.compare_at_price | money }}
+                </s>
+              {% endif %}
+            {% else %}
+              —
+            {% endif %}
+          </div>
+          <div class="product-rating">
+            <div
+              class="loox-rating stars rating-count"
+              data-id="{{ product.id }}"
+              data-rating="{{ product.metafields.loox.avg_rating }}"
+              data-raters="{{ product.metafields.loox.num_reviews }}"
+            ></div>
+          </div>
+          {% unless product.has_only_default_variant %}
+            {% assign option = product.options_with_values.first %}
+            <p class="card-variant-count">
+              Available in {{ option.values.size }}
+              {{ option.name | append: 's' }}
+            </p>
+          {% endunless %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

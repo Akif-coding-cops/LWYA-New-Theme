@@ -1,0 +1,362 @@
+<section
+  id="bundle-save-section"
+  class="tw-w-full"
+  style="background: {{ section.settings.bg_color }}; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  {%- comment -%} ===== BANNER ===== {%- endcomment -%}
+  {% if section.settings.banner_image_desktop != blank
+    or section.settings.banner_video != blank
+    or section.settings.banner_image_mobile != blank
+    or section.settings.banner_video_mobile != blank
+  %}
+    <div class="tw-mx-auto tw-max-w-[1400px] tw-mb-[40px] md:tw-mb-[60px]">
+      {%- comment -%} Desktop banner — image or video {%- endcomment -%}
+      <div class="tw-hidden md:tw-block">
+        {% if section.settings.banner_video != blank %}
+          {{
+            section.settings.banner_video
+            | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'tw-w-full'
+          }}
+        {% elsif section.settings.banner_image_desktop != blank %}
+          <img
+            src="{{ section.settings.banner_image_desktop | image_url: width: 2000 }}"
+            alt="Banner"
+            loading="eager"
+            class="tw-w-full tw-object-cover"
+          >
+        {% endif %}
+      </div>
+
+      {%- comment -%} Mobile banner — falls back to desktop image if no mobile set {%- endcomment -%}
+      <div class="md:tw-hidden">
+        {% if section.settings.banner_video_mobile != blank %}
+          {{
+            section.settings.banner_video_mobile
+            | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'tw-w-full'
+          }}
+        {% elsif section.settings.banner_image_mobile != blank %}
+          <img
+            src="{{ section.settings.banner_image_mobile | image_url: width: 1200 }}"
+            alt="Banner"
+            loading="eager"
+            class="tw-w-full tw-object-cover"
+          >
+        {% elsif section.settings.banner_image_desktop != blank %}
+          <img
+            src="{{ section.settings.banner_image_desktop | image_url: width: 1200 }}"
+            alt="Banner"
+            loading="eager"
+            class="tw-w-full tw-object-cover"
+          >
+        {% elsif section.settings.banner_video != blank %}
+          {{
+            section.settings.banner_video
+            | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'tw-w-full'
+          }}
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  {%- comment -%} ===== SECTION HEADER ===== {%- endcomment -%}
+  {% if section.settings.section_title != blank or section.settings.section_subtitle != blank %}
+    <div class="tw-mx-auto tw-px-[16px] tw-text-center tw-mb-[40px] md:tw-mb-[60px]" style="max-width: 1332px">
+      <div class="tw-flex tw-flex-col tw-gap-[30px]">
+        {% if section.settings.section_title != blank %}
+          <h2 class="!tw-font-didot tw-text-[28px] md:tw-text-[42px] tw-italic caption-prod-collection">
+            {{ section.settings.section_title }}
+          </h2>
+        {% endif %}
+        {% if section.settings.section_subtitle != blank %}
+          <p class="tw-uppercase tw-tracking-[0.05em] tw-text-[20px] md:tw-text-[28px]">
+            {{ section.settings.section_subtitle }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  {%- comment -%} ===== PRODUCTS GRID ===== {%- endcomment -%}
+  {%- liquid
+    assign product_padding_top = section.settings.product_padding_top
+    assign product_padding_bottom = section.settings.product_padding_bottom
+    assign product_section_width = section.settings.product_section_width
+    assign product_grid_gap = section.settings.product_grid_gap
+  -%}
+
+  {% style %}
+    .bsc-grid-section {
+      padding-top: {{ product_padding_top }}px;
+      padding-bottom: {{ product_padding_bottom }}px;
+    }
+    .bsc-grid-container {
+      max-width: {{ product_section_width }}px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .bsc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: {{ product_grid_gap }}px;
+    }
+    @media (max-width: 1024px) {
+      .bsc-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .bsc-grid { grid-template-columns: 1fr; }
+    }
+  {% endstyle %}
+
+  {% assign bundle_collection = section.settings.collection %}
+  {% if bundle_collection != blank %}
+    {% assign max_products = bundle_collection.products_count %}
+    {% if section.settings.product_enable_limit %}
+      {% assign max_products = section.settings.product_products_to_show %}
+    {% endif %}
+    {% paginate bundle_collection.products by max_products %}
+      <section class="bsc-grid-section">
+        <div class="bsc-grid-container">
+          <div class="bsc-grid">
+            {% for product in bundle_collection.products %}
+              {% render 'lwya-product-card', product: product, sec_settings: section.settings, show_badge: true %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endpaginate %}
+  {% else %}
+    <div class="tw-mx-auto tw-px-[16px] tw-text-center tw-py-[60px]" style="max-width: 1332px">
+      <p class="tw-text-[16px] tw-text-gray-500">Select a collection in the theme editor to display bundle products.</p>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Bundle & Save",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_desktop",
+      "label": "Desktop Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_mobile",
+      "label": "Mobile Banner Image",
+      "info": "Falls back to desktop image if not set"
+    },
+    {
+      "type": "video",
+      "id": "banner_video",
+      "label": "Desktop Banner Video",
+      "info": "Takes priority over image when both are set"
+    },
+    {
+      "type": "video",
+      "id": "banner_video_mobile",
+      "label": "Mobile Banner Video",
+      "info": "Takes priority over image when both are set"
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Bundle the Love"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Subtitle",
+      "default": "Curated bundles that deliver more of what you love—for less."
+    },
+    {
+      "type": "header",
+      "content": "Bundle Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Bundle Collection",
+      "info": "Create a collection on Shopify and add your bundle products to it"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_enable_limit",
+      "label": "Limit number of products",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "product_products_to_show",
+      "label": "Products to show (if limit enabled)",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "product_section_width",
+      "label": "Grid max width",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "default": 1250
+    },
+    {
+      "type": "range",
+      "id": "product_grid_gap",
+      "label": "Grid gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Product Title"
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "label": "Font size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "select",
+      "id": "product_title_weight",
+      "label": "Font weight",
+      "default": "700",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Product Price"
+    },
+    {
+      "type": "range",
+      "id": "product_price_size",
+      "label": "Font size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "select",
+      "id": "product_price_weight",
+      "label": "Font weight",
+      "default": "700",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "product_price_color",
+      "label": "Color",
+      "default": "#00000080"
+    },
+    {
+      "type": "header",
+      "content": "Product Rating"
+    },
+    {
+      "type": "range",
+      "id": "product_star_size",
+      "label": "Star size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "product_star_color",
+      "label": "Star color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "product_rating_size",
+      "label": "Rating text size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "color",
+      "id": "product_rating_color",
+      "label": "Rating text color",
+      "default": "#00000080"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "product_padding_top",
+      "label": "Products padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "product_padding_bottom",
+      "label": "Products padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle & Save"
+    }
+  ]
+}
+{% endschema %}

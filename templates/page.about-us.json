@@ -1,0 +1,146 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_xH4XGA": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_LAipdg": {
+          "type": "heading",
+          "settings": {
+            "text": "About US",
+            "heading_tag": "h1"
+          }
+        },
+        "subheading_Cr4JVg": {
+          "type": "subheading",
+          "settings": {
+            "text": "Love Who You Are"
+          }
+        },
+        "richtext_8HdtcG": {
+          "type": "richtext",
+          "disabled": true,
+          "settings": {
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LAipdg",
+        "subheading_Cr4JVg",
+        "richtext_8HdtcG"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1f2737e5-7fa9-42e9-b45c-ae473893834f",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_DFe4FC": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_9VKgE4": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_aRARKQ": {
+          "type": "heading",
+          "settings": {
+            "text": "Meet Kim",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_6T8kiC": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p></p><p>Kim Gravel is a widely successful entrepreneur, television personality, author, podcaster, life coach, and a former Miss Georgia. You may have seen her on one of her number-one shows on QVC or bought a product from her Belle by Kim Gravel fashion line or Love Who You Are beauty and jewelry. </p><p>But what’s most important is not what she’s doing but who she’s being.</p><p>A woman committed to her God-given calling, which is building up women everywhere and helping them to Love Who They Are.</p><p>In fact, this is so important to her, she’s created an entire movement and business around it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_9VKgE4",
+        "heading_aRARKQ",
+        "richtext_6T8kiC"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/IMG_0320crop1_1.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "rich_text_rpdUgk": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_8ygjiP": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_p7Gn3t": {
+          "type": "heading",
+          "settings": {
+            "text": "The Love Who You Are Movement",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_wPUWFK": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>You are not broken. You don’t need fixing.</p><p>You are beautiful, unique, one-of-a-kind, strong, smart, and loved. </p><p>And if you’ve forgotten that, it’s because life is hard. But it’s time for you to remember, and that’s what the Love Who You Are movement is all about.</p><p>It’s time to start where you are to become the woman you are meant to become. It’s not going to be easy, but it WILL be the most important thing you ever do.</p><p>You’ve got this. I believe in you.</p><p>Xoxo Kim</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_8ygjiP",
+        "heading_p7Gn3t",
+        "richtext_wPUWFK"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "1715376199a05084c0": {
+      "type": "apps",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_xH4XGA",
+    "image_with_text_DFe4FC",
+    "rich_text_rpdUgk",
+    "1715376199a05084c0"
+  ]
+}

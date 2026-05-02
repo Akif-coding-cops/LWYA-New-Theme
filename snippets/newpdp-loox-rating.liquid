@@ -1,0 +1,7 @@
+{% if show_loox_rating %}
+  <div class="loox-rating" 
+       data-id="{{ product.id }}"
+       data-rating="{{ product.metafields.loox.avg_rating }}"
+       data-raters="{{ product.metafields.loox.num_reviews }}">
+  </div>
+{% endif %}

@@ -1,0 +1,143 @@
+<style>
+  @media screen and (min-width:1250px){
+   .var__jewelry-landing-page .manufactured_text h1 {
+        font-size: 78px;
+      }
+      }
+   .section-{{ section.id }}-padding {
+          padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+          padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+        }
+.MANUFACTURED_MAIN_WRAPPER {
+    display: flex;
+    gap: 10px;
+}
+  .manufactured_image {
+    width: 55%;
+    height: auto;
+}
+  .manufactured_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+  .manufactured_text {
+    width: 45%;
+    background: {{section.settings.txtbg}};
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: {{section.settings.txtColor}};
+}
+  .var__jewelry-landing-page .manufactured_text { 
+   display: flex;
+    padding: 121px 89.5px 120px 90px;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+  }
+   .var__jewelry-landing-page .manufactured_text h1 {
+        text-align: center;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 90%; /* 70.2px */
+        text-transform: uppercase;
+     
+  }
+  
+    
+  @media screen and (max-width:760px){
+    .var__jewelry-landing-page .manufactured_text h1 {
+       font-size: 40px;
+    }
+     .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+.MANUFACTURED_MAIN_WRAPPER {
+    flex-wrap: wrap;
+      gap: 20px;
+}
+      .manufactured_image {
+    width: 100%;
+    height: 100%;
+}
+ .manufactured_text {
+    width: 100%;
+}
+   
+</style>
+
+<div class="MANUFACTURED_MAIN_WRAPPER container section-{{ section.id }}-padding">
+  {% if section.settings.maufactured_image_text != blank %}
+  <div class="manufactured_image">
+              {{
+                section.settings.maufactured_image_text
+                | image_url: width: 1500
+                | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              }}
+    </div>
+    {% endif %}
+  {% if section.settings.manufactured_inline_text != blank %}
+  <div  class="manufactured_text">
+    {{ section.settings.manufactured_inline_text }}
+    </div>
+  {% endif %}
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Text With Image",
+    "settings": [
+     {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding_bottom",
+      "default": 36
+    },
+      {
+        "type": "image_picker",
+        "id": "maufactured_image_text",
+        "label": "Select Image"
+      },
+      {
+        "type": "richtext",
+        "id": "manufactured_inline_text",
+        "label": "Description"
+      },
+      {
+        "type": "color",
+        "id": "txtbg",
+        "default":"#000",
+        "label": "Text bg Color"
+      },
+      {
+        "type": "color",
+        "id": "txtColor",
+        "default":"#000",
+        "label": "Text Color"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text With Image"
+      }
+    ]
+  }
+{% endschema %}

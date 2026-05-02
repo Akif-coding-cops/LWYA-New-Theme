@@ -1,0 +1,197 @@
+{% assign collection_videos = collection.metafields.custom.custom_collection_videos %}
+
+{% if collection_videos != blank and collection_videos.value != blank %}
+
+{% assign video_list = collection_videos.value %}
+
+<section id="Collection-VideoSlider-{{ section.id }}">
+
+  <div class="slider-wrapper">
+
+    <!-- Left Arrow -->
+    <button class="slider-arrow slider-prev-{{ section.id }}" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+
+    <!-- Viewport -->
+    <div class="slider-viewport">
+      <div class="slider-track" id="slider-track-{{ section.id }}">
+        {% for video in video_list %}
+          <div class="slide">
+            {{
+              video
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                playsinline: true,
+                controls: false,
+                class: 'video-item'
+            }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right Arrow -->
+    <button class="slider-arrow slider-next-{{ section.id }}" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+
+  </div>
+</section>
+
+<style>
+#Collection-VideoSlider-{{ section.id }} {
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Wrapper ensures equal spacing */
+#Collection-VideoSlider-{{ section.id }} .slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* IMPORTANT: viewport fixed to exactly 3 slides */
+#Collection-VideoSlider-{{ section.id }} .slider-viewport {
+  width: calc((369px * 3) + (20px * 2));
+  overflow: hidden;
+}
+
+/* Track */
+#Collection-VideoSlider-{{ section.id }} .slider-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s ease;
+}
+
+/* Slide */
+#Collection-VideoSlider-{{ section.id }} .slide {
+  flex: 0 0 369px;
+  height: 580px;
+  background: #000;
+}
+
+#Collection-VideoSlider-{{ section.id }} .video-item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Arrows */
+#Collection-VideoSlider-{{ section.id }} .slider-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+#Collection-VideoSlider-{{ section.id }} .slider-arrow.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#Collection-VideoSlider-{{ section.id }} .slider-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  #Collection-VideoSlider-{{ section.id }} .slider-viewport {
+    width: calc((320px * 3) + (16px * 2));
+  }
+
+  #Collection-VideoSlider-{{ section.id }} .slide {
+    flex: 0 0 320px;
+    height: 500px;
+  }
+
+  #Collection-VideoSlider-{{ section.id }} .slider-track {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  #Collection-VideoSlider-{{ section.id }} .slider-viewport {
+    width: calc((260px * 1));
+  }
+
+  #Collection-VideoSlider-{{ section.id }} .slide {
+    flex: 0 0 260px;
+    height: 420px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  const track = document.getElementById('slider-track-{{ section.id }}');
+  const prevBtn = document.querySelector('.slider-prev-{{ section.id }}');
+  const nextBtn = document.querySelector('.slider-next-{{ section.id }}');
+
+  if (!track) return;
+
+  const slides = track.children;
+  const totalSlides = slides.length;
+
+  let currentIndex = 0;
+
+  function getSlideWidth() {
+    const slide = slides[0];
+    const gap = parseInt(window.getComputedStyle(track).gap) || 20;
+    return slide.offsetWidth + gap;
+  }
+
+  function getVisibleSlides() {
+    const viewport = track.parentElement;
+    return Math.round(viewport.offsetWidth / getSlideWidth());
+  }
+
+  function updateSlider() {
+    const slideWidth = getSlideWidth();
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+    prevBtn.classList.toggle('disabled', currentIndex === 0);
+    nextBtn.classList.toggle(
+      'disabled',
+      currentIndex >= totalSlides - getVisibleSlides()
+    );
+  }
+
+  nextBtn.addEventListener('click', function() {
+    if (currentIndex < totalSlides - getVisibleSlides()) {
+      currentIndex++;
+      updateSlider();
+    }
+  });
+
+  prevBtn.addEventListener('click', function() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  });
+
+  window.addEventListener('resize', updateSlider);
+
+  updateSlider();
+});
+</script>
+
+{% endif %}

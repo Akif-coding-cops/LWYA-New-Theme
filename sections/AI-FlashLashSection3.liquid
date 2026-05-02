@@ -1,0 +1,102 @@
+{% comment %}
+  AI-FlashLashSection3 - Text banner with customizable background color
+  Features:
+  - Bebas Neue font for main heading
+  - Customizable background color
+  - Responsive typography with clamp()
+  - Max-width 1440px container
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+</style>
+
+<section class="tw-w-full tw-flex tw-justify-center">
+  <div 
+    class="tw-w-full tw-max-w-[1440px] tw-py-12 md:tw-py-16 lg:tw-py-20"
+    style="background-color: {{ section.settings.background_color }};"
+  >
+    <div class="tw-px-5 md:tw-px-10 lg:tw-px-16">
+      <div class="tw-text-center">
+      {% if section.settings.main_heading != blank %}
+        <h2 
+          class="tw-text-white tw-mb-4 md:tw-mb-6"
+          style="
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(40px, 6vw, {{ section.settings.heading_size }}px);
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+          "
+        >
+          {{ section.settings.main_heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div 
+          class="tw-text-white tw-mx-auto"
+          style="
+            font-size: clamp(14px, 2vw, {{ section.settings.description_size }}px);
+            line-height: 1.6;
+            max-width: 800px;
+          "
+        >
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AI Flash Lash Section 3",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FF9B7A"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "LASHES THAT SPEAKS VOLUMES"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size (Desktop)",
+      "min": 30,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Thousands of women are discovering their boldest,<br>most beautiful look with Flash Lash Self-Adhesive Lashes.</p>"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description Size (Desktop)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Flash Lash Section 3"
+    }
+  ]
+}
+{% endschema %}

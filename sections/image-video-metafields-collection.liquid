@@ -1,0 +1,134 @@
+{% assign collection_image = collection.image %}
+{% assign metafield_video = collection.metafields.custom.page_video.value %}
+<style>
+  /* Wrapper Base */
+  #shopify-section-{{ section.id }} .video-wrapper {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  /* Desktop Heights */
+  #shopify-section-{{ section.id }} .video-wrapper.is-image {
+  
+  }
+
+  #shopify-section-{{ section.id }} .video-wrapper.is-video {
+  
+  }
+
+  /* Media Fit */
+  #shopify-section-{{ section.id }} .video-wrapper img,
+  #shopify-section-{{ section.id }} .video-wrapper video {
+    width: 100%;
+
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 1024px) {
+    #shopify-section-{{ section.id }} .video-wrapper.is-image {
+     
+    }
+
+    #shopify-section-{{ section.id }} .video-wrapper.is-video {
+    
+    }
+  }
+
+  /* ✅ Mobile - Better Responsive Image */
+  @media screen and (max-width: 768px) {
+
+    /* Let image keep proper ratio */
+    #shopify-section-{{ section.id }} .video-wrapper.is-image {
+      height: auto;
+      aspect-ratio: 4 / 5; /* Change ratio if needed */
+    }
+
+    /* Keep video controlled */
+    #shopify-section-{{ section.id }} .video-wrapper.is-video {
+    }
+
+    #shopify-section-{{ section.id }} .video-wrapper.is-image img {
+      {% comment %} height: 100%; {% endcomment %}
+
+      object-fit: cover;
+    }
+  }
+</style>
+
+
+<div class="video-wrapper 
+  {% if collection_image != blank %}
+    is-image
+  {% else %}
+    is-video
+  {% endif %}
+">
+
+  {% if collection_image != blank %}
+
+    <!-- Show Collection Image -->
+    {{
+      collection_image
+      | image_url: width: 2000
+      | image_tag:
+        loading: 'lazy',
+        sizes: '100vw',
+        widths: '400,600,800,1000,1200,1400,1600,1800,2000'
+    }}
+
+  {% elsif metafield_video != blank %}
+
+    <!-- Show Metafield Video -->
+    {{
+      metafield_video
+      | video_tag:
+        autoplay: section.settings.autoplay,
+        loop: section.settings.autoplay,
+        muted: section.settings.autoplay,
+        playsinline: true
+    }}
+
+  {% elsif section.settings.video != blank %}
+
+    <!-- Fallback Section Video -->
+    {{
+      section.settings.video
+      | video_tag:
+        controls: true,
+        autoplay: section.settings.autoplay,
+        loop: section.settings.autoplay,
+        muted: section.settings.autoplay,
+        playsinline: true
+    }}
+
+  {% endif %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Collection Image / Video",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Fallback Video"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Image / Metafield Video"
+    }
+  ]
+}
+{% endschema %}

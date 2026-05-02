@@ -1,0 +1,40 @@
+{% comment %}
+  Best Seller badge
+  Props:
+    - position : 'top-left' (default) | 'top-right' — corner to pin the badge inside its wrapper
+  Usage: drop inside any position:relative container (e.g. an image wrapper)
+    {% render 'best-seller-badge' %}
+    {% render 'best-seller-badge', position: 'top-right' %}
+{% endcomment %}
+
+{% style %}
+  .bs-badge {
+    position: absolute;
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Gotham-Book', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: -0.228px;
+    height: 31px;
+    min-width: 104px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  .bs-badge--top-left {
+    top: 14px;
+    left: 14px;
+  }
+  .bs-badge--top-right {
+    top: 14px;
+    right: 14px;
+  }
+{% endstyle %}
+
+{%- assign badge_pos = position | default: 'top-left' -%}
+
+<div class="bs-badge bs-badge--{{ badge_pos }}">BEST SELLER</div>

@@ -1,0 +1,297 @@
+{% schema %}
+{
+  "name": "Image circle + text",
+  "tag": "section",
+  "class": "circle-img-text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "circle_image",
+      "label": "Circle image (477px desktop)"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#F7F6EB"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Padding top/bottom",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "label": "Background opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Title",
+          "default": "LOVE IT OR RETURN IT"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Title color",
+          "default": "#B7C025"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 6
+        }
+      ]
+    },
+    {
+      "type": "subtitle",
+      "name": "Subtitle",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Subtitle",
+          "default": "30-Day Money-Back Guarantee"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Subtitle color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 18
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Line divider",
+      "settings": [
+        {
+          "type": "color",
+          "id": "line_color",
+          "label": "Line color",
+          "default": "#B7C025"
+        },
+        {
+          "type": "range",
+          "id": "line_width",
+          "label": "Line width (%)",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 35
+        },
+        {
+          "type": "range",
+          "id": "line_height",
+          "label": "Line thickness",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "unit": "px",
+          "default": 5
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Body text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>Give with confidence. If Vivacity doesn’t light you up (or her), simply return it within 30 days for a full refund. No stress. No hassle. Just joy.</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Image circle + text",
+      "blocks": [
+        { "type": "title" },
+        { "type": "subtitle" },
+        { "type": "divider" },
+        { "type": "text" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% assign opacity_decimal = section.settings.bg_opacity | divided_by: 100.0 %}
+
+<style>
+  .lwya-circle-{{ section.id }} {
+    position: relative;
+  }
+  .lwya-circle-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: {{ section.settings.section_bg }};
+    opacity: {{ opacity_decimal }};
+    pointer-events: none;
+  }
+</style>
+
+<section
+  class="tw-w-full lwya-circle-{{ section.id }}"
+  style="padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-gap-[30px] tw-px-[16px] md:tw-px-0" style="position: relative; z-index: 1;">
+    <!-- left circle image -->
+    <div class="tw-w-[250px] tw-h-[250px] md:tw-w-[550px] md:tw-h-[550px] tw-flex-shrink-0 tw-rounded-full tw-overflow-hidden tw-bg-[#ddd]">
+      {% if section.settings.circle_image != blank %}
+        <img
+          src="{{ section.settings.circle_image | image_url: width: 1000 }}"
+          alt="{{ section.settings.circle_image.alt | escape }}"
+          class="tw-w-full tw-h-full tw-object-cover"
+        >
+      {% endif %}
+    </div>
+
+    <!-- right content -->
+    <div class="tw-flex-1 tw-text-center tw-px-[12px] md:tw-px-[40px]">
+      {% for block in section.blocks %}
+        {% assign mt = block.settings.margin_top | append: 'px' %}
+        {% assign mb = block.settings.margin_bottom | append: 'px' %}
+        {% case block.type %}
+          {% when 'title' %}
+            <h2
+              style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.color }}; font-size: clamp(24px, 3.5vw, 38px); font-weight: 700;"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.content }}
+            </h2>
+          {% when 'subtitle' %}
+            <p
+              style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.color }}; font-size: clamp(18px, 2.5vw, 28px); font-weight: 600;"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.content }}
+            </p>
+          {% when 'divider' %}
+            <div
+              style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; display: flex; justify-content: center;"
+              {{ block.shopify_attributes }}
+            >
+              <div
+                style="width: {{ block.settings.line_width }}%; height: {{ block.settings.line_height }}px; background: {{ block.settings.line_color }};"
+              ></div>
+            </div>
+          {% when 'text' %}
+            <div
+              style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.color }}; font-size: clamp(15px, 2vw, 22px); line-height: 1.35;"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.content }}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

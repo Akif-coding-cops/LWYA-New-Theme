@@ -1,0 +1,93 @@
+{% comment %}
+  Bundle & Save product card
+  Props:
+    - product  : Shopify product object (required)
+    - settings : section.settings object (optional) — used for font/color overrides
+{% endcomment %}
+
+{%- liquid
+  assign s = settings | default: ''
+
+  assign title_size   = s.product_title_size   | default: 19
+  assign title_weight = s.product_title_weight | default: '700'
+  assign title_color  = s.product_title_color  | default: '#000000'
+
+  assign price_size   = s.product_price_size   | default: 19
+  assign price_weight = s.product_price_weight | default: '700'
+  assign price_color  = s.product_price_color  | default: '#00000080'
+
+  assign star_size    = s.product_star_size    | default: 18
+  assign star_color   = s.product_star_color   | default: '#000000'
+  assign rating_size  = s.product_rating_size  | default: 19
+  assign rating_color = s.product_rating_color | default: '#00000080'
+
+  assign first_variant = product.selected_or_first_available_variant
+  assign variant_subtitle = ''
+  unless product.has_only_default_variant
+    unless first_variant.title == 'Default Title'
+      assign variant_subtitle = first_variant.title
+    endunless
+  endunless
+-%}
+
+<div class="bsc-card">
+
+  {%- comment -%} Product image {%- endcomment -%}
+  <a href="{{ product.url }}" class="bsc-card__img-wrap">
+    <img
+      src="{{ product.featured_image | image_url: width: 700 }}"
+      alt="{{ product.title | escape }}"
+      loading="lazy"
+      class="bsc-card__img"
+    >
+  </a>
+
+  {%- comment -%} Card info {%- endcomment -%}
+  <div class="bsc-card__info">
+
+    {%- comment -%} Rating row (Loox) {%- endcomment -%}
+    <div class="bsc-card__rating" style="--bsc-star-size: {{ star_size }}px; --bsc-star-color: {{ star_color }}; --bsc-rating-size: {{ rating_size }}px; --bsc-rating-color: {{ rating_color }};">
+      <div
+        class="loox-rating bsc-card__stars"
+        data-id="{{ product.id }}"
+        data-rating="{{ product.metafields.loox.avg_rating }}"
+        data-raters="{{ product.metafields.loox.num_reviews }}"
+      ></div>
+    </div>
+
+    {%- comment -%} Product title (Bold) {%- endcomment -%}
+    <a
+      href="{{ product.url }}"
+      class="bsc-card__title"
+      style="font-size: {{ title_size }}px; font-weight: {{ title_weight }}; color: {{ title_color }};"
+    >
+      {{ product.title }}
+    </a>
+
+    {%- comment -%} Variant subtitle (Regular) — first available variant name {%- endcomment -%}
+    {% if variant_subtitle != '' %}
+      <div
+        class="bsc-card__subtitle"
+        style="font-size: {{ title_size }}px; color: {{ title_color }};"
+      >
+        {{ variant_subtitle }}
+      </div>
+    {% endif %}
+
+    {%- comment -%} Price {%- endcomment -%}
+    <div
+      class="bsc-card__price"
+      style="font-size: {{ price_size }}px; font-weight: {{ price_weight }}; color: {{ price_color }};"
+    >
+      {% if product.price > 0 %}
+        {{ product.price | money }}
+        {% if product.compare_at_price > product.price %}
+          <s class="bsc-card__compare-price">{{ product.compare_at_price | money }}</s>
+        {% endif %}
+      {% else %}
+        &mdash;
+      {% endif %}
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,230 @@
+{% schema %}
+{
+  "name": "AI BFF Club",
+  "tag": "section",
+  "class": "ai-bff-club-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Left Column Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "left_box_bg_color",
+      "label": "Inner Box Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "left_box_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Inner Box Opacity",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "left_box_padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Inner Box Padding",
+      "default": 40
+    },
+    {
+      "type": "text",
+      "id": "left_small_text",
+      "label": "Small Text (Top)",
+      "default": "MIX, MATCH & SAVE"
+    },
+    {
+      "type": "text",
+      "id": "left_large_text",
+      "label": "Large Text (Main)",
+      "default": "Bundle & Save"
+    },
+    {
+      "type": "text",
+      "id": "left_button_text",
+      "label": "Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "left_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "left_button_bg",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "left_button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Right Column Settings"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Background Color",
+      "default": "#FCE4EC"
+    },
+    {
+      "type": "richtext",
+      "id": "right_title",
+      "label": "Title (Rich Text)",
+      "default": "<h4>THE BFF CLUB</h4>"
+    },
+    {
+      "type": "richtext",
+      "id": "right_subtitle",
+      "label": "Subtitle (Rich Text)",
+      "default": "<p>Join Now To Start Earning Points, Perks and More</p>"
+    },
+    {
+      "type": "text",
+      "id": "right_button_text",
+      "label": "Button Text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "right_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "right_button_bg",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "right_button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI BFF Club"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="tw-w-full" style="background-color: {{ section.settings.section_bg_color }};">
+  <div class="tw-flex tw-flex-col md:tw-flex-row tw-w-full tw-max-w-[1400px] tw-mx-auto">
+    {%- comment -%} LEFT COLUMN - Background Image with Overlay Box {%- endcomment -%}
+    <div
+      class="tw-w-full md:tw-w-1/2 tw-relative tw-flex tw-items-center tw-justify-center tw-p-responsive-[20,40]"
+      style="
+        aspect-ratio: 1 / 1;
+        max-height: 700px;
+        {% if section.settings.left_bg_image != blank %}
+          background-image: url({{ section.settings.left_bg_image | image_url: width: 1200 }});
+          background-size: cover;
+          background-position: center;
+        {% else %}
+          background-color: #e0e0e0;
+        {% endif %}
+      "
+    >
+      {%- comment -%} Semi-transparent Inner Box - Square {%- endcomment -%}
+      {% assign opacity_decimal = section.settings.left_box_opacity | divided_by: 100.0 %}
+      <div
+        class="tw-relative tw-z-10 tw-text-center tw-flex tw-flex-col tw-items-center tw-justify-center"
+        style="
+          background-color: {{ section.settings.left_box_bg_color | color_modify: 'alpha', opacity_decimal }};
+          padding: {{ section.settings.left_box_padding }}px;
+          width: 100%;
+          max-width: 550px;
+          aspect-ratio: 1 / 1;
+        "
+      >
+        {% if section.settings.left_small_text != blank %}
+          <p
+            class="tw-text-responsive-[18,30] tw-tracking-widest tw-uppercase tw-text-black tw-mb-2 tw-font-medium"
+            style="letter-spacing: 0.1em;"
+          >
+            {{ section.settings.left_small_text }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.left_large_text != blank %}
+          <h2 class="tw-text-responsive-[40,75] tw-font-bold tw-text-black tw-mb-6 tw-leading-tight">
+            {{ section.settings.left_large_text }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.left_button_text != blank %}
+          <a
+            href="{{ section.settings.left_button_link | default: '#' }}"
+            class="tw-inline-block tw-px-6 tw-py-3 tw-text-responsive-[14,19] tw-font-bold tw-uppercase tw-tracking-wider hover:tw-opacity-80 tw-transition-opacity"
+            style="background-color: {{ section.settings.left_button_bg }}; color: {{ section.settings.left_button_text_color }};"
+          >
+            {{ section.settings.left_button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    {%- comment -%} RIGHT COLUMN - Solid Background with Text - Square {%- endcomment -%}
+    <div
+      class="tw-w-full md:tw-w-1/2 tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-center tw-p-responsive-[30,60]"
+      style="
+        background-color: {{ section.settings.right_bg_color }};
+        aspect-ratio: 1 / 1;
+        max-height: 700px;
+      "
+    >
+      <div class="tw-w-full">
+        {% if section.settings.right_title != blank %}
+          <div
+            class="tw-text-responsive-[20,35] tw-tracking-widest tw-text-black tw-uppercase tw-mb-4 tw-font-bold"
+            style="letter-spacing: 0.1em;"
+          >
+            {{ section.settings.right_title }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.right_subtitle != blank %}
+          <div class="tw-text-responsive-[32,60] tw-font-normal tw-mb-8 tw-text-black tw-leading-tight">
+            {{ section.settings.right_subtitle }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.right_button_text != blank %}
+          <a
+            href="{{ section.settings.right_button_link | default: '#' }}"
+            class="tw-inline-block tw-px-6 tw-py-3 tw-text-responsive-[14,19] tw-font-bold tw-uppercase tw-tracking-wider hover:tw-opacity-80 tw-transition-opacity"
+            style="background-color: {{ section.settings.right_button_bg }}; color: {{ section.settings.right_button_text_color }};"
+          >
+            {{ section.settings.right_button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

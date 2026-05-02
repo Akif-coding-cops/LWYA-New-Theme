@@ -1,0 +1,376 @@
+{% schema %}
+{
+  "name": "Image left + text right",
+  "tag": "section",
+  "class": "img-left-text-right",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left image (570px desktop)"
+    },
+    {
+      "type": "video",
+      "id": "left_video",
+      "label": "Left video (priority over image)"
+    },
+    {
+      "type": "text",
+      "id": "left_video_url",
+      "label": "Left video URL (YouTube/Vimeo, priority over files)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video_controls",
+      "label": "Show video controls on hover",
+      "default": true,
+      "info": "Display video controls when hovering over the video"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Right background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_bg_image",
+      "label": "Right background image"
+    },
+    {
+      "type": "select",
+      "id": "right_bg_size",
+      "label": "Right background size",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Vertical padding",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "content_px",
+      "label": "Right content inline padding",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "label": "Content padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "label": "Content padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Title text"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 14
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Max width",
+          "min": 100,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "default": 300
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Image left + text right",
+      "blocks": [
+        { "type": "title" },
+        { "type": "text" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row md:tw-px-0 tw-gap-0">
+    <div class="tw-w-full md:tw-w-[570px] tw-flex-shrink-0 md:tw-max-h-[600px]">
+      {% comment %} Priority: Video URL > Video File > Image {% endcomment %}
+      {% if section.settings.left_video_url != blank %}
+        <div class="tw-w-full tw-h-full tw-relative tw-aspect-square md:tw-aspect-auto">
+          <iframe
+            src="{{ section.settings.left_video_url }}"
+            class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+          ></iframe>
+        </div>
+      {% elsif section.settings.left_video != blank %}
+        <video
+          class="tw-w-full tw-h-full tw-object-cover md:tw-max-h-[600px] video-hover-controls"
+          autoplay
+          muted
+          loop
+          playsinline
+          {% if section.settings.show_video_controls %}controlsList="nodownload"{% endif %}
+        >
+          <source src="{{ section.settings.left_video.sources[1].url }}" type="{{ section.settings.left_video.sources[1].mime_type }}">
+          Your browser does not support the video tag.
+        </video>
+      {% elsif section.settings.left_image != blank %}
+        <img
+          src="{{ section.settings.left_image | image_url: width: 1000 }}"
+          alt="{{ section.settings.left_image.alt | escape }}"
+          class="tw-w-full tw-h-full tw-object-cover md:tw-max-h-[600px]"
+        >
+      {% endif %}
+    </div>
+    <div
+      class="tw-w-full tw-flex tw-items-center tw-text-center md:tw-min-h-[600px] md:tw-overflow-y-auto"
+      style="
+        background-color: {{ section.settings.right_bg_color }};
+        {% if section.settings.right_bg_image != blank %}
+          background-image: url({{ section.settings.right_bg_image | image_url: width: 1400 }});
+          background-size: {{ section.settings.right_bg_size }};
+          background-position: center;
+        {% endif %}
+      "
+    >
+      <div
+        class="tw-w-full tw-px-[24px] md:tw-px-[{{ section.settings.content_px }}px]"
+        style="padding-top: {{ section.settings.content_padding_top }}px; padding-bottom: {{ section.settings.content_padding_bottom }}px;"
+      >
+        {% for block in section.blocks %}
+          {% assign mt = block.settings.margin_top | append: 'px' %}
+          {% assign mb = block.settings.margin_bottom | append: 'px' %}
+          {% case block.type %}
+            {% when 'title' %}
+              <div
+                style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.color }}; font-size: clamp(24px, 3.2vw, 36px); font-weight: 700;"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.content }}
+              </div>
+            {% when 'text' %}
+              <div
+                style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.color }}; font-size: clamp(16px, 2.5vw, 22px); line-height: 1.5;"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.content }}
+              </div>
+            {% when 'image' %}
+              {% if block.settings.image != blank %}
+                {% assign align_class = 'tw-justify-end' %}
+                {% if block.settings.alignment == 'left' %}
+                  {% assign align_class = 'tw-justify-start' %}
+                {% elsif block.settings.alignment == 'center' %}
+                  {% assign align_class = 'tw-justify-center' %}
+                {% endif %}
+                <div
+                  class="tw-flex {{ align_class }}"
+                  style="margin-top: {{ mt }}; margin-bottom: {{ mb }};"
+                  {{ block.shopify_attributes }}
+                >
+                  <img
+                    src="{{ block.settings.image | image_url: width: 1200 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    style="max-width: {{ block.settings.max_width }}px; width: 100%; height: auto;"
+                  >
+                </div>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% if section.settings.show_video_controls %}
+  <style>
+    #shopify-section-{{ section.id }} .video-hover-controls {
+      position: relative;
+    }
+    
+    #shopify-section-{{ section.id }} .video-hover-controls::-webkit-media-controls {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    #shopify-section-{{ section.id }} .video-hover-controls:hover::-webkit-media-controls {
+      opacity: 1;
+    }
+    
+    /* For Firefox */
+    #shopify-section-{{ section.id }} .video-hover-controls {
+      --controls-opacity: 0;
+    }
+    
+    #shopify-section-{{ section.id }} .video-hover-controls:hover {
+      --controls-opacity: 1;
+    }
+  </style>
+
+  <script>
+    (function() {
+      var section = document.querySelector('#shopify-section-{{ section.id }}');
+      if (!section) return;
+      
+      var video = section.querySelector('.video-hover-controls');
+      if (!video) return;
+      
+      // Initially hide controls
+      video.removeAttribute('controls');
+      
+      // Show controls on hover
+      video.addEventListener('mouseenter', function() {
+        video.setAttribute('controls', 'controls');
+      });
+      
+      // Hide controls when not hovering
+      video.addEventListener('mouseleave', function() {
+        video.removeAttribute('controls');
+      });
+    })();
+  </script>
+  {% endif %}
+</section>

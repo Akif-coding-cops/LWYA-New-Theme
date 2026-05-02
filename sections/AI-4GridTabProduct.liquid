@@ -1,0 +1,403 @@
+{% comment %}
+  AI-4GridTabCollection Section
+  - Tab-based collection grid with 4 collections per tab
+  - Premium dropdown design for tab selection
+  - Each block = 1 tab with 4 collection slots
+  - Uses Tailwind CSS with tw- prefix
+{% endcomment %}
+{% schema %}
+{
+  "name": "AI 4 Grid Tab Collection",
+  "tag": "section",
+  "class": "ai-4grid-tab-collection-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "title_prefix",
+      "label": "Title Prefix",
+      "default": "SHOP BY",
+      "info": "Text before tab title (e.g. 'SHOP BY')"
+    },
+    {
+      "type": "select",
+      "id": "desktop_columns",
+      "label": "Desktop Columns",
+      "options": [
+        { "value": "2", "label": "2 Columns" },
+        { "value": "4", "label": "4 Columns" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile Columns",
+      "options": [
+        { "value": "1", "label": "1 Column" },
+        { "value": "2", "label": "2 Columns" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Padding top/bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab_item",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "BEST SELLERS"
+        },
+{
+  "type": "collection",
+  "id": "collection_1",
+  "label": "Default Collection"
+},
+{
+  "type": "header",
+  "content": "Products"
+},
+{
+  "type": "product",
+  "id": "product_1",
+  "label": "Product 1"
+},
+{
+  "type": "product",
+  "id": "product_2",
+  "label": "Product 2"
+},
+{
+  "type": "product",
+  "id": "product_3",
+  "label": "Product 3"
+},
+{
+  "type": "product",
+  "id": "product_4",
+  "label": "Product 4"
+}
+
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI 4 Grid Tab Collection",
+      "blocks": [{ "type": "tab_item" }]
+    }
+  ]
+}
+{% endschema %}
+{% comment %} Determine grid columns {% endcomment %}
+{% assign desktop_cols = section.settings.desktop_columns | default: '4' %}
+{% assign mobile_cols = section.settings.mobile_columns | default: '2' %}
+{% if mobile_cols == '1' %}
+  {% assign mobile_grid_class = 'tw-grid-cols-1' %}
+{% else %}
+  {% assign mobile_grid_class = 'tw-grid-cols-2' %}
+{% endif %}
+{% if desktop_cols == '2' %}
+  {% assign desktop_grid_class = 'md:tw-grid-cols-2' %}
+{% else %}
+  {% assign desktop_grid_class = 'md:tw-grid-cols-4' %}
+{% endif %}
+<section
+  id="AI-4GridTabProduct-{{ section.id }}"
+  class="ai-4grid-tab-product tw-w-full tw-flex tw-justify-center"
+  style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1400px] products-selection tw-mx-auto tw-px-responsive-[16,40]">
+    {%- comment -%} Premium Tab Header with Dropdown {%- endcomment -%}
+    {% if section.blocks.size > 0 %}
+      <div class="tw-mb-10">
+        {%- comment -%} Title with Dropdown Trigger {%- endcomment -%}
+        <div
+          class="tab-selector-{{ section.id }} tw-inline-flex tw-items-center tw-gap-3 tw-cursor-pointer tw-select-none tw-group tw-relative"
+          onclick="toggleTabDropdown{{ section.id | replace: '-', '' }}(event)"
+        >
+          <h2 class="tw-text-responsive-[22,36] tw-uppercase tw-tracking-wide tw-flex tw-items-center tw-gap-3">
+            {% if section.settings.title_prefix != blank %}
+              <span class="tw-font-light tw-text-gray-500">{{ section.settings.title_prefix }}</span>
+            {% endif %}
+            <span class="tab-current-title-{{ section.id }} tw-font-bold tw-text-black tw-relative">
+              {% if section.blocks.first.settings.tab_title != blank %}
+                {{ section.blocks.first.settings.tab_title }}
+              {% else %}
+                BEST SELLERS
+              {% endif %}
+              {% comment %} <span
+                class="tw-absolute tw--bottom-1 tw-left-0 tw-w-full tw-h-[2px] tw-bg-black tw-transform tw-scale-x-0 group-hover:tw-scale-x-100 tw-transition-transform tw-duration-300 tw-origin-left"
+              ></span> {% endcomment %}
+            </span>
+            {%- comment -%} Premium Dropdown Arrow {%- endcomment -%}
+            {% if section.blocks.size > 1 %}
+              {% comment %} <div class="tab-arrow-wrapper-{{ section.id }} tw-w-8 tw-h-8 tw-rounded-full tw-border-2 tw-border-black tw-flex tw-items-center tw-justify-center tw-transition-all tw-duration-300 group-hover:tw-bg-black group-hover:tw-border-black"> {% endcomment %}
+              {% comment %} <svg
+                  class="tab-arrow-{{ section.id }} tw-w-4 tw-h-4 tw-transition-all tw-duration-300 group-hover:tw-text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+                </svg>  {% endcomment %}
+                <svg width="40" height="40" class="tab-arrow-{{ section.id }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 15L6 9H18L12 15Z" fill="black"/>
+                </svg>
+              {% comment %} </div> {% endcomment %}
+            {% endif %}
+          </h2>
+          {%- comment -%} Premium Dropdown Menu - Positioned below the bold title {%- endcomment -%}
+          {% if section.blocks.size > 1 %}
+            <div
+              class="tab-dropdown-{{ section.id }} tw-absolute tw-top-full tw-right-0 tw-mt-3 tw-opacity-0 tw-invisible tw-transform tw-translate-y-[-10px] tw-transition-all tw-duration-300 tw-z-50"
+            >
+              <div
+                class="tw-bg-white tw-rounded-2xl tw-shadow-[0_20px_60px_rgba(0,0,0,0.15)] tw-overflow-hidden tw-border tw-border-gray-100 tw-min-w-[280px]"
+              >
+                {%- comment -%} Dropdown Header {%- endcomment -%}
+                <div class="tw-px-5 tw-py-3 tw-bg-gray-50 tw-border-b tw-border-gray-100">
+                  <p class="tw-text-[11px] tw-uppercase tw-tracking-[0.15em] tw-text-gray-400 tw-font-medium">
+                    Select Collection
+                  </p>
+                </div>
+                {%- comment -%} Dropdown Options {%- endcomment -%}
+                <div class="tw-py-2">
+                  {% for block in section.blocks %}
+                    <div
+                      class="tab-option-{{ section.id }} tw-flex tw-items-center tw-gap-4 tw-px-5 tw-py-4 tw-cursor-pointer tw-transition-all tw-duration-200 hover:tw-bg-gray-50 tw-border-l-4 {% if forloop.first %}tw-border-black tw-bg-gray-50{% else %}tw-border-transparent{% endif %}"
+                      data-tab-index="{{ forloop.index0 }}"
+                      onclick="event.stopPropagation(); selectTab{{ section.id | replace: '-', '' }}({{ forloop.index0 }}, '{{ block.settings.tab_title | escape }}')"
+                    >
+                      {%- comment -%} Check Icon {%- endcomment -%}
+                      <div class="tab-check-{{ section.id }} tw-w-5 tw-h-5 tw-rounded-full tw-border-2 tw-flex tw-items-center tw-justify-center tw-transition-all tw-flex-shrink-0 {% if forloop.first %}tw-border-black tw-bg-black{% else %}tw-border-gray-300{% endif %}">
+                        <svg
+                          class="tw-w-3 tw-h-3 {% if forloop.first %}tw-text-white{% else %}tw-text-transparent{% endif %}"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+
+
+                      </div>
+                      {%- comment -%} Option Text {%- endcomment -%}
+                      <span class="tw-text-[15px] tw-font-medium tw-uppercase tw-tracking-wide {% if forloop.first %}tw-text-black{% else %}tw-text-gray-600{% endif %}">
+                        {% if block.settings.tab_title != blank %}
+                          {{ block.settings.tab_title }}
+                        {% else %}
+                          Tab {{ forloop.index }}
+                        {% endif %}
+                      </span>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+    {% for block in section.blocks %}
+      {% if block.type == 'tab_item' %}
+        <div
+          class="tab-panel-{{ section.id }} tw-grid {{ mobile_grid_class }} {{ desktop_grid_class }} tw-gap-responsive-[12,24] {% unless forloop.first %}tw-hidden{% endunless %}"
+          data-tab-panel="{{ forloop.index0 }}"
+          {{ block.shopify_attributes }}
+        >
+          {% assign fallback_collection = block.settings.collection_1 %}
+
+          {% for i in (1..4) %}
+            {% assign product_key = 'product_' | append: i %}
+            {% assign product = block.settings[product_key] %}
+
+            {%- comment -%} Calculate zero-based index safely {%- endcomment -%}
+            {% assign index = i | minus: 1 %}
+
+            {%- comment -%} Fallback to collection product {%- endcomment -%}
+            {% if product == blank and fallback_collection != blank %}
+              {% assign product = fallback_collection.products[index] %}
+            {% endif %}
+
+            {% if product != blank %}
+              <div class="product-card-{{ section.id }} tw-flex tw-flex-col tw-bg-white tw-group">
+
+                <a
+                  href="{{ product.url }}"
+                  class="tw-block tw-relative tw-overflow-hidden tw-aspect-square tw-bg-[#f5f5f5]"
+                >
+                  {% if product.featured_image %}
+                    <img
+                      src="{{ product.featured_image | image_url: width: 800 }}"
+                      alt="{{ product.title | escape }}"
+                      class="tw-w-full tw-h-full tw-object-cover group-hover:tw-scale-105 tw-transition-transform tw-duration-500"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </a>
+
+                <div class="tw-pt-4 tw-text-left">
+                  <h3 class="tw-text-[16px] tw-font-medium">
+                    {{ product.title }}
+                  </h3>
+
+                  <p class="tw-text-[14px] mt-2 tw-text-gray-600 tw-font-bold">
+                    {{ product.price | money }}
+                    {%- if product.compare_at_price > product.price -%}
+                      <s class="tw-text-[12px] tw-text-[#9b9b9b] tw-ml-[8px]">{{ product.compare_at_price | money }}</s>
+                    {%- endif -%}
+                    <a href="{{ product.url }}">
+                      <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>  
+                    </a>
+                  </p>     
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {%- comment -%} Styles {%- endcomment -%}
+  <style>
+    /* Premium Dropdown Animation */
+    .tab-dropdown-{{ section.id }}.show {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+    }
+    .tab-arrow-{{ section.id }}.rotated {
+      transform: rotate(180deg);
+    }
+    .tab-arrow-wrapper-{{ section.id }}.active {
+      background-color: black !important;
+    }
+    .tab-arrow-wrapper-{{ section.id }}.active .tab-arrow-{{ section.id }} {
+      color: white !important;
+    }
+    /* Collection card hover */
+    .collection-card-{{ section.id }} img {
+      transition: transform 0.5s ease;
+    }
+    .collection-card-{{ section.id }}:hover img {
+      transform: scale(1.05);
+    }
+    /* Dropdown hover effects */
+    .tab-option-{{ section.id }}:hover .tab-check-{{ section.id }} {
+      border-color: #000 !important;
+    }
+  </style>
+  {%- comment -%} JavaScript {%- endcomment -%}
+  <script>
+    (function () {
+      const sectionId = '{{ section.id }}';
+      const sectionIdClean = '{{ section.id | replace: "-", "" }}';
+      let dropdownOpen = false;
+      // Premium Tab dropdown toggle
+      window['toggleTabDropdown' + sectionIdClean] = function (e) {
+        if (e) e.stopPropagation();
+        const dropdown = document.querySelector('.tab-dropdown-{{ section.id }}');
+        const arrow = document.querySelector('.tab-arrow-{{ section.id }}');
+        const arrowWrapper = document.querySelector('.tab-arrow-wrapper-{{ section.id }}');
+        dropdownOpen = !dropdownOpen;
+        if (dropdown) {
+          dropdown.classList.toggle('show', dropdownOpen);
+        }
+        if (arrow) {
+          arrow.classList.toggle('rotated', dropdownOpen);
+        }
+        if (arrowWrapper) {
+          arrowWrapper.classList.toggle('active', dropdownOpen);
+        }
+      };
+      // Select tab
+      window['selectTab' + sectionIdClean] = function (index, title) {
+        // Update current title
+        const currentTitle = document.querySelector('.tab-current-title-{{ section.id }}');
+        if (currentTitle) {
+          currentTitle.textContent = title;
+        }
+        // Hide all panels (main grid)
+        const panels = document.querySelectorAll('.tab-panel-{{ section.id }}');
+        panels.forEach(function (panel) {
+          panel.classList.add('tw-hidden');
+        });
+        // Show selected panel
+        const activePanel = document.querySelector('.tab-panel-{{ section.id }}[data-tab-panel="' + index + '"]');
+        if (activePanel) {
+          activePanel.classList.remove('tw-hidden');
+        }
+        // Update dropdown options
+        const options = document.querySelectorAll('.tab-option-{{ section.id }}');
+        options.forEach(function (opt) {
+          const optIndex = parseInt(opt.getAttribute('data-tab-index'));
+          const checkIcon = opt.querySelector('.tab-check-{{ section.id }}');
+          const checkSvg = checkIcon ? checkIcon.querySelector('svg') : null;
+          // Reset all
+          opt.classList.remove('tw-border-black', 'tw-bg-gray-50');
+          opt.classList.add('tw-border-transparent');
+          if (checkIcon) {
+            checkIcon.classList.remove('tw-border-black', 'tw-bg-black');
+            checkIcon.classList.add('tw-border-gray-300');
+          }
+          if (checkSvg) {
+            checkSvg.classList.remove('tw-text-white');
+            checkSvg.classList.add('tw-text-transparent');
+          }
+          opt.querySelector('span').classList.remove('tw-text-black');
+          opt.querySelector('span').classList.add('tw-text-gray-600');
+          // Set active
+          if (optIndex === index) {
+            opt.classList.add('tw-border-black', 'tw-bg-gray-50');
+            opt.classList.remove('tw-border-transparent');
+            if (checkIcon) {
+              checkIcon.classList.add('tw-border-black', 'tw-bg-black');
+              checkIcon.classList.remove('tw-border-gray-300');
+            }
+            if (checkSvg) {
+              checkSvg.classList.add('tw-text-white');
+              checkSvg.classList.remove('tw-text-transparent');
+            }
+            opt.querySelector('span').classList.add('tw-text-black');
+            opt.querySelector('span').classList.remove('tw-text-gray-600');
+          }
+        });
+        // Close dropdown
+        const dropdown = document.querySelector('.tab-dropdown-{{ section.id }}');
+        const arrow = document.querySelector('.tab-arrow-{{ section.id }}');
+        const arrowWrapper = document.querySelector('.tab-arrow-wrapper-{{ section.id }}');
+        dropdownOpen = false;
+        if (dropdown) dropdown.classList.remove('show');
+        if (arrow) arrow.classList.remove('rotated');
+        if (arrowWrapper) arrowWrapper.classList.remove('active');
+      };
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function (e) {
+        const selector = document.querySelector('.tab-selector-{{ section.id }}');
+        const dropdown = document.querySelector('.tab-dropdown-{{ section.id }}');
+        if (dropdown && dropdownOpen && !selector.contains(e.target) && !dropdown.contains(e.target)) {
+          window['toggleTabDropdown' + sectionIdClean](null);
+        }
+      });
+    })();
+  </script>
+</section>

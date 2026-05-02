@@ -1,0 +1,361 @@
+{% schema %}
+{
+  "name": "Featured Product - 2",
+  "tag": "section",
+  "class": "ai-featured-product-with-title",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Title"
+    },
+    {
+      "type": "richtext",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "<p>THE MIRACLE SKIN PRODUCT THAT BROKE THE INTERNET & IS A <strong>GAME CHANGER</strong></p>"
+    },
+      {
+      "type": "richtext",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "<p>THE MIRACLE SKIN PRODUCT THAT BROKE THE INTERNET & IS A GAME CHANGER</p> <p>THE MIRACLE SKIN PRODUCT THAT BROKE THE INTERNET & IS A GAME CHANGER</p> <p>THE MIRACLE SKIN PRODUCT THAT BROKE THE INTERNET & IS A GAME CHANGER</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Section Title Color",
+      "default": "#480E67"
+    },
+    {
+      "type": "header",
+      "content": "Product Settings"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Custom product title (optional)"
+    },
+    {
+      "type": "text",
+      "id": "rating_value",
+      "label": "Rating value",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "rating_count",
+      "label": "Rating count",
+      "default": "(xx)"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_product_links",
+      "label": "Enable product page links",
+      "info": "When enabled, clicking on product card will navigate to product page",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Padding top/bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Featured Product With Title"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  id="AI-FeaturedProductTitle-{{ section.id }}"
+  class="tw-w-full"
+  style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1400px] tw-mx-auto ">
+    {% assign prod = section.settings.product %}
+    {% if prod != blank %}
+      {% assign product_obj = all_products[prod] %}
+    {% endif %}
+
+    <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-[20px] tw-bg-[#FFFFFF] tw-w-full">
+      {%- comment -%} Image Section - Left 55% {%- endcomment -%}
+      <div class="tw-w-full md:tw-w-[55%]">
+        {% if section.settings.enable_product_links %}
+          <a
+            href="{% if product_obj != blank %}{{ product_obj.url }}{% else %}#{% endif %}"
+            class="tw-block tw-relative"
+          >
+        {% else %}
+          <div class="tw-block tw-relative">
+        {% endif %}
+        {% if product_obj.featured_image %}
+          <div class="product-image-container tw-w-full tw-relative tw-bg-[#F8E7EB] tw-overflow-hidden {% if product_obj.images[1] %}has-second-image{% endif %}">
+            <div class="tw-relative" style="padding-bottom: 100%;">
+              <img
+                src="{{ product_obj.featured_image | image_url: width: 1000 }}"
+                alt="{{ product_obj.featured_image.alt | escape }}"
+                class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover product-image-main"
+                loading="lazy"
+                width="1000"
+                height="1000"
+              >
+              {% if product_obj.images[1] %}
+                <img
+                  src="{{ product_obj.images[1] | image_url: width: 1000 }}"
+                  alt="{{ product_obj.images[1].alt | escape }}"
+                  class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover product-image-hover tw-opacity-0"
+                  loading="lazy"
+                  width="1000"
+                  height="1000"
+                >
+              {% endif %}
+            </div>
+          </div>
+        {% else %}
+          <div class="tw-w-full tw-bg-[#F8E7EB]" style="padding-bottom: 100%;"></div>
+        {% endif %}
+        {% if section.settings.enable_product_links %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      </div>
+
+      {%- comment -%} Info Section - Right 45% {%- endcomment -%}
+      <div class="tw-w-full md:tw-w-[45%] tw-flex tw-flex-col tw-justify-center md:tw-pl-[70px] tw-px-[20px] tw-py-[20px] md:tw-py-[0]">
+        {%- comment -%} Section Title - Large Headline {%- endcomment -%}
+        {% if section.settings.section_title != blank %}
+          <div
+            class="section-title-richtext tw-text-responsive-[32,50] tw-font-[400]  tw-text-[50px] tw-leading-[1.3] tw-mb-[24px] tw-uppercase"
+            style="color: {{ section.settings.title_color }};"
+          >
+            {{ section.settings.section_title }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.enable_product_links %}
+          <a
+            href="{% if product_obj != blank %}{{ product_obj.url }}{% else %}#{% endif %}"
+            class="tw-block tw-no-underline"
+          >
+        {% else %}
+          <div class="tw-block">
+        {% endif %}
+
+
+            {%- comment -%} Rating {%- endcomment -%}
+        <div class="tw-flex tw-items-center tw-gap-[8px] tw-mb-[20px]">
+          <div class="tw-flex tw-text-[#000000] tw-text-responsive-[22,36] tw-gap-[1px]">★★★★★</div>
+          <div class="tw-text-responsive-[22,36] tw-font-[400] tw-text-[#666666]">
+            {{ section.settings.rating_value }}
+            {{ section.settings.rating_count }}
+          </div>
+        </div> 
+
+
+        {%- comment -%} Product Title {%- endcomment -%}
+        {% if section.settings.custom_title != blank %}
+          <h3 class="product-title tw-text-responsive-[18,26] tw-font-[600] tw-text-[#000000] tw-leading-[1.3] tw-mb-[8px]">
+            {{ section.settings.custom_title }}
+          </h3>
+        {% elsif product_obj != blank %}
+          <h3 class="product-title tw-text-responsive-[18,26] tw-font-[600]  tw-text-[#000000] tw-leading-[1.3] tw-mb-[8px]">
+            {{ product_obj.title }}
+          </h3>
+        {% else %}
+          <h3 class="product-title tw-text-responsive-[18,26] tw-font-[600] tw-text-[#000000] tw-leading-[1.3] tw-mb-[8px]">
+            Select a product
+          </h3>
+        {% endif %}
+
+         {%- comment -%} Content {%- endcomment -%}
+        {% comment %} {% assign description = product_obj.content | default: 0 %}
+        <div class="tw-text-responsive-[18,24] tw-font-[400] tw-text-[#000000] tw-mb-[12px]">
+            {{ description }}
+        </div> {% endcomment %}
+
+
+
+
+           {%- comment -%} Section Description - Large Headline {%- endcomment -%}
+        {% if section.settings.section_description != blank %}
+          <div class="tw-list-disc tw-pl-[20px] tw-mb-[16px] tw-text-responsive-[18,24] tw-text-[#000000] image-text-li">
+            {{ section.settings.section_description }}
+          </div>
+            
+            {% elsif product_obj.metafields.custom.benefit_paragraph != blank %}
+          <div class="tw-list-disc tw-pl-[20px] tw-mb-[16px] tw-text-responsive-[18,24] tw-text-[#000000] image-text-li">
+            {{ product_obj.metafields.custom.benefit_paragraph | metafield_tag }}
+          </div>
+        {% endif %}
+
+        {%- comment -%} Price {%- endcomment -%}
+        {% assign price = product_obj.price | default: 0 %}
+        <div class="tw-text-responsive-[24,36] tw-font-[700] tw-text-gray-600 tw-font-bold">
+          {% if price > 0 %}
+            {{ price | money }}
+            {%- if product_obj.compare_at_price > product_obj.price -%}
+              <s class="tw-text-[18px] tw-text-[#9b9b9b] tw-ml-[8px]">{{ product_obj.compare_at_price | money }}</s>
+            {%- endif -%}
+          {% else %}
+            —
+          {% endif %}
+        </div>
+
+        {% if section.settings.enable_product_links %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+
+        {%- comment -%} Button {%- endcomment -%}
+        {% if product_obj != blank %}
+          {% assign first_variant = product_obj.selected_or_first_available_variant %}
+          {% if first_variant %}
+            <button
+              type="button"
+              class="add-to-cart-btn tw-inline-block tw-px-[32px] tw-py-[14px] tw-text-[13px] tw-font-[600] tw-text-center tw-uppercase tw-tracking-wider tw-transition-all tw-duration-300"
+              style="background: {{ section.settings.button_bg }}; color: {{ section.settings.button_text }}; width:fit-content "
+              data-variant-id="{{ first_variant.id }}"
+              onclick="event.stopPropagation();"
+            >
+              {{ section.settings.button_label }}
+            </button>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #AI-FeaturedProductTitle-{{ section.id }} .section-title-richtext p {
+      margin: 0;
+    }
+    #AI-FeaturedProductTitle-{{ section.id }} .section-title-richtext strong {
+      font-weight: 700;
+    }
+
+    /* Image hover effects */
+    #AI-FeaturedProductTitle-{{ section.id }} .product-image-container {
+      transition: all 0.4s ease;
+    }
+    #AI-FeaturedProductTitle-{{ section.id }} .product-image-container.has-second-image:hover .product-image-hover {
+      opacity: 1 !important;
+    }
+    #AI-FeaturedProductTitle-{{ section.id }} .product-image-container.has-second-image:hover .product-image-main {
+      opacity: 0 !important;
+    }
+    #AI-FeaturedProductTitle-{{ section.id }} .product-image-main,
+    #AI-FeaturedProductTitle-{{ section.id }} .product-image-hover {
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    #AI-FeaturedProductTitle-{{ section.id }} .product-image-container:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Button hover */
+    #AI-FeaturedProductTitle-{{ section.id }} .add-to-cart-btn:hover {
+      filter: brightness(0.85);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    #AI-FeaturedProductTitle-{{ section.id }} .add-to-cart-btn:active {
+      transform: translateY(0);
+    }
+  </style>
+
+  <script>
+    (function () {
+      var root = document.getElementById('AI-FeaturedProductTitle-{{ section.id }}');
+      if (!root) return;
+      var buttons = root.querySelectorAll('.add-to-cart-btn');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-variant-id');
+          if (!id) return;
+
+          btn.disabled = true;
+          var originalText = btn.textContent;
+          btn.textContent = 'ADDING...';
+
+          var formData = new FormData();
+          formData.append('id', id);
+          formData.append('quantity', 1);
+
+          fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+            },
+          })
+            .then(function (res) {
+              return res.json();
+            })
+            .then(function (data) {
+              btn.textContent = 'ADDED ✓';
+              setTimeout(function () {
+                btn.textContent = originalText;
+                btn.disabled = false;
+              }, 2000);
+
+              if (window.Rebuy && window.Rebuy.SmartCart) {
+                window.Rebuy.SmartCart.show();
+              }
+
+              document.documentElement.dispatchEvent(
+                new CustomEvent('variant:add', {
+                  detail: { variant: data, quantity: 1 },
+                })
+              );
+              document.documentElement.dispatchEvent(new CustomEvent('cart:change'));
+            })
+            .catch(function (err) {
+              console.error('Add to cart error', err);
+              btn.textContent = 'ERROR';
+              setTimeout(function () {
+                btn.textContent = originalText;
+                btn.disabled = false;
+              }, 2000);
+            });
+        });
+      });
+    })();
+  </script>
+</section>

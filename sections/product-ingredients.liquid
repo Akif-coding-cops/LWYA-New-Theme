@@ -1,0 +1,155 @@
+{% schema %}
+{
+  "name": "Product Ingredients",
+  "tag": "section",
+  "class": "product-ingredients",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_fallback",
+      "label": "Use fallback image when no metafield",
+      "info": "If off, image area will be hidden when product has no ingredients_image metafield",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback Image",
+      "info": "Used when product doesn't have ingredients_image metafield (requires toggle above)"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Right background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#BED034"
+    },
+    {
+      "type": "color",
+      "id": "question_text_color",
+      "label": "Question text color",
+      "default": "#888888"
+    },
+    {
+      "type": "color",
+      "id": "question_border_color",
+      "label": "Question border color",
+      "default": "#D8D8D8"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Vertical padding",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "content_px",
+      "label": "Right content inline padding",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Ingredients"
+    }
+  ]
+}
+{% endschema %}
+
+{%- liquid
+  assign current_variant  = product.selected_or_first_available_variant
+  assign variant_ing_img  = current_variant.metafields.custom.variant_ingredient_image
+  assign ingredients_img  = product.metafields.custom.ingredients_image
+  assign linked_products  = product.metafields.custom.linked_products.value
+  assign linked_variants  = product.metafields.custom.linked_variants.value
+  assign render_mode      = 'none'
+
+  if variant_ing_img != blank
+    assign render_mode = 'variant'
+  elsif ingredients_img != blank
+    assign render_mode = 'own'
+  elsif section.settings.show_fallback and section.settings.fallback_image != blank
+    assign render_mode = 'own'
+  elsif linked_variants != blank and linked_variants.size > 0
+    assign render_mode = 'linked_variants'
+  elsif linked_products != blank and linked_products.size > 0
+    assign render_mode = 'linked'
+  endif
+-%}
+
+{%- comment -%} Current product — variant has ingredient image {%- endcomment -%}
+{% if render_mode == 'variant' %}
+  {%- render 'product-ingredients-item',
+    p: product,
+    v: current_variant,
+    ing_img: variant_ing_img,
+    section_id: section.id,
+    index: 'variant',
+    settings: section.settings
+  -%}
+
+{%- comment -%} Current product — product level ingredient image {%- endcomment -%}
+{% elsif render_mode == 'own' %}
+  {%- assign ing_img = ingredients_img | default: section.settings.fallback_image -%}
+  {%- render 'product-ingredients-item',
+    p: product,
+    v: current_variant,
+    ing_img: ing_img,
+    section_id: section.id,
+    index: 'own',
+    settings: section.settings
+  -%}
+
+{%- comment -%}
+  Linked Variants — loop through specific variants from metafield
+  Each variant must have variant_ingredient_image to be rendered
+{%- endcomment -%}
+{% elsif render_mode == 'linked_variants' %}
+  {% for iv in linked_variants %}
+    {%- assign iv_img = iv.metafields.custom.variant_ingredient_image -%}
+    {% if iv_img != blank %}
+      {%- render 'product-ingredients-item',
+        p: iv.product,
+        v: iv,
+        ing_img: iv_img,
+        section_id: section.id,
+        index: iv.id,
+        settings: section.settings
+      -%}
+    {% endif %}
+  {% endfor %}
+
+{%- comment -%}
+  Linked Products — product level ingredients only
+  No variant looping — just product ingredients_image
+{%- endcomment -%}
+{% elsif render_mode == 'linked' %}
+  {% for lp in linked_products %}
+    {%- assign lp_img = lp.metafields.custom.ingredients_image -%}
+    {% if lp_img != blank %}
+      {%- render 'product-ingredients-item',
+        p: lp,
+        v: nil,
+        ing_img: lp_img,
+        section_id: section.id,
+        index: forloop.index,
+        settings: section.settings
+      -%}
+    {% endif %}
+  {% endfor %}
+
+{% endif %}

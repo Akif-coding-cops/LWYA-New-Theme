@@ -1,0 +1,973 @@
+<style>
+  .section-{{ section.id }}-padding {
+    max-width: 1300px;           
+    width: 100%;                    
+    margin: var(--mt) auto var(--mb) auto;
+    padding: 0 {{ section.settings.padding_sides_mobile }}rem;
+    padding-top: var(--pt);
+    padding-bottom: var(--pb);
+    line-height: 1;
+    
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding: 0 {{ section.settings.padding_sides }}rem;
+      padding-top: var(--pt-desktop);
+      padding-bottom: var(--pb-desktop);
+    }
+  }
+</style>
+
+<div
+  style="
+    background-color:{{ section.settings.background-color }};
+    --max-width: {{ section.settings.section-width }}rem;
+    --mt: {{ section.settings.margin_top }}px;
+    --mb: {{ section.settings.margin_bottom }}px;
+    --pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --pt-desktop: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --pb-desktop: {{ section.settings.padding_bottom }}px;
+
+    --product-title-size: {{ section.settings.product_title_size }}px;
+    --product-title-color: {{ section.settings.product_title_color }};
+  "
+>
+  <div
+    class="section-{{ section.id }}-padding"
+  >
+    <style>
+      .overflow-container-{{ section.id }} {
+        margin: 0 -5%;
+        padding: 0;
+        position: relative;
+      }
+      .tab-container-{{ section.id }} {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: var(--gap-mobile);
+        justify-content: flex-start;
+        padding: 0 5%;
+        padding-bottom: 8px; /* for scrollbar offset */
+      }
+      @media screen and (min-width: 750px) {
+        .overflow-container-{{ section.id }} {
+          margin: 0;
+        }
+        .tab-container-{{ section.id }} {
+          gap: var(--gap);
+          justify-content: var(--justify-content);
+        }
+      }
+    </style>
+    <div class="overflow-container-{{ section.id }}">
+      <div
+        class="tab-container-{{ section.id }}"
+        style="
+          {% case section.settings.tabs_align %}
+            {% when 'left' %}
+              --justify-content: flex-start;
+            {% when 'center' %}
+              --justify-content: center;
+            {% when 'right' %}
+              --justify-content: flex-end;
+          {% endcase %}
+          margin-bottom: {{ section.settings.tabs_margin_bottom }}px;
+          --gap: {{ section.settings.tabs_spacing }}px;
+          --gap-mobile: {{ section.settings.tabs_spacing_mobile }}px;
+        "
+      >
+        <style>
+          .tab-{{ section.id }} {
+            cursor: pointer;
+            text-align: center;
+            font-size: var(--font-size-mobile);
+            white-space: nowrap;
+            color: var(--inactive-color);
+          }
+          @media (min-width: 750px) {
+            .tab-{{ section.id }} {
+              font-size: var(--font-size);
+            }
+          }
+          .tab--active-{{ section.id }} {
+            cursor: default;
+            color: var(--active-color);
+            border-bottom: 1px solid currentColor;
+          }
+        </style>
+        {% for block in section.blocks %}
+          {% if block.settings.title != blank %}
+            <div
+              class="
+                tab-{{ section.id }}
+                {% if forloop.first %}
+                tab--active-{{ section.id }}
+                {% endif %}
+              "
+              style="
+                --inactive-color: {{ section.settings.tabs_color }};
+                --active-color: {{ section.settings.tabs_color_active }};
+                --font-size: {{ section.settings.tabs_size }}px;
+                --font-size-mobile: {{ section.settings.tabs_size_mobile }}px;
+                padding-bottom: {{ section.settings.tabs_padding_bottom }}px;
+              "
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.title }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <style>
+      .tab-content-{{ section.id }} {
+        display: none;
+      }
+      .tab-content--active-{{ section.id }} {
+        display: block;
+      }
+      .tab-content-grid-{{ section.id }} {
+        display: grid;
+        gap: {{section.settings.image_gap}}px;
+        grid-template-columns: repeat(var(--mobile-product-row-count), minmax(0, 1fr));
+      }
+      .tab-content-grid--desktop-only-{{ section.id }} {
+        display: none;
+      }
+      @media screen and (min-width: 750px) {
+          .tab-content-grid--desktop-only-{{ section.id }} {
+            display: grid;
+          }
+        .tab-content-grid-{{ section.id }} {
+          grid-template-columns: repeat(var(--desktop-product-row-count), minmax(0, 1fr));
+        }
+      }
+      .product-image-wrapper-{{ section.id }} {
+        border-radius: {{section.settings.image_roundness}}px;
+        position: relative;
+        display: block;
+        width: 100%;
+        padding-top: 100%;
+        overflow: hidden;
+      }
+      .product-image-{{ section.id }},
+      .product-hover-image-{{ section.id }} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-hover-image-{{ section.id }} {
+        object-fit: cover;
+      }
+      .product-hover-image-{{ section.id }} {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      .product-image-wrapper-{{ section.id }}:hover .product-hover-image-{{ section.id }} {
+        opacity: 1;
+      }
+      .product-title-{{ section.id }} {
+        display: block;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        text-decoration: none;
+        font-size: var(--product-title-size);
+        color: var(--product-title-color);
+        line-height: {{section.settings.product_title_line_height}};
+      }
+      .price-{{ section.id }} {
+        font-size: {{ section.settings.product_price_size }}px;
+      }
+      .compare-at-price-{{ section.id }} {
+        text-decoration: line-through;
+        font-size: {{ section.settings.product_price_size }}px;
+        margin-left:2px;
+        margin-right: 5px;
+      }
+      .price-has-compare-at-price-{{ section.id }} {}
+      @media screen and (min-width: 750px) {
+        .swiper.mobile-swiper-{{ section.id }} {
+          display: none;
+        }
+      }
+    </style>
+    <div
+      class=""
+    >
+      {% for block in section.blocks %}
+        <div
+          class="
+            tab-content-{{ section.id }}
+            {% if forloop.first %}
+              tab-content--active-{{ section.id }}
+            {% endif %}
+          "
+          {{ block.shopify_attributes }}
+        >
+          {% capture content %}
+            {% assign collection = block.settings.collection %}
+            {% if collection != blank %}
+              {% comment %} Render all product title inside this collection: {% endcomment %}
+              {% for product in collections[collection].products
+                limit: block.settings.product_limit
+              %}
+                <div class="swiper-slide">
+                  <a
+                    href="{{ product.url }}"
+                    class="product-image-wrapper-{{ section.id }}"
+                    style=" {% if block.settings.product_image_orientation == 'square' %}
+                      padding-top: 100%!important;
+                    {% else %}
+                      padding-top: 150%!important;  /* You can adjust this value for your desired portrait aspect ratio */
+                    {% endif %}"
+                  >
+                    {% comment %} First image {% endcomment %}
+                    {% assign image = product.featured_image
+                      | default: product.images.first
+                    %}
+                    <img
+                      class="product-image-{{ section.id }}"
+                      src="{{ image | img_url: 'master' }}"
+                      alt="{{ image.alt }}"
+                      loading="lazy"
+                    >
+                    {% comment %} Secondary/hover image: {% endcomment %}
+                    {% assign image = product.images
+                      | where: 'position', 2
+                      | first
+                    %}
+                    {% if image != blank and section.settings.secondary_image_hover == true %}
+                      <img
+                        class="product-hover-image-{{ section.id }}"
+                        src="{{ image | img_url: 'master' }}"
+                        alt="{{ image.alt }}"
+                        loading="lazy"
+                      >
+                    {% endif %}
+                  </a>
+
+                  <div>
+                    <a
+                      class="product-title-{{ section.id }}"
+                      href="{{ product.url }}"
+                    >
+                      {{ product.title }}
+                    </a>
+                    <div
+                      style="font-size: {{ section.settings.product_price_size }}px;"
+                    >
+                      {% if product.variants != blank and product.price_min != product.price_max %}
+                        <span
+                          class="price-{{ section.id }}"
+                          style="color: {{ section.settings.normal_price_color }};"
+                        >
+                          {{ product.price_min | money }} - {{ product.price_max | money }}
+                        </span>
+                      {% else %}
+                        {% comment %} Price and compare at price: {% endcomment %}
+                        {% if product.compare_at_price_max > product.price %}
+                          <span
+                            class="compare-at-price-{{ section.id }}"
+                            style="color: {{ section.settings.normal_price_color }};"
+                          >
+                            {{ product.compare_at_price_max | money }}
+                          </span>
+                          <span
+                            class="price-{{ section.id }}"
+                            style="color:{{ section.settings.discounted_price_color }};"
+                          >
+                            {{ product.price | money }}
+                          </span>
+                        {% else %}
+                          <span
+                            class="price-{{ section.id }}"
+                            style="color: {{ section.settings.normal_price_color }};"
+                          >
+                            {{ product.price | money }}
+                          </span>
+                        {% endif %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              {% comment %} Place holder grid and swiper: {% endcomment %}
+              {% for i in (1..block.settings.product_limit) %}
+                <div class="swiper-slide">
+                  <div
+                    class="product-image-wrapper-{{ section.id }}"
+                  >
+                    <div
+                      class="product-image-{{ section.id }}"
+                      style="background-color: #f4f4f4;"
+                    >
+                      {{ 'product-1' | placeholder_svg_tag: '' }}
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="product-title-{{ section.id }}"
+                    >
+                      Product title
+                    </div>
+                    <div
+                      class="price-{{ section.id }}"
+                    >
+                      <span
+                        class="compare-at-price-{{ section.id }}"
+                        style="color: gray;"
+                      >
+                        $860.00
+                      </span>
+                      <span
+                        class="price-{{ section.id }}"
+                        style="color: #ff3451;"
+                      >
+                        $756.00
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endcapture %}
+          {% comment %} Mobile content: {% endcomment %}
+          {% if block.settings.enable_swiper_on_mobile %}
+            <div class="swiper mobile-swiper-{{ section.id }}">
+              <div class="swiper-wrapper">
+                {{ content }}
+              </div>
+            </div>
+          {% endif %}
+
+          {% comment %} Desktop content: {% endcomment %}
+          <div
+            class="
+              tab-content-grid-{{ section.id }}
+              {% if block.settings.enable_swiper_on_mobile %}
+                tab-content-grid--desktop-only-{{ section.id }}
+              {% endif %}
+            "
+            style="--desktop-product-row-count: {{ block.settings.product_row_count }};--mobile-product-row-count: {{ block.settings.mobile_product_row_count }};"
+          >
+            {{ content }}
+          </div>
+
+          {% if block.settings.button_text != blank %}
+            <style>
+              .ug-collections-cta-button-{{ section.id }} {
+                pointer-events: all;
+                height: var(--button-height, 48px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: var(--button-width);
+                background-color: var(--button-bg);
+                color: var(--button-color);
+                font-size: var(--button-font-size);
+                text-align: center;
+                text-decoration: none;
+                border-radius: var(--border-radius);
+                border: var(--border);
+                transition: all 0.3s ease-in-out;
+              }
+              .ug-collections-cta-button-{{ section.id }}:hover {
+                background-color: var(--button-bg-hover);
+                color: var(--button-color-hover);
+              }
+            </style>
+            <a
+              href="{{ block.settings.button_link }}"
+              class="ug-collections-cta-button-{{ section.id }}"
+              style="
+                margin: {{ block.settings.button_mt }}px auto 0;
+                --button-height: {{ section.settings.button_height }}px;
+                --button-width: {{ section.settings.button_width }}px;
+                --button-color: {{ section.settings.button_color }};
+                --button-bg: {{ section.settings.button_background_color }};
+                --button-color-hover: {{ section.settings.button_color_hover }};
+                --button-bg-hover: {{ section.settings.button_background_color_hover }};
+                --button-font-size: {{ section.settings.button_font_size | times: 0.85 }}px;
+                --button-font-size-desktop: {{ section.settings.button_font_size }}px;
+                --border-radius: {{ section.settings.button_border_radius }}px;
+                --border: {{ section.settings.button_border_thickness }}px {{ block.settings.button_border_color }} solid;
+              "
+            >
+              {{ block.settings.button_text }}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
+></script>
+
+<script>
+  (function () {
+    function sectionSetup() {
+      // get all tab elements using .tab-{{ section.id }}
+      const tabs = document.querySelectorAll('.tab-{{ section.id }}');
+      const tabActiveClass = 'tab--active-{{ section.id }}';
+      // get all tab content using .tab-content-{{ section.id }}
+      const tabContents = document.querySelectorAll(
+        '.tab-content-{{ section.id }}'
+      );
+      const tabContentActiveClass = 'tab-content--active-{{ section.id }}';
+
+      // listen for click event on each tab
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          // remove active class from all tabs
+          tabs.forEach((tab) => {
+            tab.classList.remove(tabActiveClass);
+          });
+          // add active class to clicked tab
+          tab.classList.add(tabActiveClass);
+
+          // remove active class from all tab contents
+          tabContents.forEach((tabContent) => {
+            tabContent.classList.remove(tabContentActiveClass);
+          });
+          // add active class to corresponding tab content
+          tabContents[index].classList.add(tabContentActiveClass);
+        });
+      });
+
+      // Mobile swiper init:
+      new Swiper('.mobile-swiper-{{ section.id }}', {
+        slidesPerView: 1.2,
+        spaceBetween: 20,
+        //pagination: {
+        //  el: '.swiper-pagination',
+        //  clickable: true,
+        //},
+      });
+    }
+
+    //sectionSetup();
+    document.addEventListener('DOMContentLoaded', sectionSetup);
+
+    if (window.Shopify && window.Shopify.designMode) {
+      document.addEventListener('shopify:section:load', function (event) {
+        if (event.detail.sectionId !== '{{ section.id }}') return;
+        sectionSetup();
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "SS - Featured Collections",
+  "presets": [
+    {
+      "name": "SS - Featured Collections (tabs)",
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Best Sellers"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "New Arrivals"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Analog"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Objects"
+          }
+        }
+      ]
+    }
+  ],
+  "class": "section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tabs settings:"
+    },
+    {
+      "type": "color",
+      "id": "tabs_color",
+      "label": "Tabs color",
+      "default": "#7e7e7e"
+    },
+    {
+      "type": "color",
+      "id": "tabs_color_active",
+      "label": "Tabs color (active)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "tabs_size",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Tabs font size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tabs_size_mobile",
+      "min": 8,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Tabs font size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "tabs_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Tabs padding bottom",
+      "info": "Use this to adjust the active tab underline distance to the text",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "tabs_align",
+      "label": "Tabs align (Desktop)",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "tabs_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Tabs spacing",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "tabs_spacing_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Tabs spacing (Mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "tabs_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Tabs margin bottom",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type":"checkbox",
+      "id":"secondary_image_hover",
+      "label":"Show secondary image on hover",
+      "default":true
+    },
+    {
+      "type": "range",
+      "id": "image_roundness",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Image roundness",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between images",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Product title settings:"
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Product title font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "product_title_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Line height",
+      "default": 1.3
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product title color",
+      "default": "#212121"
+    },
+    {
+      "type": "header",
+      "content": "Product price settings:"
+    },
+    {
+      "type": "range",
+      "id": "product_price_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Product price font size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "discounted_price_color",
+      "label": "Discounted price color",
+      "default": "#ff3451"
+    },
+    {
+      "type": "color",
+      "id": "normal_price_color",
+      "label": "Normal price color",
+      "default": "#212121"
+    },
+    {
+      "type": "header",
+      "content": "Button color settings:"
+    },
+    {
+          "type": "color",
+          "label": "Button text color",
+          "id": "button_color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "label": "Button background color",
+          "id": "button_background_color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "label": "Button text color hover",
+          "id": "button_color_hover",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "label": "Button background color hover",
+          "id": "button_background_color_hover",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "label": "Button text border color",
+          "id": "button_border_color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "header",
+          "content": "Button settings:"
+        },
+        {
+          "type": "range",
+          "id": "button_height",
+          "min": 20,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Button height",
+          "default": 44
+        },
+        {
+          "type": "range",
+          "id": "button_width",
+          "min": 100,
+          "max": 500,
+          "step": 10,
+          "unit": "px",
+          "label": "Button width",
+          "default": 200
+        },
+        {
+          "type": "range",
+          "id": "button_font_size",
+          "min": 10,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Button font size",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Button radius",
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "button_border_thickness",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "label": "Button border thickness",
+          "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Background color"
+    },
+    {
+      "type": "color",
+      "label": "Section background color",
+      "id": "background-color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Section margin (outside)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section padding (inside)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_sides",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "rem",
+      "label": "Padding sides",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_sides_mobile",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Padding sides mobile",
+      "default": 1.5
+    },
+    {
+      "type": "header",
+      "content": "Section width"
+    },
+    {
+      "type": "range",
+      "id": "section-width",
+      "min": 80,
+      "max": 200,
+      "step": 5,
+      "unit": "rem",
+      "label": "Section content width",
+      "default": 120
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "default": "Tab Title"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "range",
+          "id": "product_limit",
+          "min": 1,
+          "max": 50,
+          "step": 1,
+          "label": "Product count",
+          "default": 6
+        },
+        {
+          "type": "range",
+          "id": "product_row_count",
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "label": "Desktop products per row",
+          "default": 4
+        },
+         {
+          "type": "range",
+          "id": "mobile_product_row_count",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "label": "Mobile products per row",
+          "default": 1
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_swiper_on_mobile",
+          "label": "Enable swipe on mobile",
+          "default": false
+        },
+        {
+          "label": "Product image orientation",
+          "id": "product_image_orientation",
+          "type": "select",
+          "options": [
+            {
+              "value": "square",
+              "label": "Square"
+            },
+            {
+              "value": "portrait",
+              "label": "Portrait"
+            }
+          ],
+          "default": "square",
+          "label": "Choose product image orientation:"
+        },
+        {
+          "type": "header",
+          "content": "Button settings"
+        },
+        {
+          "type": "range",
+          "id": "button_mt",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Button margin top",
+          "default": 48
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link",
+          "default": "/collections/all"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

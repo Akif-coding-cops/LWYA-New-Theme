@@ -1,0 +1,284 @@
+{% style %}
+
+.our-promise-section {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 100px 20px;
+}
+
+.our-promise-wrapper {
+  max-width: {{ section.settings.content_width }}px;
+  margin: 0 auto;
+  background: rgba(255,255,255, {{ section.settings.box_opacity }});
+  padding: 80px;
+}
+
+.our-promise-title {
+  font-family: 'Didot', serif !important;
+  font-style: italic;
+  font-weight: 400;
+  font-size: {{ section.settings.title_size }}px;
+  line-height: {{ section.settings.title_line_height }}px;
+  margin-bottom: 30px;
+  color: {{ section.settings.title_color }};
+}
+
+.highlight-text {
+  position: relative;
+  display: inline-block;
+}
+
+.highlight-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 100%;
+  height: {{ section.settings.underline_thickness }}px;
+  background-color: {{ section.settings.underline_color }};
+}
+
+.our-promise-description {
+  font-family: 'Gotham_Book', sans-serif;
+  font-weight: 300;
+  font-size: {{ section.settings.description_size }}px;
+  line-height: {{ section.settings.description_line_height }}px;
+  margin-bottom: 40px;
+  max-width: 900px;
+  color: {{ section.settings.description_color }};
+}
+
+.our-promise-button {
+  display: inline-block;
+  background-color: {{ section.settings.button_bg }};
+  color: {{ section.settings.button_text_color }};
+  padding: 15px 40px;
+  text-decoration: none;
+  font-family: 'Gotham', sans-serif;
+  font-weight: 700;
+  font-size: {{ section.settings.button_size }}px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.our-promise-button:hover {
+  opacity: 0.85;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+
+  .our-promise-section {
+    padding: 60px 15px;
+  }
+
+  .our-promise-wrapper {
+    padding: 40px 20px;
+  }
+
+  .our-promise-title {
+    font-size: {{ section.settings.mobile_title_size }}px;
+    line-height: 1.2;
+  }
+
+  .our-promise-description {
+    font-size: {{ section.settings.mobile_description_size }}px;
+    line-height: 1.4;
+  }
+
+}
+
+{% endstyle %}
+
+<section 
+  class="our-promise-section"
+  style="background-image: url({{ section.settings.background_image | image_url: width: 2000 }});"
+>
+  <div class="our-promise-wrapper">
+
+    {% if section.settings.title != blank %}
+      <h2 class="our-promise-title">
+        {{ section.settings.title | replace: 'JUST YOU', '<span class="highlight-text">JUST YOU</span>' }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="our-promise-description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link }}" class="our-promise-button">
+        {{ section.settings.button_label }}
+      </a>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Promise Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "White Box Width",
+      "min": 600,
+      "max": 1300,
+      "step": 10,
+      "default": 1130
+    },
+    {
+      "type": "range",
+      "id": "box_opacity",
+      "label": "White Box Opacity",
+      "min": 0.5,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.9
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "No filters. No fakes. JUST YOU."
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Desktop Title Size",
+      "min": 24,
+      "max": 120,
+      "step": 1,
+      "default": 85
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "label": "Mobile Title Size",
+      "min": 18,
+      "max": 60,
+      "step": 1,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "label": "Title Line Height",
+      "min": 51,
+      "max": 150,
+      "step": 1,
+      "default": 107
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#D41870"
+    },
+    {
+      "type": "range",
+      "id": "underline_thickness",
+      "label": "Underline Thickness",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "underline_color",
+      "label": "Underline Color",
+      "default": "#D41870"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Through our carefully crafted beauty products...</p>"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Desktop Description Size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_size",
+      "label": "Mobile Description Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "label": "Description Line Height",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "JOIN THE MOVEMENT"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Font Size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#e91e63"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Promise Section"
+    }
+  ]
+}
+{% endschema %}

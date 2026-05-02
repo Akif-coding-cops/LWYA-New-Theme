@@ -1,0 +1,316 @@
+{% schema %}
+{
+  "name": "Image + FAQ right",
+  "tag": "section",
+  "class": "img-faq-right",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left image (650px desktop)"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Right background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#BED034"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "question_text_color",
+      "label": "Question text color",
+      "default": "#888888"
+    },
+    {
+      "type": "color",
+      "id": "question_border_color",
+      "label": "Question border color",
+      "default": "#D8D8D8"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Vertical padding",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "content_px",
+      "label": "Right content inline padding",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Title",
+          "default": "I AM VIVACIOUS"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 10
+        }
+      ]
+    },
+    {
+      "type": "subtitle",
+      "name": "Subtitle",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Subtitle",
+          "default": "The Essence of Joy — Bottled"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 22
+        }
+      ]
+    },
+    {
+      "type": "questions",
+      "name": "Questions (3 items)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "q1",
+          "label": "Question 1",
+          "default": "MESSAGE IN A BOTTLE"
+        },
+        {
+          "type": "richtext",
+          "id": "a1",
+          "label": "Answer 1",
+          "default": "<p>Your story, your scent. A bright, confident blend designed to lift your everyday.</p>"
+        },
+        {
+          "type": "text",
+          "id": "q2",
+          "label": "Question 2",
+          "default": "FRAGRANCE NOTES"
+        },
+        {
+          "type": "richtext",
+          "id": "a2",
+          "label": "Answer 2",
+          "default": "<p>Top: Bergamot, Pink Pomelo. Mid: Violet, Green Tea. Base: Tonka, Skin Musk.</p>"
+        },
+        {
+          "type": "text",
+          "id": "q3",
+          "label": "Question 3",
+          "default": "FULL INGREDIENT LIST"
+        },
+        {
+          "type": "richtext",
+          "id": "a3",
+          "label": "Answer 3",
+          "default": "<p>Formulated without parabens, sulfates, or mineral oil. Gentle and joyful.</p>"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Image + FAQ right",
+      "blocks": [
+        { "type": "title" },
+        { "type": "subtitle" },
+        { "type": "questions" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row tw-px-[16px] md:tw-px-0">
+    <!-- left image -->
+    <div class="tw-w-full md:tw-w-responsive-[375,650] tw-flex-shrink-0 tw-mb-[24px] md:tw-mb-0">
+      {% if section.settings.left_image != blank %}
+        <img
+          src="{{ section.settings.left_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.left_image.alt | escape }}"
+          class="tw-w-full tw-h-full tw-object-cover"
+        >
+      {% endif %}
+    </div>
+
+    <!-- right content -->
+    <div
+      class="tw-w-full tw-flex tw-items-start"
+      style="background: {{ section.settings.right_bg_color }};"
+    >
+      <div
+        class="tw-w-full tw-px-[24px] md:tw-px-[{{ section.settings.content_px }}px]"
+      >
+        {% for block in section.blocks %}
+          {% assign mt = block.settings.margin_top | append: 'px' %}
+          {% assign mb = block.settings.margin_bottom | append: 'px' %}
+          {% case block.type %}
+            {% when 'title' %}
+              <h2
+                style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ section.settings.title_color }}; font-size: clamp(26px, 3.3vw, 38px); font-weight: 700;"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.content }}
+              </h2>
+            {% when 'subtitle' %}
+              <p
+                style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ section.settings.subtitle_color }}; font-size: clamp(16px, 2.4vw, 22px);"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.content }}
+              </p>
+            {% when 'questions' %}
+              <div
+                class="faq-group tw-ml-0 md:tw-ml-[15px] tw-max-w-full md:tw-max-w-[70%]"
+                style="margin-top: {{ mt }}; margin-bottom: {{ mb }};"
+                {{ block.shopify_attributes }}
+              >
+                {% assign q_color = section.settings.question_text_color %}
+                {% assign q_border = section.settings.question_border_color %}
+
+                {% assign items = "1,2,3" | split: "," %}
+                {% for i in items %}
+                  {% assign q = 'q' | append: i %}
+                  {% assign a = 'a' | append: i %}
+                  {% assign q_text = block.settings[q] %}
+                  {% assign a_text = block.settings[a] %}
+                  {% if q_text != blank %}
+                    <div class="faq-item" style="border-top: 1px solid {{ q_border }};">
+                      <button
+                        type="button"
+                        class="faq-btn tw-w-full tw-flex tw-items-center tw-justify-between tw-py-[14px]"
+                        data-target="faq-{{ section.id }}-{{ block.id }}-{{ forloop.index }}"
+                        style="color: {{ q_color }}; font-size: 16px; font-weight: 600;"
+                      >
+                        <span>{{ q_text }}</span>
+                        <span class="tw-text-[20px] tw-leading-none tw-font-[600] plus-icon" style="color: {{ q_color }};">+</span>
+                      </button>
+                      <div
+                        id="faq-{{ section.id }}-{{ block.id }}-{{ forloop.index }}"
+                        class="faq-body tw-overflow-hidden tw-max-h-0"
+                      >
+                        <div class="tw-pb-[14px] tw-text-[14px] tw-leading-[1.5] tw-text-[#000000]">
+                          {{ a_text }}
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+                <div style="border-top: 1px solid {{ q_border }};"></div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var root = document.currentScript && document.currentScript.closest
+        ? document.currentScript.closest('section')
+        : null;
+      if (!root) return;
+      var buttons = root.querySelectorAll('.faq-btn');
+      buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var id = btn.getAttribute('data-target');
+          var body = root.querySelector('#' + id);
+          if (!body) return;
+          var isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+          if (isOpen) {
+            body.style.maxHeight = '0px';
+            btn.querySelector('.plus-icon').textContent = '+';
+          } else {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            btn.querySelector('.plus-icon').textContent = '–';
+          }
+        });
+      });
+    })();
+  </script>
+</section>

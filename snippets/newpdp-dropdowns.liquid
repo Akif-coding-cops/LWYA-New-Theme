@@ -1,0 +1,84 @@
+<div class="tw-divide-y tw-divide-[#eaeaea] tw-border-y tw-border-[#eaeaea]">
+  {% comment %} DESCRIPTION - Product Description {% endcomment %}
+  {% if product.description != blank %}
+    <details class="tw-group tw-py-[10px]">
+      <summary class="tw-flex tw-items-center tw-justify-between tw-text-[14px] tw-font-metric-medium tw-cursor-pointer tw-text-[#666666] tw-uppercase">
+        <span>DESCRIPTION</span>
+        <span class="tw-text-[#666666] tw-text-[18px] tw-leading-none tw-transition-transform group-open:tw-rotate-45">+</span>
+      </summary>
+      <div class="tw-pt-[8px] tw-text-[14px] tw-leading-[22px] tw-text-[#000000]">
+        {{ product.description }}
+      </div>
+    </details>
+  {% endif %}
+
+  {% comment %} WHY WE LOVE IT - Product Details {% endcomment %}
+  {% assign product_details = product.metafields.custom.product_details %}
+  {% if product_details != blank %}
+    <details class="tw-group tw-py-[10px]">
+      <summary class="tw-flex tw-items-center tw-justify-between tw-text-[14px] tw-font-metric-medium tw-cursor-pointer tw-text-[#666666] tw-uppercase">
+        <span>WHY WE LOVE IT</span>
+        <span class="tw-text-[#666666] tw-text-[18px] tw-leading-none tw-transition-transform group-open:tw-rotate-45">+</span>
+      </summary>
+      <div class="tw-pt-[8px] tw-text-[14px] tw-leading-[22px] tw-text-[#000000]">
+        {{ product_details | metafield_tag }}
+      </div>
+    </details>
+  {% endif %}
+
+  {% comment %} HOW TO USE {% endcomment %}
+  {% assign how_to_use = product.metafields.custom.how_to_use_description %}
+  {% if how_to_use != blank %}
+    <details class="tw-group tw-py-[10px]">
+      <summary class="tw-flex tw-items-center tw-justify-between tw-text-[14px] tw-font-metric-medium tw-cursor-pointer tw-text-[#666666] tw-uppercase">
+        <span>HOW TO USE</span>
+        <span class="tw-text-[#666666] tw-text-[18px] tw-leading-none tw-transition-transform group-open:tw-rotate-45">+</span>
+      </summary>
+      <div class="tw-pt-[8px] tw-text-[14px] tw-leading-[22px] tw-text-[#000000]">
+        {{ how_to_use | metafield_tag }}
+      </div>
+    </details>
+  {% endif %}
+
+  {% comment %} BENEFITS {% endcomment %}
+  {% assign benefits = product.metafields.custom.benefit_paragraph %}
+  {% if benefits != blank %}
+    <details class="tw-group tw-py-[10px]">
+      <summary class="tw-flex tw-items-center tw-justify-between tw-text-[14px] tw-font-metric-medium tw-cursor-pointer tw-text-[#666666] tw-uppercase">
+        <span>BENEFITS</span>
+        <span class="tw-text-[#666666] tw-text-[18px] tw-leading-none tw-transition-transform group-open:tw-rotate-45">+</span>
+      </summary>
+      <div class="tw-pt-[8px] tw-text-[14px] tw-leading-[22px] tw-text-[#000000]">
+        {{ benefits | metafield_tag }}
+      </div>
+    </details>
+  {% endif %}
+
+  {% comment %} INGREDIENTS {% endcomment %}
+  {% assign ingredients = product.metafields.custom.ingredient_paragraph %}
+  {% if ingredients != blank %}
+    <details class="tw-group tw-py-[10px]">
+      <summary class="tw-flex tw-items-center tw-justify-between tw-text-[14px] tw-font-metric-medium tw-cursor-pointer tw-text-[#666666] tw-uppercase">
+        <span>INGREDIENTS</span>
+        <span class="tw-text-[#666666] tw-text-[18px] tw-leading-none tw-transition-transform group-open:tw-rotate-45">+</span>
+      </summary>
+      <div class="tw-pt-[8px] tw-text-[14px] tw-leading-[22px] tw-text-[#000000]">
+        {{ ingredients | metafield_tag }}
+      </div>
+    </details>
+  {% endif %}
+
+  {% comment %} LWYA'S PRO TIPS {% endcomment %}
+  {% assign pro_tips = product.metafields.custom.lwya_pro_tips %}
+  {% if pro_tips != blank %}
+    <details class="tw-group tw-py-[10px]">
+      <summary class="tw-flex tw-items-center tw-justify-between tw-text-[14px] tw-font-metric-medium tw-cursor-pointer tw-text-[#666666] tw-uppercase">
+        <span>LWYA'S PRO TIPS</span>
+        <span class="tw-text-[#666666] tw-text-[18px] tw-leading-none tw-transition-transform group-open:tw-rotate-45">+</span>
+      </summary>
+      <div class="tw-pt-[8px] tw-text-[14px] tw-leading-[22px] tw-text-[#000000]">
+        {{ pro_tips | metafield_tag }}
+      </div>
+    </details>
+  {% endif %}
+</div>

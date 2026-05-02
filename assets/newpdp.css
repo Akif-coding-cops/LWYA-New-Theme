@@ -1,0 +1,244 @@
+/* Minimal PDP-specific overrides; Tailwind handles most styling. */
+#lwya-newpdp .loox-rating { display: inline-flex; align-items: center; }
+
+/* Prevent gallery overflow to right area */
+@media (min-width: 1024px) {
+  #lwya-newpdp [data-main-gallery] {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  #lwya-newpdp [data-main-gallery] > div {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  #lwya-newpdp [data-main-gallery] a,
+  #lwya-newpdp [data-main-gallery] img {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  #lwya-newpdp [data-main-gallery] img:not([data-main-image-1]):not([data-main-image-5]) {
+    height: auto;
+    display: block;
+  }
+  
+  /* Ensure main images 1 and 5 fill container fully */
+  #lwya-newpdp [data-main-image-1],
+  #lwya-newpdp [data-main-image-5] {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    min-height: 100%;
+  }
+  
+  #lwya-newpdp [data-main-image-link] {
+    display: flex !important;
+    align-items: stretch;
+    min-height: 100%;
+    height: 100%;
+  }
+  
+  /* Ensure grid items don't overflow */
+  #lwya-newpdp [data-main-gallery] .tw-grid {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Color swatch active state - fallback for peer selector */
+#lwya-newpdp input[type="radio"]:checked + span,
+#lwya-newpdp [data-variant-selector] input[type="radio"]:checked + span,
+#lwya-newpdp label input[type="radio"]:checked ~ span {
+  /* border-color: #d41870 !important;
+  border-width: 2px !important; */
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #d41870;
+}
+
+/* Ensure peer selector works for Tailwind */
+#lwya-newpdp [data-variant-selector] label input[type="radio"]:checked + span {
+  /* border-color: #d41870 !important;
+  border-width: 2px !important; */
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #d41870;
+}
+
+/* Quantity input - prevent spinner in number inputs */
+#lwya-newpdp-form input[type="number"]::-webkit-inner-spin-button,
+#lwya-newpdp-form input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#lwya-newpdp-form input[inputmode="numeric"] {
+  -moz-appearance: textfield;
+}
+
+/* Disabled button styles */
+#lwya-newpdp-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Zoom cursor for gallery images */
+.tw-cursor-zoom-in {
+  cursor: zoom-in;
+}
+
+/* GLightbox custom styles - Black background like TPH */
+.glightbox-container {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+.gslide-description {
+  background: transparent !important;
+}
+
+/* Navigation arrows - make them bigger and more visible */
+.glightbox-clean .gnext,
+.glightbox-clean .gprev {
+  background: rgba(255, 255, 255, 0.1) !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.glightbox-clean .gnext:hover,
+.glightbox-clean .gprev:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Position arrows at edges */
+.glightbox-clean .gprev {
+  left: 20px !important;
+}
+
+.glightbox-clean .gnext {
+  right: 20px !important;
+}
+
+/* Close button */
+.glightbox-clean .gclose {
+  background: rgba(255, 255, 255, 0.1) !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+.glightbox-clean .gclose:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Hide product labels from apps (temporary) */
+#lwya-newpdp img.pl-w-100,
+#lwya-newpdp img[alt*="chameleon"],
+#lwya-newpdp img[src*="cloudfront.net/storage/labels"] {
+  display: none !important;
+}
+
+/* Sticky sidebar for desktop */
+@media (min-width: 1024px) {
+  #lwya-newpdp aside {
+    /* No max-height or overflow - natural scroll with page */
+  }
+  
+  /* Adjust top offset when header is scrolled (smaller) */
+  .is-scrolling #lwya-newpdp aside {
+    top: 110px !important;
+  }
+}
+
+/* Sold out variant swatch - strikethrough line */
+#lwya-newpdp .variant-swatch-sold-out {
+  position: relative;
+}
+
+#lwya-newpdp .variant-swatch-sold-out::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background-color: #9b9b9b;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Dropdown icon animation - smooth rotate and change to minus */
+#lwya-newpdp .dropdown-icon {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+}
+
+#lwya-newpdp .dropdown-icon-plus,
+#lwya-newpdp .dropdown-icon-minus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease, transform 0.3s ease;
+}
+
+#lwya-newpdp .dropdown-icon-minus {
+  opacity: 0;
+  transform: rotate(-90deg);
+}
+
+#lwya-newpdp details[open] .dropdown-icon-plus {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+#lwya-newpdp details[open] .dropdown-icon-minus {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* Skeleton loading */
+.lwya-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.lwya-skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.6) 50%,
+    transparent 100%
+  );
+  animation: lwya-shimmer 1.2s infinite;
+}
+
+@keyframes lwya-shimmer {
+  0%   { left: -100%; }
+  100% { left: 100%; }
+}

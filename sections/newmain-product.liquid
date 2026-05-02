@@ -1,0 +1,245 @@
+{% assign current_product = product | default: product %}
+
+{%- comment -%}SEO: Preconnect to CDN for faster image loading{%- endcomment -%}
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+{%- comment -%}GLightbox for image zoom{%- endcomment -%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js" defer></script>
+
+{%- comment -%}SEO: Canonical URL with variant parameter{%- endcomment -%}
+{% if current_product.selected_or_first_available_variant %}
+  <link rel="canonical" href="{{ shop.url }}{{ current_product.url }}?variant={{ current_product.selected_or_first_available_variant.id }}">
+{% else %}
+  <link rel="canonical" href="{{ shop.url }}{{ current_product.url }}">
+{% endif %}
+
+<style>
+  .stars {
+    color: #000000;
+    font-size: 30px;
+  }
+
+  .stars .loox-rating-label {
+    font-size: 28px;
+    color: #000000;
+    opacity: 0.5;
+    font-family: 'Gotham-book', sans-serif !important;
+  }
+</style>
+
+<section id="lwya-newpdp" class="tw-w-full tw-py-[24px]">
+  {{ 'newpdp.css' | asset_url | stylesheet_tag }}
+  <div class="tw-max-w-[1400px] tw-mx-auto tw-px-[16px] md:tw-px-[24px] lg:tw-px-[60px] xxl:tw-px-0">
+    <div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-[24px] md:tw-gap-[50px] tw-items-start">
+      <div class="tw-min-w-0 tw-overflow-hidden">
+        {% render 'newpdp-gallery', product: current_product, show_best_seller_badge: section.settings.show_best_seller_badge %}
+      </div>
+      <aside class="tw-space-y-[24px] lg:tw-sticky lg:tw-top-[160px] lg:tw-self-start product-section-class">
+        {% comment %} Render all blocks in right column {% endcomment %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'title' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-title', product: current_product %}
+              </div>
+            {% when 'weight' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-weight', product: current_product %}
+              </div>
+            {% when 'features' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-key-features', product: current_product %}
+              </div>
+            {% when 'price' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-price', product: current_product %}
+              </div>
+            {% when 'variants' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-variants', product: current_product %}
+              </div>
+            {% when 'add_to_cart' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-add-to-cart', product: current_product %}
+              </div>
+            {% when 'videos' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-videos', product: current_product, block: block %}
+              </div>
+            {% when 'pair_with' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-pair', product: current_product, block: block %}
+              </div>
+            {% when 'dropdown' %}
+              <div {{ block.shopify_attributes }}>
+                {% render 'newpdp-dropdown-single', product: current_product, block: block %}
+              </div> 
+            {% when 'rating' %}
+              <div class="loox-rating stars rating-count"
+                data-id="{{ current_product.id }}"
+                data-rating="{{ current_product.metafields.loox.avg_rating }}"
+                data-raters="{{ current_product.metafields.loox.num_reviews }}">
+              </div>
+            {% when '@app' %}
+              {%- render block -%}
+          {% endcase %}
+        {% endfor %}
+      </aside>
+    </div>
+  </div>
+
+  {%- comment -%}Sticky Add to Cart Bar{%- endcomment -%}
+  <div id="sticky-atc" class="tw-fixed tw-bottom-0 tw-left-0 tw-right-0 tw-z-[999] tw-bg-white tw-shadow-[0_-2px_16px_rgba(0,0,0,0.1)] tw-translate-y-full tw-transition-transform tw-duration-300" style="transform: translateY(100%);">
+    <div class="tw-max-w-[1400px] tw-mx-auto tw-px-[16px] md:tw-px-[12px] tw-py-[12px]">
+      <div class="tw-flex tw-items-center tw-gap-[12px] md:tw-gap-[16px]">
+        {%- comment -%}Product Image + Title{%- endcomment -%}
+        <div class="tw-flex tw-items-center tw-gap-[12px] tw-flex-1 tw-min-w-0">
+          {% if current_product.featured_image %}
+            <img 
+              src="{{ current_product.featured_image | image_url: width: 80 }}" 
+              alt="{{ current_product.title }}"
+              class="tw-w-[50px] tw-h-[50px] md:tw-w-[60px] md:tw-h-[60px] tw-object-cover tw-rounded-[4px] tw-flex-shrink-0"
+              loading="lazy"
+            >
+          {% endif %}
+          <div class="tw-min-w-0 tw-flex-1">
+            <h3 class="tw-text-[14px] md:tw-text-[16px] tw-font-metric-medium tw-truncate">{{ current_product.title }}</h3>
+            <p class="tw-text-[13px] md:tw-text-[14px] tw-text-[#6b6b6b] tw-mt-[2px]" data-sticky-price>
+              {% if current_product.selected_or_first_available_variant.compare_at_price > current_product.selected_or_first_available_variant.price %}
+                <span class="tw-line-through tw-text-[#999] tw-mr-[6px]">{{ current_product.selected_or_first_available_variant.compare_at_price | money }}</span>
+                <span class="tw-text-[#d41870] tw-font-metric-medium">{{ current_product.selected_or_first_available_variant.price | money }}</span>
+              {% else %}
+                <span class="tw-text-black">{{ current_product.selected_or_first_available_variant.price | money }}</span>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+
+        {%- comment -%}Quantity + Add to Cart{%- endcomment -%}
+        <div class="tw-flex tw-items-center tw-gap-[8px] md:tw-gap-[12px] tw-flex-shrink-0">
+          {%- liquid
+            assign current_variant = current_product.selected_or_first_available_variant
+            assign variant_disabled_raw = current_variant.metafields.custom.disable_variant | default: false
+            assign vd_str = variant_disabled_raw | downcase | strip
+            assign variant_disabled = false
+            if variant_disabled_raw == true or vd_str == 'true' or vd_str == '1'
+              assign variant_disabled = true
+            endif
+          -%}
+          
+          {%- unless variant_disabled -%}
+            {%- comment -%}Quantity Selector{%- endcomment -%}
+            <div class="tw-hidden md:tw-flex tw-items-center tw-border tw-border-[#d8d8d8] tw-w-[90px] tw-h-[44px]">
+              <button type="button" class="tw-w-[26px] tw-h-full tw-flex tw-items-center tw-justify-center tw-text-[16px] tw-text-[#6b6b6b] hover:tw-text-black tw-transition-colors" data-sticky-qty-dec aria-label="Decrease quantity">−</button>
+              <input 
+                value="1" 
+                class="tw-w-[38px] tw-h-full tw-text-center tw-border-0 tw-text-[14px] tw-font-metric-medium tw-outline-none" 
+                inputmode="numeric"
+                pattern="[0-9]*"
+                min="1"
+                data-sticky-qty-input
+                readonly>
+              <button type="button" class="tw-w-[26px] tw-h-full tw-flex tw-items-center tw-justify-center tw-text-[16px] tw-text-[#6b6b6b] hover:tw-text-black tw-transition-colors" data-sticky-qty-inc aria-label="Increase quantity">+</button>
+            </div>
+
+            {%- comment -%}Add to Cart Button{%- endcomment -%}
+            <button 
+              type="button" 
+              class="tw-h-[38px] md:tw-h-[44px] tw-px-[20px] md:tw-px-[32px] tw-bg-[#d41870] hover:tw-bg-[#b91460] tw-text-white tw-text-[13px] md:tw-text-[14px] tw-font-metric-medium tw-uppercase tw-transition-colors tw-whitespace-nowrap"
+              data-sticky-atc-btn
+              {% unless current_variant.available %}disabled{% endunless %}>
+              {% if current_variant.available %}
+                Add to Cart
+              {% else %}
+                Sold Out
+              {% endif %}
+            </button>
+          {%- else -%}
+            <div class="tw-bg-[#f5f5f5] tw-border tw-border-[#d8d8d8] tw-px-[16px] tw-py-[10px] tw-text-[13px] tw-text-[#6b6b6b]">
+              Unavailable
+            </div>
+          {%- endunless -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ 'newpdp.js' | asset_url }}" defer></script>
+</section>
+
+{% schema %}
+{
+  "name": "New Main Product",
+  "settings": [
+    { "type": "checkbox", "id": "show_best_seller_badge", "label": "Show BEST SELLER badge", "default": false },
+    { "type": "checkbox", "id": "show_loox_rating", "label": "Show Loox rating", "default": true },
+    { "type": "checkbox", "id": "enable_recharge", "label": "Enable Recharge widget", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "Product Title",
+      "limit": 1
+    },
+    {
+      "type": "weight",
+      "name": "Product Weight",
+      "limit": 1
+    },
+    {
+      "type": "features",
+      "name": "Key Features",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Product Price",
+      "limit": 1
+    },
+    {
+      "type": "variants",
+      "name": "Variant Selector",
+      "limit": 1
+    },
+    {
+      "type": "add_to_cart",
+      "name": "Add to Cart",
+      "limit": 1
+    },
+    {
+      "type": "videos",
+      "name": "Our Products in Action",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "videos_metafield_key", "label": "Videos metafield (namespace.key)", "default": "custom.custom_product_videos" }
+      ]
+    },
+    {
+      "type": "pair_with",
+      "name": "Pair / Save With Sets",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "pair_metafield_key", "label": "Pair-it-with metafield (list.product)", "default": "custom.pair_it_with" },
+        { "type": "text", "id": "sets_metafield_key", "label": "Save-with-sets metafield (list.product)", "default": "custom.save_with_sets" }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "name": "Product Information",
+      "limit": 1
+    },
+    {
+      "type": "rating",
+      "name": "Rating",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    { "name": "New Main Product" }
+  ]
+}
+{% endschema %}

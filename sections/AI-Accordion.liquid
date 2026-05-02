@@ -1,0 +1,245 @@
+{% schema %}
+{
+  "name": "FAQ - Accordion",
+  "tag": "section",
+  "class": "holiday-faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FAQ"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#EDEDED"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "label": "Background opacity",
+      "min": 5,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Top line color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot color",
+      "default": "#C02B2B"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "FAQ content max width",
+      "min": 480,
+      "max": 1100,
+      "step": 10,
+      "unit": "px",
+      "default": 720
+    },
+    {
+      "type": "range",
+      "id": "spacing_title_to_list",
+      "label": "Space from title to first item",
+      "min": 40,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 95
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What does Vivacity smell like?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Vivacity is bright, fresh, and full of life — created to feel radiant and confident.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "FAQ - Accordion",
+      "blocks": [
+        { "type": "faq_item" },
+        { "type": "faq_item" },
+        { "type": "faq_item" },
+        { "type": "faq_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{%- liquid
+  assign current_variant  = product.selected_or_first_available_variant
+  assign variant_q1       = current_variant.metafields.custom.variant_question_1
+  assign using_variant_faqs = false
+  if variant_q1 != blank
+    assign using_variant_faqs = true
+  endif
+-%}
+
+<section
+  class="holiday-faq tw-max-w-[1400px] tw-mx-auto tw-relative tw-z-[1]"
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="tw-absolute tw-inset-0 tw-z-[1]" style="background: {{ section.settings.bg_color }}; opacity: {{ section.settings.bg_opacity | divided_by: 100.0 }};"></div>
+  <div class="tw-max-w-[1300px] tw-mx-auto tw-flex tw-flex-col tw-items-center tw-px-[16px] tw-relative tw-z-[2]">
+
+    <h2
+      class="tw-text-center tw-font-metric-medium"
+      style="color: {{ section.settings.title_color }}; font-size: clamp(22px, 3vw, 48px); font-family: 'Gotham-Book' !important;"
+    >
+      {{ section.settings.heading }}
+    </h2>
+
+    <div
+      class="tw-w-full"
+      style="max-width: {{ section.settings.content_width }}px; margin-top: {{ section.settings.spacing_title_to_list }}px;"
+    >
+
+      {% if using_variant_faqs %}
+        {%- comment -%} Variant FAQs — loop through variant_question_1 to variant_question_8 {%- endcomment -%}
+        {% for i in (1..8) %}
+          {%- liquid
+            assign q_key = 'variant_question_' | append: i
+            assign a_key = 'variant_answer_'   | append: i
+            assign question = current_variant.metafields.custom[q_key]
+            assign answer   = current_variant.metafields.custom[a_key]
+          -%}
+          {% if question != blank and answer != blank %}
+            {%- assign q_id = section.id | append: '-v-' | append: i -%}
+            <div class="tw-border-b tw-border-[#000000] tw-flex tw-flex-col">
+              <button
+                type="button"
+                class="faq-trigger tw-w-full tw-flex tw-items-center tw-justify-between tw-gap-[16px] tw-py-[14px]"
+                data-faq-target="faq-body-{{ q_id }}"
+              >
+                <span class="tw-text-[20px] md:tw-text-[24px] tw-font-[700] tw-text-[#000000] tw-font-gotham tw-text-left">
+                  {{ question }}
+                </span>
+                <span class="tw-text-[24px] tw-font-[700] tw-leading-none tw-text-[#000000] plus-icon tw-transition-all tw-duration-300 tw-ease-in-out tw-font-gotham">+</span>
+              </button>
+              <div id="faq-body-{{ q_id }}" class="faq-body tw-overflow-hidden tw-max-h-0">
+                <div class="tw-pb-[16px] tw-text-[14px] tw-text-[#000000] tw-leading-[1.5]">
+                  {{ answer }}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+      {% else %}
+        {%- comment -%} Default — product blocks from product.json {%- endcomment -%}
+        {% for block in section.blocks %}
+          {% if block.type == 'faq_item' %}
+            {% assign question = block.settings.question | strip %}
+            {% assign answer   = block.settings.answer   | strip %}
+            {% if question != blank and answer != blank %}
+              {%- assign q_id = section.id | append: '-' | append: forloop.index -%}
+              <div
+                class="tw-border-b tw-border-[#000000] tw-flex tw-flex-col"
+                {{ block.shopify_attributes }}
+              >
+                <button
+                  type="button"
+                  class="faq-trigger tw-w-full tw-flex tw-items-center tw-justify-between tw-gap-[16px] tw-py-[14px]"
+                  data-faq-target="faq-body-{{ q_id }}"
+                >
+                  <span class="tw-text-[20px] md:tw-text-[24px] tw-font-[700] tw-text-[#000000] tw-font-gotham tw-text-left">
+                    {{ question }}
+                  </span>
+                  <span class="tw-text-[24px] tw-font-[700] tw-leading-none tw-text-[#000000] plus-icon tw-transition-all tw-duration-300 tw-ease-in-out tw-font-gotham">+</span>
+                </button>
+                <div id="faq-body-{{ q_id }}" class="faq-body tw-overflow-hidden tw-max-h-0">
+                  <div class="tw-pb-[16px] tw-text-[14px] tw-text-[#000000] tw-leading-[1.5]">
+                    {{ answer }}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var root = document.currentScript && document.currentScript.closest
+        ? document.currentScript.closest('section')
+        : null;
+      if (!root) return;
+      var triggers = root.querySelectorAll('.faq-trigger');
+      triggers.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var targetId = btn.getAttribute('data-faq-target');
+          var body     = root.querySelector('#' + targetId);
+          if (!body) return;
+          var icon   = btn.querySelector('.plus-icon');
+          var isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+          if (isOpen) {
+            icon.style.transform = 'rotate(-90deg)';
+            setTimeout(function() { icon.textContent = '+'; icon.style.transform = 'rotate(0deg)'; }, 150);
+            body.style.maxHeight = '0px';
+          } else {
+            icon.style.transform = 'rotate(90deg)';
+            setTimeout(function() { icon.textContent = '−'; icon.style.transform = 'rotate(0deg)'; }, 150);
+            body.style.maxHeight = body.scrollHeight + 'px';
+          }
+        });
+      });
+    })();
+  </script>
+</section>

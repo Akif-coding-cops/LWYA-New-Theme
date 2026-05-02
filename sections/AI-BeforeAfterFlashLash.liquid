@@ -1,0 +1,232 @@
+{% schema %}
+{
+  "name": "AI-Before After Split",
+  "tag": "section",
+  "class": "before-after-split",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Image Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left image"
+    },
+    {
+      "type": "header",
+      "content": "Before/After Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After image"
+    },
+    {
+      "type": "header",
+      "content": "Right Content Section"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Right background color",
+      "default": "#FF7B5F"
+    },
+    {
+      "type": "richtext",
+      "id": "main_title",
+      "label": "Main title",
+      "default": "<p>READY. SET. LASH!</p>"
+    },
+    {
+      "type": "color",
+      "id": "main_title_color",
+      "label": "Main title color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>It's a GAME-CHANGER and MUST HAVE this Holiday Season.</p>"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "GET YOURS NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#E91E8C"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI-Before After Split"
+    }
+  ]
+}
+{% endschema %}
+
+
+<section class="before-after-split tw-w-full tw-overflow-hidden">
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-flex tw-flex-col lg:tw-flex-row" style="height: 710px;">
+   
+    <!-- LEFT SECTION: Full Image -->
+    <div class="tw-w-full lg:tw-w-1/2 tw-relative tw-overflow-hidden tw-h-full tw-min-h-[400px] lg:tw-min-h-[710px]">
+      {% if section.settings.left_image != blank %}
+        <img
+          src="{{ section.settings.left_image | image_url: width: 1000 }}"
+          alt="{{ section.settings.left_image.alt | escape }}"
+          class="tw-w-full tw-h-full tw-object-cover"
+          width="1000"
+          height="710"
+          loading="lazy"
+        >
+      {% else %}
+        <div class="tw-w-full tw-h-full tw-bg-[#FFE8F5]"></div>
+      {% endif %}
+    </div>
+
+
+    <!-- RIGHT SECTION: Before/After with CTA -->
+    <div
+      class="tw-w-full lg:tw-w-1/2 tw-flex tw-flex-col tw-h-full tw-min-h-[400px] lg:tw-min-h-[710px]"
+      style="background-color: {{ section.settings.right_bg_color }};"
+    >
+      <!-- Before/After Images - 50% HEIGHT -->
+      <div class="tw-w-full tw-h-1/2">
+        <div class="tw-grid tw-grid-cols-2 tw-gap-0 tw-h-full">
+          {% if section.settings.before_image != blank %}
+            <div class="tw-relative tw-h-full">
+              <img
+                src="{{ section.settings.before_image | image_url: width: 500 }}"
+                alt="Before"
+                class="tw-w-full tw-h-full tw-object-cover"
+                width="500"
+                height="355"
+                loading="lazy"
+              >
+              <div class="tw-absolute tw-top-[10px] tw-left-1/2 tw-transform tw--translate-x-1/2 tw-bg-black tw-bg-opacity-70 tw-text-white tw-px-[16px] tw-py-[6px] tw-text-responsive-[14,18] tw-font-[700] tw-uppercase">
+                BEFORE
+              </div>
+            </div>
+          {% endif %}
+         
+          {% if section.settings.after_image != blank %}
+            <div class="tw-relative tw-h-full">
+              <img
+                src="{{ section.settings.after_image | image_url: width: 500 }}"
+                alt="After"
+                class="tw-w-full tw-h-full tw-object-cover"
+                width="500"
+                height="355"
+                loading="lazy"
+              >
+              <div class="tw-absolute tw-top-[10px] tw-left-1/2 tw-transform tw--translate-x-1/2 tw-bg-black tw-bg-opacity-70 tw-text-white tw-px-[16px] tw-py-[6px] tw-text-responsive-[14,18] tw-font-[700] tw-uppercase">
+                AFTER
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+
+      <!-- Content Area - 50% HEIGHT -->
+      <div class="tw-w-full tw-h-1/2 tw-flex tw-flex-col tw-items-center tw-justify-center tw-px-responsive-[24,40] tw-py-[30px] lg:tw-pb-responsive-[20,30] lg:tw-py-0">
+        <!-- Main Title -->
+        {% if section.settings.main_title != blank %}
+          <div
+            class="tw-text-center tw-text-responsive-[36,56] tw-font-[700] tw-leading-[1.1] tw-mb-[16px] tw-uppercase"
+            style="color: {{ section.settings.main_title_color }}; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em;"
+          >
+            {{ section.settings.main_title }}
+          </div>
+        {% endif %}
+
+
+        <!-- Subtitle -->
+        {% if section.settings.subtitle != blank %}
+          <div
+            class="tw-text-center tw-text-responsive-[16,22] tw-font-[500] tw-leading-[1.4] tw-mb-[30px] tw-max-w-[500px]"
+            style="color: {{ section.settings.subtitle_color }};"
+          >
+            {{ section.settings.subtitle }}
+          </div>
+        {% endif %}
+
+
+        <!-- Button -->
+        {% if section.settings.button_text != blank %}
+          <a
+            href="{{ section.settings.button_link | default: '#' }}"
+            class="tw-inline-block tw-text-responsive-[16,20] tw-font-[700] tw-uppercase tw-px-responsive-[32,50] tw-py-responsive-[14,18] tw-transition-all tw-duration-300 hover:tw-transform hover:tw-scale-105 hover:tw-shadow-lg"
+            style="background-color: {{ section.settings.button_bg }}; color: {{ section.settings.button_text_color }}; letter-spacing: 0.05em;"
+          >
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+<style>
+  .before-after-split {
+    position: relative;
+  }
+ 
+  /* Smooth transitions */
+  .before-after-split img {
+    transition: transform 0.3s ease;
+  }
+ 
+  /* Desktop: Fixed max height */
+  @media (min-width: 1024px) {
+    .before-after-split > div {
+      height: 710px;
+    }
+  }
+ 
+  /* Mobile: Auto height untuk konten */
+  @media (max-width: 1023px) {
+    .before-after-split > div {
+      height: auto !important;
+      max-height: none !important;
+    }
+    .before-after-split > div > div {
+      min-height: auto !important;
+    }
+  }
+</style>
+
+
+

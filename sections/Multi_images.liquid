@@ -1,0 +1,223 @@
+<style>
+  .multi_image-Subparent {
+    display:flex;
+    flex-direction:row;
+    gap:5px;
+    overflow-x:auto;
+  }
+  .multi_image-Subparent>*{
+    flex:1;
+  } 
+ .thiss__{{ section.id }} .block__image {
+    width:{{section.settings.image__width}};
+  }
+  .block__image img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .thiss__template--18191122432258__multi_images_TNq8mw .block__image img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    margin-left:12px
+  }
+  .thiss__{{ section.id }} .Bottom_Paragraph__block {
+    padding:{{section.settings.paddingg__topp}};
+    text-align:{{section.settings.Text--alignment}};
+  }
+  .thiss__{{ section.id }} .innerblock_multi_image {
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: {{section.settings.image--alignment}};
+    background-color:{{section.settings.bgColor}}; 
+    padding:{{section.settings.innerblock_multi_image_Padding}};
+  }
+  .innerblock_multi_image__fourth:not(:last-child){
+    border-right: 1px solid black;
+  }
+  .thiss__{{ section.id }} .subHeading__block {
+    text-align:{{section.settings.Subtext--alignment}};
+}
+  .thiss__{{ section.id }} .subHeading__block {
+    padding:{{section.settings.Subtext--paddingtop}};
+}
+  .thiss__{{ section.id }} .top__heading {
+    padding:0 0 20px 0;
+}
+  @media (max-width: 768px) {
+    .innerblock_multi_image{
+      min-width:100%;
+    }
+  }
+  
+</style>
+
+
+<div class="multi_image-parent thiss__{{ section.id }} container section-spacing ">
+  {% if section.settings.Top_heading != blank %}
+  <div class="top__heading">
+    {{ section.settings.Top_heading }}
+  </div>
+    {% endif %}
+  <div class="multi_image-Subparent">
+    {% for block in section.blocks %}
+  <div class="innerblock_multi_image {% if section.settings.inner__style__fourth %} innerblock_multi_image__fourth {% endif %}">   
+  {% if block.settings.multiImage__block != blank %}
+ <div class="block__image {{ block.id }}">
+      {{
+                block.settings.multiImage__block
+                | image_url: width: 3000
+                | image_tag
+              }}
+</div>
+    {% endif %}
+    
+  {% if block.settings.SubHeading__image != blank %}
+<div class="subHeading__block">
+  {{ block.settings.SubHeading__image }}
+</div>
+    {% endif %}
+  {% if block.settings.Bottom_Paragraph != blank %}
+<div class="Bottom_Paragraph__block">
+  {{ block.settings.Bottom_Paragraph }}
+</div>
+    {% endif %}
+  </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "multi_image_Section",
+    "settings": [
+     {
+  "type": "richtext",
+  "id": "Top_heading",
+  "label": "Section Title"
+}, 
+      {
+  "type": "color",
+  "id": "bgColor",
+  "label": "Block Background Color",
+  "default": "#000000"
+},
+      {
+  "type": "text",
+  "id": "innerblock_multi_image_Padding",
+  "label": "Block padding"
+}, 
+{
+  "type": "text",
+  "id": "image__width",
+  "label": "Image width"
+},
+       {
+  "type": "text",
+  "id": "Subtext--paddingtop",
+  "label": "Sub heading padding"
+},
+{
+  "type": "text",
+  "id": "paddingg__topp",
+  "label": "Paragraph Padding"
+},
+        {
+  "type": "checkbox",
+  "id": "inner__style__fourth",
+  "label": "Border right",
+  "default": false
+},
+       {
+  "type": "select",
+  "id": "image--alignment",
+  "label": "Align Item",
+  "options": [
+    {
+      "value": "start",
+      "label": "Start"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "end",
+      "label": "End"
+    }
+  ],
+  "default": "center"
+},
+       {
+  "type": "select",
+  "id": "Subtext--alignment",
+  "label": "Sub Headingalignment",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "center"
+},
+  {
+  "type": "select",
+  "id": "Text--alignment",
+  "label": "bottom text alignment",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "center"
+}
+    ],
+    "blocks": [
+      {
+        "type": "multi_image_block",
+        "name":"Multi image block",
+        "settings": [
+          {
+  "type": "image_picker",
+  "id": "multiImage__block",
+  "label": "Image"
+},
+          {
+  "type": "richtext",
+  "id": "SubHeading__image",
+  "label": "SubHeading"
+},
+          {
+  "type": "richtext",
+  "id": "Bottom_Paragraph",
+  "label": "Paragraph"
+}
+        ]
+      }
+    ],
+  "presets": [
+    {
+      "name": "multi image Section"
+    }
+  ]
+  }
+{% endschema %}

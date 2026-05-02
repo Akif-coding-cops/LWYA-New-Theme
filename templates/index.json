@@ -1,0 +1,341 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "video_with_text_button_6ePkpE": {
+      "type": "video-with-text-button",
+      "name": "Video Section",
+      "settings": {
+        "video": "shopify://files/videos/Skintastic Lychee Cleanser DESKTOP.mp4",
+        "mobile_video": "shopify://files/videos/Skintastic Lychee Cleanser MOBILE.mp4",
+        "autoplay": true,
+        "fullwidth": true,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0
+      }
+    },
+    "ai_4_grid_tab_product_kChN7W": {
+      "type": "AI-4GridTabProduct",
+      "blocks": {
+        "tab_item_tdTXHB": {
+          "type": "tab_item",
+          "settings": {
+            "tab_title": "BEST SELLERS",
+            "collection_1": "bestsellers",
+            "product_1": "",
+            "product_2": "",
+            "product_3": "",
+            "product_4": ""
+          }
+        },
+        "tab_item_rGtBUE": {
+          "type": "tab_item",
+          "settings": {
+            "tab_title": "New ARRIVAL",
+            "collection_1": "",
+            "product_1": "love-yourself-island-bliss-duo",
+            "product_2": "two-timer-dual-ended-mascara",
+            "product_3": "skintastic-soothing-cleansing-cream",
+            "product_4": "skintastic-facefix-cloud-cream"
+          }
+        },
+        "tab_item_rGtBU": {
+          "type": "tab_item",
+          "settings": {
+            "tab_title": "Bundle & Save",
+            "collection_1": "",
+            "product_1": "holiday-glam-bundle",
+            "product_2": "michelles-concealer-bronzer-bundle",
+            "product_3": "michelles-beach-babe-bundle",
+            "product_4": "3ml-fragrance-bundle"
+          }
+        }
+      },
+      "block_order": [
+        "tab_item_tdTXHB",
+        "tab_item_rGtBUE",
+        "tab_item_rGtBU"
+      ],
+      "custom_css": [
+        ".products-selection {padding-left: 100px; padding-right: 100px;}"
+      ],
+      "name": "AI 4 Grid Tab Product",
+      "settings": {
+        "bg_color": "#ffffff",
+        "title_prefix": "SHOP BY",
+        "desktop_columns": "4",
+        "mobile_columns": "2",
+        "padding_y": 60
+      }
+    },
+    "ai_video_carousel_7z44iD": {
+      "type": "AI-VideoCarousel",
+      "blocks": {
+        "video_slide_QPGJDY": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/Kim_Take A Brow.mov",
+            "video_url": "",
+            "product": "gone-in-a-swipe-center-core-foundation",
+            "show_product": true
+          }
+        },
+        "video_slide_tGcdhH": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/reelup_1ciev5w7g831764795475432_original.mp4",
+            "video_url": "",
+            "product": "gone-in-a-swipe-concealer-and-sponge-set",
+            "show_product": true
+          }
+        },
+        "video_slide_MrTczX": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/872643520251113195840.mp4",
+            "video_url": "",
+            "product": "gone-in-a-swipe-center-core-foundation",
+            "show_product": true
+          }
+        },
+        "video_slide_mngekn": {
+          "type": "video_slide",
+          "settings": {
+            "video": "shopify://files/videos/reelup_kvrrrkkunuk1762983327807_original.mp4",
+            "video_url": "",
+            "product": "gone-in-a-swipe-concealer-sponge",
+            "show_product": true
+          }
+        }
+      },
+      "block_order": [
+        "video_slide_QPGJDY",
+        "video_slide_tGcdhH",
+        "video_slide_MrTczX",
+        "video_slide_mngekn"
+      ],
+      "custom_css": [],
+      "name": "AI Video Carousel",
+      "settings": {
+        "bg_color": "#ffffff",
+        "section_title": "",
+        "desktop_slides": 3,
+        "mobile_slides": 1,
+        "padding_y": 60,
+        "arrow_bg": "#1c1c1c",
+        "arrow_color": "#ffffff"
+      }
+    },
+    "ai_4gridcollection_cGAh6W": {
+      "type": "AI-4gridcollection",
+      "blocks": {
+        "collection_item_4UXi3E": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "all-beauty",
+            "custom_title": "",
+            "button_text": "SHOP NOW",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "collection_item_mU4HHw": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "body",
+            "custom_title": "",
+            "button_text": "SHOP NOW",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "collection_item_MUXXiQ": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "hair",
+            "custom_title": "",
+            "button_text": "SHOP NOW",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "collection_item_4G4pJ7": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "fragrance",
+            "custom_title": "",
+            "button_text": "SHOP NOW",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_4UXi3E",
+        "collection_item_mU4HHw",
+        "collection_item_MUXXiQ",
+        "collection_item_4G4pJ7"
+      ],
+      "name": "AI 4 Grid Collection",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_padding_top": 40,
+        "section_padding_bottom": 40
+      }
+    },
+    "ai_featured_product_with_title_MDYmYz": {
+      "type": "AI-FeaturedProductWithTitle",
+      "name": "AI Featured Product With Title",
+      "settings": {
+        "section_title": "<p>THE VIRAL MAKEUP STICK THAT ADAPTS TO YOUR SKIN TONE</p>",
+        "section_description": "<ul><li>3-in-1 multitasker: Helps prime, perfect, and enhance the look of skin.</li><li>Murumuru Butter and Sunflower Seed Oil leave skin feeling soft and supple.</li><li>Soft-focus finish: Silica helps blur the look of pores and fine lines.</li></ul>",
+        "title_color": "#480e67",
+        "product": "chameleon-color-adaptor",
+        "custom_title": "",
+        "rating_value": "4.8",
+        "rating_count": "(105)",
+        "button_label": "SHOP NOW",
+        "enable_product_links": true,
+        "bg_color": "#ffffff",
+        "button_bg": "#000000",
+        "button_text": "#ffffff",
+        "padding_y": 60
+      }
+    },
+    "ai_rich_text_slider_B68C3t": {
+      "type": "AI-RichTextSlider",
+      "blocks": {
+        "text_block_pABR84": {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>I've NEVER used a product so wonderful! I didn't have to put on more makeup. I just put eyebrows on, a little, blush and lipstick, good to go!</p>"
+          }
+        },
+        "text_block_LUfVPe": {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>This product changed my life! Amazing quality and results that I never expected. Highly recommend to everyone!</p>"
+          }
+        },
+        "text_block_PaUtRN": {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>Absolutely love this! It's become an essential part of my daily routine. Can't imagine going without it now.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_pABR84",
+        "text_block_LUfVPe",
+        "text_block_PaUtRN"
+      ],
+      "name": "AI Rich Text Slider",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "arrow_color": "#000000",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "text_size_mobile": 19,
+        "text_size_desktop": 26
+      }
+    },
+    "ai_4_grid_tab_product_QYcjeL": {
+      "type": "AI-4GridTabProduct",
+      "blocks": {
+        "tab_item_iT8xj6": {
+          "type": "tab_item",
+          "settings": {
+            "tab_title": "NEW ARRIVAL",
+            "collection_1": "",
+            "product_1": "love-yourself-island-bliss-duo",
+            "product_2": "two-timer-dual-ended-mascara",
+            "product_3": "skintastic-soothing-cleansing-cream",
+            "product_4": "skintastic-facefix-cloud-cream"
+          }
+        }
+      },
+      "block_order": [
+        "tab_item_iT8xj6"
+      ],
+      "custom_css": [
+        ".products-selection {padding-left: 100px; padding-right: 100px;}"
+      ],
+      "name": "AI 4 Grid Tab Collection",
+      "settings": {
+        "bg_color": "#ffffff",
+        "title_prefix": "SHOP BY",
+        "desktop_columns": "4",
+        "mobile_columns": "2",
+        "padding_y": 60
+      }
+    },
+    "ai_image_text_9BBxtY": {
+      "type": "AI-ImageText",
+      "name": "AI Image Text",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "left_image": "shopify://shop_images/e0cf419abddf8e8dc8990b368928de73cf3a4e54.jpg",
+        "right_bg_color": "#f5f5f5",
+        "right_title": "<h4>ABOUT LWYA</h4>",
+        "right_text": "<p>We empower women to embrace their true selves, love their lives, and write their own stories.</p>",
+        "right_button_text": "LEARN MORE",
+        "right_button_link": "shopify://pages/about-us",
+        "right_button_bg": "#000000",
+        "right_button_text_color": "#ffffff"
+      }
+    },
+    "ai_bff_club_aCNh9R": {
+      "type": "AI-BFFClub",
+      "name": "AI BFF Club",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "left_bg_image": "shopify://shop_images/b53db6e1c253a386cca6afb463bc8328147bc309.jpg",
+        "left_box_bg_color": "#ffffff",
+        "left_box_opacity": 80,
+        "left_box_padding": 40,
+        "left_small_text": "MIX, MATCH & SAVE",
+        "left_large_text": "Bundle & Save",
+        "left_button_text": "SHOP NOW",
+        "left_button_link": "",
+        "left_button_bg": "#000000",
+        "left_button_text_color": "#ffffff",
+        "right_bg_color": "#fce4ec",
+        "right_title": "<h4>THE BFF CLUB</h4>",
+        "right_subtitle": "<p>Join Now To Start Earning Points, Perks and More</p>",
+        "right_button_text": "LEARN MORE",
+        "right_button_link": "shopify://pages/bff-club",
+        "right_button_bg": "#000000",
+        "right_button_text_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "video_with_text_button_6ePkpE",
+    "ai_4_grid_tab_product_kChN7W",
+    "ai_video_carousel_7z44iD",
+    "ai_4gridcollection_cGAh6W",
+    "ai_featured_product_with_title_MDYmYz",
+    "ai_rich_text_slider_B68C3t",
+    "ai_4_grid_tab_product_QYcjeL",
+    "ai_image_text_9BBxtY",
+    "ai_bff_club_aCNh9R"
+  ]
+}

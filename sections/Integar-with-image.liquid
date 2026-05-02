@@ -1,0 +1,206 @@
+<style>
+ .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  
+.MANUFACTURED_MAIN_WRAPPER1 {
+    display: flex;
+    gap: 25px;
+}
+  .left__image {
+     display: flex;
+    flex-direction:row;
+  }
+  .Right__image {
+     display: flex;
+    flex-direction:row-reverse;
+  }
+  .manufactured_image1 {
+    width: 50%;
+    height: auto;
+}
+  .manufactured_image1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+  .manufactured_text1 {
+    width:50%;
+    background: #F6F6F6;
+    border-radius: 8px;
+    padding: 58px;
+    color: #1C1D52;
+}
+  .manufactured_txt1 {
+    color: #1C1D52;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: left;
+    margin-bottom: 20px;
+}
+  .integer__style1 {
+     /* display: flex; */
+     align-items:center;
+     /* padding-bottom: 20px; */
+  }
+ .integar__paara {
+    color: #1C1D52;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    max-width: 26rem;
+    margin:0;
+}
+    .integer__style1 h2 {
+    opacity:0.4;
+    color: #1C1D52;
+    text-edge: cap;
+    font-size: 55.875px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 55.875px */
+    margin:0;
+    width:3.5rem;
+    }
+  @media screen and (min-width:761px){
+    .manufactured_text1 {
+      font-size:44px;
+    }
+  }
+  @media screen and (max-width:760px){
+    .manufactured_text1 {
+      padding:20px;
+      font-size:20px;
+    }
+    .integar__paara {
+    max-width: 21rem;
+    margin:0;
+       font-size:16px;
+    }
+    .integer__style1 h2 {
+    font-size: 35.875px;
+    width:2.2rem;
+    }
+     .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+.MANUFACTURED_MAIN_WRAPPER1 {
+    flex-wrap: wrap;
+      gap: 20px;
+}
+      .manufactured_image1 {
+    width: 100%;
+    height: 100%;
+}
+ .manufactured_text1 {
+    width: 100%;
+}
+
+</style>
+
+<div class="MANUFACTURED_MAIN_WRAPPER1 wrapper{{ section.id }} container section-{{ section.id }}-padding {% if section.settings.Image_Position == 'right' %} Right__image {% endif %} {% if section.settings.Image_Position == 'left' %} left__image {% endif %}">
+  {% if section.settings.maufactured_image_text != blank %}
+  <div class="manufactured_image1">
+              {{
+                section.settings.maufactured_image_text
+                | image_url: width: 1500
+                | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              }}
+    </div>
+    {% endif %}
+  <div  class="manufactured_text1">
+    <div class="manufactured_txt1 inria-sans-regular_global">{{ section.settings.manufactured_inline_text }}</div>
+    
+    {% for block in section.blocks %}
+      <div class="integer__style1 integar_font_family">
+         <h2>{{ block.settings.manufactured_inline_number }}</h2>
+        <div class="integar__paara inria-sans-regular_global">{{ block.settings.manufactured_inline_richtext }}</div>
+      </div>
+      {% endfor %}
+   </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Text With Image",
+    "settings": [
+        {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding_bottom",
+      "default": 36
+    },
+      {
+        "type": "image_picker",
+        "id": "maufactured_image_text",
+        "label": "Select Image"
+      },
+      {
+  "type": "select",
+  "id": "Image_Position",
+  "label": "Image Position",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "right"
+},
+      {
+        "type": "text",
+        "id": "manufactured_inline_text",
+        "label": "Description"
+      }
+
+    ],
+    "blocks": [
+      {
+        "type": "number-text",
+        "name":"integar",
+        "settings": [
+           {
+        "type": "text",
+        "id": "manufactured_inline_number",
+        "label": "Number"
+      },
+      {
+        "type": "text",
+        "id": "manufactured_inline_richtext",
+        "label": "descrption"
+      }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Integar With Image"
+      }
+    ]
+  }
+{% endschema %}

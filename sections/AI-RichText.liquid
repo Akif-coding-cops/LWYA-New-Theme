@@ -1,0 +1,353 @@
+{% schema %}
+{
+  "name": "AI-RichText",
+  "tag": "section",
+  "class": "richtext-center",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Content max width",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 900
+    }
+  ],
+  "blocks": [
+    {
+      "type": "richtext_title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Title text",
+          "default": "<p>VIVACITY — The Spark That's All You</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color",
+          "default": "#C6C72E"
+        },
+        {
+          "type": "range",
+          "id": "mobile_size",
+          "label": "Mobile font size",
+          "min": 18,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "desktop_size",
+          "label": "Desktop font size",
+          "min": 24,
+          "max": 122,
+          "step": 1,
+          "unit": "px",
+          "default": 48
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "max_width_mobile",
+          "label": "Max width mobile",
+          "min": 200,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "default": 400
+        },
+        {
+          "type": "range",
+          "id": "max_width_desktop",
+          "label": "Max width desktop",
+          "min": 400,
+          "max": 1200,
+          "step": 10,
+          "unit": "px",
+          "default": 800
+        }
+      ]
+    },
+    {
+      "type": "richtext_title_neue",
+      "name": "Title - Neue",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Title text",
+          "default": "<p>VIVACITY — The Spark That's All You</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color",
+          "default": "#C6C72E"
+        },
+        {
+          "type": "range",
+          "id": "mobile_size",
+          "label": "Mobile font size",
+          "min": 18,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "desktop_size",
+          "label": "Desktop font size",
+          "min": 24,
+          "max": 122,
+          "step": 1,
+          "unit": "px",
+          "default": 48
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "max_width_mobile",
+          "label": "Max width mobile",
+          "min": 200,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "default": 400
+        },
+        {
+          "type": "range",
+          "id": "max_width_desktop",
+          "label": "Max width desktop",
+          "min": 400,
+          "max": 1200,
+          "step": 10,
+          "unit": "px",
+          "default": 800
+        }
+      ]
+    },
+    {
+      "type": "richtext_paragraph",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text content",
+          "default": "<p>Slice into a pink pomelo and feel the burst — bright, juicy citrus igniting your senses. Italian bergamot fizzes with joy while violet and green tea swirl in soft, graceful balance. Then comes the warmth — tonka bean, driftwood, and skin musk blend into a glow that lingers, like sunlight on your skin.</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "mobile_size",
+          "label": "Mobile font size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "desktop_size",
+          "label": "Desktop font size",
+          "min": 14,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "max_width_mobile",
+          "label": "Max width mobile",
+          "min": 200,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "default": 400
+        },
+        {
+          "type": "range",
+          "id": "max_width_desktop",
+          "label": "Max width desktop",
+          "min": 400,
+          "max": 1200,
+          "step": 10,
+          "unit": "px",
+          "default": 900
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "AI-RichText",
+      "blocks": [
+        { "type": "richtext_title" },
+        { "type": "richtext_paragraph" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="tw-max-w-[{{ section.settings.max_width }}px] tw-mx-auto tw-px-[16px] md:tw-px-[40px] tw-text-center">
+    {% for block in section.blocks %}
+      {% assign mt = block.settings.margin_top | append: 'px' %}
+      {% assign mb = block.settings.margin_bottom | append: 'px' %}
+      {% case block.type %}
+        {% when 'richtext_title' %}
+          <div
+            class="richtext-title tw-mx-auto tw-text-ruttan"
+            style="
+              margin-top: {{ mt }}; 
+              margin-bottom: {{ mb }}; 
+              color: {{ block.settings.color }}; 
+              font-size: clamp({{ block.settings.mobile_size }}px, 4vw, {{ block.settings.desktop_size }}px); 
+              font-weight: 700;
+              line-height: 1.2;
+              max-width: clamp({{ block.settings.max_width_mobile }}px, 50vw, {{ block.settings.max_width_desktop }}px);
+            "
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.content }}
+          </div>
+        {% when 'richtext_title_neue' %}
+          <div
+            class="richtext-title-neue tw-mx-auto"
+            style="
+              margin-top: {{ mt }}; 
+              margin-bottom: {{ mb }}; 
+              color: {{ block.settings.color }}; 
+              font-size: clamp({{ block.settings.mobile_size }}px, 4vw, {{ block.settings.desktop_size }}px); 
+              font-weight: 700;
+              line-height: 1.2;
+              max-width: clamp({{ block.settings.max_width_mobile }}px, 50vw, {{ block.settings.max_width_desktop }}px);
+              font-family: 'Bebas Neue', sans-serif;
+            "
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.content }}
+          </div>
+        {% when 'richtext_paragraph' %}
+          <div
+            class="richtext-text tw-mx-auto"
+            style="
+              margin-top: {{ mt }}; 
+              margin-bottom: {{ mb }}; 
+              color: {{ block.settings.color }}; 
+              font-size: clamp({{ block.settings.mobile_size }}px, 2.5vw, {{ block.settings.desktop_size }}px); 
+              line-height: 1.6;
+              max-width: clamp({{ block.settings.max_width_mobile }}px, 50vw, {{ block.settings.max_width_desktop }}px);
+            "
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.content }}
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>

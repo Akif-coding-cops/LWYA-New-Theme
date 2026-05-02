@@ -1,0 +1,53 @@
+<style>
+  .bgColor-sapcing {
+    background:#F6F6F6;
+    display: flex;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+    gap:24px;
+  }
+  .fs-links {
+    font-size: 16px;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+</style>
+
+<div class="container bdradius bgColor-sapcing">
+  {% for block in section.blocks %}
+    <a class="inria-sans-regular_global fs-links" href="{{ block.settings.button_link }}">
+    {{ block.settings.button__text}}</a>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Menu links",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "links",
+      "name":"linklist",
+        "settings": [
+          {
+      "type": "text",
+      "id": "button__text",
+      "label": "Label"
+    },
+          {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Menu-links"
+      }
+    ]
+  }
+{% endschema %}

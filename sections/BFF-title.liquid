@@ -1,0 +1,320 @@
+<style>
+.bff-club-{{ section.id }} {
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  text-align: center;
+}
+
+.bff-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.bff-title {
+  font-family: 'Didot' !important;
+  font-weight: 700;
+  font-style: italic;
+  font-size: {{ section.settings.title_size }}px;
+  color: {{ section.settings.title_color }};
+  margin-bottom: 15px;
+}
+
+.bff-subtitle {
+  font-family: "Gotham-Book" !important;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: {{ section.settings.subtitle_size }}px;
+  color: {{ section.settings.subtitle_color }};
+  margin-bottom: 20px;
+}
+
+.bff-description {
+  font-family: "Gotham-Book" !important;
+  font-weight: 400;
+  font-size: {{ section.settings.description_size }}px;
+  color: {{ section.settings.description_color }};
+  max-width: 1016px;
+  margin: 0 auto 35px;
+}
+
+.bff-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.bff-btn {
+  font-family: "Gotham", sans-serif;
+  font-weight: 700;
+  font-size: {{ section.settings.button_font_size }}px;
+  padding: 12px 30px;
+  border-radius: {{ section.settings.button_radius }}px;
+  text-decoration: none;
+  min-width: 174px;
+  text-align: center;
+}
+
+.bff-btn-outline {
+ background: {{ section.settings.left_button_bg }};
+  color: #fff;
+  border: 2px solid {{ section.settings.left_button_bg }};
+}
+
+.bff-btn-solid {
+  background: {{ section.settings.right_button_bg }};
+  color: #fff;
+  border: 2px solid {{ section.settings.right_button_bg }};
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+
+  .bff-club-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .bff-title {
+    font-size: calc({{ section.settings.title_size }}px * 0.7);
+  }
+
+  .bff-subtitle {
+    font-size: calc({{ section.settings.subtitle_size }}px * 0.75);
+  }
+
+  .bff-description {
+    font-size: calc({{ section.settings.description_size }}px * 0.8);
+  }
+
+  .bff-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .bff-btn {
+    width: 100%;
+  }
+}
+</style>
+<section class="bff-club-{{ section.id }}">
+  <div class="bff-container">
+    
+    <h2 class="bff-title">
+      {{ section.settings.title }}
+    </h2>
+
+    <h3 class="bff-subtitle">
+      {{ section.settings.subtitle }}
+    </h3>
+
+    <div class="bff-description">
+      {{ section.settings.description }}
+    </div>
+
+    <div class="bff-buttons">
+      {% if section.settings.left_button_text != blank %}
+        <a href="{{ section.settings.left_button_link }}" class="bff-btn bff-btn-outline">
+          {{ section.settings.left_button_text }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.right_button_text != blank %}
+        <a href="{{ section.settings.right_button_link }}" class="bff-btn bff-btn-solid">
+          {{ section.settings.right_button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BFF Club Section",
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 40
+    },
+
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "the BFF Club",
+      "label": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "default": 45,
+      "label": "Title Font Size"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "default": "#D41870",
+      "label": "Title Color"
+    },
+
+    {
+      "type": "header",
+      "content": "Sub Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "Best. Friends. Forever. With Benefits (the beauty kind)",
+      "label": "Sub Title"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "default": 31,
+      "label": "Subtitle Font Size"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "default": "#000000",
+      "label": "Subtitle Color"
+    },
+
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "Your beauty journey deserves to be celebrated. Join the BFF Club and earn rewards every time you love who you are — with exclusive perks, early access, and little surprises that make self-care even sweeter.",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 24,
+      "label": "Description Font Size"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "default": "#000000",
+      "label": "Description Color"
+    },
+
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "left_button_text",
+      "default": "SIGN UP",
+      "label": "Left Button Text"
+    },
+    {
+      "type": "url",
+      "id": "left_button_link",
+      "label": "Left Button Link"
+    },
+    {
+      "type": "text",
+      "id": "right_button_text",
+      "default": "LOG IN",
+      "label": "Right Button Text"
+    },
+    {
+      "type": "url",
+      "id": "right_button_link",
+      "label": "Right Button Link"
+    },
+    {
+      "type": "color",
+      "id": "right_button_bg",
+      "default": "#D41870",
+      "label": "Right Button Background"
+    },
+     {
+      "type": "color",
+      "id": "left_button_bg",
+      "default": "#D41870",
+      "label": "left Button Background"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "default": 24,
+      "label": "Button Font Size"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 4,
+      "label": "Button Border Radius"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BFF Club Section"
+    }
+  ]
+}
+{% endschema %}

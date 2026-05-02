@@ -1,0 +1,390 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "slideshow_EmkDUf": {
+      "type": "slideshow",
+      "blocks": {
+        "image_RUfWrW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Group_63_bdbf7bd2-e913-49a1-81dc-8cee698233d5.png",
+            "subheading": "",
+            "title": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 780,
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_1_style": "solid",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#000000",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 50,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_RUfWrW"
+      ],
+      "name": "t:sections.slideshow.presets.slideshow.name",
+      "settings": {
+        "allow_transparent_header": false,
+        "show_next_section_button": false,
+        "media_size": "auto",
+        "show_initial_transition": false,
+        "autoplay": false,
+        "autoplay_pause_on_video": false,
+        "cycle_speed": 5,
+        "background": "#000000",
+        "controls_color": "#ffffff"
+      }
+    },
+    "bff_title_KbfTtH": {
+      "type": "BFF-title",
+      "name": "BFF Club Section",
+      "settings": {
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "title": "the BFF Club",
+        "title_size": 45,
+        "title_color": "#d41870",
+        "subtitle": "Best. Friends. Forever. With Benefits (the beauty kind)",
+        "subtitle_size": 31,
+        "subtitle_color": "#000000",
+        "description": "Your beauty journey deserves to be celebrated. Join the BFF Club and earn rewards every time you love who you are — with exclusive perks, early access, and little surprises that make self-care even sweeter.",
+        "description_size": 24,
+        "description_color": "#000000",
+        "left_button_text": "SIGN UP",
+        "left_button_link": "",
+        "right_button_text": "LOG IN",
+        "right_button_link": "",
+        "right_button_bg": "#d41870",
+        "left_button_bg": "#d41870",
+        "button_font_size": 24,
+        "button_radius": 4
+      }
+    },
+    "bff_how_to_work_THxyAk": {
+      "type": "BFF-how-to-work",
+      "blocks": {
+        "step_aqrWkV": {
+          "type": "step",
+          "settings": {
+            "number": "1",
+            "heading": "JOIN THE CLUB",
+            "text": "Create your account in seconds."
+          }
+        },
+        "step_eXi9Nr": {
+          "type": "step",
+          "settings": {
+            "number": "2",
+            "heading": "EARN POINTS",
+            "text": "Every purchase, review, and share brings you closer to your next reward."
+          }
+        },
+        "step_FTg7ca": {
+          "type": "step",
+          "settings": {
+            "number": "3",
+            "heading": "ENJOY PERKS",
+            "text": "Redeem points for exclusive treats and insider access."
+          }
+        }
+      },
+      "block_order": [
+        "step_aqrWkV",
+        "step_eXi9Nr",
+        "step_FTg7ca"
+      ],
+      "name": "How It Works",
+      "settings": {
+        "section_bg": "#ffe1e2",
+        "border_color": "#d41870",
+        "border_width": 6,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "title": "How It Works",
+        "title_size": 45,
+        "title_color": "#000000",
+        "description": "We believe beauty gets better with time — and we’re here to reward the women who prove it.",
+        "desc_size": 30,
+        "desc_color": "#000000"
+      }
+    },
+    "bff_ways_to_earn_kLt9fz": {
+      "type": "BFF-ways-to-earn",
+      "blocks": {
+        "earning_gBeffB": {
+          "type": "earning",
+          "settings": {
+            "icon": "shopify://shop_images/image_23.png",
+            "points": "10 Points",
+            "description": "Create an account"
+          }
+        },
+        "earning_zTy3tB": {
+          "type": "earning",
+          "settings": {
+            "icon": "shopify://shop_images/image_24.png",
+            "points": "5 Points",
+            "description": "Follow us \non social"
+          }
+        },
+        "earning_Q8xA93": {
+          "type": "earning",
+          "settings": {
+            "icon": "shopify://shop_images/image_25.png",
+            "points": "1 Points",
+            "description": "For every \n$1 spent"
+          }
+        },
+        "earning_hL7FyK": {
+          "type": "earning",
+          "settings": {
+            "icon": "shopify://shop_images/image_27.png",
+            "points": "20 Points",
+            "description": "Reviewing our products on social and tagging us"
+          }
+        },
+        "earning_iH3pfz": {
+          "type": "earning",
+          "settings": {
+            "icon": "shopify://shop_images/image_26.png",
+            "points": "10 Points",
+            "description": "Every recurring subscription order"
+          }
+        },
+        "earning_E4Tm6p": {
+          "type": "earning",
+          "settings": {
+            "icon": "shopify://shop_images/image_28.png",
+            "points": "Double Points",
+            "description": "On featured products"
+          }
+        }
+      },
+      "block_order": [
+        "earning_gBeffB",
+        "earning_zTy3tB",
+        "earning_Q8xA93",
+        "earning_hL7FyK",
+        "earning_iH3pfz",
+        "earning_E4Tm6p"
+      ],
+      "name": "Ways To Earn",
+      "settings": {
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "section_bg": "#ffffff",
+        "title": "Ways To Earn",
+        "title_size": 45,
+        "title_color": "#000000",
+        "subtitle": "Earn points for celebrating your beauty, your way.",
+        "subtitle_size": 32,
+        "subtitle_color": "#000000",
+        "icon_color": "#d41870"
+      }
+    },
+    "bff_rewards_shop_KnEmVd": {
+      "type": "BFF-rewards-shop",
+      "blocks": {
+        "icon_8jRrHN": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "shopify://shop_images/image_29.png"
+          }
+        },
+        "icon_hnMy4k": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "shopify://shop_images/image_30.png"
+          }
+        },
+        "icon_NKAXag": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "shopify://shop_images/image_31.png"
+          }
+        }
+      },
+      "block_order": [
+        "icon_8jRrHN",
+        "icon_hnMy4k",
+        "icon_NKAXag"
+      ],
+      "name": "Rewards Shop",
+      "settings": {
+        "bg_image": "shopify://shop_images/Rectangle_146.png",
+        "overlay_color": "#ffffff",
+        "overlay_opacity": 0,
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "title": "Rewards Shop",
+        "title_size": 45,
+        "title_color": "#000000",
+        "description": "Your glow deserves a thank-you gift. Redeem your points for exclusive products and limited-edition favorites designed to keep you feeling confident, radiant, and authentically you.",
+        "desc_size": 30,
+        "desc_line": 40,
+        "desc_color": "#000000",
+        "button_text": "JOIN NOW TO ACCESS",
+        "button_link": "",
+        "button_bg": "#d41870",
+        "button_color": "#ffffff",
+        "button_font_size": 24
+      }
+    },
+    "bff_tier_levels_XLwQGT": {
+      "type": "BFF-tier-levels",
+      "blocks": {
+        "tier_wpnTHH": {
+          "type": "tier",
+          "settings": {
+            "tier_name": "BFF",
+            "spend": "Free to Join",
+            "rewards": "Your journey starts here — earn rewards for simply showing up."
+          }
+        },
+        "tier_3wK486": {
+          "type": "tier",
+          "settings": {
+            "tier_name": "GLOW GETTER",
+            "spend": "$200+ Yearly Spend",
+            "rewards": "You’ve found your rhythm — glowing stronger with every step."
+          }
+        },
+        "tier_BcVfXn": {
+          "type": "tier",
+          "settings": {
+            "tier_name": "SOUL SISTER",
+            "spend": "$400+ Yearly Spend",
+            "rewards": "Always loyal, always radiant. You deserve extra love and exclusive perks."
+          }
+        },
+        "tier_wKbjyR": {
+          "type": "tier",
+          "settings": {
+            "tier_name": "RIDE OR DIE",
+            "spend": "$600+ Yearly Spend",
+            "rewards": "The ultimate LWYA insider — first access, VIP rewards, and all the beauty besties’ benefits."
+          }
+        }
+      },
+      "block_order": [
+        "tier_wpnTHH",
+        "tier_3wK486",
+        "tier_BcVfXn",
+        "tier_wKbjyR"
+      ],
+      "name": "Tier Levels",
+      "settings": {
+        "title": "Tier Levels",
+        "description": "<p>Your loyalty shines through — and the more you love your skin, the more we love to spoil you.</p>",
+        "accent_color": "#d41870",
+        "text_color": "#000000",
+        "container_width": 1400,
+        "btn_1_text": "SIGN UP",
+        "btn_1_link": "#",
+        "btn_2_text": "LOG IN",
+        "btn_2_link": "#"
+      }
+    },
+    "ai_accordion_nwJCze": {
+      "type": "AI-Accordion",
+      "blocks": {
+        "faq_item_cRkfWh": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Enroll",
+            "answer": "<p>#</p>"
+          }
+        },
+        "faq_item_JzELDm": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Earn & Redeem",
+            "answer": "<p>#</p>"
+          }
+        },
+        "faq_item_k4mTzt": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Tier Status",
+            "answer": "<p>#</p>"
+          }
+        },
+        "faq_item_LDGLh9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Account Management",
+            "answer": "<p>#</p>"
+          }
+        },
+        "faq_item_HDeLVa": {
+          "type": "faq_item",
+          "settings": {
+            "question": "BFF Club Terms & Conditions",
+            "answer": "<p>#</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_cRkfWh",
+        "faq_item_JzELDm",
+        "faq_item_k4mTzt",
+        "faq_item_LDGLh9",
+        "faq_item_HDeLVa"
+      ],
+      "name": "FAQ - Accordion",
+      "settings": {
+        "heading": "FAQ",
+        "bg_color": "#ededed",
+        "bg_opacity": 100,
+        "title_color": "#000000",
+        "line_color": "#000000",
+        "dot_color": "#c02b2b",
+        "content_width": 720,
+        "spacing_title_to_list": 95,
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_EmkDUf",
+    "bff_title_KbfTtH",
+    "bff_how_to_work_THxyAk",
+    "bff_ways_to_earn_kLt9fz",
+    "bff_rewards_shop_KnEmVd",
+    "bff_tier_levels_XLwQGT",
+    "ai_accordion_nwJCze"
+  ]
+}

@@ -1,0 +1,122 @@
+{% schema %}
+{
+  "name": "Highlight Images",
+  "tag": "section",
+  "class": "highlight-images",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 8,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 8,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column Gap (between images in same row)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "Row Gap (between rows)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Highlight Images"
+    }
+  ]
+}
+{% endschema %}
+
+{%- liquid
+  assign current_variant          = product.selected_or_first_available_variant
+  assign variant_highlight_images = current_variant.metafields.custom.variant_highlight_images.value
+  assign highlight_images         = nil
+
+  if variant_highlight_images != blank and variant_highlight_images.size > 0
+    assign highlight_images = variant_highlight_images
+  else
+    assign highlight_images = product.metafields.custom.highlight_images.value
+  endif
+-%}
+
+{% if highlight_images != blank %}
+  <section
+    class="tw-w-full highlight-images-section"
+    style="padding-top: {{ section.settings.padding_top_mobile }}px; padding-bottom: {{ section.settings.padding_bottom_mobile }}px;"
+  >
+    <div
+      class="tw-grid tw-grid-cols-12 tw-w-full tw-max-w-[1400px] tw-mx-auto"
+      style="column-gap: {{ section.settings.column_gap }}px; row-gap: {{ section.settings.row_gap }}px;"
+    >
+      {% for item in highlight_images %}
+        {%- assign img  = item.image -%}
+        {%- assign cols = item.columns | default: 12 -%}
+        {% if img == blank %}{% continue %}{% endif %}
+
+        <div class="tw-col-span-12 md:tw-col-span-{{ cols }}">
+          <div
+            class="tw-w-full tw-h-full {% if item.apply_horizontal_padding == true %}tw-px-[16px] md:tw-px-[24px] lg:tw-px-[60px] xxl:tw-px-0{% endif %}"
+            style="margin: 0 auto;"
+          >
+            <img
+              src="{{ img | image_url: width: 1600 }}"
+              srcset="{{ img | image_url: width: 800 }} 800w,
+                      {{ img | image_url: width: 1200 }} 1200w,
+                      {{ img | image_url: width: 1600 }} 1600w"
+              sizes="(max-width: 768px) 100vw, {{ cols | times: 100 | divided_by: 12 }}vw"
+              alt="{{ img.alt | default: product.title }}"
+              class="tw-w-full tw-h-full tw-object-cover tw-block"
+              loading="lazy"
+            >
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

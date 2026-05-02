@@ -1,0 +1,131 @@
+<style>
+   @media (max-width:768px){
+    .meta_svg_image img {
+  width:120px !important;
+  height:120px !important;
+}
+     .metafield_button a {
+    
+    font-size:16px !important;
+}
+     .image_main_metafield {
+    width: 18rem !important;
+}
+     .svg___text {
+    font-size: 14px !important;
+  }
+     .metafield_button a {
+    width: 100% !important;
+    margin: 55px 0;
+}
+     .meta_svg_image  {
+    position: absolute;
+    top: 30% !important;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  }
+  .image_with_svg {
+    position: relative;
+}
+  .svg___text {
+    font-size: 20px;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+  .image_main_metafield {
+    width: 55rem;
+    height: 100%;
+    margin: auto;
+   
+}
+  .custom_icon {
+    justify-content:center;
+  }
+  .image_main_metafield img {
+    position:relative;
+    z-index:1;
+  }
+.meta_svg_image img {
+  width:350px;
+  height:350px;
+}
+.meta_svg_image  {
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+.metafield_button a {
+    background: #1C1D52;
+    padding: 17px 0;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    margin:55px auto;
+    border-radius:10px;
+    font-size:20px;
+    font-weight:700;
+}
+  .metafield_button {
+    text-align: center;
+}
+
+ 
+</style>
+
+
+<div class="image_with_svg container">
+{% assign image_with_text = product.metafields.custom.image_button_metafield.value %}
+  <div class="image_main background__meta2nd">
+     {% if image_with_text.image_picker != blank %}
+            <div class="image_main_metafield"> {{
+               image_with_text.image_picker
+                | image_url: width: 1500
+                | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              }}
+              <!-- <div class="meta_svg_image">
+               <img src="https://cdn.shopify.com/s/files/1/0669/0360/5506/files/rounded3.svg?v=1724912963">
+              </div> -->
+            </div>
+    {% endif %}
+    <div class="metafield_button">
+    <a href="{{ image_with_text.button_url }}">{{ image_with_text.button_text }}</a>
+    </div>
+  </div>
+     <!-- {% for image in image_with_text.svg_picker.value %}
+   <div class="product_image_picker-{{ forloop.index }} ">
+       <div class="svg___text globalClassInria_Sans">
+               {{ image_with_text.svg_text.value[forloop.index0]  }}
+       </div>
+        <div class="svg_image_icon">
+              {{
+                image
+                | image_url: width: 1500
+                | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              }}
+          </div>
+          </div>
+   {% endfor %} -->
+</div>
+  
+{% schema %}
+  {
+    "name": "image-with-button",
+    "settings": [],
+    "presets": [
+      {
+        "name": "image-with-button"
+      }
+    ]
+  }
+{% endschema %}

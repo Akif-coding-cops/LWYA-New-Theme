@@ -1,0 +1,142 @@
+{% schema %}
+{
+  "name": "AI-VIDEOFULL",
+  "tag": "section",
+  "class": "video-full-section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video_file",
+      "label": "Video file (upload)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL (YouTube/Vimeo)",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "text",
+      "id": "video_external_url",
+      "label": "Video external URL",
+      "info": "Direct link to video file (mp4, webm, etc.)"
+    },
+    {
+      "type": "select",
+      "id": "video_fit",
+      "label": "Video fit",
+      "options": [
+        { "value": "cover", "label": "Cover (fill and crop)" },
+        { "value": "contain", "label": "Contain (fit all, may show bars)" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Muted",
+      "default": true,
+      "info": "Must be muted for autoplay to work"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show controls",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI-VIDEOFULL"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="tw-w-full tw-relative tw-overflow-hidden">
+  <div class="tw-w-full tw-max-w-[1440px] tw-mx-auto tw-relative">
+    {% if section.settings.video_file != blank %}
+      <!-- Uploaded video file -->
+      <div class="tw-w-full tw-relative">
+        {% assign video_style = 'object-fit: ' | append: section.settings.video_fit %}
+        {{ section.settings.video_file | video_tag: 
+          autoplay: section.settings.autoplay, 
+          loop: section.settings.loop, 
+          muted: section.settings.muted,
+          playsinline: true,
+          controls: section.settings.show_controls,
+          class: 'tw-w-full tw-h-auto tw-block',
+          style: video_style
+        }}
+      </div>
+    {% elsif section.settings.video_url != blank %}
+      <!-- YouTube/Vimeo URL -->
+      <div class="tw-w-full tw-relative" style="padding-bottom: 56.25%;">
+        <iframe
+          src="{{ section.settings.video_url | video_url: autoplay: section.settings.autoplay, loop: section.settings.loop, muted: section.settings.muted }}"
+          class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full"
+          frameborder="0"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+          style="object-fit: {{ section.settings.video_fit }};"
+        ></iframe>
+      </div>
+    {% elsif section.settings.video_external_url != blank %}
+      <!-- External video URL -->
+      <div class="tw-w-full tw-relative">
+        <video
+          class="tw-w-full tw-h-auto tw-block"
+          style="object-fit: {{ section.settings.video_fit }};"
+          {% if section.settings.autoplay %}autoplay{% endif %}
+          {% if section.settings.loop %}loop{% endif %}
+          {% if section.settings.muted %}muted{% endif %}
+          {% if section.settings.show_controls %}controls{% endif %}
+          playsinline
+        >
+          <source src="{{ section.settings.video_external_url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    {% else %}
+      <!-- Placeholder -->
+      <div class="tw-w-full tw-bg-gray-200 tw-flex tw-items-center tw-justify-center" style="min-height: 400px;">
+        <div class="tw-text-center tw-p-8">
+          <svg class="tw-w-16 tw-h-16 tw-mx-auto tw-mb-4 tw-text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          <p class="tw-text-gray-600 tw-text-lg">Upload a video or add video URL</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <style>
+    #shopify-section-{{ section.id }} video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    
+    #shopify-section-{{ section.id }} .tw-relative {
+      position: relative;
+    }
+    
+    /* Ensure video maintains aspect ratio */
+    #shopify-section-{{ section.id }} video,
+    #shopify-section-{{ section.id }} iframe {
+      max-width: 100%;
+    }
+  </style>
+</section>

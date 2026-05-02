@@ -1,0 +1,154 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "rich_text_CMqDzK": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_9dz4A7": {
+          "type": "heading",
+          "settings": {
+            "text": "Adversity Video Submission",
+            "heading_tag": "h2"
+          }
+        },
+        "richtext_nVdLbp": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5>Share Your #OvercomingAdversity Story For a Chance to Earn a $50 Gift Card!</h5>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_9dz4A7",
+        "richtext_nVdLbp"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1f2737e5-7fa9-42e9-b45c-ae473893834f",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_ey7ttG": {
+      "type": "image-with-text",
+      "blocks": {
+        "richtext_NUq4QC": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5><strong>You have a story to share.</strong></h5><p>Yes, I’m talking to you. </p><p>I know you’ve walked through your share of tough times (maybe more than your share) and have come out the other side stronger and better for it.</p><p>Your mess is what transformed you into the beautiful, strong, powerful soul you are today.</p><p>And now, it may be time to share your story on a bigger scale so you can help others embrace and love their beautiful, strong, powerful selves as well.</p><p>Plus, to sweeten the deal, if your story is chosen, you’ll receive a $50 gift card to the LWYA store or a $50 AMEX card.</p><h5><strong>Here's what you need to do:</strong></h5><p>We want you to make a short (less than 2 minute) uplifting, inspiring video where you share how you conquered adversity.</p><p>The essence of this video is to inspire and uplift through your genuine story. We want to inspire, so focus on how you overcame adversity, not on the adversity itself. Your authenticity and vulnerability will make your video impactful and help us foster a sense of community and mutual support.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_NUq4QC"
+      ],
+      "settings": {
+        "color_scheme": "scheme-a84d5221-7c7d-4719-b7c8-39b62af7c514",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/Screen_Shot_2024-04-02_at_2.28.59_PM.png",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": false
+      }
+    },
+    "rich_text_CAeX6t": {
+      "type": "rich-text",
+      "blocks": {
+        "richtext_7UxCpt": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5><strong>You have a story to share.</strong></h5><p>Yes, I’m talking to you. </p><p>I know you’ve walked through your share of tough times (maybe more than your share) and have come out the other side stronger and better for it.</p><p>Your mess is what transformed you into the beautiful, strong, powerful soul you are today.</p><p>And now, it may be time to share your story on a bigger scale so you can help others embrace and love their beautiful, strong, powerful selves as well.</p><p>Plus, to sweeten the deal, if your story is chosen, you’ll receive a $50 gift card to the LWYA store or a $50 AMEX card. (To be eligible, you must submit your video before Midnight on April 30, 2024.)</p><h5><strong>Here's what you need to do:</strong></h5><p>We want you to make a short (less than 2 minute) uplifting, inspiring video where you share how you conquered adversity.</p><p>The essence of this video is to inspire and uplift through your genuine story. We want to inspire, so focus on how you overcame adversity, not on the adversity itself. Your authenticity and vulnerability will make your video impactful and help us foster a sense of community and mutual support.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_7UxCpt"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-a84d5221-7c7d-4719-b7c8-39b62af7c514",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "start",
+        "remove_vertical_spacing": false
+      }
+    },
+    "rich_text_Mxk4HX": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_A4WEkL": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>How to make a great video:</strong>",
+            "heading_tag": "h4"
+          }
+        },
+        "richtext_9yGbHP": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5><strong>1. Pre-Video Preparation:</strong></h5><ul><li><strong>Reflect on Your Journey</strong>: Think about the adversities you've encountered and your journey in overcoming them, including personal, health, professional, or emotional challenges.</li><li><strong>Choose A Key Moment</strong>: Pinpoint a moment where self-love and acceptance were crucial in your journey.</li><li><strong>Write a Brief Outline</strong>: Prepare a concise outline of the key points, ensuring your video remains focused and engaging. This can be as detailed or broad as you need it to be. </li></ul><h5><strong>2. Setting Up:</strong></h5><ul><li><strong>Choose a Quiet, Well-Lit Space</strong>: Opt for a tidy space with flattering lighting, preferably natural light. Make sure there are no lights or bright windows in the background.</li><li><strong>White Background and No Objects</strong>: Use a clean, white background and make sure no objects are in the view to maintain focus on you.</li><li><strong>Film vertically</strong> since this will be shared on social media</li></ul><h5><strong>3. Filming the Video:</strong></h5><ul><li><strong>Immediate Storytelling</strong>: Start directly with your story to capture viewers' attention within the first few seconds.</li><li><strong>Focus Your Story on how you overcame adversity</strong>: Rather than focusing on the adversity itself, focus on how the role of self-love and how you overcame and moved past the adversity. </li><li><strong>Role of Self-Love</strong>: Elaborate on how self-love and acceptance aided you during tough times, sharing personal anecdotes or specific examples.</li><li><strong>Encourage Your Audience</strong>: Inspire those watching to embrace their journeys and self-love, offering support and encouragement.</li><li><strong>Authenticity is Key</strong>: Speak genuinely from the heart, as authenticity connects more than a scripted narrative.</li><li><strong>Introduction at the End</strong>: Conclude your story by introducing yourself, giving a personal touch.</li></ul><h5><strong>4. Call to Action:</strong></h5><ul><li><strong>Encourage Sharing</strong>: Invite viewers to share their stories of adversity and self-love using a specific LWYA campaign hashtag.</li><li><strong>Promote Engagement</strong>: Encourage comments and sharing of the video to spread the campaign's message.</li></ul><h5><strong>5. Submit your final video into dropbox using the form below</strong></h5><ul><li><strong>Make sure to include your name in the title of your video file</strong></li><li>We will edit it if need be, so don’t worry if you stumble or need to repeat yourself</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_A4WEkL",
+        "richtext_9yGbHP"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "start",
+        "remove_vertical_spacing": false
+      }
+    },
+    "custom_liquid_BJF3zd": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "scheme-a84d5221-7c7d-4719-b7c8-39b62af7c514",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": false,
+        "liquid": "<div data-tf-live=\"01HTDW6V4QM6V1KMTFPA53ZRZ5\"></div><script src=\"//embed.typeform.com/next/embed.js\"></script>",
+        "text_alignment": "center"
+      }
+    },
+    "17127078263ed894d7": {
+      "type": "apps",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_CMqDzK",
+    "image_with_text_ey7ttG",
+    "rich_text_CAeX6t",
+    "rich_text_Mxk4HX",
+    "custom_liquid_BJF3zd",
+    "17127078263ed894d7"
+  ]
+}

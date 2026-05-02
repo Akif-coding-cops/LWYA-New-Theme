@@ -1,0 +1,253 @@
+{%- comment -%}
+  Accepts:
+  - p: {Object} Product object (required)
+  - v: {Object} Current variant object (optional)
+  - ing_img: {Object} Image metafield (required)
+  - section_id: {String} Unique section ID for accordion targets (required)
+  - index: {String} Unique index to avoid ID conflicts when rendered multiple times (required)
+  - settings: {Object} Section settings (required)
+{%- endcomment -%}
+
+{%- liquid
+  assign q_color  = settings.question_text_color
+  assign q_border = settings.question_border_color
+
+  comment
+    ── Ingredients Title ────────────────────────────────────────────────────
+    Priority: variant → product
+  endcomment
+  assign ing_title = nil
+  if v != blank and v.metafields.custom.variant_ingredients_title != blank
+    assign ing_title = v.metafields.custom.variant_ingredients_title
+  elsif p.metafields.custom.ingredients_title != blank
+    assign ing_title = p.metafields.custom.ingredients_title
+  endif
+
+  comment
+    ── Ingredients Title Color ───────────────────────────────────────────────
+  endcomment
+  assign ing_title_color = settings.title_color
+  if v != blank and v.metafields.custom.variant_ingredients_title_color != blank
+    assign ing_title_color = v.metafields.custom.variant_ingredients_title_color
+  elsif p.metafields.custom.ingredients_title_color != blank
+    assign ing_title_color = p.metafields.custom.ingredients_title_color
+  endif
+
+  comment
+    ── Ingredients Title Font Size ───────────────────────────────────────────
+  endcomment
+  assign ing_title_font_size = 'clamp(26px, 3.3vw, 48px)'
+  if v != blank and v.metafields.custom.variant_ingredients_title_font_size != blank
+    assign ing_title_font_size = v.metafields.custom.variant_ingredients_title_font_size | append: 'px'
+  elsif p.metafields.custom.ingredients_title_font_size != blank
+    assign ing_title_font_size = p.metafields.custom.ingredients_title_font_size | append: 'px'
+  endif
+
+  comment
+    ── Ingredients Title Font Weight ─────────────────────────────────────────
+  endcomment
+  assign ing_title_font_weight = '400'
+  if v != blank and v.metafields.custom.variant_ingredients_title_font_weight != blank
+    assign ing_title_font_weight = v.metafields.custom.variant_ingredients_title_font_weight
+  elsif p.metafields.custom.ingredients_title_font_weight != blank
+    assign ing_title_font_weight = p.metafields.custom.ingredients_title_font_weight
+  endif
+
+  comment
+    ── Ingredients Subtitle ─────────────────────────────────────────────────
+  endcomment
+  assign ing_subtitle = nil
+  if v != blank and v.metafields.custom.variant_ingredients_subtitle != blank
+    assign ing_subtitle = v.metafields.custom.variant_ingredients_subtitle
+  elsif p.metafields.custom.ingredients_subtitle != blank
+    assign ing_subtitle = p.metafields.custom.ingredients_subtitle
+  endif
+
+  comment
+    ── Ingredients Subtitle Font Size ───────────────────────────────────────
+  endcomment
+  assign ing_subtitle_font_size = '16px'
+  if v != blank and v.metafields.custom.variant_ingredients_subtitle_font_size != blank
+    assign ing_subtitle_font_size = v.metafields.custom.variant_ingredients_subtitle_font_size | append: 'px'
+  elsif p.metafields.custom.ingredients_subtitle_font_size != blank
+    assign ing_subtitle_font_size = p.metafields.custom.ingredients_subtitle_font_size | append: 'px'
+  endif
+
+  comment
+    ── Ingredients Subtitle Font Weight ─────────────────────────────────────
+  endcomment
+  assign ing_subtitle_font_weight = '400'
+  if v != blank and v.metafields.custom.variant_ingredients_subtitle_font_weight != blank
+    assign ing_subtitle_font_weight = v.metafields.custom.variant_ingredients_subtitle_font_weight
+  elsif p.metafields.custom.ingredients_subtitle_font_weight != blank
+    assign ing_subtitle_font_weight = p.metafields.custom.ingredients_subtitle_font_weight
+  endif
+
+  comment
+    ── Full Ingredient List ──────────────────────────────────────────────────
+  endcomment
+  assign full_ingredient = nil
+  if v != blank and v.metafields.custom.variant_full_ingredient_dropdown != blank
+    assign full_ingredient = v.metafields.custom.variant_full_ingredient_dropdown
+  elsif p.metafields.custom.ingredient_paragraph != blank
+    assign full_ingredient = p.metafields.custom.ingredient_paragraph
+  endif
+-%}
+
+<section
+  class="tw-w-full"
+  style="padding-top: {{ settings.padding_y }}px; padding-bottom: {{ settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1400px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row tw-px-[16px] md:tw-px-[24px] lg:tw-px-[60px] xxl:tw-px-0">
+
+    {%- comment -%} Left: Ingredient Image {%- endcomment -%}
+    <div class="tw-w-full md:tw-w-responsive-[375,650] tw-flex-shrink-0 tw-mb-[24px] md:tw-mb-0">
+      <img
+        data-ingredient-image
+        src="{{ ing_img | image_url: width: 1200 }}"
+        alt="Ingredients"
+        class="tw-w-full tw-h-full tw-object-cover"
+        width="1200"
+        height="1200"
+      >
+    </div>
+
+    {%- comment -%} Right: Ingredient Content {%- endcomment -%}
+    <div
+      class="tw-w-full tw-flex tw-items-center"
+      style="background: {{ settings.right_bg_color }};"
+    >
+      <div class="tw-w-full tw-px-[24px] md:tw-px-[{{ settings.content_px }}px]">
+
+        {%- comment -%} Title {%- endcomment -%}
+        <h2
+          class="md:tw-max-w-[70%] tw-mx-auto !tw-font-gotham-book"
+          style="
+            margin-top: 0px;
+            margin-bottom: {% if ing_subtitle != blank %}0px{% else %}40px{% endif %};
+            color: {{ ing_title_color }};
+            font-size: {{ ing_title_font_size }};
+            font-weight: {{ ing_title_font_weight }};
+          "
+        >
+          {% if ing_title != blank %}
+            {{ ing_title }}
+          {% else %}
+            Ingredients
+          {% endif %}
+        </h2>
+
+        {%- comment -%} Subtitle {%- endcomment -%}
+        {% if ing_subtitle != blank %}
+          <p
+            class="md:tw-max-w-[70%] tw-mx-auto tw-text-[#000000] !tw-font-gotham-book"
+            style="
+              margin-top: 0;
+              margin-bottom: 40px;
+              font-size: {{ ing_subtitle_font_size }};
+              font-weight: {{ ing_subtitle_font_weight }};
+            "
+          >
+            {{ ing_subtitle }}
+          </p>
+        {% endif %}
+
+        {%- comment -%} Accordion Items {%- endcomment -%}
+        <div class="faq-group tw-max-w-full md:tw-max-w-[70%] tw-mx-auto" style="margin-top: 22px;">
+
+          {%- comment -%} Full Ingredient List {%- endcomment -%}
+          {% if full_ingredient != blank %}
+            <div class="faq-item" style="border-top: 1px solid {{ q_border }};">
+              <button
+                type="button"
+                class="faq-btn tw-w-full tw-flex tw-items-center tw-justify-between tw-py-[14px] tw-text-left tw-font-gotham"
+                data-target="ing-full-{{ section_id }}-{{ index }}"
+                style="color: {{ q_color }}; font-size: 16px; font-weight: 600;"
+              >
+                <span>FULL INGREDIENT LIST</span>
+                <span class="tw-text-[22px] tw-leading-none tw-font-[600] tw-transition-all tw-duration-300 tw-ease-in-out plus-icon" style="color: {{ q_color }};">+</span>
+              </button>
+              <div id="ing-full-{{ section_id }}-{{ index }}" class="faq-body tw-overflow-hidden tw-max-h-0">
+                <div class="tw-pb-[14px] tw-text-[14px] tw-leading-[1.5] tw-text-[#000000]">
+                  {{ full_ingredient | metafield_text }}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {%- comment -%} Individual Ingredients 1–6 — variant first, fall back to product {%- endcomment -%}
+          {% for i in (1..6) %}
+            {%- liquid
+              assign p_title_key   = 'ingredient_'         | append: i | append: '_title'
+              assign p_details_key = 'ingredient_'         | append: i | append: '_details'
+              assign v_title_key   = 'variant_ingredient_' | append: i | append: '_title'
+              assign v_details_key = 'variant_ingredient_' | append: i | append: '_details'
+
+              assign ing_item_title   = nil
+              assign ing_item_details = nil
+
+              if v != blank and v.metafields.custom[v_title_key] != blank
+                assign ing_item_title   = v.metafields.custom[v_title_key]
+                assign ing_item_details = v.metafields.custom[v_details_key]
+              elsif p.metafields.custom[p_title_key] != blank
+                assign ing_item_title   = p.metafields.custom[p_title_key]
+                assign ing_item_details = p.metafields.custom[p_details_key]
+              endif
+            -%}
+
+            {% if ing_item_title != blank %}
+              <div class="faq-item" style="border-top: 1px solid {{ q_border }};">
+                <button
+                  type="button"
+                  class="faq-btn tw-w-full tw-flex tw-items-center tw-justify-between tw-py-[14px] tw-text-left tw-font-gotham"
+                  data-target="ing-{{ i }}-{{ section_id }}-{{ index }}"
+                  style="color: {{ q_color }}; font-size: 16px; font-weight: 600;"
+                >
+                  <span>{{ ing_item_title }}</span>
+                  <span class="tw-text-[22px] tw-leading-none tw-font-[600] tw-transition-all tw-duration-300 tw-ease-in-out plus-icon" style="color: {{ q_color }};">+</span>
+                </button>
+                <div id="ing-{{ i }}-{{ section_id }}-{{ index }}" class="faq-body tw-overflow-hidden tw-max-h-0">
+                  <div class="tw-pb-[14px] tw-text-[14px] tw-leading-[1.5] tw-text-[#000000]">
+                    {{ ing_item_details | metafield_text }}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+
+          <div style="border-top: 1px solid {{ q_border }};"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.currentScript && document.currentScript.closest
+        ? document.currentScript.closest('section')
+        : null;
+      if (!root) return;
+      var buttons = root.querySelectorAll('.faq-btn');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id   = btn.getAttribute('data-target');
+          var body = root.querySelector('#' + id);
+          if (!body) return;
+          var icon = btn.querySelector('.plus-icon');
+          if (!icon) return;
+          var isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+          if (isOpen) {
+            body.style.maxHeight = '0px';
+            icon.style.transform = 'rotate(-90deg)';
+            setTimeout(function () { icon.textContent = '+'; icon.style.transform = 'rotate(0deg)'; }, 150);
+          } else {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            icon.style.transform = 'rotate(90deg)';
+            setTimeout(function () { icon.textContent = '−'; icon.style.transform = 'rotate(0deg)'; }, 150);
+          }
+        });
+      });
+    })();
+  </script>
+</section>

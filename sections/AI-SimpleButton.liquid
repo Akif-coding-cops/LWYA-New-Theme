@@ -1,0 +1,99 @@
+{% schema %}
+{
+  "name": "Simple button center",
+  "tag": "section",
+  "class": "simple-button-center",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Button label",
+      "default": "Choose My Holiday VIP Offer"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button background color",
+      "default": "#C2CA2E"
+    },
+    {
+      "type": "color",
+      "id": "btn_text",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Section vertical padding",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "font_mobile",
+      "label": "Mobile font size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "font_desktop",
+      "label": "Desktop font size",
+      "min": 18,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    }
+  ],
+  "presets": [
+    {
+      "name": "Simple button center"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="background: {{ section.settings.section_bg }}; padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-flex tw-justify-center tw-items-center">
+    <a
+      {% if section.settings.link != blank %}href="{{ section.settings.link }}"{% endif %}
+      class="simple-btn tw-inline-block tw-transition-all tw-duration-300 tw-font-[600]"
+      style="
+        background: {{ section.settings.btn_bg }};
+        color: {{ section.settings.btn_text }};
+        padding: 13px 32px;
+        font-size: clamp({{ section.settings.font_mobile }}px, 3vw, {{ section.settings.font_desktop }}px);
+      "
+    >
+      {{ section.settings.label }}
+    </a>
+  </div>
+
+  <style>
+    .simple-btn:hover {
+      filter: brightness(0.93);
+    }
+  </style>
+</section>

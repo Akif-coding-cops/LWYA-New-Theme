@@ -1,0 +1,17 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+
+<div class="tw-text-[35px] tw-leading-[28px] tw-font-bold tw-text-[#d41870] pdp-price" data-product-price>
+  {{ current_variant.price | money }}
+  {%- if current_variant.compare_at_price > current_variant.price -%}
+    <s class="tw-text-[18px] tw-text-[#9b9b9b] tw-ml-[8px]">{{ current_variant.compare_at_price | money }}</s>
+  {%- endif -%}
+</div>
+
+<style>
+  .pdp-price {
+    font-family: 'Gotham' !important;
+    font-weight: 700;
+  }
+</style>

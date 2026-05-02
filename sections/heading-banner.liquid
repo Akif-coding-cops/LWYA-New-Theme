@@ -1,0 +1,256 @@
+{% comment %} {% style %}
+.custom-heading-section {
+  background: {{ section.settings.bg_color }};
+  margin-top: {{ section.settings.margin_top }}px;
+  margin-bottom: {{ section.settings.margin_bottom }}px;
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.custom-heading-container {
+  max-width: 1243px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.custom-heading-text {
+  font-size: {{ section.settings.font_size }}px;
+  font-weight: {{ section.settings.font_weight }};
+  color: {{ section.settings.text_color }};
+  line-height: {{ section.settings.line_height }}%;
+  letter-spacing: {{ section.settings.letter_spacing }}px;
+  text-align: {{ section.settings.text_align }};
+  text-transform: uppercase;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .custom-heading-text {
+    font-size: {{ section.settings.mobile_font_size }}px;
+  }
+}
+{% endstyle %}
+
+<section class="custom-heading-section">
+  <div class="custom-heading-container">
+    {% if section.settings.heading_text != blank %}
+      <div class="custom-heading-text">
+        {{ section.settings.heading_text }}
+      </div>
+    {% endif %}
+  </div>
+</section> {% endcomment %}
+
+{% assign meta_title = collection.metafields.custom.collection_title %}
+{% assign meta_description = collection.metafields.custom.page_description %}
+{% assign description_style = collection.metafields.custom.description_custom_styling %}
+
+{% style %}
+.custom-heading-section {
+  background: {{ section.settings.bg_color }};
+  margin-top: {{ section.settings.margin_top }}px;
+  margin-bottom: {{ section.settings.margin_bottom }}px;
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.custom-heading-container {
+  max-width: 1243px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+/* Title Style (First Image Style) */
+.custom-heading-title {
+  font-family:"Didot";
+  font-weight: 600;
+  font-size: 45px;
+  font-style: italic;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+/* Description Style */
+.custom-heading-description {
+  font-size: {{ section.settings.font_size }}px;
+  font-weight: {{ section.settings.font_weight }};
+  color: {{ section.settings.text_color }};
+  line-height: {{ section.settings.line_height }}%;
+  letter-spacing: {{ section.settings.letter_spacing }}px;
+  text-align: {{ section.settings.text_align }};
+  text-transform: uppercase;
+}
+.desc-only {
+  font-family:"Gotham_Bold";
+}
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .custom-heading-description {
+    font-size: {{ section.settings.mobile_font_size }}px;
+  }
+
+  .custom-heading-title {
+    font-size: 20px;
+  }
+}
+{% endstyle %}
+
+<section class="custom-heading-section">
+  <div class="custom-heading-container">
+
+    {% if meta_title != blank and meta_description != blank %}
+      
+      <!-- First Image Style -->
+      <div class="custom-heading-title">
+        {{ meta_title }}
+      </div>
+
+      <div class="custom-heading-description" style="{{ description_style }}">
+        {{ meta_description }}
+      </div>
+
+    {% elsif meta_description != blank %}
+      
+      <!-- Second Image Style (Only Description) -->
+      <div class="custom-heading-description desc-only" style="{{ description_style }}">
+        {{ meta_description }}
+      </div>
+
+    {% endif %}
+
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Custom Heading Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "FALL IN LOVE WITH YOUR BODY"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+  
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size (Desktop)",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "default": 31
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Font Size (Mobile)",
+      "min": 14,
+      "max": 50,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "default": "700",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra Bold (800)" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line Height (%)",
+      "min": 80,
+      "max": 200,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter Spacing (px)",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Heading Banner"
+    }
+  ]
+}
+{% endschema %}

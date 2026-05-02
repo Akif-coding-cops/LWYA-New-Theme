@@ -1,0 +1,426 @@
+<section id="promo-sale-event" class="tw-w-full" style="background: {{ section.settings.bg_color }}; padding: {{ section.settings.padding_y }}px 0;">
+  <div class="tw-mx-auto tw-px-[16px]" style="max-width: 1332px">
+
+    <div class="tw-text-center tw-mb-[40px] md:tw-mb-[60px]">
+      <div class="tw-mb-[30px]">
+
+        {%- comment -%} Desktop View {%- endcomment -%}
+        <div class="tw-hidden md:tw-block">
+          
+          {% if section.settings.banner_video != blank %}
+            
+            {{
+              section.settings.banner_video
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                class: 'tw-w-full'
+            }}
+
+          {% elsif section.settings.banner_image_desktop != blank %}
+
+            <img
+              src="{{ section.settings.banner_image_desktop | image_url: width: 2000 }}"
+              alt="{{ section.settings.title }}"
+              loading="lazy"
+              class="tw-w-full tw-object-cover"
+            >
+
+          {% endif %}
+
+        </div>
+
+        <div class="md:tw-hidden">
+          
+          {% if section.settings.banner_video_mobile != blank %}
+
+            {{
+              section.settings.banner_video_mobile
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                class: 'tw-w-full'
+            }}
+
+          {% elsif section.settings.banner_image_mobile != blank %}
+
+            <img
+              src="{{ section.settings.banner_image_mobile | image_url: width: 1200 }}"
+              alt="{{ section.settings.title }}"
+              loading="lazy"
+              class="tw-w-full tw-object-cover"
+            >
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+      <div class="tw-flex tw-flex-col tw-gap-[30px]">
+          <h2 class="!tw-font-didot tw-text-[28px] md:tw-text-[42px] tw-italic caption-prod-collection">
+            {{ section.settings.section_title }}
+          </h2>
+    
+          <p class="tw-uppercase tw-tracking-[0.05em] tw-text-[28px] md:tw-text-[42px]">
+            {{ section.settings.section_subtitle }}
+          </p>
+      </div>
+    </div>
+
+    {% assign promo_collection = section.settings.collection %}
+
+    {% if promo_collection != blank %}
+        {% assign product_limit = promo_collection.products_count %}
+        {% paginate promo_collection.products by product_limit %}
+            {% render 'products-grid', products: promo_collection.products, settings: product_grid_settings %}
+        {% endpaginate %}
+    {% endif %}
+  </div>
+<style>
+
+.promo-save-badge{
+    position:absolute;
+    top:12px;
+    right:12px;
+    background:#000;
+    color:#fff;
+    padding:6px 10px;
+    font-size:14px;
+    font-weight:700;
+    text-transform:uppercase;
+}
+
+.sale-price{
+    font-weight:700;
+    font-family:"Gotham_Bold";
+    font-size:17px;
+}
+
+.full-price-prod{
+    color:#000;
+    font-weight:700;
+    font-family:"Gotham_Bold";
+    font-size:17px;
+}
+
+</style>
+
+
+<script>
+    (function(){
+
+    const section = document.getElementById('promo-sale-event')
+    if(!section) return
+
+    const targetStr = "{{ section.settings.target_datetime }}"
+    const targetTime = new Date(targetStr.replace(' ', 'T') + ':00-05:00').getTime()
+
+    if(isNaN(targetTime)){
+    console.error("Invalid countdown date:", targetStr)
+    return
+    }
+
+    function updateTimer(){
+
+    const now = Date.now()
+    let diff = targetTime - now
+
+    if(diff <= 0) diff = 0
+
+    const d = Math.floor(diff/(1000*60*60*24))
+    const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60))
+    const m = Math.floor((diff%(1000*60*60))/(1000*60))
+    const s = Math.floor((diff%(1000*60))/1000)
+
+    section.querySelector('.days').textContent = String(d).padStart(2,'0')
+    section.querySelector('.hours').textContent = String(h).padStart(2,'0')
+    section.querySelector('.minutes').textContent = String(m).padStart(2,'0')
+    section.querySelector('.seconds').textContent = String(s).padStart(2,'0')
+
+    }
+
+    updateTimer()
+    setInterval(updateTimer,1000)
+
+    })()
+
+</script>
+
+</section>
+
+
+{% schema %}
+{
+"name": "Promo Sale Event",
+"settings": [
+
+  {
+    "type": "image_picker",
+    "id": "banner_image_desktop",
+    "label": "Desktop Banner Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "banner_image_mobile",
+    "label": "Mobile Banner Image"
+  },
+  {
+    "type": "video",
+    "id": "banner_video",
+    "label": "Desktop Banner Video"
+  },
+  {
+    "type": "video",
+    "id": "banner_video_mobile",
+    "label": "Mobile Banner Video"
+  },
+
+  {
+    "type": "text",
+    "id": "section_title",
+    "label": "Section Title",
+    "default": "Limited Time Event"
+  },
+
+  {
+    "type": "text",
+    "id": "section_subtitle",
+    "label": "Section Subtitle",
+    "default": "Shop our latest promotion"
+  },
+
+  {
+    "type": "collection",
+    "id": "collection",
+    "label": "Collection"
+  },
+
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Countdown Title",
+    "default": "ENDS IN"
+  },
+
+  {
+    "type": "text",
+    "id": "target_datetime",
+    "label": "Target Date (YYYY-MM-DD HH:MM)"
+  },
+
+  {
+    "type": "color",
+    "id": "title_color",
+    "label": "Title Color",
+    "default": "#000000"
+  },
+
+  {
+    "type": "range",
+    "id": "title_size",
+    "label": "Title Font Size",
+    "min": 16,
+    "max": 70,
+    "step": 1,
+    "default": 34
+  },
+
+  {
+    "type": "color",
+    "id": "count_color",
+    "label": "Countdown Color",
+    "default": "#000000"
+  },
+
+  {
+    "type": "color",
+    "id": "bg_color",
+    "label": "Background Color",
+    "default": "#ffffff"
+  },
+
+  {
+    "type": "color",
+    "id": "button_bg",
+    "label": "Accent Color",
+    "default": "#d41870"
+  },
+
+  {
+    "type": "range",
+    "id": "padding_y",
+    "label": "Vertical Padding",
+    "min": 0,
+    "max": 120,
+    "step": 5,
+    "default": 0
+  },
+
+  {
+      "type": "checkbox",
+      "id": "product_enable_limit",
+      "label": "Limit number of products",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "product_products_to_show",
+      "label": "Products to Show (if limit enabled)",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "product_section_width",
+      "label": "Section Width",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "default": 1250
+    },
+    {
+      "type": "range",
+      "id": "product_grid_gap",
+      "label": "Grid Gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 50
+    },
+
+    {
+      "type": "header",
+      "content": "Product Title Settings"
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "label": "Title Font Size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "select",
+      "id": "product_title_weight",
+      "label": "Title Font Weight",
+      "default": "700",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+
+    {
+      "type": "header",
+      "content": "Price Settings"
+    },
+    {
+      "type": "range",
+      "id": "product_price_size",
+      "label": "Price Font Size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "select",
+      "id": "product_price_weight",
+      "label": "Price Font Weight",
+      "default": "700",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "product_price_color",
+      "label": "Price Color",
+      "default": "#00000080"
+    },
+
+    {
+      "type": "header",
+      "content": "Rating Settings"
+    },
+    {
+      "type": "range",
+      "id": "product_star_size",
+      "label": "Star Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "product_star_color",
+      "label": "Star Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "product_rating_size",
+      "label": "Rating Text Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "color",
+      "id": "product_rating_color",
+      "label": "Rating Text Color",
+      "default": "#00000080"
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "product_padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "product_padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60
+    }
+],
+
+"presets":[
+{
+"name":"Promo Sale Event"
+}
+]
+
+}
+{% endschema %}

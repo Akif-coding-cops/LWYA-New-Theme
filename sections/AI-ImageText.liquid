@@ -1,0 +1,156 @@
+{% schema %}
+{
+  "name": "AI Image Text",
+  "tag": "section",
+  "class": "ai-image-text-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Left Column Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Right Column Settings"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Background Color",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "richtext",
+      "id": "right_title",
+      "label": "Title (Rich Text)",
+      "default": "<h4>ABOUT LWYA</h4>"
+    },
+    {
+      "type": "richtext",
+      "id": "right_text",
+      "label": "Text (Rich Text)",
+      "default": "<p>We empower women to embrace their true selves, love their lives, and write their own stories.</p>"
+    },
+    {
+      "type": "text",
+      "id": "right_button_text",
+      "label": "Button Text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "right_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "right_button_bg",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "right_button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Image Text"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="image-text-{{ section.id }} tw-w-full"
+  style="background-color: {{ section.settings.section_bg_color }};"
+>
+  <div class="tw-flex tw-flex-col md:tw-flex-row tw-w-full tw-max-w-[1400px] tw-mx-auto">
+    {%- comment -%} LEFT COLUMN - Pure Image {%- endcomment -%}
+    <style>
+      @media (min-width: 768px) {
+        .left-image-{{ section.id }} {
+          aspect-ratio: 1 / 1;
+          max-height: 700px;
+        }
+      }
+    </style>
+    <div
+      class="left-image-{{ section.id }} tw-w-full md:tw-w-1/2 tw-relative"
+      style="
+        aspect-ratio: 1 / 1;
+        max-height: 700px;
+      "
+    >
+      {% if section.settings.left_image != blank %}
+        <img
+          src="{{ section.settings.left_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.left_image.alt | escape }}"
+          class="tw-w-full tw-h-full tw-object-cover"
+          loading="lazy"
+        >
+      {% else %}
+        <div class="tw-w-full tw-h-full tw-bg-gray-200 tw-flex tw-items-center tw-justify-center">
+          <p class="tw-text-gray-400">No image selected</p>
+        </div>
+      {% endif %}
+    </div>
+
+    {%- comment -%} RIGHT COLUMN - Text Content {%- endcomment -%}
+    <style>
+      @media (min-width: 768px) {
+        .right-column-{{ section.id }} {
+          aspect-ratio: 1 / 1;
+          max-height: 700px;
+        }
+      }
+    </style>
+    <div
+      class="right-column-{{ section.id }} tw-w-full md:tw-w-1/2 tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-center tw-p-responsive-[30,60]"
+      style="
+        background-color: {{ section.settings.right_bg_color }};
+        aspect-ratio: 1 / 1;
+        max-height: 700px;
+      "
+    >
+      <div class="tw-max-w-[500px] tw-w-full">
+        {% if section.settings.right_title != blank %}
+          <div
+            class="tw-text-responsive-[20,35] tw-tracking-widest tw-text-black tw-uppercase tw-mb-4"
+            style="letter-spacing: 0.1em;"
+          >
+            {{ section.settings.right_title }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.right_text != blank %}
+          <div class="tw-text-responsive-[28,45] tw-font-light tw-text-black tw-mb-8 tw-leading-tight">
+            {{ section.settings.right_text }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.right_button_text != blank %}
+          <a
+            href="{{ section.settings.right_button_link | default: '#' }}"
+            class="tw-inline-block tw-px-6 tw-py-3 tw-text-responsive-[14,19] tw-font-bold tw-uppercase tw-tracking-wider hover:tw-opacity-80 tw-transition-opacity"
+            style="background-color: {{ section.settings.right_button_bg }}; color: {{ section.settings.right_button_text_color }};"
+          >
+            {{ section.settings.right_button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

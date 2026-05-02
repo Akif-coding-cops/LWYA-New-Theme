@@ -1,0 +1,13 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign variant_title = current_variant.metafields.custom.variant_title -%}
+
+<h1
+  data-product-title
+  class="tw-text-[50px] tw-leading-[1.2] tw-text-black tw-font-metric-medium"
+>
+  {% if variant_title != blank %}
+    {{ variant_title }}
+  {% else %}
+    {{ product.title }}
+  {% endif %}
+</h1>

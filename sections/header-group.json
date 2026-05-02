@@ -1,0 +1,127 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message-1": {
+          "type": "message",
+          "settings": {
+            "text": "✨The Flawless Five - $164 value for $75✨"
+          }
+        }
+      },
+      "block_order": [
+        "message-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-ff14b769-00ce-4a5f-a184-ca5c61268089",
+        "enable_sticky": false,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "desktop_font_size": 10,
+        "mobile_font_size": 10
+      }
+    },
+    "ss_scrolling_announcement_bar_eXTjLC": {
+      "type": "ss-scrolling-announcement-bar",
+      "blocks": {
+        "text_qqf4Ke": {
+          "type": "text",
+          "settings": {
+            "text": " The Flawless Five Kit"
+          }
+        },
+        "text_YaGajf": {
+          "type": "text",
+          "settings": {
+            "text": "no-B.S. beauty hydrating formulas"
+          }
+        },
+        "text_AjmfU6": {
+          "type": "text",
+          "settings": {
+            "text": "Today Only!"
+          }
+        }
+      },
+      "block_order": [
+        "text_qqf4Ke",
+        "text_YaGajf",
+        "text_AjmfU6"
+      ],
+      "disabled": true,
+      "settings": {
+        "insert_css_class_target": ".header, .pageheader, .section-header, #announcement, .toolbar, .header__wrapper",
+        "text_size": 19,
+        "ss_font_family": "montserrat_n7",
+        "link": "shopify://products/love-your-complexion-bundle",
+        "animation_duration": 44,
+        "animation_direction": "right",
+        "pause_hover": false,
+        "bg": "#501a89",
+        "text_color": "#ffe50b",
+        "hover_opacity": 90,
+        "padding_horizontal": 1,
+        "padding_vertical": 1
+      }
+    },
+    "Switch-tabs": {
+      "type": "switch-buttons",
+      "disabled": true,
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "button_1_text": "BEAUTY",
+        "button_1_url": "",
+        "button_2_text": "Jewelry",
+        "button_2_url": "shopify://pages/jewelry-landing-page"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "color_scheme": "scheme-4672f865-a018-4f66-862f-7bb7a1362c5f",
+        "enable_sticky": true,
+        "hide_on_scroll": false,
+        "show_separation_border": true,
+        "reduce_padding": true,
+        "logo": "shopify://shop_images/LWYA_LOGO_white.png",
+        "logo_max_width": 105,
+        "logo_mobile_max_width": 100,
+        "menu": "main-menu",
+        "sidebar_menu": "",
+        "menu_open_trigger": "hover",
+        "enable_search": true,
+        "sidebar_color_scheme": "scheme-a84d5221-7c7d-4719-b7c8-39b62af7c514",
+        "sidebar_text_font": "heading",
+        "sidebar_show_dividers": true,
+        "layout": "logo_center_navigation_inline",
+        "show_icons": true,
+        "show_country_selector": true,
+        "show_country_name": false,
+        "show_country_flag": true,
+        "show_locale_selector": false,
+        "transparent_header_text_color": "#ffffff",
+        "transparent_logo": "shopify://shop_images/LWYA-logo.svg"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "ss_scrolling_announcement_bar_eXTjLC",
+    "Switch-tabs",
+    "header"
+  ]
+}

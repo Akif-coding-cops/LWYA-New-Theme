@@ -1,0 +1,219 @@
+{% schema %}
+{
+  "name": "Reviews (4-up)",
+  "tag": "section",
+  "class": "holiday-reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Rave Reviews From Our Community"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See Why Everyone’s Falling for Vivacity"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#BED034"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background",
+      "default": "#F5F1E7"
+    },
+    {
+      "type": "range",
+      "id": "card_bg_opacity",
+      "label": "Card background opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#BED034"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Padding top/bottom",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating (stars)",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "richtext",
+          "id": "comment",
+          "label": "Comment",
+          "default": "<p>I love this fragrance so much never want to be without it.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Sherry H."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Reviews (4-up)",
+      "blocks": [
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-px-[16px] md:tw-px-0 tw-text-center">
+    <h2
+      class="tw-text-ruttan"
+      style="color: {{ section.settings.heading_color }}; font-size: clamp(30px, 4vw, 46px); font-weight: 700;"
+    >
+      {{ section.settings.heading }}
+    </h2>
+    {% if section.settings.subheading != blank %}
+      <p
+        style="margin-top: 20px; color: {{ section.settings.subheading_color }}; font-size: clamp(18px, 3vw, 27px); font-weight: 600;"
+      >
+        {{ section.settings.subheading }}
+      </p>
+    {% endif %}
+  </div>
+
+  <div
+    class="tw-max-w-[1440px] tw-mx-auto tw-px-[16px] md:tw-px-0"
+    style="margin-top: 60px;"
+  >
+    <div class="tw-grid tw-grid-cols-1 xs:tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-[12px]">
+      {% for block in section.blocks %}
+        {% if block.type == 'review' %}
+          {% assign bg_color = section.settings.card_bg %}
+          {% assign opacity = section.settings.card_bg_opacity | divided_by: 100.0 %}
+          {% assign r = bg_color | remove: '#' | slice: 0, 2 | split: '' | join: '' %}
+          {% assign g = bg_color | remove: '#' | slice: 2, 2 | split: '' | join: '' %}
+          {% assign b = bg_color | remove: '#' | slice: 4, 2 | split: '' | join: '' %}
+          <div
+            class="tw-flex tw-flex-col tw-h-full tw-text-center lg:tw-text-left tw-px-[20px] md:tw-px-[22px] tw-py-responsive-[40,60] tw-pb-responsive-[30,30] review-card"
+            data-bg-color="{{ bg_color }}"
+            data-bg-opacity="{{ opacity }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="tw-flex tw-gap-[3px] tw-mb-[14px] tw-justify-center lg:tw-justify-start">
+              {% for i in (1..block.settings.rating) %}
+                <span
+                  class="tw-text-[24px]"
+                  style="color: {{ section.settings.star_color }};"
+                >★</span>
+              {% endfor %}
+              {% if block.settings.rating < 5 %}
+                {% assign rest = 5 | minus: block.settings.rating %}
+                {% for i in (1..rest) %}
+                  <span class="tw-text-[24px] tw-text-[#D3D3D3]">★</span>
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div
+              class="tw-flex-1 tw-text-responsive-[15,18]"
+              style="line-height: 1.45; color: #000000;"
+            >
+              {{ block.settings.comment }}
+            </div>
+            {% if block.settings.author != blank %}
+              <div
+                style="margin-top: 14px; font-size: 16px; font-weight: 700; color: #000000;"
+              >
+                {{ block.settings.author }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    .review-card {
+      position: relative;
+      isolation: isolate;
+    }
+    .review-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+  </style>
+
+  <script>
+    (function() {
+      function hexToRgba(hex, opacity) {
+        hex = hex.replace('#', '');
+        var r = parseInt(hex.substring(0, 2), 16);
+        var g = parseInt(hex.substring(2, 4), 16);
+        var b = parseInt(hex.substring(4, 6), 16);
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity + ')';
+      }
+
+      var cards = document.querySelectorAll('.review-card');
+      cards.forEach(function(card) {
+        var bgColor = card.getAttribute('data-bg-color');
+        var bgOpacity = parseFloat(card.getAttribute('data-bg-opacity'));
+        if (bgColor) {
+          var rgba = hexToRgba(bgColor, bgOpacity);
+          var pseudo = card.querySelector('::before');
+          card.style.setProperty('--card-bg', rgba);
+          var before = window.getComputedStyle(card, '::before');
+          card.style.background = rgba;
+        }
+      });
+    })();
+  </script>
+</section>

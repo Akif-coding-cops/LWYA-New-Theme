@@ -1,0 +1,145 @@
+{% schema %}
+{
+  "name": "Simple countdown bar",
+  "tag": "section",
+  "class": "simple-countdown-bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "50% OFF - November VIP Special"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#C2CA2E"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Font size (shared for title & countdown)",
+      "min": 16,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "text",
+      "id": "target_datetime",
+      "label": "Countdown target (YYYY-MM-DD HH:MM)",
+      "info": "Example: 2025-12-31 23:59"
+    },
+    {
+      "type": "color",
+      "id": "count_color",
+      "label": "Countdown color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Padding top/bottom",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Simple countdown bar"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-center tw-gap-[30px] tw-text-center tw-px-[16px]">
+    <div
+       class="tw-font-[700] tw-leading-[1] tw-text-center"
+      style="color: {{ section.settings.title_color }};
+    font-family: 'Gotham_Bold','Gotham',sans-serif;
+    font-size: clamp(18px,4vw,{{ section.settings.title_size }}px);
+    letter-spacing: 0;"
+    >
+      {{ section.settings.title }}
+    </div>
+
+    {% if section.settings.target_datetime != blank %}
+    <div
+      class="simple-countdown tw-flex tw-gap-[12px] tw-items-baseline tw-justify-center tw-text-ruttan"
+      style="color: {{ section.settings.count_color }};"
+      data-countdown-target="{{ section.settings.target_datetime | escape }}"
+    >
+      <div class="tw-inline-block tw-relative">
+        <div class="tw-font-[700] tw-leading-none days" style="font-family: 'Gotham_Bold','Gotham',sans-serif; font-size: clamp(18px,4vw, {{ section.settings.title_size }}px); letter-spacing: 0;">00</div>
+        <div class="tw-text-[16px] tw-tracking-[0.16em] tw-uppercase tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-full tw-mt-[2px] tw-whitespace-nowrap">DAYS</div>
+      </div>
+      <div class="tw-font-[700] tw-leading-none" style="font-family: 'Gotham_Bold','Gotham',sans-serif; font-size: clamp(18px,4vw, {{ section.settings.title_size }}px);">:</div>
+      <div class="tw-inline-block tw-relative">
+        <div class="tw-font-[700] tw-leading-none hours" style="font-family: 'Gotham_Bold','Gotham',sans-serif; font-size: clamp(18px,4vw, {{ section.settings.title_size }}px);">00</div>
+        <div class="tw-text-[16px] tw-tracking-[0.16em] tw-uppercase tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-full tw-mt-[2px] tw-whitespace-nowrap">HRS</div>
+      </div>
+      <div class="tw-font-[700] tw-leading-none" style="font-family: 'Gotham_Bold','Gotham',sans-serif; font-size: clamp(18px,4vw, {{ section.settings.title_size }}px);">:</div>
+      <div class="tw-inline-block tw-relative">
+        <div class="tw-font-[700] tw-leading-none minutes" style="font-family: 'Gotham_Bold','Gotham',sans-serif; font-size: clamp(18px,4vw, {{ section.settings.title_size }}px);">00</div>
+        <div class="tw-text-[16px] tw-tracking-[0.16em] tw-uppercase tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-full tw-mt-[2px] tw-whitespace-nowrap">MIN</div>
+      </div>
+      <div class="tw-font-[700] tw-leading-none" style="font-family: 'Gotham_Bold','Gotham',sans-serif; font-size: clamp(18px,4vw, {{ section.settings.title_size }}px);">:</div>
+      <div class="tw-inline-block tw-relative">
+        <div class="tw-font-[700] tw-leading-none seconds" style="font-family: 'Gotham_Bold','Gotham',sans-serif; font-size: clamp(18px,4vw, {{ section.settings.title_size }}px);">00</div> 
+        <div class="tw-text-[16px] tw-tracking-[0.16em] tw-uppercase tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-full tw-mt-[2px] tw-whitespace-nowrap">SEC</div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+    (function() {
+      var root = document.currentScript && document.currentScript.closest
+        ? document.currentScript.closest('section')
+        : null;
+      if (!root) return;
+      var timer = root.querySelector('.simple-countdown');
+      if (!timer) return;
+      var target = timer.getAttribute('data-countdown-target');
+      if (!target) return;
+      var targetTime = new Date(target.replace(/-/g, '/')).getTime();
+      if (isNaN(targetTime)) return;
+
+      function tick() {
+        var now = Date.now();
+        var diff = targetTime - now;
+        if (diff < 0) diff = 0;
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var secs = Math.floor((diff % (1000 * 60)) / 1000);
+        var dEl = timer.querySelector('.days');
+        var hEl = timer.querySelector('.hours');
+        var mEl = timer.querySelector('.minutes');
+        var sEl = timer.querySelector('.seconds');
+        if (!dEl || !hEl || !mEl || !sEl) return;
+        dEl.textContent = String(days).padStart(2, '0');
+        hEl.textContent = String(hrs).padStart(2, '0');
+        mEl.textContent = String(mins).padStart(2, '0');
+        sEl.textContent = String(secs).padStart(2, '0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+</section>

@@ -1,0 +1,194 @@
+{% comment %}
+  AI-VideoWithImage - Video left, Image right section
+  Desktop: Side by side, max-height 900px
+  Mobile: Stacked (video top, image bottom)
+{% endcomment %}
+
+<section class="tw-w-full tw-flex tw-justify-center">
+  <div class="tw-w-full tw-max-w-[1440px]">
+    
+    <div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-0">
+      
+      {%- comment -%} LEFT: Video Section {%- endcomment -%}
+      <div class="tw-w-full tw-order-1 lg:tw-order-1">
+        <div class="tw-relative tw-w-full tw-h-full tw-bg-gray-200" style="min-height: 400px; max-height: 900px;">
+          {% if section.settings.video != blank %}
+            {{
+              section.settings.video
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: true,
+                class: 'tw-w-full tw-h-full tw-object-cover',
+                playsinline: true,
+                style: 'max-height: 900px;'
+            }}
+          {% elsif section.settings.video_url != blank %}
+            {{
+              section.settings.video_url
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: true,
+                class: 'tw-w-full tw-h-full tw-object-cover',
+                style: 'max-height: 900px;'
+            }}
+          {% else %}
+            <div class="tw-absolute tw-inset-0 tw-flex tw-items-center tw-justify-center tw-text-white tw-text-2xl tw-font-bold">
+              <div class="tw-text-center">
+                <svg class="tw-w-16 tw-h-16 tw-mx-auto tw-mb-2 tw-text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+                <p class="tw-text-gray-400 tw-text-base">Add Video</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {%- comment -%} RIGHT: Image Section {%- endcomment -%}
+      <div class="tw-w-full tw-order-2 lg:tw-order-2">
+        <div class="tw-relative tw-w-full tw-h-full" style="min-height: 400px;">
+          {% if section.settings.image != blank %}
+            <img
+              src="{{ section.settings.image | image_url: width: 1000 }}"
+              srcset="{{ section.settings.image | image_url: width: 600 }} 600w,
+                      {{ section.settings.image | image_url: width: 800 }} 800w,
+                      {{ section.settings.image | image_url: width: 1000 }} 1000w"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              alt="{{ section.settings.image.alt | escape }}"
+              class="tw-w-full tw-h-full tw-object-cover lg:tw-max-h-[900px]"
+              loading="lazy"
+            >
+            
+            {%- comment -%} Clickable Area (Bottom 50%) {%- endcomment -%}
+            {% if section.settings.button_link != blank %}
+              <a 
+                href="{{ section.settings.button_link }}"
+                class="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-cursor-pointer"
+                style="height: 50%; z-index: 10;"
+                aria-label="{{ section.settings.button_aria_label | default: 'Click to view more' }}"
+              >
+                <span class="tw-sr-only">{{ section.settings.button_aria_label | default: 'Click to view more' }}</span>
+              </a>
+            {% endif %}
+          {% else %}
+            <div class="tw-absolute tw-inset-0 tw-flex tw-items-center tw-justify-center tw-bg-gray-100">
+              <div class="tw-text-center">
+                <svg class="tw-w-16 tw-h-16 tw-mx-auto tw-mb-2 tw-text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <p class="tw-text-gray-400 tw-text-base">Add Image</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Ensure desktop max-height constraint */
+  @media (min-width: 1024px) {
+    #shopify-section-{{ section.id }} .tw-grid > div {
+      max-height: 900px;
+    }
+    
+    #shopify-section-{{ section.id }} video {
+      max-height: 900px;
+      object-fit: cover;
+    }
+  }
+  
+  /* Mobile: No height constraints */
+  @media (max-width: 1023px) {
+    #shopify-section-{{ section.id }} video,
+    #shopify-section-{{ section.id }} img {
+      max-height: none;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const section = document.currentScript.closest('section');
+    if (!section) return;
+
+    const video = section.querySelector('video');
+   
+    if (video) {
+      // Lazy load and autoplay
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            video.play().catch(err => {
+              console.log('Autoplay prevented:', err);
+            });
+          } else {
+            video.pause();
+          }
+        });
+      }, {
+        threshold: 0.3
+      });
+
+      observer.observe(video);
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "AI Video With Image",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Video Section"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video Upload"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL (YouTube/Vimeo)",
+      "accept": ["youtube", "vimeo"],
+      "info": "Alternative to uploaded video"
+    },
+    {
+      "type": "header",
+      "content": "Right Image Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link (Bottom 50% of Image)",
+      "info": "Bottom half of the image will be clickable and link to this URL"
+    },
+    {
+      "type": "text",
+      "id": "button_aria_label",
+      "label": "Button Aria Label",
+      "default": "Click to view more",
+      "info": "Accessibility label for screen readers"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Video With Image"
+    }
+  ]
+}
+{% endschema %}

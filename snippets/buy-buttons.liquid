@@ -1,0 +1,249 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+BUY BUTTONS
+----------------------------------------------------------------------------------------------------------------------
+
+Supported variables:
+- product
+- show_payment_button
+- show_gift_card_recipient
+- atc_button_background
+- atc_button_text_color
+- payment_button_background
+- payment_button_text_color
+- form_id
+{%- endcomment -%}
+
+{%- if product != blank -%}
+  {%- liquid
+    assign variant_picker_block = section.blocks | where: 'type', 'variant_picker' | first
+    assign recipient_feature_active = false
+
+    if product.gift_card? and show_gift_card_recipient
+      assign recipient_feature_active = true
+      assign show_payment_button = false
+    endif
+  -%}
+
+  <product-form>
+    {%- form 'product', product, id: form_id -%}
+      <input type="hidden" {% if variant_picker_block != blank %}disabled{% endif %} name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+      {%- comment -%}
+      Robust check: only treat metafield as TRUE when it is truly true / "true" / "1".
+      Prevents false positives when metafield is false/blank.
+      {%- endcomment -%}
+      {%- liquid
+        assign variant_disabled_raw = product.selected_or_first_available_variant.metafields.custom.disable_variant | default: false
+        assign vd_str = variant_disabled_raw | downcase | strip
+        assign variant_disabled = false
+        if variant_disabled_raw == true or vd_str == 'true' or vd_str == '1'
+          assign variant_disabled = true
+        endif
+
+        assign button_disabled = false
+        assign show_sold_out_badge = false
+
+        if product.selected_or_first_available_variant == nil
+          assign button_disabled = true
+          assign button_content = 'product.general.unavailable_button' | t
+        elsif variant_disabled == true
+          comment
+          For variants disabled by metafield, show a badge instead of disabled button
+          endcomment
+          assign show_sold_out_badge = true
+          assign badge_content = 'product.general.sold_out_button' | t
+        elsif product.selected_or_first_available_variant.available == false
+          assign button_disabled = true
+          assign button_content = 'product.general.sold_out_button' | t
+        else
+          if product.template_suffix contains 'pre-order'
+            assign button_content = 'product.general.pre_order_button' | t
+          else
+            assign button_content = 'product.general.add_to_cart_button' | t
+          endif
+        endif
+      -%}
+
+      <div class="v-stack gap-4">
+        {%- if recipient_feature_active -%}
+          <gift-card-recipient class="gift-card-recipient v-stack gap-3">
+            {%- assign checkbox_label = 'gift_card.recipient.checkbox' | t -%}
+            {%- render 'checkbox', label: checkbox_label, name: 'properties[__shopify_send_gift_card_to_recipient]' -%}
+
+            <div class="gift-card-recipient__fields js:hidden">
+              <div class="fieldset">
+                {%- liquid
+                  assign recipient_email_label = 'gift_card.recipient.email_label' | t
+                  render 'input', type: 'email', label: recipient_email_label, name: 'properties[Recipient email]', value: form.email, required: true
+
+                  assign recipient_name_label = 'gift_card.recipient.name_label' | t
+                  render 'input', label: recipient_name_label, name: 'properties[Recipient name]', value: form.name
+
+                  assign send_on_label = 'gift_card.recipient.send_on_label' | t
+                  render 'input', type: 'date', label: send_on_label, name: 'properties[Send on]', value: form.send_on, pattern: '\d{4}-\d{2}-\d{2}'
+                  render 'input', type: 'hidden', name: 'properties[__shopify_offset]'
+
+                  assign message_label = 'gift_card.recipient.message_label' | t
+                  render 'input', label: message_label, name: 'properties[Message]', value: form.message, multiline: 3, maxlength: 200, show_max_characters_count: true
+                -%}
+              </div>
+            </div>
+          </gift-card-recipient>
+        {%- endif -%}
+
+        <buy-buttons class="buy-buttons {% if show_payment_button %}buy-buttons--has-dynamic{% endif %}" form="{{ form_id }}">
+          {%- comment -%}
+          Show badge for variants disabled by metafield instead of disabled button
+          {%- endcomment -%}
+          {%- if show_sold_out_badge -%}
+            <div class="sold-out-badge">
+              <div class="sold-out-badge__content">
+                {%- render 'icon' with 'info-circle' -%}
+                <span>{{ badge_content }}</span>
+              </div>
+            </div>
+          {%- else -%}
+            {%- if show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
+              {%- assign atc_button_style = 'outline' -%}
+            {%- else -%}
+              {%- assign atc_button_style = 'solid' -%}
+            {%- endif -%}
+
+            {%- render 'button',
+              content: button_content,
+              type: 'submit',
+              disabled: button_disabled,
+              style: atc_button_style,
+              background: atc_button_background,
+              text_color: atc_button_text_color,
+              stretch: true
+            -%}
+
+            {%- comment -%}
+            Render dynamic payment button only when:
+            - show_payment_button is true
+            - current variant is available
+            - current variant is NOT disabled by metafield
+            {%- endcomment -%}
+            {%- if show_payment_button and product.selected_or_first_available_variant.available and variant_disabled != true -%}
+              {{- form | payment_button -}}
+              <style>
+                /* Apply color overrides if provided */
+                #{{ form_id }} .shopify-payment-button {
+                  {%- if payment_button_background != blank and payment_button_background != 'rgba(0,0,0,0)' -%}
+                    --button-background: {{ payment_button_background.rgb }};
+                  {%- endif -%}
+                  {%- if payment_button_text_color != blank and payment_button_text_color != 'rgba(0,0,0,0)' -%}
+                    --button-text-color: {{ payment_button_text_color.rgb }};
+                  {%- endif -%}
+                }
+              </style>
+            {%- endif -%}
+          {%- endif -%}
+        </buy-buttons>
+      </div>
+    {%- endform -%}
+  </product-form>
+{%- else -%}
+  <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ form_id }}">
+    {%- assign button_content = 'product.general.add_to_cart_button' | t -%}
+    {%- render 'button',
+      content: button_content,
+      type: 'submit',
+      background: variant_picker_block.settings.atc_button_background,
+      text_color: variant_picker_block.settings.atc_button_text_color,
+      stretch: true
+    -%}
+  </buy-buttons>
+{%- endif -%}
+
+<style>
+  .buy-buttons button[type="submit"],
+  .buy-buttons .shopify-payment-button__button {
+    min-height: 48px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* Safety: whenever ATC button is disabled, also hide the dynamic payment button (live with JS state). */
+  .buy-buttons button[type="submit"][disabled] ~ .shopify-payment-button {
+    display: none !important;
+  }
+
+  /* Sold Out Badge - Clean informational style for disabled variants */
+  .sold-out-badge {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sold-out-badge__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .sold-out-badge__content svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .sold-out-badge {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .sold-out-badge__content {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 699px) {
+    .sold-out-badge {
+      padding: 14px 18px;
+      font-size: 15px;
+    }
+
+    .sold-out-badge__content svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  /* Styling for disabled variants - match exactly with theme default */
+  .block-swatch.is-disabled,
+  .color-swatch.is-disabled,
+  .thumbnail-swatch.is-disabled {
+    position: relative;
+    opacity: 0.6;
+    cursor: not-allowed;
+    --swatch-disabled-strike-color: currentColor;
+  }
+
+  .block-swatch.is-disabled::before,
+  .color-swatch.is-disabled::before,
+  .thumbnail-swatch.is-disabled::before {
+    content: "";
+    background: linear-gradient(to bottom right, transparent calc(50% - .5px), var(--swatch-disabled-strike-color) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px));
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+
+</style>

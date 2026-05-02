@@ -1,0 +1,60 @@
+{% comment %}
+  Discount badge
+  Props:
+    - product    : Shopify product object (required)
+    - show_badge : pass false to force-hide (default: auto — shows when on sale with >0% discount)
+    - position   : 'top-right' (default) | 'top-left' — corner to pin inside its wrapper
+  Usage: drop inside any position:relative container (e.g. an image wrapper)
+    {% render 'discount-badge', product: product %}
+    {% render 'discount-badge', product: product, position: 'top-left' %}
+    {% render 'discount-badge', product: product, show_badge: false %}
+{% endcomment %}
+
+{% style %}
+  .discount-badge {
+    position: absolute;
+    background: #e60e12;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: -0.228px;
+    height: 31px;
+    min-width: 104px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  .discount-badge--top-right { top: 20px; right: 15px; }
+  .discount-badge--top-left  { top: 20px; left: 15px; }
+{% endstyle %}
+
+{%- liquid
+  assign first_variant = product.selected_or_first_available_variant
+
+  assign variant_price = first_variant.price
+  assign variant_compare_at_price = first_variant.compare_at_price | default: 0
+  assign on_sale = false
+  if variant_compare_at_price > variant_price and variant_compare_at_price > 0
+    assign on_sale = true
+  endif
+
+  assign discount_pct = 0
+  if on_sale
+    assign diff = variant_compare_at_price | minus: variant_price
+    assign discount_pct = diff | times: 100.0 | divided_by: variant_compare_at_price | round
+  endif
+
+  assign display_badge = on_sale
+  if show_badge == false
+    assign display_badge = false
+  endif
+
+  assign badge_pos = position | default: 'top-right'
+-%}
+
+{% if display_badge and discount_pct > 0 %}
+  <div class="discount-badge discount-badge--{{ badge_pos }}">{{ discount_pct }}% OFF</div>
+{% endif %}

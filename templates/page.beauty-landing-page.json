@@ -1,0 +1,288 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "menu_links_Waa3FE": {
+      "type": "menu-links",
+      "blocks": {
+        "links_dXXqF6": {
+          "type": "links",
+          "settings": {
+            "button__text": "all",
+            "button_link": "#"
+          }
+        },
+        "links_PmrHUq": {
+          "type": "links",
+          "settings": {
+            "button__text": "beauty sets",
+            "button_link": "#"
+          }
+        },
+        "links_wfbMCq": {
+          "type": "links",
+          "settings": {
+            "button__text": "body",
+            "button_link": "#"
+          }
+        },
+        "links_jWnpah": {
+          "type": "links",
+          "settings": {
+            "button__text": "eyes",
+            "button_link": "#"
+          }
+        },
+        "links_8FXABy": {
+          "type": "links",
+          "settings": {
+            "button__text": "lips",
+            "button_link": "#"
+          }
+        },
+        "links_CrE6Cm": {
+          "type": "links",
+          "settings": {
+            "button__text": "face",
+            "button_link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "links_dXXqF6",
+        "links_PmrHUq",
+        "links_wfbMCq",
+        "links_jWnpah",
+        "links_8FXABy",
+        "links_CrE6Cm"
+      ],
+      "settings": {}
+    },
+    "text_on_image_DXjMcg": {
+      "type": "text-on-image",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "fitrs_image_text": "shopify://shop_images/240520-LWYA-BrushCrush-BlushStick-01_Square.png",
+        "Second_image_text": "shopify://shop_images/IPP9.png",
+        "text_on_image": "<p>Unleash Your Inner Glow<br/></p>",
+        "button_label_image": "Shop now",
+        "button_link": "#"
+      }
+    },
+    "featured_collections_bxeHzy": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_TVAEbY": {
+          "type": "collection",
+          "settings": {
+            "collection": "all-beauty",
+            "products_count": 24,
+            "title": "Our collection",
+            "link_url": "shopify://collections/all-beauty",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_TVAEbY"
+      ],
+      "settings": {
+        "color_scheme": "scheme-98632136-f0d5-47d2-8a66-6efffcb2dc29",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "button__explore_label": "EXPLORE",
+        "button_explore_link": "shopify://collections/beauty"
+      }
+    },
+    "integar_with_image_NQQK8P": {
+      "type": "Integar-with-image",
+      "blocks": {
+        "number_text_Gax4eE": {
+          "type": "number-text",
+          "settings": {
+            "manufactured_inline_number": "",
+            "manufactured_inline_richtext": "At LWYA Beauty, we believe in products that enhance your natural glow while nurturing your skin. Our formulas are free from harsh chemicals and packed with nourishing ingredients, ensuring you look radiant and feel your best, inside and out."
+          }
+        },
+        "number_text_8fHUPe": {
+          "type": "number-text",
+          "disabled": true,
+          "settings": {
+            "manufactured_inline_number": "1",
+            "manufactured_inline_richtext": "Ingredients Matter: Our makeup is free of harmful chemicals"
+          }
+        },
+        "number_text_69tLiA": {
+          "type": "number-text",
+          "disabled": true,
+          "settings": {
+            "manufactured_inline_number": "2",
+            "manufactured_inline_richtext": "Our makeup delivers excellent pigmentation and longevity."
+          }
+        },
+        "number_text_ACatnF": {
+          "type": "number-text",
+          "disabled": true,
+          "settings": {
+            "manufactured_inline_number": "3",
+            "manufactured_inline_richtext": "Our makeup is quality, easy to blend, and layerable."
+          }
+        },
+        "number_text_arkNbM": {
+          "type": "number-text",
+          "disabled": true,
+          "settings": {
+            "manufactured_inline_number": "4",
+            "manufactured_inline_richtext": "Our products are dermatologist-tested, non-comedogenic, and suitable for sensitive skin."
+          }
+        }
+      },
+      "block_order": [
+        "number_text_Gax4eE",
+        "number_text_8fHUPe",
+        "number_text_69tLiA",
+        "number_text_ACatnF",
+        "number_text_arkNbM"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "maufactured_image_text": "shopify://shop_images/Frame_77.png",
+        "Image_Position": "right",
+        "manufactured_inline_text": "Beauty that cares for you"
+      }
+    },
+    "video_card_UQFBx8": {
+      "type": "video-card",
+      "blocks": {
+        "video_XtM43e": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/SignetRing_Square.mp4",
+            "text": ""
+          }
+        },
+        "video_W7UatM": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/SignetRing_Square.mp4",
+            "text": ""
+          }
+        },
+        "video_ccey3w": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/SignetRing_Square.mp4",
+            "text": ""
+          }
+        },
+        "video_ck3LjC": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/SignetRing_Square.mp4",
+            "text": ""
+          }
+        },
+        "video_XLpWa7": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/SignetRing_Square.mp4",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_XtM43e",
+        "video_W7UatM",
+        "video_ccey3w",
+        "video_ck3LjC",
+        "video_XLpWa7"
+      ],
+      "settings": {
+        "vidwo__card__title": "love who you are",
+        "font-color": "#ffffff",
+        "bg-color": "#f3f3f3",
+        "font-size": 16,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "before_after": 10
+      }
+    },
+    "image_with_qoute_rMU3Bx": {
+      "type": "image-with-qoute",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "maufactured_image_text": "shopify://shop_images/Frame_77_1.png",
+        "Image_Position": "left",
+        "manufactured_inline_text": "<p>“</p>",
+        "manufactured_inline_text_2nd": "Our brand’s mission is all about spreading some love, joy, and a whole lot of fabulous experiences to women like you. We’re here to throw a big, sparkling celebration in honor of the incredible beauty, unshakable strength, and undeniable resilience that defines women everywhere.",
+        "manufactured_inline_text_3rd": "Xoxo, Kim"
+      }
+    },
+    "featured_collections_Wjmkpd": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_yWKnLD": {
+          "type": "collection",
+          "settings": {
+            "collection": "fragrance",
+            "products_count": 8,
+            "title": "FRAGANCE",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_yWKnLD"
+      ],
+      "settings": {
+        "color_scheme": "scheme-98632136-f0d5-47d2-8a66-6efffcb2dc29",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 5,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "button__explore_label": "",
+        "button_explore_link": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "menu_links_Waa3FE",
+    "text_on_image_DXjMcg",
+    "featured_collections_bxeHzy",
+    "integar_with_image_NQQK8P",
+    "video_card_UQFBx8",
+    "image_with_qoute_rMU3Bx",
+    "featured_collections_Wjmkpd"
+  ]
+}

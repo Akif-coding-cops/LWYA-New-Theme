@@ -1,0 +1,179 @@
+<style>
+ .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+      .custom_video_subwrapper {
+    width: 33%;
+}
+     .custom_text {
+    max-width: 500px;
+}
+     .custom_heading {
+    font-size: 64px;
+    text-align: center;
+}
+  }
+  .custom_video_wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+  .custom_video {
+    width: 100%;
+}
+  .main_color{
+    background-color:{{section.settings.new_colorrr}};
+    padding:50px 20px;
+    border-radius:10px;
+  }
+ .custom_video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 500px;
+   border-radius:8px;
+}
+ .custom_heading {
+    width: 100%;
+    padding-bottom: 5px;
+}
+  .custom_heading, .custom_text{
+    color:{{section.settings.new_color}};
+  }
+ .custom_text {
+    font-size: 16px;
+    margin: 0 auto;
+    padding-bottom: 32px;
+}
+  @media screen and (max-width:749px){
+    .custom_video_subwrapper{
+      width:100%;
+    }
+    .custom_video_wrapper {
+    flex-direction: column;
+}
+    .custom_heading {
+    line-height: normal;
+    font-size: 30px;
+}
+  }
+</style>
+<div class="section-{{ section.id }}-padding">
+<div class="main_container main_color container {% if section.settings.container_lager %}container--lg {% endif %}">
+   <div class="custom_heading globalClassInria_Sans">
+       {{ section.settings.main_text }}
+   </div>
+  <div class="custom_text inria-sans-regular_global">
+    {{ section.settings.new_text }}
+  </div>
+  <div class="custom_video_wrapper">
+      {% for block in section.blocks %}
+        <div class="custom_video_subwrapper">
+              {% if block.settings.new_video !=blank %}
+                <div class="custom_video">
+                    {{- block.settings.new_video | video_tag: class: 'object-cover', controls: section.settings.show_controls, playsinline: true, muted: section.settings.autoplay, autoplay: true, loop: true, image_size: '400x' -}}
+                </div>
+              {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+</div>
+</div>
+{% schema %}
+  {
+    "name": "text with video",
+    "settings": [
+            {
+        "type": "inline_richtext",
+        "id": "main_text",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "new_text",
+        "label": "Description"
+      },
+      {
+        "type": "color",
+        "id": "new_color",
+        "label": "Content color",
+        "default": "#000000"
+      },
+       {
+        "type": "color",
+        "id": "new_colorrr",
+        "label": "Background",
+        "default": "#F6F6F6"
+      },
+      {
+      "type": "checkbox",
+      "id": "container_lager",
+      "label": "Page-width",
+      "default": true
+    },
+       {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "t:global.video.autoplay",
+      "info": "t:global.video.autoplay_info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "t:global.video.show_controls",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+    ],
+    "blocks": [
+      {
+        "type": "add-video",
+        "name":"add video",
+        "settings": [
+             {
+              "type": "video",
+              "id": "new_video",
+              "label": "select video"
+            }
+
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "text with video"
+      }
+    ]
+  }
+{% endschema %}

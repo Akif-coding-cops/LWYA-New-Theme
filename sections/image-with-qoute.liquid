@@ -1,0 +1,232 @@
+<style>
+  @media screen and (min-width:1250px){
+  
+    .name__style {
+      font-size: 48px;
+    }
+    .qoute__style {
+      font-size: 149px;
+      }
+    
+    .description__style {
+     font-size: 22px;
+    }
+      }
+   .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-left: {{ section.settings.padding_horizontal_mobile | default: 1.5 }}rem;
+      padding-right: {{ section.settings.padding_horizontal_mobile | default: 1.5 }}rem;
+    }
+    
+    @media screen and (min-width: 1024px) {
+      .section-{{ section.id }}-padding {
+        padding-left: {{ section.settings.padding_horizontal | default: 1.5 }}rem;
+        padding-right: {{ section.settings.padding_horizontal | default: 1.5 }}rem;
+      }
+    }
+    
+.MANUFACTURED_MAIN_WRAPPER_2nd {
+    display: flex;
+    gap: 25px;
+}
+  .left__image {
+     display: flex;
+    flex-direction:row;
+  }
+  .Right__image {
+     display: flex;
+    flex-direction:row-reverse;
+  }
+  .manufactured_image_2nd {
+    width: 50%;
+    height: auto;
+}
+  .manufactured_image_2nd img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+ .manufactured_text_2nd {
+    width: 50%;
+    background: #F6F6F6;
+    border-radius: 8px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+  .name__style {
+    color: #1C1D52;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 48px */
+    text-align:end;
+  }
+
+    .qoute__style {
+      color:  #1C1D52;
+      font-style: normal;
+      font-weight: 400;
+      line-height:0; 
+      opacity:0.4;
+      font-family:ui-monospace;
+    }
+  .description__style {
+      color:  #1C1D52;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 100%; /* 22px */
+  }
+  @media screen and (max-width:760px){
+    .manufactured_text_2nd {
+      padding:40px 10px 20px 10px;
+    }
+    .name__style {
+      font-size:30px;
+    }
+    .qoute__style {
+      font-size:70px;
+    }
+    .description__style {
+     font-size: 20px;
+      padding:5px 0;
+    }
+   .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-left: {{ section.settings.padding_horizontal_mobile | default: 1.5 }}rem;
+    padding-right: {{ section.settings.padding_horizontal_mobile | default: 1.5 }}rem;
+  }
+.MANUFACTURED_MAIN_WRAPPER_2nd {
+    flex-wrap: wrap;
+      gap: 20px;
+}
+      .manufactured_image_2nd {
+    width: 100%;
+    height: 100%;
+}
+ .manufactured_text_2nd {
+    width: 100%;
+    
+}
+
+</style>
+
+<div class="MANUFACTURED_MAIN_WRAPPER_2nd wrapper{{ section.id }} container section-{{ section.id }}-padding {% if section.settings.Image_Position == 'right' %} Right__image {% endif %} {% if section.settings.Image_Position == 'left' %} left__image {% endif %}">
+  {% if section.settings.maufactured_image_text != blank %}
+  <div class="manufactured_image_2nd">
+              {{
+                section.settings.maufactured_image_text
+                | image_url: width: 1500
+                | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              }}
+    
+    </div>
+    {% endif %}
+  <div  class="manufactured_text_2nd">
+    <div class="qoute__style integar_font_family">
+    {{ section.settings.manufactured_inline_text }}
+    </div>
+     <div class="description__style inria-sans-regular_global">
+    {{ section.settings.manufactured_inline_text_2nd }}
+     </div>
+     <div class="name__style italianno-regular">
+    {{ section.settings.manufactured_inline_text_3rd }}
+     </div>
+   </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Quote With Image",
+    "settings": [
+        {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Padding sides (Desktop)",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 0,
+      "max": 15,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Padding sides (Mobile)",
+      "default": 1.5
+    },
+      {
+        "type": "image_picker",
+        "id": "maufactured_image_text",
+        "label": "Select Image"
+      },
+      {
+  "type": "select",
+  "id": "Image_Position",
+  "label": "Image Position",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "right"
+},
+      {
+        "type": "richtext",
+        "id": "manufactured_inline_text",
+        "label": "quote"
+      },
+      {
+        "type": "textarea",
+        "id": "manufactured_inline_text_2nd",
+        "label": "Description"
+      },
+      {
+        "type": "textarea",
+        "id": "manufactured_inline_text_3rd",
+        "label": "Name"
+      }
+
+    ],
+
+    "presets": [
+      {
+        "name": "Quote With Image"
+      }
+    ]
+  }
+{% endschema %}

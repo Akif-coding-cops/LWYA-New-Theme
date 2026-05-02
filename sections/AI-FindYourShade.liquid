@@ -1,0 +1,186 @@
+{%- liquid
+  assign shade_images  = product.metafields.custom.find_your_shade.value
+  assign total_images  = 0
+  assign shade_title   = product.metafields.custom.find_your_shade_title
+  assign slide_count   = product.metafields.custom.find_your_shade_slide_count | default: 3
+  assign slide_count      = product.metafields.custom.find_your_shade_slide_count | default: 3
+  assign space_between    = product.metafields.custom.find_your_shade_space_between | default: 16
+  assign slides_per_move  = product.metafields.custom.find_your_shade_slides_per_move | default: 1
+  assign display_title = shade_title | default: 'Find Your Shade'
+
+  if shade_images != blank
+    assign total_images = shade_images.size
+  endif
+-%}
+
+{% if total_images > 0 %}
+<section
+  class="ai-find-your-shade tw-w-full tw-pt-[{{ section.settings.padding_top_mobile }}px] md:tw-pt-[{{ section.settings.padding_top_desktop }}px]"
+  style="background-color: {{ section.settings.background_color }};"
+>
+
+  <h2
+    class="tw-text-[{{ section.settings.title_size_mobile }}px] md:tw-text-[{{ section.settings.title_size_desktop }}px] tw-font-metric-semibold tw-text-center tw-mb-[32px] md:tw-mb-[48px]"
+    style="color: {{ section.settings.title_color }};"
+  >
+    {{ display_title }}
+  </h2>
+
+  <div class="tw-relative tw-flex tw-items-center tw-gap-6 tw-px-[24px] xxl:tw-px-0 tw-max-w-[1400px] tw-mx-auto">
+
+    {%- comment -%} Prev Arrow {%- endcomment -%}
+    <div class="ai-shade-prev-{{ section.id }} tw-w-[31px] tw-h-[31px] tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-z-[3] hover:tw-opacity-80 tw-transition-all tw-opacity-0 tw-pointer-events-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+        <circle cx="15.5" cy="15.5" r="15.5" fill="#1a1a1a"/>
+        <path d="M18 10l-6 5.5 6 5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    {%- comment -%} Swiper {%- endcomment -%}
+    <div class="swiper ai-shade-swiper-{{ section.id }} tw-flex-1 tw-min-w-0">
+      <div class="swiper-wrapper">
+        {% for image in shade_images %}
+          <div class="swiper-slide">
+            <a
+              href="{{ image | image_url: width: 2000 }}"
+              class="glightbox tw-block tw-w-full tw-overflow-hidden tw-bg-[#f6f6f6] tw-cursor-zoom-in"
+              data-gallery="shade-gallery"
+            >
+              <img
+                src="{{ image | image_url: width: 600 }}"
+                srcset="{{ image | image_url: width: 400 }} 400w,
+                        {{ image | image_url: width: 600 }} 600w,
+                        {{ image | image_url: width: 800 }} 800w"
+                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, {{ 100 | divided_by: slide_count }}vw"
+                alt="{{ display_title }} {{ forloop.index }}"
+                class="tw-w-full tw-h-full tw-object-cover tw-transition-transform tw-duration-300 hover:tw-scale-105"
+                loading="lazy"
+              >
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {%- comment -%} Next Arrow {%- endcomment -%}
+    <div class="ai-shade-next-{{ section.id }} tw-w-[31px] tw-h-[31px] tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-z-[3] hover:tw-opacity-80 tw-transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+        <circle cx="15.5" cy="15.5" r="15.5" fill="#1a1a1a"/>
+        <path d="M13 10l6 5.5-6 5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof Swiper === 'undefined') return;
+
+      const slidesPerViewDesktop = {{ slide_count }};
+      const spaceBetween = {{ space_between }};
+      const slidesPerGroup = {{ slides_per_move }};
+
+      const prevBtn = document.querySelector('.ai-shade-prev-{{ section.id }}');
+      const nextBtn = document.querySelector('.ai-shade-next-{{ section.id }}');
+
+      const swiper = new Swiper('.ai-shade-swiper-{{ section.id }}', {
+        loop: false,
+        slidesPerGroup: slidesPerGroup,
+        navigation: {
+          nextEl: '.ai-shade-next-{{ section.id }}',
+          prevEl: '.ai-shade-prev-{{ section.id }}',
+        },
+        breakpoints: {
+          0:    { slidesPerView: 1.3,                  spaceBetween: 12 },
+          480:  { slidesPerView: 2,                    spaceBetween: 12 },
+          640:  { slidesPerView: 2,                    spaceBetween: 12 },
+          1024: { slidesPerView: slidesPerViewDesktop, spaceBetween: spaceBetween }
+        },
+        on: {
+          init:        function() { updateArrows(this); },
+          slideChange: function() { updateArrows(this); }
+        }
+      });
+
+      function updateArrows(s) {
+        if (prevBtn) {
+          prevBtn.classList.toggle('tw-opacity-0',           s.isBeginning);
+          prevBtn.classList.toggle('tw-pointer-events-none', s.isBeginning);
+          prevBtn.classList.toggle('tw-opacity-100',         !s.isBeginning);
+        }
+        if (nextBtn) {
+          nextBtn.classList.toggle('tw-opacity-0',           s.isEnd);
+          nextBtn.classList.toggle('tw-pointer-events-none', s.isEnd);
+          nextBtn.classList.toggle('tw-opacity-100',         !s.isEnd);
+        }
+      }
+    });
+  </script>
+
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "AI - Find Your Shade",
+  "settings": [
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size (Mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size (Desktop)",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 8,
+      "default": 80,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI - Find Your Shade"
+    }
+  ]
+}
+{% endschema %}

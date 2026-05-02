@@ -1,0 +1,171 @@
+
+
+{% style %}
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+  #shopify-section-{{ section.id }} .flash-lash-container {
+    background-color: {{ section.settings.background_color }};
+  }
+
+  #shopify-section-{{ section.id }} .font-bebas-neue {
+    font-family: 'Bebas Neue', sans-serif;
+  }
+{% endstyle %}
+
+<section class="tw-w-full tw-overflow-hidden tw-flex tw-justify-center py-responsive-[40,80]">
+  <div class="flash-lash-container tw-w-full" style="max-width: 1440px; background-color: {{ section.settings.background_color }};">
+    <div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-items-center">
+      
+      {%- comment -%} IMAGE SECTION - Left on Desktop, Top on Mobile {%- endcomment -%}
+      <div class="tw-w-full tw-order-1 lg:tw-order-1">
+        {% if section.settings.image != blank %}
+          <div class="tw-overflow-hidden">
+            <img 
+              src="{{ section.settings.image | image_url: width: 800 }}"
+              srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
+                      {{ section.settings.image | image_url: width: 600 }} 600w,
+                      {{ section.settings.image | image_url: width: 800 }} 800w,
+                      {{ section.settings.image | image_url: width: 1000 }} 1000w"
+              sizes="(max-width: 640px) 100vw, 50vw"
+              alt="{{ section.settings.image.alt | escape }}"
+              loading="lazy"
+              class="tw-w-full tw-h-full tw-object-cover"
+            >
+          </div>
+        {% else %}
+          <div class="tw-overflow-hidden tw-bg-gray-200 tw-flex tw-items-center tw-justify-center" style="min-height: 400px;">
+            <svg class="tw-w-24 tw-h-24 tw-text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+
+      {%- comment -%} TEXT CONTENT SECTION - Right on Desktop, Bottom on Mobile {%- endcomment -%}
+      <div class="tw-w-full tw-order-2 lg:tw-order-2" style="padding-inline: clamp(20px, 4vw, 60px);">
+        <div class="tw-flex tw-flex-col tw-justify-center tw-h-full tw-gap-[15px]" style="padding-block: clamp(30px, 5vw, 60px);">
+          
+          {%- comment -%} Big Number {%- endcomment -%}
+          {% if section.settings.big_number != blank %}
+            <h2 
+              class="font-bebas-neue tw-leading-none tw-mb-2"
+              style="font-size: clamp(60px, 10vw, 120px); color: {{ section.settings.big_number_color }}; letter-spacing: -0.02em;"
+            >
+              {{ section.settings.big_number }}
+            </h2>
+          {% endif %}
+
+          {%- comment -%} Subtitle {%- endcomment -%}
+          {% if section.settings.subtitle != blank %}
+            <h3 
+              class="tw-font-black tw-uppercase tw-tracking-wide tw-mb-6"
+              style="font-size: clamp(32px, 3.5vw, 90px); color: {{ section.settings.subtitle_color }}; line-height: 1.2;"
+            >
+              {{ section.settings.subtitle }}
+            </h3>
+          {% endif %}
+
+          {%- comment -%} Main Heading - Multiline {%- endcomment -%}
+          {% if section.settings.main_heading != blank %}
+            <div 
+              class="font-bebas-neue tw-uppercase tw-mb-4"
+              style="font-size: clamp(48px, 3.5vw, 90px); color: {{ section.settings.main_heading_color }}; line-height: 1.1; letter-spacing: -0.01em;"
+            >
+              {{ section.settings.main_heading }}
+            </div>
+          {% endif %}
+
+          {%- comment -%} Description Text {%- endcomment -%}
+          {% if section.settings.description != blank %}
+            <div 
+              class="tw-leading-relaxed"
+              style="font-size: clamp(14px, 1.8vw, 28px); color: {{ section.settings.description_color }};"
+            >
+              {{ section.settings.description }}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Flash Lash Section 1",
+  "tag": "section",
+  "class": "flash-lash-section-1",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FF9B7A"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "big_number",
+      "label": "Big Number",
+      "default": "60,000+"
+    },
+    {
+      "type": "color",
+      "id": "big_number_color",
+      "label": "Big Number Color",
+      "default": "#C2185B"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "LASHES SOLD"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "<p>LOVE IT OR<br>RETURN IT</p>"
+    },
+    {
+      "type": "color",
+      "id": "main_heading_color",
+      "label": "Main Heading Color",
+      "default": "#C2185B"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>We want you to love your look —</p><p>no strings (or lash glue) attached.</p>"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flash Lash Section 1"
+    }
+  ]
+}
+{% endschema %}

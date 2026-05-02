@@ -1,0 +1,791 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "rating_wcMQth": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {
+            "show_empty": true,
+            "rating_mode": "count"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "loox_reviews_loox_rating_7QyfPg": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "yes",
+            "size_chart_page": ""
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "rgba(0,0,0,0)",
+            "atc_button_text_color": "rgba(0,0,0,0)",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "accordion_X3erzE": {
+          "type": "accordion",
+          "disabled": true,
+          "settings": {
+            "show_below_gallery": true,
+            "icon": "none",
+            "title": "test",
+            "content": "<p>Share some content to your customers about your products.</p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_3PAHkK": {
+          "type": "accordion",
+          "name": "Description",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "WHY WE LOVE IT",
+            "content": "{{ product.metafields.custom.products_description_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_Hbi3JJ": {
+          "type": "accordion",
+          "name": "Ingredients",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "INGREDIENTS",
+            "content": "{{ product.metafields.custom.ingredient_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_cYYif4": {
+          "type": "accordion",
+          "name": "How to use",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "HOW TO USE",
+            "content": "{{ product.metafields.custom.how_to_use_description | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_TwBiBc": {
+          "type": "accordion",
+          "name": "Benefits",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "BENEFITS",
+            "content": "{{ product.metafields.custom.benefit_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_LQC4aX": {
+          "type": "accordion",
+          "name": "Pro tips",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "LWYA'S PRO TIPS",
+            "content": "{{ product.metafields.custom.lwya_pro_tips | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "liquid_AEj4iK": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "{%- if product.metafields.custom.icons_shipping_bundle_moneyback != blank and product.metafields.custom.shipping_bundle_moneyback != blank -%}\n\n  {% assign icons = product.metafields.custom.icons_shipping_bundle_moneyback.value %}\n  {% assign highlights = product.metafields.custom.shipping_bundle_moneyback.value %}\n\n  <div class=\"info-sec\">\n    {% for image in icons %}\n      <div class=\"highlight-item new\">\n        <img class=\"lazyload\" src=\"{{ image | image_url }}\" alt=\"Highlight Icon\" />\n        <p>{{ highlights[forloop.index0] }}</p>\n      </div>\n    {% endfor %}\n  </div>\n\n{%- endif -%}"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "disabled": true,
+          "settings": {
+            "title": "Pairs well with",
+            "products_count": 2,
+            "show_below_gallery": true,
+            "stack_products": false,
+            "show_quick_buy": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": true
+          }
+        },
+        "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq": {
+          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "rating_wcMQth",
+        "price",
+        "loox_reviews_loox_rating_7QyfPg",
+        "variant_picker",
+        "separator",
+        "buy_buttons",
+        "payment_terms",
+        "accordion_X3erzE",
+        "accordion_3PAHkK",
+        "accordion_Hbi3JJ",
+        "accordion_cYYif4",
+        "accordion_TwBiBc",
+        "accordion_LQC4aX",
+        "liquid_AEj4iK",
+        "quantity_selector",
+        "complementary_products",
+        "description",
+        "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3f1cac12-e391-4e41-ae45-47c13ac816ab",
+        "container_size": "full",
+        "product_info_size": 52,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    },
+    "product_video_VUVrqh": {
+      "type": "product-video",
+      "settings": {
+        "video_section_title": "Product Videos",
+        "video_grid_columns": 4,
+        "video_metafield_key": "custom.custom_product_videos"
+      }
+    },
+    "slideshow_7A9WDX": {
+      "type": "slideshow",
+      "blocks": {
+        "image_kVE8w3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Group_63.png",
+            "subheading": "Tell your story",
+            "title": "Slide 1",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 780,
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_1_style": "solid",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#000000",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 50,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_kVE8w3"
+      ],
+      "name": "t:sections.slideshow.presets.slideshow.name",
+      "settings": {
+        "allow_transparent_header": true,
+        "show_next_section_button": true,
+        "media_size": "auto",
+        "show_initial_transition": false,
+        "autoplay": true,
+        "autoplay_pause_on_video": true,
+        "cycle_speed": 5,
+        "background": "#000000",
+        "controls_color": "#ffffff"
+      }
+    },
+    "ss_faq_6_np6GVV": {
+      "type": "ss-faq-6",
+      "blocks": {
+        "item_aQreUi": {
+          "type": "item",
+          "name": "Ingredient 1",
+          "settings": {
+            "question": "FULL INGREDIENT LIST",
+            "answer": "{{ product.metafields.custom.ingredient_paragraph | metafield_tag }}"
+          }
+        },
+        "item_FhtEVc": {
+          "type": "item",
+          "name": "Ingredient 1",
+          "settings": {
+            "question": "{{ product.metafields.custom.ingredient_1_title.value }}",
+            "answer": "<p>{{ product.metafields.custom.ingredient_1_details | metafield_tag }}</p>"
+          }
+        },
+        "item_rcwK6w": {
+          "type": "item",
+          "name": "Ingredient 2",
+          "settings": {
+            "question": "{{ product.metafields.custom.ingredient_2_title.value }}",
+            "answer": "<p>{{ product.metafields.custom.ingredient_2_details | metafield_tag }}</p>"
+          }
+        },
+        "item_XTpqyK": {
+          "type": "item",
+          "name": "Ingredient 3",
+          "settings": {
+            "question": "{{ product.metafields.custom.ingredient_3_title.value }}",
+            "answer": "<p>{{ product.metafields.custom.ingredient_3_details | metafield_tag }}</p>"
+          }
+        },
+        "item_KyHngj": {
+          "type": "item",
+          "name": "Ingredient 4",
+          "settings": {
+            "question": "{{ product.metafields.custom.ingredient_4_title.value }}",
+            "answer": "<p>{{ product.metafields.custom.ingredient_4_details | metafield_tag }}</p>"
+          }
+        },
+        "item_MmdUXm": {
+          "type": "item",
+          "name": "Ingredient 5",
+          "settings": {
+            "question": "{{ product.metafields.custom.ingredient_5_title.value }}",
+            "answer": "<p>{{ product.metafields.custom.ingredient_5_details | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_aQreUi",
+        "item_FhtEVc",
+        "item_rcwK6w",
+        "item_XTpqyK",
+        "item_KyHngj",
+        "item_MmdUXm"
+      ],
+      "name": "Ingredients",
+      "settings": {
+        "layout_gap": 0,
+        "layout_gap_mobile": 0,
+        "image": "{{ product.metafields.custom.ingredients_image.value }}",
+        "image_border_thickness": 0,
+        "image_ratio": "square",
+        "image_ratio_mobile": "square",
+        "image_position": "1",
+        "image_position_mobile": "1",
+        "heading": "<p>Ingredients</p>",
+        "heading_custom": false,
+        "heading_font": "josefin_sans_n4",
+        "heading_size": 40,
+        "heading_size_mobile": 32,
+        "heading_height": 140,
+        "heading_align": "left",
+        "heading_align_mobile": "left",
+        "heading_padding_vertical": 24,
+        "heading_padding_vertical_mobile": 24,
+        "heading_padding_horizontal": 24,
+        "heading_padding_horizontal_mobile": 24,
+        "item_padding_vertical": 20,
+        "item_padding_vertical_mobile": 20,
+        "item_padding_horizontal": 30,
+        "item_padding_horizontal_mobile": 30,
+        "item_border_thickness": 1,
+        "item_border_bottom_thickness": 1,
+        "number_custom": false,
+        "number_font": "josefin_sans_n4",
+        "number_size": 13,
+        "number_size_mobile": 13,
+        "number_height": 150,
+        "number_hide": true,
+        "question_custom": false,
+        "question_font": "josefin_sans_n7",
+        "question_size": 17,
+        "question_size_mobile": 15,
+        "question_height": 110,
+        "content_padding_vertical": 30,
+        "content_padding_vertical_mobile": 30,
+        "content_padding_horizontal": 60,
+        "content_padding_horizontal_mobile": 30,
+        "answer_width": 540,
+        "answer_custom": false,
+        "answer_font": "josefin_sans_n4",
+        "answer_size": 15,
+        "answer_size_mobile": 15,
+        "answer_height": 150,
+        "item_border_color": "#717070",
+        "number_color": "#000000",
+        "question_color": "#717070",
+        "answer_color": "#717070",
+        "image_border_color": "#000000",
+        "heading_color": "#000000",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "full_width": true,
+        "content_width": 120,
+        "border_thickness": 1,
+        "lazy": true
+      }
+    },
+    "ss_faq_2_JGMwdH": {
+      "type": "ss-faq-2",
+      "blocks": {
+        "text_kQ8kaW": {
+          "type": "text",
+          "name": "Questions/Answer 1",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq_question_1.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_1_description | metafield_tag }}</p>"
+          }
+        },
+        "text_RbVtbp": {
+          "type": "text",
+          "name": "Questions/Answer 2",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_2.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_2_description | metafield_tag }}</p>"
+          }
+        },
+        "text_4ddJjn": {
+          "type": "text",
+          "name": "Questions/Answer 3",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_3.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_3_description | metafield_tag }}</p>"
+          }
+        },
+        "text_hArLNz": {
+          "type": "text",
+          "name": "Questions/Answer 4",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_4.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_4_description | metafield_tag }}</p>"
+          }
+        },
+        "text_NUmaqj": {
+          "type": "text",
+          "name": "Questions/Answer 5 ",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_5_.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
+          }
+        },
+        "text_CVXpQR": {
+          "type": "text",
+          "name": "Questions/Answer 6",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_6.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_6_description | metafield_tag }}</p>"
+          }
+        },
+        "text_FCaQpN": {
+          "type": "text",
+          "name": "Questions/Answer 7",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_7.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_7_description | metafield_tag }}</p>"
+          }
+        },
+        "text_WrmnKa": {
+          "type": "text",
+          "name": "Questions/Answer 8",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_8.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_8_description | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_kQ8kaW",
+        "text_RbVtbp",
+        "text_4ddJjn",
+        "text_hArLNz",
+        "text_NUmaqj",
+        "text_CVXpQR",
+        "text_FCaQpN",
+        "text_WrmnKa"
+      ],
+      "name": "SS - FAQ #2",
+      "settings": {
+        "background-color": "#fff2f8",
+        "heading": "FAQ",
+        "font_weight": "700",
+        "open_close_sign": "FE62",
+        "open_first_collapsible_row": false,
+        "header_color": "#121212",
+        "content_color": "#121212",
+        "link_color": "#000000",
+        "line-color": "#121212",
+        "header-font-size": 32,
+        "question-font-size": 16,
+        "answer-font-size": 16,
+        "more-questions-font-size": 16,
+        "line-seperator-size": 1,
+        "more_questions": "More questions?",
+        "full_faq": "See our full FAQ",
+        "full_faq_url": "",
+        "hide_more_questions_text": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq_aNyGrD": {
+      "type": "faq",
+      "blocks": {
+        "question_qEUpCP": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq_question_1.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_1_description | metafield_tag }}</p>"
+          }
+        },
+        "question_fCcaB6": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_2.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_2_description | metafield_tag }}</p>"
+          }
+        },
+        "question_YrDDzz": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_3.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_3_description | metafield_tag }}</p>"
+          }
+        },
+        "question_HgLPTd": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_4.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_4_description | metafield_tag }}</p>"
+          }
+        },
+        "question_837d6A": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_5_.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
+          }
+        },
+        "question_aQMwVx": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_6.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_6_description | metafield_tag }}</p>"
+          }
+        },
+        "question_HrK7YL": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_7.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_7_description | metafield_tag }}</p>"
+          }
+        },
+        "question_K9HEda": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_8.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_8_description | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_qEUpCP",
+        "question_fCcaB6",
+        "question_YrDDzz",
+        "question_HgLPTd",
+        "question_837d6A",
+        "question_aQMwVx",
+        "question_HrK7YL",
+        "question_K9HEda"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "container_lager": false,
+        "show_categories": false,
+        "subheading": "",
+        "title": "FAQ",
+        "heading_color": "#1c1d52",
+        "content": ""
+      }
+    },
+    "1717260890abe57d94": {
+      "type": "apps",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "text_with_image_cPgNKk": {
+      "type": "text-with-image",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "maufactured_image_text": "{{ product.metafields.custom.product_detail_image.value }}",
+        "manufactured_inline_text": "{{ product.metafields.custom.product_details | metafield_tag }}",
+        "txtbg": "#ffffff",
+        "txtColor": "#000000"
+      }
+    },
+    "multi_column_gC7VRj": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_HTFdzj": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "{{ product.metafields.custom.specification_image.value }}",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_HTFdzj"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "max-width_image": false,
+        "columns_per_row": 2,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": "{{ product.metafields.custom.specification_content | metafield_tag }}"
+      }
+    },
+    "multi_column_rQbNQ9": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_q6RpMV": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "",
+            "heading_tag": "h3",
+            "content": "{{ product.metafields.custom.product_reels_tiltle_description | metafield_tag }}",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_q6RpMV"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "max-width_image": false,
+        "columns_per_row": 2,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "center",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "",
+        "content": ""
+      }
+    },
+    "1738806710b5dd90bf": {
+      "type": "apps",
+      "blocks": {
+        "reelup_shoppable_videos_reels_reelup_product_slider_QkGTH7": {
+          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "reelup_shoppable_videos_reels_reelup_product_slider_QkGTH7"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "1738857191a9db5db8": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_HMctjQ": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_HMctjQ"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "blocks": {
+        "buy_buttons_TnYmcC": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "buy_buttons_TnYmcC"
+      ],
+      "settings": {
+        "color_scheme": "scheme-ee8203cb-e39f-4c94-aaba-745092929fbe",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 0.6,
+        "vertical_spacing_factor": 0.6,
+        "subheading": "",
+        "title": "Frequently Bought Together",
+        "content": "",
+        "heading__color": true
+      }
+    },
+    "custom_liquid_VPrYHX": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "",
+        "text_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_video_VUVrqh",
+    "slideshow_7A9WDX",
+    "ss_faq_6_np6GVV",
+    "ss_faq_2_JGMwdH",
+    "faq_aNyGrD",
+    "1717260890abe57d94",
+    "text_with_image_cPgNKk",
+    "multi_column_gC7VRj",
+    "multi_column_rQbNQ9",
+    "1738806710b5dd90bf",
+    "1738857191a9db5db8",
+    "related-products",
+    "custom_liquid_VPrYHX"
+  ]
+}

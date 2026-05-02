@@ -1,0 +1,190 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "recently_viewed_products_YU7dq4": {
+      "type": "recently-viewed-products",
+      "disabled": true,
+      "settings": {
+        "separate_section_with_border": true,
+        "color_scheme": "scheme-1f2737e5-7fa9-42e9-b45c-ae473893834f",
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_count": 9,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Recently viewed products",
+        "content": ""
+      }
+    },
+    "text-with-icons": {
+      "type": "text-with-icons",
+      "blocks": {
+        "icon-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Free delivery worldwide",
+            "content": "<p>Short content about your store</p>"
+          }
+        },
+        "icon-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Satisfied or refunded",
+            "content": "<p>Short content about your store</p>"
+          }
+        },
+        "icon-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Top-notch support",
+            "content": "<p>Short content about your store</p>"
+          }
+        },
+        "icon-4": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Secure payments",
+            "content": "<p>Short content about your store</p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon-1",
+        "icon-2",
+        "icon-3",
+        "icon-4"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_LFxdNn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/LWYA_LOGO_blue.png",
+            "image_width": 170,
+            "link": ""
+          }
+        },
+        "links": {
+          "type": "links",
+          "settings": {
+            "menu": "footer-shop",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "links_FkRLp3": {
+          "type": "links",
+          "settings": {
+            "menu": "footer-support",
+            "show_menu_title": true,
+            "menu_title": "Support"
+          }
+        },
+        "links_DET4AK": {
+          "type": "links",
+          "settings": {
+            "menu": "customer-care",
+            "show_menu_title": true,
+            "menu_title": "CUSTOMER CARE"
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "disabled": true,
+          "settings": {
+            "title": "JOIN THE FUN!",
+            "content": "",
+            "button_background": "#f6f6f6",
+            "button_text_color": ""
+          }
+        },
+        "text": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "LWYA",
+            "content": "<p>Fall in Love with your Life - Love Who You Are</p>",
+            "enable_follow_on_shop": true
+          }
+        }
+      },
+      "block_order": [
+        "image_LFxdNn",
+        "links",
+        "links_FkRLp3",
+        "links_DET4AK",
+        "newsletter",
+        "text"
+      ],
+      "custom_css": [
+        ".button {border-radius: 56px; background: #e23a95; border: 0;}",
+        ".input {border: none; border-bottom: 1px solid #1c1d52;}",
+        ".footer__aside {display: none;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-98632136-f0d5-47d2-8a66-6efffcb2dc29",
+        "separate_section_with_border": false,
+        "show_social_media": false,
+        "show_payment_icons": false,
+        "show_country_selector": true,
+        "show_country_name": true,
+        "show_country_flag": true,
+        "show_locale_selector": true
+      }
+    },
+    "custom_liquid_KGMraB": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-98632136-f0d5-47d2-8a66-6efffcb2dc29",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<div class=\"spacing__around \">&copy; {{ \"now\" | date: \"%Y\" }} Love Who You Are, All Rights Reserved</div>",
+        "text_alignment": "end"
+      }
+    }
+  },
+  "order": [
+    "recently_viewed_products_YU7dq4",
+    "text-with-icons",
+    "footer",
+    "custom_liquid_KGMraB"
+  ]
+}

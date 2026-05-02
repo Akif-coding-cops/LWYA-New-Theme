@@ -1,0 +1,174 @@
+<style>
+
+  .ss-annoucement-banner-wrapper {
+    padding: {{ section.settings.padding }}px 0;
+    background-color: {{ section.settings.background-color }};
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .ss-anouncement-banner-paragraph {
+    color: {{ section.settings.text-color }};
+    margin:0;
+    padding:0;
+    line-height:1;
+    font-size:10px;
+    text-transform:uppercase;
+  }
+
+  .ss-announcement-banner-center {
+    border-right: 1px solid {{ section.settings.text-color }};
+    border-left: 1px solid {{ section.settings.text-color }};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 10px;
+  }
+
+  .ss-anouncement-banner-stars {
+    color: {{ section.settings.text-color }};
+    font-size:8px;
+  }
+
+  @media (min-width: 500px){
+    .ss-announcement-banner-center {
+        padding: 0 20px;
+    }
+    
+    .ss-anouncement-banner-paragraph {
+      font-size:14px;
+    }
+    
+    .ss-anouncement-banner-stars {
+      font-size:8px;
+    }
+  }
+  
+  
+</style>
+
+<template id="ss-announcement-banner-{{ section.id }}">
+  <div class="ss-annoucement-banner-wrapper">
+    <div style="padding-right:20px">
+      <p class="ss-anouncement-banner-paragraph">{{ section.settings.benefit-1 }}</p>
+    </div>
+    <div class="ss-announcement-banner-center">
+      <p class="ss-anouncement-banner-paragraph">{{ section.settings.benefit-2 }}</p>
+    </div>
+    <div style="padding-left:20px">
+      <p class="ss-anouncement-banner-paragraph">{{ section.settings.benefit-3 }}</p>
+    </div>
+  </div>
+</template>
+
+<div id="announcement-local-target-{{ section.id }}"></div>
+
+<script>
+  function initAnnouncementBar() {
+    let cssTarget = '{{ section.settings.insert_css_class_target }}';
+    let productForm = cssTarget
+      ? document.querySelector(cssTarget)
+      : document.querySelector('#announcement-local-target-{{ section.id }}');
+
+    if (!productForm) return;
+
+    const templateContent = document.querySelector(
+      '#ss-announcement-banner-{{ section.id }}'
+    ).content;
+
+    productForm.insertAdjacentElement(
+      'beforebegin',
+      templateContent.firstElementChild
+    );
+  }
+
+  document.addEventListener('DOMContentLoaded', initAnnouncementBar);
+  
+</script>
+
+{% schema %}
+  {
+    "name": "SS - Announcement bar",
+	"class": "section",
+	"tag": "section",
+    "settings": [
+        {
+            "type": "paragraph",
+            "content": "Att: Save settings to view updates"
+        },
+        {
+          "type": "text",
+          "id": "insert_css_class_target",
+          "label": "Target CSS Class",
+          "default": ".header, .pageheader, .section-header, #announcement, .toolbar, .header_wrapper",
+          "placeholder": ".header, .pageheader",
+          "info": "Empty this text field to drag section into desired position. This is for older themes without the ability to add sections directly in the header area."
+        },
+		{
+          "type": "header",
+          "content": "Colors"
+        },
+	    {
+		  "type": "color",
+		  "label": "Banner background color",
+		  "id": "background-color",
+		  "default": "#EAD5D9"
+		},
+        {
+		  "type": "color",
+		  "label": "Text color",
+		  "id": "text-color",
+		  "default": "#000000"
+		},
+        {
+          "type": "header",
+          "content": "Banner padding"
+        },
+        {
+          "type": "range",
+          "id": "padding",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Benefit texts"
+        },
+        {
+          "type": "text",
+		  "label": "Benefit 1",
+		  "id": "benefit-1",
+		  "default": "Free shipping"
+        },
+        {
+          "type": "text",
+		  "label": "Benefit 2",
+		  "id": "benefit-2",
+		  "default": "Trusted by 1000+"
+        },
+        {
+          "type": "text",
+		  "label": "Benefit 3",
+		  "id": "benefit-3",
+		  "default": "Easy returns"
+        }
+	],
+ 	"presets": [
+      {
+        "name": "SS - Announcement bar"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

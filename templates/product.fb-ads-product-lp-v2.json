@@ -1,0 +1,717 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "rating_wcMQth": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {
+            "show_empty": true,
+            "rating_mode": "count"
+          }
+        },
+        "loox_reviews_loox_rating_7QyfPg": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "rgba(0,0,0,0)",
+            "atc_button_text_color": "rgba(0,0,0,0)",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "yes",
+            "size_chart_page": ""
+          }
+        },
+        "accordion_X3erzE": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": true,
+            "icon": "none",
+            "title": "test",
+            "content": "<p>Share some content to your customers about your products.</p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_3PAHkK": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "description",
+            "content": "{{ product.metafields.custom.products_description_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_Hbi3JJ": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "ingredients",
+            "content": "{{ product.metafields.custom.ingredient_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_cYYif4": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "how to use",
+            "content": "{{ product.metafields.custom.how_to_use_description | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_TwBiBc": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "benefits",
+            "content": "{{ product.metafields.custom.benefit_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "liquid_AEj4iK": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- if product.metafields.custom.icons_shipping_bundle_moneyback != blank and product.metafields.custom.shipping_bundle_moneyback != blank -%}\n\n  {% assign icons = product.metafields.custom.icons_shipping_bundle_moneyback.value %}\n  {% assign highlights = product.metafields.custom.shipping_bundle_moneyback.value %}\n\n  <div class=\"info-sec\">\n    {% for image in icons %}\n      <div class=\"highlight-item new\">\n        <img class=\"lazyload\" src=\"{{ image | image_url }}\" alt=\"Highlight Icon\" />\n        <p>{{ highlights[forloop.index0] }}</p>\n      </div>\n    {% endfor %}\n  </div>\n\n{%- endif -%}"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "disabled": true,
+          "settings": {
+            "title": "Pairs well with",
+            "products_count": 2,
+            "show_below_gallery": true,
+            "stack_products": false,
+            "show_quick_buy": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": true
+          }
+        },
+        "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq": {
+          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "rating_wcMQth",
+        "loox_reviews_loox_rating_7QyfPg",
+        "price",
+        "separator",
+        "buy_buttons",
+        "payment_terms",
+        "variant_picker",
+        "accordion_X3erzE",
+        "accordion_3PAHkK",
+        "accordion_Hbi3JJ",
+        "accordion_cYYif4",
+        "accordion_TwBiBc",
+        "liquid_AEj4iK",
+        "quantity_selector",
+        "complementary_products",
+        "description",
+        "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq"
+      ],
+      "settings": {
+        "color_scheme": "scheme-a84d5221-7c7d-4719-b7c8-39b62af7c514",
+        "container_size": "full",
+        "product_info_size": 52,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": false,
+        "desktop_media_layout": "grid",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    },
+    "product_video_VUVrqh": {
+      "type": "product-video",
+      "settings": {
+        "video_section_title": "Product Videos",
+        "video_grid_columns": 4,
+        "video_metafield_key": "custom.custom_product_videos"
+      }
+    },
+    "1717260890abe57d94": {
+      "type": "apps",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "text_with_image_cPgNKk": {
+      "type": "text-with-image",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "maufactured_image_text": "{{ product.metafields.custom.product_detail_image.value }}",
+        "manufactured_inline_text": "{{ product.metafields.custom.product_details | metafield_tag }}",
+        "txtbg": "#ffffff",
+        "txtColor": "#000000"
+      }
+    },
+    "multi_column_gC7VRj": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_HTFdzj": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "{{ product.metafields.custom.specification_image.value }}",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_HTFdzj"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "enable_custom_product_style": true,
+        "enable_manufactured_style": false,
+        "max-width_image": false,
+        "columns_per_row": 2,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": "{{ product.metafields.custom.specification_content | metafield_tag }}"
+      }
+    },
+    "multi_column_rQbNQ9": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_q6RpMV": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "",
+            "heading_tag": "h3",
+            "content": "{{ product.metafields.custom.product_reels_tiltle_description | metafield_tag }}",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_q6RpMV"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "enable_custom_product_style": false,
+        "enable_manufactured_style": true,
+        "max-width_image": false,
+        "columns_per_row": 2,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "center",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "",
+        "content": ""
+      }
+    },
+    "logo_list_fW67UQ": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_Q7YzJB": {
+          "type": "logo",
+          "name": "Paraben Free",
+          "settings": {
+            "logo": "shopify://shop_images/paraben_free.png",
+            "logo_width": 130,
+            "link": ""
+          }
+        },
+        "logo_ajrLRi": {
+          "type": "logo",
+          "name": "Sulfate Free",
+          "settings": {
+            "logo": "shopify://shop_images/Sulfate_free.png",
+            "logo_width": 130,
+            "link": ""
+          }
+        },
+        "logo_9WyqzC": {
+          "type": "logo",
+          "name": "Mineral Oil Free",
+          "settings": {
+            "logo": "shopify://shop_images/mineral_oil_free.png",
+            "logo_width": 130,
+            "link": ""
+          }
+        },
+        "logo_nTYQEn": {
+          "type": "logo",
+          "name": "Talc Free",
+          "settings": {
+            "logo": "shopify://shop_images/talc_free.png",
+            "logo_width": 130,
+            "link": ""
+          }
+        },
+        "logo_HJbx6K": {
+          "type": "logo",
+          "name": "Leaping Bunny Certified",
+          "settings": {
+            "logo": "shopify://shop_images/leapingbunny.png",
+            "logo_width": 130,
+            "link": ""
+          }
+        },
+        "logo_q6YeFM": {
+          "type": "logo",
+          "name": "Formaldehydes Free",
+          "settings": {
+            "logo": "shopify://shop_images/formaldehydesfree.png",
+            "logo_width": 130,
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_Q7YzJB",
+        "logo_ajrLRi",
+        "logo_9WyqzC",
+        "logo_nTYQEn",
+        "logo_HJbx6K",
+        "logo_q6YeFM"
+      ],
+      "custom_css": [
+        "h2.h2.beauty__recentecly__viewed {color: #1c1d52 !important; font-size: 64px; width: 100%; font-family: \"Inria Sans\" !important; padding-top: 20px;}",
+        ".container.container--xl {background-color: #e9d2fa; margin-bottom: -64px;}"
+      ],
+      "name": "Promise",
+      "settings": {
+        "color_scheme": "scheme-23703abf-269b-4e89-90cd-a6c703246c2c",
+        "separate_section_with_border": false,
+        "subheading": "",
+        "title": "The LWYA Promise",
+        "items_per_row": 6,
+        "logo_item_background": "#e9d2fa",
+        "logo_item_border": ""
+      }
+    },
+    "multi_column_CniTXx": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_bXXVtB": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "{{ product.metafields.custom.before_and_after.value }}",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_bXXVtB"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "enable_custom_product_style": true,
+        "enable_manufactured_style": false,
+        "max-width_image": false,
+        "columns_per_row": 1,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": ""
+      }
+    },
+    "1738806710b5dd90bf": {
+      "type": "apps",
+      "blocks": {
+        "reelup_shoppable_videos_reels_reelup_product_slider_QkGTH7": {
+          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "reelup_shoppable_videos_reels_reelup_product_slider_QkGTH7"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "1738857191a9db5db8": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_HMctjQ": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_HMctjQ"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "faq_aNyGrD": {
+      "type": "faq",
+      "blocks": {
+        "question_qEUpCP": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq_question_1.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_1_description | metafield_tag }}</p>"
+          }
+        },
+        "question_fCcaB6": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_2.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_2_description | metafield_tag }}</p>"
+          }
+        },
+        "question_YrDDzz": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_3.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_3_description | metafield_tag }}</p>"
+          }
+        },
+        "question_HgLPTd": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_4.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_4_description | metafield_tag }}</p>"
+          }
+        },
+        "question_837d6A": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_5_.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
+          }
+        },
+        "question_aQMwVx": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_6.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_6_description | metafield_tag }}</p>"
+          }
+        },
+        "question_HrK7YL": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_7.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_7_description | metafield_tag }}</p>"
+          }
+        },
+        "question_K9HEda": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_8.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_8_description | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_qEUpCP",
+        "question_fCcaB6",
+        "question_YrDDzz",
+        "question_HgLPTd",
+        "question_837d6A",
+        "question_aQMwVx",
+        "question_HrK7YL",
+        "question_K9HEda"
+      ],
+      "settings": {
+        "enable_product_page_style": false,
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "container_lager": false,
+        "show_categories": false,
+        "subheading": "",
+        "title": "frequently asked questions",
+        "heading_color": "#1c1d52",
+        "content": ""
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "blocks": {
+        "buy_buttons_TnYmcC": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "buy_buttons_TnYmcC"
+      ],
+      "settings": {
+        "color_scheme": "scheme-ee8203cb-e39f-4c94-aaba-745092929fbe",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 0.6,
+        "vertical_spacing_factor": 0.6,
+        "subheading": "",
+        "title": "Frequently Bought Together",
+        "content": "",
+        "heading__color": true
+      }
+    },
+    "custom_liquid_VPrYHX": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "",
+        "text_alignment": "center"
+      }
+    },
+    "ss_upsell_02_QNGyie": {
+      "type": "ss-upsell-02",
+      "blocks": {
+        "product_W8mJCW": {
+          "type": "product",
+          "settings": {
+            "product": "gone-in-a-swipe-foundation-brush",
+            "visible_products": [
+              "skintastic-airbrush-liquid-foundation",
+              "gone-in-a-swipe-foundation-brush"
+            ],
+            "promo_text": "$40 Retail Value (save $25)",
+            "show_price": false,
+            "enable_variant_dropdown": false
+          }
+        }
+      },
+      "block_order": [
+        "product_W8mJCW"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "name": "SS - Upsell #2",
+      "settings": {
+        "upsell_position": "below_buy",
+        "refresh_after_atc": false,
+        "heading": "<h2><strong>Add the Gone in a Swipe Foundation Brush to your order for $15</strong>:</h2>",
+        "heading_custom": false,
+        "heading_font": "josefin_sans_n4",
+        "heading_size": 16,
+        "heading_size_mobile": 16,
+        "heading_height": 130,
+        "heading_align": "left",
+        "heading_align_mobile": "left",
+        "item_padding_vertical": 16,
+        "item_padding_vertical_mobile": 16,
+        "item_padding_horizontal": 10,
+        "item_padding_horizontal_mobile": 10,
+        "item_radius": 20,
+        "item_border_thickness": 0,
+        "item_shadow": false,
+        "image_size": 72,
+        "image_size_mobile": 72,
+        "image_radius": 10,
+        "image_border_thickness": 0,
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 13,
+        "title_size_mobile": 13,
+        "title_height": 130,
+        "promo_custom": false,
+        "promo_font": "josefin_sans_n4",
+        "promo_size": 12,
+        "promo_size_mobile": 12,
+        "promo_height": 130,
+        "button": "ADD",
+        "soldout": "Sold out",
+        "button_custom": false,
+        "button_font": "josefin_sans_n4",
+        "button_size": 14,
+        "button_size_mobile": 14,
+        "button_height": 100,
+        "button_padding_vertical": 12,
+        "button_padding_vertical_mobile": 12,
+        "button_padding_horizontal": 14,
+        "button_padding_horizontal_mobile": 14,
+        "button_radius": 0,
+        "button_border_thickness": 1,
+        "select_custom": false,
+        "select_font": "josefin_sans_n4",
+        "select_size": 12,
+        "select_size_mobile": 12,
+        "select_height": 100,
+        "select_radius": 0,
+        "select_border_thickness": 1,
+        "item_background_color": "#ffffff",
+        "item_border_color": "#7d7d7d",
+        "image_border_color": "#7d7d7d",
+        "title_color": "#000000",
+        "promo_color": "#7d7d7d",
+        "button_color": "#ffffff",
+        "button_hover_color": "#000000",
+        "button_bg_color": "#000000",
+        "button_bg_hover_color": "#ffffff",
+        "button_border_color": "#000000",
+        "button_border_hover_color": "#000000",
+        "select_color": "#000000",
+        "select_bg_color": "#ffffff",
+        "select_border_color": "#000000",
+        "heading_color": "#000000",
+        "background_color": "",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom": 0,
+        "padding_bottom_mobile": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "border_thickness": 0,
+        "section_radius": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_video_VUVrqh",
+    "1717260890abe57d94",
+    "text_with_image_cPgNKk",
+    "multi_column_gC7VRj",
+    "multi_column_rQbNQ9",
+    "logo_list_fW67UQ",
+    "multi_column_CniTXx",
+    "1738806710b5dd90bf",
+    "1738857191a9db5db8",
+    "faq_aNyGrD",
+    "related-products",
+    "custom_liquid_VPrYHX",
+    "ss_upsell_02_QNGyie"
+  ]
+}

@@ -1,0 +1,190 @@
+{% comment %}
+  AI-4gridcollection Section
+  - Displays 4 collections in a 2x2 grid on desktop
+  - Each grid item is a block with customizable title, button text, and image
+  - Uses Tailwind CSS with tw- prefix for responsive design
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "AI 4 Grid Collection",
+  "tag": "section",
+  "class": "ai-4grid-collection-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection Item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title",
+          "info": "Leave blank to use collection title"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Image",
+          "info": "Leave blank to use collection's first product image"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#FFFFFF"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI 4 Grid Collection",
+      "blocks": [
+        { "type": "collection_item" },
+        { "type": "collection_item" },
+        { "type": "collection_item" },
+        { "type": "collection_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="ai-4grid-collection-{{ section.id }} tw-w-full"
+  style="
+    background-color: {{ section.settings.section_bg_color }};
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+  "
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-px-responsive-[16,40]">
+    <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-responsive-[12,24]">
+      {% for block in section.blocks %}
+        {% if block.type == 'collection_item' %}
+          {% assign collection = block.settings.collection %}
+
+          {%- comment -%} Determine title: custom or collection title {%- endcomment -%}
+          {% if block.settings.custom_title != blank %}
+            {% assign display_title = block.settings.custom_title %}
+          {% elsif collection != blank %}
+            {% assign display_title = collection.title %}
+          {% else %}
+            {% assign display_title = 'Collection Title' %}
+          {% endif %}
+
+          {%- comment -%} Determine image: custom, collection image, or first product image {%- endcomment -%}
+          {% if block.settings.custom_image != blank %}
+            {% assign display_image = block.settings.custom_image %}
+          {% elsif collection != blank and collection.image != blank %}
+            {% assign display_image = collection.image %}
+          {% elsif collection != blank and collection.products.first != blank %}
+            {% assign display_image = collection.products.first.featured_image %}
+          {% else %}
+            {% assign display_image = blank %}
+          {% endif %}
+
+          {%- comment -%} Determine link {%- endcomment -%}
+          {% if collection != blank %}
+            {% assign collection_url = collection.url %}
+          {% else %}
+            {% assign collection_url = '#' %}
+          {% endif %}
+
+          <div
+            class="collection-grid-item tw-flex tw-flex-col tw-group"
+            {{ block.shopify_attributes }}
+          >
+            {%- comment -%} Image Container {%- endcomment -%}
+            <a
+              href="{{ collection_url }}"
+              class="tw-block tw-relative tw-overflow-hidden tw-aspect-square tw-mb-4"
+            >
+              {% if display_image != blank %}
+                <img
+                  src="{{ display_image | image_url: width: 800 }}"
+                  alt="{{ display_title | escape }}"
+                  class="tw-w-full tw-h-full tw-object-cover group-hover:tw-scale-105 tw-transition-transform tw-duration-300"
+                  loading="lazy"
+                  width="800"
+                  height="800"
+                >
+              {% else %}
+                <div class="tw-w-full tw-h-full tw-bg-gray-200 tw-flex tw-items-center tw-justify-center">
+                  <svg class="tw-w-16 tw-h-16 tw-text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+              {% endif %}
+            </a>
+
+            {%- comment -%} Title {%- endcomment -%}
+            <h3 class="tw-text-responsive-[14,20] tw-font-bold tw-uppercase tw-tracking-wider tw-text-center tw-mb-3">
+              {{ display_title }}
+            </h3>
+
+            {%- comment -%} Button {%- endcomment -%}
+            <div class="tw-flex tw-justify-center">
+              <a
+                href="{{ collection_url }}"
+                class="tw-inline-block tw-px-6 tw-py-3 tw-text-responsive-[11,14] tw-font-bold tw-uppercase tw-tracking-wider hover:tw-opacity-80 tw-transition-opacity tw-text-center"
+                style="
+                  background-color: {{ block.settings.button_bg_color }};
+                  color: {{ block.settings.button_text_color }};
+                "
+              >
+                {{ block.settings.button_text | default: 'SHOP NOW' }}
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

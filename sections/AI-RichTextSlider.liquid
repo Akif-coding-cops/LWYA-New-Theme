@@ -1,0 +1,195 @@
+{% schema %}
+{
+  "name": "AI Rich Text Slider",
+  "tag": "section",
+  "class": "ai-rich-text-slider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Size (Mobile)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Size (Desktop)",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Your text content here</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Rich Text Slider",
+      "blocks": [
+        {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>I've NEVER used a product so wonderful! I didn't have to put on more makeup. I just put eyebrows on, a little, blush and lipstick, good to go!</p>"
+          }
+        },
+        {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>This product changed my life! Amazing quality and results that I never expected. Highly recommend to everyone!</p>"
+          }
+        },
+        {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>Absolutely love this! It's become an essential part of my daily routine. Can't imagine going without it now.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .text-slider-{{ section.id }} .swiper-button-prev,
+  .text-slider-{{ section.id }} .swiper-button-next {
+    color: #FFFFFF;
+    width: 28px;
+    height: 28px;
+    background-color: #000000;
+    border-radius: 50%;
+  }
+
+  .text-slider-{{ section.id }} .swiper-button-prev:after,
+  .text-slider-{{ section.id }} .swiper-button-next:after {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  @media (min-width: 768px) {
+    .text-slider-{{ section.id }} .swiper-button-prev,
+    .text-slider-{{ section.id }} .swiper-button-next {
+      width: 36px;
+      height: 36px;
+    }
+
+    .text-slider-{{ section.id }} .swiper-button-prev:after,
+    .text-slider-{{ section.id }} .swiper-button-next:after {
+      font-size: 16px;
+    }
+  }
+
+  .text-slider-{{ section.id }} .slide-content {
+    font-size: {{ section.settings.text_size_mobile }}px;
+  }
+
+  @media (min-width: 768px) {
+    .text-slider-{{ section.id }} .slide-content {
+      font-size: {{ section.settings.text_size_desktop }}px;
+    }
+  }
+</style>
+
+<section
+  class="tw-w-full tw-relative"
+  style="
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    color: {{ section.settings.text_color }};
+  "
+>
+  <div class="tw-max-w-[1300px] tw-mx-auto tw-px-4 tw-relative">
+    {%- if section.blocks.size > 0 -%}
+      {%- comment -%} Swiper Container {%- endcomment -%}
+      <div class="swiper text-slider-{{ section.id }}">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            <div class="swiper-slide" {{ block.shopify_attributes }}>
+              <div class="slide-content tw-text-center tw-max-w-[800px] tw-mx-auto tw-px-8 md:tw-px-0 tw-leading-relaxed">
+                {{ block.settings.content }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} Navigation Arrows {%- endcomment -%}
+        {%- if section.blocks.size > 1 -%}
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      new Swiper('.text-slider-{{ section.id }}', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: {{ section.blocks.size | default: 0 }} > 1,
+        navigation: {
+          nextEl: '.text-slider-{{ section.id }} .swiper-button-next',
+          prevEl: '.text-slider-{{ section.id }} .swiper-button-prev',
+        },
+        speed: 500,
+        autoHeight: true,
+      });
+    });
+  </script>
+</section>

@@ -1,0 +1,111 @@
+{% schema %}
+{
+  "name": "Love Who You Are Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading-love-who",
+      "label": "Main heading-love-who",
+      "default": "Fall In love with your life."
+    },
+    {
+      "type": "text",
+      "id": "subheading-love-who",
+      "label": "subheading-love-who",
+      "default": "LOVE WHO YOU ARE"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Love Who You Are Section"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+    .section-alignment{
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .love-who-you-are-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff; /* Adjust as needed */
+  }
+  
+  .text-column-love-who-section {
+    flex: 0 0 60%;
+    max-width: 60%;
+    padding-left: 20px; /* Assuming image on left, text on right */
+    text-align:center;
+  }
+  
+  .image-column-love-who-section {
+    flex: 0 0 40%;
+    max-width: 40%;
+  }
+  
+  .image-column-love-who-section img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .heading-love-who {
+    font-size: 52px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-family: 'Didot' !important;
+    font-style: italic;
+  }
+  
+  .subheading-love-who {
+    font-size: 52px;
+    font-weight: 300;
+    color: #000;
+    margin: 0;
+    line-height: 1.1;
+    font-family: 'Gotham_Book', sans-serif !important;
+  }
+  
+  @media (max-width: 768px) {
+    .love-who-you-are-section {
+      flex-direction: column;
+    }
+    
+    .text-column-love-who-section,
+    .image-column-love-who-section {
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    
+    .text-column-love-who-section {
+      margin-bottom: 0;
+    }
+  }
+</style>
+
+<div class=" section-alignment love-who-you-are-section">
+  <div class="image-column-love-who-section">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | img_url: 'master' }}" alt="Section Image">
+    {% else %}
+      <img src="https://via.placeholder.com/800x400" alt="Placeholder Image"> <!-- Add a default if needed -->
+    {% endif %}
+  </div>
+  <div class="text-column-love-who-section">
+    <h2 class="heading-love-who">{{ section.settings.heading-love-who }}</h2>
+    <h1 class="subheading-love-who">{{ section.settings.subheading-love-who }}</h1>
+  </div>
+</div>

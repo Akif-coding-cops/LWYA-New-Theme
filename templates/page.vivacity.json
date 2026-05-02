@@ -1,0 +1,850 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ai_video_with_text_7PdDFp": {
+      "type": "AI-VideoWithText",
+      "blocks": {
+        "title_Gy3aNF": {
+          "type": "title",
+          "settings": {
+            "content": "WELCOME BEAUTIFUL",
+            "color": "#c6c72e",
+            "margin_top": 0,
+            "margin_bottom": 10
+          }
+        },
+        "subtitle_7Gr7tA": {
+          "type": "subtitle",
+          "settings": {
+            "content": "<p>Your Exclusive VIP <br/>Fragrance Offer </p>",
+            "color": "#000000",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "divider_dwEYkP": {
+          "type": "divider",
+          "settings": {
+            "line_color": "#c6c72e",
+            "line_height": 3,
+            "line_width": 90,
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "text_DU33YG": {
+          "type": "text",
+          "settings": {
+            "content": "<p>As one of our most loyal customers, you’re<br/> getting exclusive early access to special holiday pricing — because you deserve to shine a little brighter this season.</p>",
+            "color": "#000000",
+            "margin_top": 0,
+            "margin_bottom": 26
+          }
+        },
+        "countdown_78whNN": {
+          "type": "countdown",
+          "settings": {
+            "target_datetime": "2025-12-25 01:00",
+            "time_color": "#c6c72e",
+            "font_size": 60,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_Gy3aNF",
+        "subtitle_7Gr7tA",
+        "divider_dwEYkP",
+        "text_DU33YG",
+        "countdown_78whNN"
+      ],
+      "name": "AI-Video with text ",
+      "settings": {
+        "video_file": "shopify://files/videos/LWYA_Vivacity Holiday_Clip 1.mov",
+        "video_url": "",
+        "outer_bg": "#c6c72e",
+        "inner_bg": "#ffffff",
+        "outer_padding": 20,
+        "inner_padding": 60,
+        "section_padding_y": 0
+      }
+    },
+    "ai_simple_contdown_bar_YqnQYK": {
+      "type": "AI-SimpleContdownBar",
+      "name": "Simple countdown bar",
+      "settings": {
+        "title": "50% OFF - November VIP Special",
+        "title_color": "#c2ca2e",
+        "title_size": 70,
+        "target_datetime": "",
+        "count_color": "#000000",
+        "bg_color": "#ffffff",
+        "padding_y": 34
+      }
+    },
+    "ai_featured_product_GftJFA": {
+      "type": "AI-FeaturedProduct",
+      "blocks": {
+        "product_item_73HBJT": {
+          "type": "product_item",
+          "settings": {
+            "product": "vivacity-eau-de-parfum-50-ml-1",
+            "custom_title": "",
+            "rating_value": "4.8",
+            "rating_count": "(20)",
+            "button_label": "ADD TO CART"
+          }
+        },
+        "product_item_GdEDLX": {
+          "type": "product_item",
+          "settings": {
+            "product": "vivacity-eau-de-parfum-gift-set-50-ml-8-ml",
+            "custom_title": "",
+            "rating_value": "4.8",
+            "rating_count": "(31)",
+            "button_label": "ADD TO CART"
+          }
+        },
+        "product_item_94PLj8": {
+          "type": "product_item",
+          "settings": {
+            "product": "vivacity-eau-de-parfum-duo-2-x-50-ml",
+            "custom_title": "",
+            "rating_value": "4.8",
+            "rating_count": "(40)",
+            "button_label": "ADD TO CART"
+          }
+        }
+      },
+      "block_order": [
+        "product_item_73HBJT",
+        "product_item_GdEDLX",
+        "product_item_94PLj8"
+      ],
+      "name": "Featured products (3)",
+      "settings": {
+        "enable_product_links": false,
+        "bg_color": "#ffffff",
+        "footer_text": "<p>NO AUTOSHIP - NO COMMITMENT. <br/>OFFER FOR FIRST-TIME CUSTOMERS ONLY.</p>",
+        "sale_color": "#c6c72e",
+        "button_bg": "#c6c72e",
+        "button_text": "#ffffff",
+        "padding_y": 20
+      }
+    },
+    "ai_videofull_XbYWGV": {
+      "type": "AI-VIDEOFULL",
+      "name": "AI-VIDEOFULL",
+      "settings": {
+        "video_file": "shopify://files/videos/Vivacity_Fragrance_Video_1400x800_d09563db-5895-4a92-99e8-6b5d71eb5c81.mp4",
+        "video_url": "",
+        "video_external_url": "",
+        "video_fit": "cover",
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "show_controls": true
+      }
+    },
+    "ai_rich_text_rby7HU": {
+      "type": "AI-RichText",
+      "blocks": {
+        "richtext_title_ww7wHa": {
+          "type": "richtext_title",
+          "settings": {
+            "content": "<p>VIVACITY — The Spark That's All You</p>",
+            "color": "#c6c72e",
+            "mobile_size": 28,
+            "desktop_size": 72,
+            "margin_top": 0,
+            "margin_bottom": 20,
+            "max_width_mobile": 400,
+            "max_width_desktop": 980
+          }
+        },
+        "richtext_paragraph_9QjYTC": {
+          "type": "richtext_paragraph",
+          "settings": {
+            "content": "<p>Slice into a pink pomelo and feel the burst — bright, juicy citrus igniting your senses. Italian bergamot fizzes with joy while violet and green tea swirl in soft, graceful balance. Then comes the warmth — tonka bean, driftwood, and skin musk blend into a glow that lingers, like sunlight on your skin.</p>",
+            "color": "#000000",
+            "mobile_size": 14,
+            "desktop_size": 20,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "max_width_mobile": 400,
+            "max_width_desktop": 730
+          }
+        },
+        "richtext_paragraph_HUDBwz": {
+          "type": "richtext_paragraph",
+          "disabled": true,
+          "settings": {
+            "content": "<p>Vivacity is more than fragrance — it’s energy. Be the sparkle only you can be.<br/><br/></p>",
+            "color": "#c6c72e",
+            "mobile_size": 14,
+            "desktop_size": 18,
+            "margin_top": 22,
+            "margin_bottom": 22,
+            "max_width_mobile": 400,
+            "max_width_desktop": 900
+          }
+        },
+        "richtext_title_HB9M4g": {
+          "type": "richtext_title",
+          "settings": {
+            "content": "<p>Vivacity is more than fragrance — it’s energy. Be the sparkle only you can be.<br/><br/></p>",
+            "color": "#c6c72e",
+            "mobile_size": 28,
+            "desktop_size": 27,
+            "margin_top": 22,
+            "margin_bottom": 0,
+            "max_width_mobile": 300,
+            "max_width_desktop": 400
+          }
+        },
+        "richtext_title_e4qqzT": {
+          "type": "richtext_title",
+          "settings": {
+            "content": "<p>Radiant. Spirited. Unapologetically Alive.<br/><br/></p>",
+            "color": "#c6c72e",
+            "mobile_size": 28,
+            "desktop_size": 36,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "max_width_mobile": 300,
+            "max_width_desktop": 800
+          }
+        }
+      },
+      "block_order": [
+        "richtext_title_ww7wHa",
+        "richtext_paragraph_9QjYTC",
+        "richtext_paragraph_HUDBwz",
+        "richtext_title_HB9M4g",
+        "richtext_title_e4qqzT"
+      ],
+      "name": "AI-RichText",
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "max_width": 1200
+      }
+    },
+    "ai_image_with_text2_Wn8EXC": {
+      "type": "AI-ImageWithText2",
+      "blocks": {
+        "image_TwyHGz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Group_4.png",
+            "alignment": "right",
+            "max_width": 130,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "title_GpU6AV": {
+          "type": "title",
+          "settings": {
+            "content": "<p>Join Over 50,000 Women Who <br/>Found Their  Signature Scent</p>",
+            "color": "#ffffff",
+            "margin_top": 0,
+            "margin_bottom": 50
+          }
+        },
+        "text_6xDXT9": {
+          "type": "text",
+          "settings": {
+            "content": "<p>Loved for its crisp, joyful notes and long-lasting wear, Vivacity has become a holiday favorite for women who love feeling vibrant, confident, and alive.</p>",
+            "color": "#ffffff",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_TwyHGz",
+        "title_GpU6AV",
+        "text_6xDXT9"
+      ],
+      "name": "Image left + text right",
+      "settings": {
+        "left_image": "shopify://shop_images/Group_40_7a6c4469-5ab3-43ed-89ec-74b3bd5f5314.png",
+        "left_video": "shopify://files/videos/Vivacity_AmyO.mp4",
+        "left_video_url": "",
+        "show_video_controls": true,
+        "right_bg_color": "#ffffff",
+        "right_bg_image": "shopify://shop_images/4f9e97b40a5076131f77c9c9918941e9e56996c8.jpg",
+        "right_bg_size": "cover",
+        "padding_y": 20,
+        "content_px": 85,
+        "content_padding_top": 0,
+        "content_padding_bottom": 100
+      }
+    },
+    "ai_simple_button_ffqTL4": {
+      "type": "AI-SimpleButton",
+      "name": "Simple button center",
+      "settings": {
+        "label": "GET YOURS NOW",
+        "link": "#AI-FeaturedProduct",
+        "section_bg": "#ffffff",
+        "btn_bg": "#c2ca2e",
+        "btn_text": "#ffffff",
+        "padding_y": 40,
+        "font_mobile": 16,
+        "font_desktop": 25
+      }
+    },
+    "ai_review_KFmwmM": {
+      "type": "AI-Review",
+      "blocks": {
+        "review_GgYB8i": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "comment": "<p>I love this fragrance so much never want to be without it, so I’m all stocked up at least for one month. LOL.</p>",
+            "author": "Sherry H."
+          }
+        },
+        "review_JKx4T4": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "comment": "<p>I absolutely LOVE this fragrance; I’m on my 4th bottle and just can’t get enough; it makes me so happy!!!😊<br/></p>",
+            "author": "Diane G."
+          }
+        },
+        "review_ri9YQM": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "comment": "<p>Vivacity is a clean, refreshing scent. I spritz it after my shower and always before bed! Love it!<br/><br/></p>",
+            "author": "June B."
+          }
+        },
+        "review_ttgEM4": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "comment": "<p>Exactly the bright uplifting yet light fragrance I've been searching for, to call my own! Thank you!</p>",
+            "author": "Dawn H."
+          }
+        }
+      },
+      "block_order": [
+        "review_GgYB8i",
+        "review_JKx4T4",
+        "review_ri9YQM",
+        "review_ttgEM4"
+      ],
+      "name": "Reviews (4-up)",
+      "settings": {
+        "heading": "Rave Reviews From Our Community",
+        "subheading": "See Why Everyone’s Falling for Vivacity",
+        "heading_color": "#c6c72e",
+        "subheading_color": "#000000",
+        "card_bg": "#c6c72e",
+        "card_bg_opacity": 5,
+        "star_color": "#c6c72e",
+        "padding_y": 45
+      }
+    },
+    "ai_image_with_question_DbhTTh": {
+      "type": "AI-ImageWithQuestion",
+      "blocks": {
+        "title_mXDxQb": {
+          "type": "title",
+          "settings": {
+            "content": "I AM VIVACIOUS",
+            "margin_top": 0,
+            "margin_bottom": 10
+          }
+        },
+        "subtitle_ynneGy": {
+          "type": "subtitle",
+          "settings": {
+            "content": "The Essence of Joy — Bottled",
+            "margin_top": 0,
+            "margin_bottom": 38
+          }
+        },
+        "questions_y67gdc": {
+          "type": "questions",
+          "settings": {
+            "q1": "MESSAGE IN A BOTTLE",
+            "a1": "<p>I dance to the rhythm of my own heartbeat, embracing spontaneity, and live with a spirit filled with boundless enthusiasm<br/><br/></p>",
+            "q2": "FRAGRANCE NOTES",
+            "a2": "<p><strong>Olfactive Family</strong>: Citrus Herbal<br/><strong>Top Notes</strong>: Italian Bergamot, Pink Pomelo<br/><strong>Heart Notes</strong>: Violet, Green Tea<br/><strong>Base Notes</strong>: Tonka Beans, Driftwood, Skin Musk</p>",
+            "q3": "FULL INGREDIENT LIST",
+            "a3": "<p>Alcohol Denat., Water (Aqua/Eau), Fragrance (Parfum), Butyl Methoxydibenzoylmethane, Ethylhexyl Salicylate, Citral, Citronellol, Coumarin, Geraniol, Limonene, Linalool. </p>",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_mXDxQb",
+        "subtitle_ynneGy",
+        "questions_y67gdc"
+      ],
+      "name": "Image + FAQ right",
+      "settings": {
+        "left_image": "shopify://shop_images/e50aa2ca6b8c3c205b4ab92391c555625313c990_1.jpg",
+        "right_bg_color": "#ffffff",
+        "title_color": "#c6c72e",
+        "subtitle_color": "#000000",
+        "question_text_color": "#888888",
+        "question_border_color": "#d8d8d8",
+        "padding_y": 20,
+        "content_px": 68
+      }
+    },
+    "ai_our_values_9KwmhW": {
+      "type": "AI-OurValues",
+      "blocks": {
+        "value_KTC9jY": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/bb3e422c01ed7052d624b20e15dce00c479fc413.png",
+            "label": "<p>Paraben <br/>Free</p>"
+          }
+        },
+        "value_8yfQPe": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/9f4cc42e3feaa6f8404e62c473ab7f76c6b3fd23.png",
+            "label": "<p>Sulfate <br/>Free</p>"
+          }
+        },
+        "value_GzGgk4": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/c7d97a8fe7ca24b571d158b4cf85c89f23c561a6.png",
+            "label": "<p>Mineral Oil <br/>Free</p>"
+          }
+        },
+        "value_PRU4qz": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/2cee51a37afe2117e2c50c91077772a53c5ad478.png",
+            "label": "<p>Talc<br/>Free</p>"
+          }
+        },
+        "value_XDabnH": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/57f322f8e8eac3dde254e572819cdebde8f6c223.png",
+            "label": "<p>Leaping <br/>Bunny <br/>Certified</p>"
+          }
+        },
+        "value_PBJRiT": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/fa9855df9cf279da8d7d69fa41ba2dd2421f0cf4.png",
+            "label": "<p>Formaldehydes <br/>Free</p>"
+          }
+        }
+      },
+      "block_order": [
+        "value_KTC9jY",
+        "value_8yfQPe",
+        "value_GzGgk4",
+        "value_PRU4qz",
+        "value_XDabnH",
+        "value_PBJRiT"
+      ],
+      "name": "LWYA Promise",
+      "settings": {
+        "heading": "The LWYA Promise",
+        "bg_color": "#c6c72e",
+        "bg_opacity": 5,
+        "heading_color": "#000000",
+        "padding_y": 70,
+        "padding_x": 115
+      }
+    },
+    "ai_image_with_text_circle_R9TLAR": {
+      "type": "AI-ImageWithTextCircle",
+      "blocks": {
+        "title_wLye3w": {
+          "type": "title",
+          "settings": {
+            "content": "LOVE IT OR RETURN IT",
+            "color": "#b7c025",
+            "margin_top": 0,
+            "margin_bottom": 6
+          }
+        },
+        "subtitle_geVJh8": {
+          "type": "subtitle",
+          "settings": {
+            "content": "30-Day Money-Back Guarantee",
+            "color": "#000000",
+            "margin_top": 0,
+            "margin_bottom": 40
+          }
+        },
+        "divider_U76Tqc": {
+          "type": "divider",
+          "settings": {
+            "line_color": "#b7c025",
+            "line_width": 55,
+            "line_height": 5,
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "text_3dJcnq": {
+          "type": "text",
+          "settings": {
+            "content": "<p>Give with confidence. <br/>If Vivacity doesn’t light you up (or her),<br/> simply return it within 30 days for a full<br/> refund. No stress. No hassle. Just joy.</p>",
+            "color": "#000000",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_wLye3w",
+        "subtitle_geVJh8",
+        "divider_U76Tqc",
+        "text_3dJcnq"
+      ],
+      "name": "Image circle + text",
+      "settings": {
+        "circle_image": "shopify://shop_images/a3860cac0afb3aad0e2398a3215ad06b550905da.jpg",
+        "section_bg": "#c6c72e",
+        "padding_y": 70,
+        "bg_opacity": 5
+      }
+    },
+    "ai_image_with_video_jHYEGr": {
+      "type": "AI-ImageWithVideo",
+      "blocks": {
+        "title_bQB3bA": {
+          "type": "title",
+          "settings": {
+            "content": "Your VIP Holiday Offer Ends Soon!",
+            "color": "#c6c72e",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        "text_zWVxDb": {
+          "type": "text",
+          "settings": {
+            "content": "<p>This exclusive Vivacity holiday offer is only available for a limited time — once it’s gone, it’s gone for the season. Don’t wait to give (or get) the scent of joy.</p>",
+            "color": "#ffffff",
+            "margin_top": 24,
+            "margin_bottom": 18
+          }
+        },
+        "countdown_kmdciz": {
+          "type": "countdown",
+          "settings": {
+            "target_datetime": "2025-12-25 01:00",
+            "time_color": "#ffffff",
+            "margin_top": 54,
+            "margin_bottom": 20
+          }
+        },
+        "button_g9rQ6x": {
+          "type": "button",
+          "settings": {
+            "label": "GET MY SET NOW",
+            "link": "#AI-FeaturedProduct",
+            "btn_bg": "#c6c72e",
+            "btn_color": "#ffffff",
+            "margin_top": 62,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_bQB3bA",
+        "text_zWVxDb",
+        "countdown_kmdciz",
+        "button_g9rQ6x"
+      ],
+      "name": "Text + video right",
+      "settings": {
+        "right_video": "shopify://files/videos/Vivacity.mp4",
+        "right_video_url": "",
+        "right_image_position_x": 50,
+        "right_image_position_y": 50,
+        "right_image_scale": 100,
+        "left_bg_color": "#1b3e20",
+        "left_bg_image": "shopify://shop_images/7fe1c81324869ef310352a0d402fef9ef41e994c.jpg",
+        "left_bg_size": "cover",
+        "padding_y": 0
+      }
+    },
+    "ai_accordion_P9N7mm": {
+      "type": "AI-Accordion",
+      "blocks": {
+        "faq_item_TPmLba": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What does Vivacity smell like?",
+            "answer": "<p>It’s a radiant blend of bright citrus, green tea, and soft musk—fresh, elegant, and effortlessly energizing.</p>"
+          }
+        },
+        "faq_item_UddUaa": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it suitable for all-day wear?",
+            "answer": "<p>Yes! Vivacity transitions beautifully from morning freshness to evening sophistication.</p>"
+          }
+        },
+        "faq_item_NJJ3kw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I wear it with other LWYA fragrances?",
+            "answer": "<p>Absolutely. Vivacity pairs beautifully with <strong>Tenacity</strong> for a crisp daytime scent or <strong>Audacity</strong> for a sultry evening blend.</p>"
+          }
+        },
+        "faq_item_yTh4Am": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How should I store it?",
+            "answer": "<p>Keep it in a cool, dry place away from sunlight to preserve its luminous character.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_TPmLba",
+        "faq_item_UddUaa",
+        "faq_item_NJJ3kw",
+        "faq_item_yTh4Am"
+      ],
+      "name": "FAQ - Accordion",
+      "settings": {
+        "heading": "FAQ",
+        "bg_color": "#ededed",
+        "title_color": "#000000",
+        "line_color": "#000000",
+        "dot_color": "#c02b2b",
+        "content_width": 720,
+        "spacing_title_to_list": 65,
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
+    "ai_simple_button_wYiNda": {
+      "type": "AI-SimpleButton",
+      "name": "Simple button center",
+      "settings": {
+        "label": "Get My VIP Offer",
+        "link": "#AI-FeaturedProduct",
+        "section_bg": "#ffffff",
+        "btn_bg": "#c2ca2e",
+        "btn_text": "#ffffff",
+        "padding_y": 45,
+        "font_mobile": 16,
+        "font_desktop": 25
+      }
+    },
+    "ai_image_with_text_jeXewU": {
+      "type": "AI-ImageWithText",
+      "blocks": {
+        "title_JbD6Nk": {
+          "type": "title",
+          "settings": {
+            "content": "A GIFT FROM THE HEART",
+            "color": "#c6c72e",
+            "text_align": "center",
+            "mobile_size": 28,
+            "desktop_size": 48,
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        },
+        "text_TkXKRj": {
+          "type": "text",
+          "settings": {
+            "content": "<p>I created Vivacity as more than a fragrance — <br/><strong>it’s pure joy in a bottle. The kind that makes you feel radiant, confident, and completely yourself.</strong></p>",
+            "color": "#000000",
+            "text_align": "center",
+            "mobile_size": 18,
+            "desktop_size": 28,
+            "margin_top": 8,
+            "margin_bottom": 16
+          }
+        },
+        "divider_HkiKhH": {
+          "type": "divider",
+          "settings": {
+            "color": "#c6c72e",
+            "text_align": "center",
+            "width_percent": 66,
+            "thickness": 8,
+            "margin_top": 16,
+            "margin_bottom": 16
+          }
+        },
+        "text_BQHqNH": {
+          "type": "text",
+          "settings": {
+            "content": "<p>This holiday, I wanted to celebrate our VIP community — the women who’ve supported us from the start. <strong>Vivacity is my personal favorite: bright, fresh, and full of life.</strong> Whether you’re gifting it or wearing it for yourself, may it remind you to live boldly and love who you<br/><br/></p>",
+            "color": "#000000",
+            "text_align": "center",
+            "mobile_size": 18,
+            "desktop_size": 28,
+            "margin_top": 8,
+            "margin_bottom": 16
+          }
+        },
+        "image_wjiR6Q": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Group_39.png",
+            "text_align": "center",
+            "max_width": 230,
+            "margin_top": 24,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_JbD6Nk",
+        "text_TkXKRj",
+        "divider_HkiKhH",
+        "text_BQHqNH",
+        "image_wjiR6Q"
+      ],
+      "name": "Image with text - Holiday",
+      "settings": {
+        "top_label_text": "",
+        "top_label_bg": "#c6c72e",
+        "top_label_color": "#000000",
+        "top_label_gap": 66,
+        "main_image": "shopify://shop_images/e67247541de2ec941aa19a2646dc2ccd4666ee57.jpg",
+        "image_radius": 0,
+        "section_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 80
+      }
+    },
+    "ai_solid_banner_f6aJNW": {
+      "type": "AI-SolidBanner",
+      "blocks": {
+        "text_LeQ7rc": {
+          "type": "text",
+          "settings": {
+            "content": "<p>Time is running out—<br/>but your perfect Holiday gift?<br/><strong>Just a click away.</strong></p>",
+            "text_color": "#ffffff",
+            "mobile_size": 20,
+            "desktop_size": 46,
+            "margin_top": 0,
+            "margin_bottom": 34
+          }
+        },
+        "countdown_83ztrN": {
+          "type": "countdown",
+          "settings": {
+            "target_datetime": "2025-12-25 01:00",
+            "time_color": "#ffffff",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "button_XNqL6D": {
+          "type": "button",
+          "settings": {
+            "label": "GET YOURS NOW",
+            "link": "#AI-FeaturedProduct",
+            "btn_bg": "#ffffff",
+            "btn_color": "#c6c72e",
+            "margin_top": 20,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "text_LeQ7rc",
+        "countdown_83ztrN",
+        "button_XNqL6D"
+      ],
+      "name": "Holiday banner (countdown)",
+      "settings": {
+        "left_image": "shopify://shop_images/Group_40_7a6c4469-5ab3-43ed-89ec-74b3bd5f5314.png",
+        "content_alignment": "left",
+        "bg_color": "#c6c72e",
+        "bg_inside_container": false,
+        "border_color": "#ffffff",
+        "padding_outer": 11,
+        "inner_padding": 60
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "1762515596d09097c4": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_agg_section_QB6P8L": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-agg-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": true,
+            "hide_thumbnails": false,
+            "product_handle": "vivacity",
+            "aggregated": true,
+            "data-limit": 20,
+            "maxwidth": 1920,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_agg_section_QB6P8L"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".container {max-width: 1440px;}"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    }
+  },
+  "order": [
+    "ai_video_with_text_7PdDFp",
+    "ai_simple_contdown_bar_YqnQYK",
+    "ai_featured_product_GftJFA",
+    "ai_videofull_XbYWGV",
+    "ai_rich_text_rby7HU",
+    "ai_image_with_text2_Wn8EXC",
+    "ai_simple_button_ffqTL4",
+    "ai_review_KFmwmM",
+    "ai_image_with_question_DbhTTh",
+    "ai_our_values_9KwmhW",
+    "ai_image_with_text_circle_R9TLAR",
+    "ai_image_with_video_jHYEGr",
+    "ai_accordion_P9N7mm",
+    "ai_simple_button_wYiNda",
+    "ai_image_with_text_jeXewU",
+    "ai_solid_banner_f6aJNW",
+    "main",
+    "1762515596d09097c4"
+  ]
+}

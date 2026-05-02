@@ -1,0 +1,422 @@
+{% schema %}
+{
+  "name": "Image/Video with Text",
+  "tag": "section",
+  "class": "image-video-text-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media Settings"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video_url",
+          "label": "Video URL (YouTube/Vimeo)"
+        },
+        {
+          "value": "video_file",
+          "label": "Video File (Shopify)"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "YouTube or Vimeo URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "video",
+      "id": "video_file",
+      "label": "Video File"
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FCF4F6"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content Background Color",
+      "default": "#FCF4F6"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Title",
+          "default": "FRAGRANCE"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#E91E63"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin Top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin Bottom",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "subtitle",
+      "name": "Subtitle",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subtitle",
+          "default": "FOR EVERY FEELING"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#999999"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin Top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin Bottom",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 28
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>Fragrance is emotional. It can set the tone for how you want to feel the day.</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin Top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin Bottom",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image/Video with Text",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "subtitle"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  id="AI-ImageVideoText-{{ section.id }}"
+  class="tw-w-full"
+  style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-px-[16px] md:tw-px-[0]">
+    <div class="content-wrapper tw-flex tw-flex-col md:tw-flex-row tw-gap-[0] tw-w-full md:tw-max-h-[704px]">
+      
+      {% comment %} Media Section - Left 50% {% endcomment %}
+      <div class="media-section tw-w-full md:tw-w-1/2 md:tw-h-[704px]">
+        {% if section.settings.media_type == 'video_url' and section.settings.video_url != blank %}
+          {% comment %} Video URL (YouTube/Vimeo) {% endcomment %}
+          <div class="video-container tw-relative tw-w-full tw-h-full">
+            <div class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full">
+              {% if section.settings.video_url.type == 'youtube' %}
+                <iframe
+                  src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?controls=1&modestbranding=1&rel=0"
+                  class="tw-w-full tw-h-full tw-object-cover"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  title="Video"
+                ></iframe>
+              {% elsif section.settings.video_url.type == 'vimeo' %}
+                <iframe
+                  src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?title=0&byline=0&portrait=0"
+                  class="tw-w-full tw-h-full tw-object-cover"
+                  frameborder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen
+                  title="Video"
+                ></iframe>
+              {% endif %}
+            </div>
+          </div>
+        {% elsif section.settings.media_type == 'video_file' and section.settings.video_file != blank %}
+          {% comment %} Video File (Shopify) {% endcomment %}
+          <div class="video-file-container tw-relative tw-w-full tw-h-full">
+            <video
+              class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+            >
+              {% for source in section.settings.video_file.sources %}
+                <source src="{{ source.url }}" type="{{ source.mime_type }}">
+              {% endfor %}
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        {% else %}
+          {% comment %} Image {% endcomment %}
+          {% if section.settings.image != blank %}
+            <div class="image-container tw-relative tw-w-full tw-h-full">
+              <img
+                src="{{ section.settings.image | image_url: width: 1200 }}"
+                alt="{{ section.settings.image.alt | escape }}"
+                class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover"
+                loading="lazy"
+                width="1200"
+                height="1200"
+              >
+            </div>
+          {% else %}
+            <div class="placeholder-image tw-w-full tw-h-full tw-bg-[#F5F5F5] tw-flex tw-items-center tw-justify-center tw-relative">
+              <div class="tw-absolute tw-text-[#CCCCCC] tw-text-[18px]">
+                {{ 'image' | placeholder_svg_tag: 'tw-w-full tw-h-full tw-object-cover' }}
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      {% comment %} Content Section - Right 50% {% endcomment %}
+      <div 
+        class="content-section tw-w-full md:tw-w-1/2 md:tw-h-[704px] tw-flex tw-flex-col tw-justify-center tw-px-[20px] md:tw-px-[60px] tw-py-[40px] md:tw-py-[60px]"
+        style="background: {{ section.settings.content_bg_color }}; text-align: {{ section.settings.text_alignment }};"
+      >
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'title' %}
+              {% if block.settings.text != blank %}
+                <h2 
+                  class="section-title tw-text-[32px] md:tw-text-[56px] tw-font-[700] tw-leading-[1.1] tw-tracking-wide"
+                  style="color: {{ block.settings.color }}; margin-top: {{ block.settings.margin_top }}px; margin-bottom: {{ block.settings.margin_bottom }}px;"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.text }}
+                </h2>
+              {% endif %}
+
+            {% when 'subtitle' %}
+              {% if block.settings.text != blank %}
+                <p 
+                  class="section-subtitle tw-text-[14px] md:tw-text-[16px] tw-font-[500] tw-uppercase tw-tracking-[0.15em]"
+                  style="color: {{ block.settings.color }}; margin-top: {{ block.settings.margin_top }}px; margin-bottom: {{ block.settings.margin_bottom }}px;"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.text }}
+                </p>
+              {% endif %}
+
+            {% when 'text' %}
+              {% if block.settings.content != blank %}
+                <div 
+                  class="section-text tw-text-[16px] md:tw-text-[18px] tw-leading-[1.6] richtext"
+                  style="color: {{ block.settings.color }}; margin-top: {{ block.settings.margin_top }}px; margin-bottom: {{ block.settings.margin_bottom }}px;"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.content }}
+                </div>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #AI-ImageVideoText-{{ section.id }} .richtext p {
+      margin: 0 0 16px 0;
+    }
+    #AI-ImageVideoText-{{ section.id }} .richtext p:last-child {
+      margin-bottom: 0;
+    }
+    #AI-ImageVideoText-{{ section.id }} .richtext strong {
+      font-weight: 700;
+    }
+    #AI-ImageVideoText-{{ section.id }} .richtext em {
+      font-style: italic;
+    }
+    
+    /* Video responsive */
+    #AI-ImageVideoText-{{ section.id }} .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Mobile: Stack vertically */
+    @media screen and (max-width: 768px) {
+      #AI-ImageVideoText-{{ section.id }} .content-wrapper {
+        flex-direction: column;
+        max-height: none;
+      }
+      
+      #AI-ImageVideoText-{{ section.id }} .media-section,
+      #AI-ImageVideoText-{{ section.id }} .content-section {
+        height: auto;
+      }
+      
+      #AI-ImageVideoText-{{ section.id }} .media-section .video-container,
+      #AI-ImageVideoText-{{ section.id }} .media-section .video-file-container,
+      #AI-ImageVideoText-{{ section.id }} .media-section .image-container,
+      #AI-ImageVideoText-{{ section.id }} .media-section .placeholder-image {
+        padding-bottom: 100%;
+        height: auto;
+      }
+      
+      #AI-ImageVideoText-{{ section.id }} .section-title {
+        font-size: 32px;
+      }
+      
+      #AI-ImageVideoText-{{ section.id }} .section-subtitle {
+        font-size: 14px;
+      }
+      
+      #AI-ImageVideoText-{{ section.id }} .section-text {
+        font-size: 16px;
+      }
+    }
+  </style>
+</section>

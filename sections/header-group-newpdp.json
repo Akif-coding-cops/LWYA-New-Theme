@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group (New PDP)",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message_LAnnxc": {
+          "type": "message",
+          "settings": {
+            "text": "FREE SHIPPING IN ALL ORDER MORE THAN 50$"
+          }
+        },
+        "message-1": {
+          "type": "message",
+          "settings": {
+            "text": "✨The Flawless Five - $164 value for $75✨"
+          }
+        }
+      },
+      "block_order": [
+        "message_LAnnxc",
+        "message-1"
+      ],
+      "settings": {
+        "color_scheme": "scheme-ff14b769-00ce-4a5f-a184-ca5c61268089",
+        "enable_sticky": false,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "desktop_font_size": 10,
+        "mobile_font_size": 10
+      }
+    },
+    "header-newpdp": {
+      "type": "AI-NEWHeader-WithMenu",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "bg_position_x": 50,
+        "bg_position_y": 50,
+        "bg_position_x_mobile": 50,
+        "bg_position_y_mobile": 50,
+        "logo": "shopify://shop_images/LWYA_Logo_Final_PINK_6.png",
+        "logo_max_width": 120,
+        "logo_mobile_max_width": 100,
+        "color_scheme": "scheme-1",
+        "enable_sticky": true,
+        "hide_on_scroll": false,
+        "menu": "main-menu",
+        "sidebar_menu": "",
+        "sidebar_color_scheme": "scheme-2",
+        "sidebar_show_dividers": true,
+        "show_account_icon": false,
+        "show_search_icon": true,
+        "show_cart_icon": true
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header-newpdp"
+  ]
+}

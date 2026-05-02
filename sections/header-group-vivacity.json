@@ -1,0 +1,50 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header Group Vivacity",
+  "sections": {
+    "announcement-bar-vivacity": {
+      "type": "announcement-bar",
+      "settings": {
+        "color_scheme": "",
+        "enable_sticky": false,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "desktop_font_size": 11,
+        "mobile_font_size": 10
+      }
+    },
+    "header-vivacity": {
+      "type": "AI-NEWHeader",
+      "settings": {
+        "background_image": "shopify://shop_images/07e5e148b76d0c5a2cd0cccfffa4c9dde2784e47.jpg",
+        "bg_position_x": 50,
+        "bg_position_y": 20,
+        "bg_position_x_mobile": 50,
+        "bg_position_y_mobile": 50,
+        "logo": "shopify://shop_images/214b5357b42e1c0d5a1a42b3d43b497fa1ef9bd8.png",
+        "logo_max_width": 120,
+        "logo_mobile_max_width": 100,
+        "color_scheme": "scheme-2",
+        "enable_sticky": true,
+        "hide_on_scroll": false,
+        "center_logo_no_menu": true,
+        "show_account_icon": false,
+        "show_search_icon": false,
+        "show_cart_icon": true
+      }
+    }
+  },
+  "order": [
+    "announcement-bar-vivacity",
+    "header-vivacity"
+  ]
+}

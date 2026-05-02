@@ -1,0 +1,619 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "newmain_product_biVXTQ": {
+      "type": "newmain-product",
+      "blocks": {
+        "title_K7JexY": {
+          "type": "title",
+          "settings": {}
+        },
+        "loox_reviews_loox_rating_3Y9mik": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 19,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": true,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": true
+          }
+        },
+        "price_fV3aXL": {
+          "type": "price",
+          "settings": {}
+        },
+        "variants_7WpBhP": {
+          "type": "variants",
+          "settings": {}
+        },
+        "recharge_subscriptions_subscription_widget_v2_8L46GE": {
+          "type": "shopify://apps/recharge-subscriptions/blocks/subscription-widget-v2/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {}
+        },
+        "add_to_cart_VyEcJR": {
+          "type": "add_to_cart",
+          "settings": {}
+        },
+        "videos_Trhria": {
+          "type": "videos",
+          "settings": {
+            "videos_metafield_key": "custom.custom_product_videos"
+          }
+        },
+        "dropdown_jewAJL": {
+          "type": "dropdown",
+          "settings": {}
+        },
+        "pair_with_fXmW4B": {
+          "type": "pair_with",
+          "settings": {
+            "pair_metafield_key": "custom.pair_it_with",
+            "sets_metafield_key": "custom.save_with_sets"
+          }
+        }
+      },
+      "block_order": [
+        "title_K7JexY",
+        "loox_reviews_loox_rating_3Y9mik",
+        "price_fV3aXL",
+        "variants_7WpBhP",
+        "recharge_subscriptions_subscription_widget_v2_8L46GE",
+        "add_to_cart_VyEcJR",
+        "videos_Trhria",
+        "dropdown_jewAJL",
+        "pair_with_fXmW4B"
+      ],
+      "name": "New Main Product",
+      "settings": {
+        "show_best_seller_badge": false,
+        "show_loox_rating": true,
+        "enable_recharge": true
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "rating_wcMQth": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {
+            "show_empty": true,
+            "rating_mode": "count"
+          }
+        },
+        "loox_reviews_loox_rating_7QyfPg": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#1c1d52",
+            "atc_button_text_color": "rgba(0,0,0,0)",
+            "payment_button_background": "#5433eb",
+            "payment_button_text_color": ""
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "yes",
+            "size_chart_page": ""
+          }
+        },
+        "accordion_X3erzE": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": true,
+            "icon": "none",
+            "title": "test",
+            "content": "<p>Share some content to your customers about your products.</p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_3PAHkK": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "description",
+            "content": "{{ product.metafields.custom.products_description_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_Hbi3JJ": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "ingredients",
+            "content": "{{ product.metafields.custom.ingredient_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_cYYif4": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "how to use",
+            "content": "{{ product.metafields.custom.how_to_use_description | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_TwBiBc": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "benefits",
+            "content": "{{ product.metafields.custom.benefit_paragraph | metafield_tag }}",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "liquid_AEj4iK": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- if product.metafields.custom.icons_shipping_bundle_moneyback != blank and product.metafields.custom.shipping_bundle_moneyback != blank -%}\n\n  {% assign icons = product.metafields.custom.icons_shipping_bundle_moneyback.value %}\n  {% assign highlights = product.metafields.custom.shipping_bundle_moneyback.value %}\n\n  <div class=\"info-sec\">\n    {% for image in icons %}\n      <div class=\"highlight-item new\">\n        <img class=\"lazyload\" src=\"{{ image | image_url }}\" alt=\"Highlight Icon\" />\n        <p>{{ highlights[forloop.index0] }}</p>\n      </div>\n    {% endfor %}\n  </div>\n\n{%- endif -%}"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "disabled": true,
+          "settings": {
+            "title": "Pairs well with",
+            "products_count": 2,
+            "show_below_gallery": true,
+            "stack_products": false,
+            "show_quick_buy": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": true
+          }
+        },
+        "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq": {
+          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "rating_wcMQth",
+        "loox_reviews_loox_rating_7QyfPg",
+        "price",
+        "separator",
+        "buy_buttons",
+        "payment_terms",
+        "variant_picker",
+        "accordion_X3erzE",
+        "accordion_3PAHkK",
+        "accordion_Hbi3JJ",
+        "accordion_cYYif4",
+        "accordion_TwBiBc",
+        "liquid_AEj4iK",
+        "quantity_selector",
+        "complementary_products",
+        "description",
+        "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-a84d5221-7c7d-4719-b7c8-39b62af7c514",
+        "container_size": "full",
+        "product_info_size": 52,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    },
+    "faq_aNyGrD": {
+      "type": "faq",
+      "blocks": {
+        "question_qEUpCP": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq_question_1.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_1_description | metafield_tag }}</p>"
+          }
+        },
+        "question_fCcaB6": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_2.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_2_description | metafield_tag }}</p>"
+          }
+        },
+        "question_YrDDzz": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_3.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_3_description | metafield_tag }}</p>"
+          }
+        },
+        "question_HgLPTd": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_4.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_4_description | metafield_tag }}</p>"
+          }
+        },
+        "question_837d6A": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_5_.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
+          }
+        },
+        "question_aQMwVx": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_6.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_6_description | metafield_tag }}</p>"
+          }
+        },
+        "question_HrK7YL": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_7.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_7_description | metafield_tag }}</p>"
+          }
+        },
+        "question_K9HEda": {
+          "type": "question",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_8.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_8_description | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_qEUpCP",
+        "question_fCcaB6",
+        "question_YrDDzz",
+        "question_HgLPTd",
+        "question_837d6A",
+        "question_aQMwVx",
+        "question_HrK7YL",
+        "question_K9HEda"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_product_page_style": false,
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "container_lager": false,
+        "show_categories": false,
+        "subheading": "",
+        "title": "frequently asked questions",
+        "heading_color": "#1c1d52",
+        "content": ""
+      }
+    },
+    "ai_our_values_wfkjhy": {
+      "type": "AI-OurValues",
+      "blocks": {
+        "value_QQNyBP": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/bb3e422c01ed7052d624b20e15dce00c479fc413.png",
+            "label": "<p>Paraben <br/>Free</p>"
+          }
+        },
+        "value_3m8Wc3": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/9f4cc42e3feaa6f8404e62c473ab7f76c6b3fd23.png",
+            "label": "<p>Sulfate <br/>Free</p>"
+          }
+        },
+        "value_qpQHdQ": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/c7d97a8fe7ca24b571d158b4cf85c89f23c561a6.png",
+            "label": "<p>Mineral Oil <br/>Free</p>"
+          }
+        },
+        "value_Tpa9aB": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/2cee51a37afe2117e2c50c91077772a53c5ad478.png",
+            "label": "<p>Talc<br/>Free</p>"
+          }
+        },
+        "value_qxKzcM": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/57f322f8e8eac3dde254e572819cdebde8f6c223.png",
+            "label": "<p>Leaping <br/>Bunny <br/>Certified</p>"
+          }
+        },
+        "value_CimNQV": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/fa9855df9cf279da8d7d69fa41ba2dd2421f0cf4.png",
+            "label": "<p>Formaldehydes <br/>Free</p>"
+          }
+        }
+      },
+      "block_order": [
+        "value_QQNyBP",
+        "value_3m8Wc3",
+        "value_qpQHdQ",
+        "value_Tpa9aB",
+        "value_qxKzcM",
+        "value_CimNQV"
+      ],
+      "name": "LWYA Promise",
+      "settings": {
+        "heading": "The LWYA Promise",
+        "bg_color": "#d41870",
+        "bg_opacity": 5,
+        "heading_color": "#000000",
+        "padding_y": 70,
+        "padding_x": 115
+      }
+    },
+    "product_ingredients_e7QVcN": {
+      "type": "product-ingredients",
+      "name": "Product Ingredients",
+      "settings": {
+        "right_bg_color": "#FFFFFF",
+        "title_color": "#1c1c1c",
+        "question_text_color": "#888888",
+        "question_border_color": "#D8D8D8",
+        "padding_y": 70,
+        "content_px": 80
+      }
+    },
+    "ai_image_with_question_3qbXUg": {
+      "type": "AI-ImageWithQuestion",
+      "blocks": {
+        "title_XbnpYd": {
+          "type": "title",
+          "settings": {
+            "content": "I AM VIVACIOUS",
+            "margin_top": 0,
+            "margin_bottom": 10
+          }
+        },
+        "subtitle_hi64fN": {
+          "type": "subtitle",
+          "settings": {
+            "content": "The Essence of Joy — Bottled",
+            "margin_top": 0,
+            "margin_bottom": 38
+          }
+        },
+        "questions_WheJbr": {
+          "type": "questions",
+          "settings": {
+            "q1": "MESSAGE IN A BOTTLE",
+            "a1": "<p>I dance to the rhythm of my own heartbeat, embracing spontaneity, and live with a spirit filled with boundless enthusiasm<br/><br/></p>",
+            "q2": "FRAGRANCE NOTES",
+            "a2": "<p><strong>Olfactive Family</strong>: Citrus Herbal<br/><strong>Top Notes</strong>: Italian Bergamot, Pink Pomelo<br/><strong>Heart Notes</strong>: Violet, Green Tea<br/><strong>Base Notes</strong>: Tonka Beans, Driftwood, Skin Musk</p>",
+            "q3": "FULL INGREDIENT LIST",
+            "a3": "<p>Alcohol Denat., Water (Aqua/Eau), Fragrance (Parfum), Butyl Methoxydibenzoylmethane, Ethylhexyl Salicylate, Citral, Citronellol, Coumarin, Geraniol, Limonene, Linalool. </p>",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_XbnpYd",
+        "subtitle_hi64fN",
+        "questions_WheJbr"
+      ],
+      "disabled": true,
+      "name": "Image + FAQ right",
+      "settings": {
+        "left_image": "shopify://shop_images/Frame_6.png",
+        "right_bg_color": "#ffffff",
+        "title_color": "#c6c72e",
+        "subtitle_color": "#000000",
+        "question_text_color": "#888888",
+        "question_border_color": "#d8d8d8",
+        "padding_y": 20,
+        "content_px": 68
+      }
+    },
+    "ai_accordion_B6WKGm": {
+      "type": "AI-Accordion",
+      "blocks": {
+        "faq_item_7AifYg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq_question_1.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_1_description | metafield_tag }}</p>"
+          }
+        },
+        "faq_item_rfWMKt": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_2.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_2_description | metafield_tag }}</p>"
+          }
+        },
+        "faq_item_pdt3Q9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_3.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_3_description | metafield_tag }}</p>"
+          }
+        },
+        "faq_item_zrH9DD": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_4.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_4_description | metafield_tag }}</p>"
+          }
+        },
+        "faq_item_weVNq9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_5_.value }}",
+            "answer": "<p>Vivacity is bright, fresh, and full of life — created to feel radiant and confident.{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
+          }
+        },
+        "faq_item_icaza4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_6.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_6_description | metafield_tag }}</p>"
+          }
+        },
+        "faq_item_KnNw7P": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_7.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_7_description | metafield_tag }}</p>"
+          }
+        },
+        "faq_item_UhD9LU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.question_8.value }}",
+            "answer": "<p>{{ product.metafields.custom.question_8_description | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_7AifYg",
+        "faq_item_rfWMKt",
+        "faq_item_pdt3Q9",
+        "faq_item_zrH9DD",
+        "faq_item_weVNq9",
+        "faq_item_icaza4",
+        "faq_item_KnNw7P",
+        "faq_item_UhD9LU"
+      ],
+      "name": "FAQ - Accordion",
+      "settings": {
+        "heading": "FAQ",
+        "bg_color": "#d41870",
+        "bg_opacity": 5,
+        "title_color": "#000000",
+        "line_color": "#000000",
+        "dot_color": "#c02b2b",
+        "content_width": 720,
+        "spacing_title_to_list": 65,
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
+    "1763315119c7f557a7": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_nJjHGJ": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": true,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1440,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_nJjHGJ"
+      ],
+      "custom_css": [
+        ".container {max-width: 1440px;}"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    }
+  },
+  "order": [
+    "newmain_product_biVXTQ",
+    "main",
+    "faq_aNyGrD",
+    "ai_our_values_wfkjhy",
+    "product_ingredients_e7QVcN",
+    "ai_image_with_question_3qbXUg",
+    "ai_accordion_B6WKGm",
+    "1763315119c7f557a7"
+  ]
+}

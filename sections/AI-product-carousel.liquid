@@ -1,0 +1,174 @@
+{% schema %}
+{
+  "name": "Product Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Lashes"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size (Mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size (Desktop)",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "default": 56,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "label": "Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop",
+      "label": "Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 8,
+      "default": 80,
+      "unit": "px"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Product Carousel"
+    }
+  ]
+}
+{% endschema %}
+
+{%- assign carousel_images = product.metafields.custom.carousel_images.value -%}
+{%- assign total_images = 0 -%}
+{%- if carousel_images != blank -%}
+  {%- assign total_images = carousel_images.size -%}
+{%- endif -%}
+
+{% if total_images > 0 %}
+<section
+  class="lwya-product-carousel tw-w-full tw-py-[{{ section.settings.padding_mobile }}px] md:tw-py-[{{ section.settings.padding_desktop }}px]"
+  style="background-color: {{ section.settings.background_color }};">
+
+  {% if section.settings.title != blank %}
+    <h2
+      class="tw-text-[{{ section.settings.title_size_mobile }}px] md:tw-text-[{{ section.settings.title_size_desktop }}px] !tw-font-gotham-book tw-font-[400] tw-text-center tw-mb-[32px] md:tw-mb-[48px]"
+      style="color: {{ section.settings.title_color }};">
+      {{ section.settings.title }}
+    </h2>
+  {% endif %}
+
+  <div class="tw-relative tw-flex tw-items-center tw-gap-6 tw-px-[24px] tw-max-w-[1400px] tw-mx-auto">
+
+    <div class="lwya-pc-prev-{{ section.id }} tw-w-[31px] tw-h-[31px] tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-z-[3] hover:tw-opacity-80 tw-transition-all tw-opacity-0 tw-pointer-events-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+        <circle cx="15.5" cy="15.5" r="15.5" fill="#1a1a1a"/>
+        <path d="M18 10l-6 5.5 6 5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="swiper lwya-pc-swiper-{{ section.id }} tw-flex-1 tw-min-w-0">
+      <div class="swiper-wrapper">
+        {% for image in carousel_images %}
+          <div class="swiper-slide">
+            <a
+              href="{{ image | image_url: width: 2000 }}"
+              class="glightbox tw-block tw-w-full tw-aspect-square tw-overflow-hidden tw-bg-[#f6f6f6] tw-cursor-zoom-in">
+              <img
+                src="{{ image | image_url: width: 600 }}"
+                srcset="{{ image | image_url: width: 400 }} 400w,
+                        {{ image | image_url: width: 600 }} 600w,
+                        {{ image | image_url: width: 800 }} 800w"
+                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, 33vw"
+                alt="{{ section.settings.title | default: 'Product Carousel' }} {{ forloop.index }}"
+                class="tw-w-full tw-h-full tw-object-cover tw-transition-transform tw-duration-300 hover:tw-scale-105"
+                loading="lazy">
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="lwya-pc-next-{{ section.id }} tw-w-[31px] tw-h-[31px] tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-z-[3] hover:tw-opacity-80 tw-transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+        <circle cx="15.5" cy="15.5" r="15.5" fill="#1a1a1a"/>
+        <path d="M13 10l6 5.5-6 5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof Swiper === 'undefined') return;
+
+      const prevBtn = document.querySelector('.lwya-pc-prev-{{ section.id }}');
+      const nextBtn = document.querySelector('.lwya-pc-next-{{ section.id }}');
+
+      const swiper = new Swiper('.lwya-pc-swiper-{{ section.id }}', {
+        loop: false,
+        navigation: {
+          nextEl: '.lwya-pc-next-{{ section.id }}',
+          prevEl: '.lwya-pc-prev-{{ section.id }}',
+        },
+        breakpoints: {
+          0:    { slidesPerView: 1.3, spaceBetween: 12 },
+          480:  { slidesPerView: 2,   spaceBetween: 12 },
+          640:  { slidesPerView: 2.5, spaceBetween: 12 },
+          1024: { slidesPerView: 3,   spaceBetween: 16 }
+        },
+        on: {
+          init:           function() { updateArrows(this); },
+          slideChange:    function() { updateArrows(this); },
+          reachBeginning: function() { updateArrows(this); },
+          reachEnd:       function() { updateArrows(this); }
+        }
+      });
+
+      function updateArrows(s) {
+        if (prevBtn) {
+          prevBtn.classList.toggle('tw-opacity-0',           s.isBeginning);
+          prevBtn.classList.toggle('tw-pointer-events-none', s.isBeginning);
+          prevBtn.classList.toggle('tw-opacity-100',         !s.isBeginning);
+        }
+        if (nextBtn) {
+          nextBtn.classList.toggle('tw-opacity-0',           s.isEnd);
+          nextBtn.classList.toggle('tw-pointer-events-none', s.isEnd);
+          nextBtn.classList.toggle('tw-opacity-100',         !s.isEnd);
+        }
+      }
+    });
+  </script>
+
+</section>
+{% endif %}

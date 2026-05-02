@@ -1,0 +1,308 @@
+{% schema %}
+{
+  "name": "Tier Levels",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Tier Levels"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p><strong>Be You. Be Rewarded.</strong><br>Your loyalty shines through — and the more you love your skin, the more we love to spoil you.</p>"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#D41870"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 1000,
+      "max": 1600,
+      "step": 20,
+      "default": 1400
+    },
+    {
+      "type": "text",
+      "id": "btn_1_text",
+      "label": "Button 1 Text",
+      "default": "SIGN UP"
+    },
+    {
+      "type": "url",
+      "id": "btn_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "btn_2_text",
+      "label": "Button 2 Text",
+      "default": "LOG IN"
+    },
+    {
+      "type": "url",
+      "id": "btn_2_link",
+      "label": "Button 2 Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Tier Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tier_name",
+          "label": "Tier Name",
+          "default": "BFF"
+        },
+        {
+          "type": "text",
+          "id": "spend",
+          "label": "Spend Per Year",
+          "default": "Free to Join"
+        },
+        {
+          "type": "text",
+          "id": "rewards",
+          "label": "Rewards Theme",
+          "default": "Your journey starts here — earn rewards for simply showing up."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tier Levels",
+      "blocks": [
+        { "type": "tier" },
+        { "type": "tier" },
+        { "type": "tier" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="tier-levels" style="--accent: {{ section.settings.accent_color }}; --text: {{ section.settings.text_color }};">
+  <div class="tier-container" style="max-width: {{ section.settings.container_width }}px;">
+
+    <!-- Title -->
+    <h2 class="tier-title">
+      {{ section.settings.title }}
+    </h2>
+
+    <!-- Description -->
+    <div class="tier-description">
+  <span class="pink-highlight">
+    Be You. Be Rewarded.
+  </span>
+  <span>{{ section.settings.description | remove: 'Be You. Be Rewarded.' }}</span>
+</div>
+
+    <!-- Table Header -->
+<!-- Table -->
+<div class="tier-table">
+
+  <!-- Header -->
+  <div class="tier-row tier-header">
+    <div class="col col-1">Tier Name</div>
+    <div class="col col-2">Spend Per Year</div>
+    <div class="col col-3">Rewards Theme</div>
+  </div>
+
+  <div class="tier-divider thick"></div>
+
+  {% for block in section.blocks %}
+    <div class="tier-row" {{ block.shopify_attributes }}>
+      <div class="col col-1 tier-name">{{ block.settings.tier_name }}</div>
+      <div class="col col-2 tier-spend">{{ block.settings.spend }}</div>
+      <div class="col col-3 tier-rewards">{{ block.settings.rewards }}</div>
+    </div>
+
+    {% unless forloop.last %}
+      <div class="tier-divider thin"></div>
+    {% endunless %}
+  {% endfor %}
+
+  <div class="tier-divider thick"></div>
+</div>
+
+
+<!-- Buttons -->
+<div class="tier-buttons">
+  <a href="{{ section.settings.btn_1_link | default: '#' }}" class="tier-btn">
+    {{ section.settings.btn_1_text }}
+  </a>
+
+  <a href="{{ section.settings.btn_2_link | default: '#' }}" class="tier-btn">
+    {{ section.settings.btn_2_text }}
+  </a>
+</div>
+
+
+  </div>
+</section>
+
+<style>
+.tier-levels {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.tier-container {
+  margin: 0 auto;
+  color: #000000;
+}
+
+/* ---------------- TITLE ---------------- */
+
+.tier-title {
+  font-size: 45px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* ---------------- DESCRIPTION ---------------- */
+
+.tier-description {
+  font-size: 30px;
+  line-height: 40px;
+  max-width: 985px;
+  margin: 0 auto 60px;+
+}
+.pink-highlight {
+  color: #D41870;
+}
+/* ---------------- TABLE ---------------- */
+
+.tier-table {
+  max-width: 1104px;
+  margin: 0 auto 60px;
+}
+
+/* 3 PERFECTLY ALIGNED COLUMNS */
+.tier-row {
+  display: grid;
+  grid-template-columns: 25% 25% 50%;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.col {
+  padding: 0 10px;
+}
+
+/* HEADER */
+.tier-header {
+  font-size: 24px;
+  font-weight: 700;
+  color: #D41870;
+  text-align: center;
+}
+
+/* ALIGN CONTENT PROPERLY */
+.col-1 { text-align: left; }
+.col-2 { text-align: left; }
+.col-3 { text-align: left; }
+
+/* CONTENT STYLING */
+.tier-name {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.tier-spend {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.tier-rewards {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* BORDERS */
+.tier-divider.thick {
+  border-top: 2px solid #000;
+}
+
+.tier-divider.thin {
+  border-top: 1px solid #000;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.tier-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.tier-btn {
+  background: #D41870;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 16px 50px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 174px;
+  height: 56px;
+  transition: 0.3s ease;
+}
+
+.tier-btn:hover {
+  opacity: 0.85;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 1024px) {
+
+  .tier-title {
+    font-size: 34px;
+  }
+
+  .tier-description {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  .tier-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .tier-header {
+    display: none;
+  }
+
+  .col-1,
+  .col-2,
+  .col-3 {
+    text-align: center;
+  }
+
+  .tier-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+</style>

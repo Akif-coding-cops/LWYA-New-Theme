@@ -1,0 +1,26 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign key_features = current_variant.metafields.custom.variant_key_features
+  if key_features == blank
+    assign key_features = product.metafields.custom.key_features
+  endif
+-%}
+
+{%- if key_features != blank -%}
+  <div class="key-features tw-pt-[8px] tw-text-[20px] tw-leading-[20px] tw-text-[#000000]">
+    {{ key_features | metafield_tag }}
+  </div>
+{%- endif -%}
+
+<style>
+  .key_features {
+    font-family: 'Gotham';
+  }
+  .key-features li:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  .key-features li strong{
+    font-family: 'Gotham';
+    font-weight: 700 !important;
+  }
+</style>

@@ -1,0 +1,33 @@
+{% style %}
+  .bs-badge {
+    position: absolute;
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Gotham', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: -0.228px;
+    height: 31px;
+    min-width: 104px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  .bs-badge--top-left {
+    top: 14px;
+    left: 14px;
+  }
+  .bs-badge--top-right {
+    top: 14px;
+    right: 14px;
+  }
+{% endstyle %}
+
+{%- assign badge_pos = position | default: 'top-right' -%}
+{%- assign badge_bg_color = bg_color | default: '#000000' -%}
+{%- assign badge_text = text | default: 'BEST SELLER' -%}
+
+<div class="bs-badge bs-badge--{{ badge_pos }}" style="background: {{ badge_bg_color }};">{{ badge_text }}</div>

@@ -1,0 +1,711 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main_product2_CbnnjX": {
+      "type": "main-product2",
+      "blocks": {
+        "title_hVm7ki": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h6"
+          }
+        },
+        "upper_title_FtGLLK": {
+          "type": "Upper__title",
+          "disabled": true,
+          "settings": {
+            "main__title": "",
+            "main__title_padding": "20px 0 0 0",
+            "TExt__color": "#ff007b",
+            "background__color": "rgba(0,0,0,0)"
+          }
+        },
+        "upper_title_J8pTNX": {
+          "type": "Upper__title",
+          "settings": {
+            "main__title": "<p>HIGHLIGHTS</p>",
+            "main__title_padding": "",
+            "TExt__color": "#1c1d52",
+            "background__color": "rgba(0,0,0,0)"
+          }
+        },
+        "loox_reviews_loox_rating_qQfxt6": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "Highly Rated for: coverage, blending, smoothness",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "#1c1d52",
+            "starColor": "#1c1d52",
+            "showAllReviews": true,
+            "looxOpenFloatingWidget": true,
+            "emptyRatingWidget": true
+          }
+        },
+        "inventory_VPrm78": {
+          "type": "inventory",
+          "settings": {
+            "show_in_stock_quantity": false,
+            "font_family_inventory": true,
+            "low_inventory_threshold": 0,
+            "show_progress_bar": false,
+            "progress_bar_max_value": 50
+          }
+        },
+        "price_MK3zyd": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "buy_buttons_CyBt4w": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#1c1d52",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "payment_terms_ktHrtd": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "description_b3gxpT": {
+          "type": "description",
+          "settings": {
+            "collapse_content": true,
+            "show_below_gallery": false
+          }
+        },
+        "variant_picker_fQDPYK": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "accordion_pNHJUc": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "ingredients",
+            "content": "<p>Trimethylolpropane Triisostearate, Octyldodecanol, Synthetic Wax, Bis-Diglyceryl Polyacyladipate-2, Dimethicone, Cera Microcristallina (Microcrystalline Wax), Euphorbia Cerifera (Candelilla) Wax, Cetearyl Dimethicone Crosspolymer, Vp/Hexadecene Copolymer, Persea Gratissima (Avocado) Oil, Glycerin, Butyrospermum Parkii (Shea) Butter, Ceramide Np, Moringa Oleifera Seed Oil, Phytosphingosine, Limnanthes Alba (Meadowfoam) Seed Oil, Macadamia Integrifolia Seed Oil, Hydrogenated Lecithin, Butyrospermum Parkii (Shea) Butter, Sclerocarya Birrea Seed Oil, Phenoxyethanol, Ethylhexylglycerin, Tocopheryl Acetate, Niacinamide, Aluminum Hydroxide, Triethoxycaprylylsilane, Tocopherol. May Contain (+/-): Titanium Dioxide (Ci 77891), Iron Oxides (Ci 77491, Ci 77492, Ci 77499).</p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_ENjrAR": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "how to use",
+            "content": "<p>Erase complexion flaws and imperfection in one swipe with Love Who You Are Gone In A Swipe Center Core Concealer. Use it to cover a little, cover a lot, or as an essential part of your contouring routine.  </p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_gNbmqm": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "benefits",
+            "content": "<p>This rich, creamy buildable and blendable age-defying formula is color and skincare in one.  Gone In A Swipe glides on smoothly to cover and conceal dark spots, blemishes, and other imperfections under eyes and all over the face for a brighter and more youthful look.  The center core contains a proprietary blend of skincare actives to hydrate and nourish skin as it creates crease-resistant coverage like no other. Available now in 5 shades to match a diverse range of skin tones.  </p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "multicolums_block_r8tGtA": {
+          "type": "multicolums_block",
+          "settings": {
+            "multicolums_image1": "shopify://shop_images/Icon_dba574b4-99a6-4090-9a51-7b4f107da20f.svg",
+            "multicolumn_text": "<p>Free shipping on orders over $50</p>",
+            "multicoums_image_second": "shopify://shop_images/Icon.svg",
+            "multicolumn_text2": "<p><a href=\"#linked__id\" title=\"#linked__id\">Bundle & Save</a></p>",
+            "multicoums_image_third": "shopify://shop_images/undo.png",
+            "multicolumn_text_third": "<p>30 day money back guarantee</p>"
+          }
+        },
+        "icons_text_tV43BM": {
+          "type": "icons-text",
+          "settings": {
+            "block-text": "Formulated with Shea Butter",
+            "image-p": "shopify://shop_images/Frame_2087324915.png"
+          }
+        },
+        "icons_text_YEThrp": {
+          "type": "icons-text",
+          "settings": {
+            "block-text": "24 HR Coverage",
+            "image-p": "shopify://shop_images/Frame_2087324916.png"
+          }
+        },
+        "icons_text_hrNUVA": {
+          "type": "icons-text",
+          "settings": {
+            "block-text": "Buildable",
+            "image-p": "shopify://shop_images/Frame_2087324917.png"
+          }
+        },
+        "icons_text_Y4RXyA": {
+          "type": "icons-text",
+          "settings": {
+            "block-text": "Nourishing Center Core",
+            "image-p": "shopify://shop_images/Frame_2087324918.png"
+          }
+        },
+        "icons_text_yXCNDh": {
+          "type": "icons-text",
+          "settings": {
+            "block-text": "Hydrates Skin",
+            "image-p": "shopify://shop_images/Frame_2087324919.png"
+          }
+        }
+      },
+      "block_order": [
+        "title_hVm7ki",
+        "upper_title_FtGLLK",
+        "upper_title_J8pTNX",
+        "loox_reviews_loox_rating_qQfxt6",
+        "inventory_VPrm78",
+        "price_MK3zyd",
+        "buy_buttons_CyBt4w",
+        "payment_terms_ktHrtd",
+        "description_b3gxpT",
+        "variant_picker_fQDPYK",
+        "accordion_pNHJUc",
+        "accordion_ENjrAR",
+        "accordion_gNbmqm",
+        "multicolums_block_r8tGtA",
+        "icons_text_tV43BM",
+        "icons_text_YEThrp",
+        "icons_text_hrNUVA",
+        "icons_text_Y4RXyA",
+        "icons_text_yXCNDh"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "container_size": "lg",
+        "product_info_size": 45,
+        "show_sticky_add_to_cart": false,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "main_product2_HCgepN": {
+      "type": "main-product2",
+      "blocks": {
+        "title_dVQMLg": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "price_yy9XeF": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "variant_picker_7fiw4A": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "block_swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "buy_buttons_PzwUgU": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "title_dVQMLg",
+        "price_yy9XeF",
+        "variant_picker_7fiw4A",
+        "buy_buttons_PzwUgU"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "container_size": "lg",
+        "product_info_size": 35,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "1724846714a9763d58": {
+      "type": "apps",
+      "blocks": {
+        "reelup_shoppable_videos_reels_reelup_product_slider_DrmViy": {
+          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "reelup_shoppable_videos_reels_reelup_product_slider_DrmViy"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "video_card_afQCwp": {
+      "type": "video-card",
+      "blocks": {
+        "video_7yt647": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Flash Lash Demo_Hannah.mp4",
+            "text": "<p>WATCH</p>"
+          }
+        },
+        "video_7wEViz": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Flash Lash Demo_Hannah.mp4",
+            "text": "<p>WATCH</p>"
+          }
+        },
+        "video_3ERqCw": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Flash Lash Demo_Hannah.mp4",
+            "text": "<p>WATCH</p>"
+          }
+        },
+        "video_3PAJP9": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Flash Lash Demo_Hannah.mp4",
+            "text": "<p>WATCH</p>"
+          }
+        },
+        "video_Mj74Cp": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Flash Lash Demo_Hannah.mp4",
+            "text": "<p>WATCH</p>"
+          }
+        }
+      },
+      "block_order": [
+        "video_7yt647",
+        "video_7wEViz",
+        "video_3ERqCw",
+        "video_3PAJP9",
+        "video_Mj74Cp"
+      ],
+      "disabled": true,
+      "settings": {
+        "vidwo__card__title": "",
+        "font-color": "#ffffff",
+        "bg-color": "#f6f6f6",
+        "font-size": 16,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "before_after": 55
+      }
+    },
+    "related_product2nd_MTpmxi": {
+      "type": "related-product2nd",
+      "settings": {
+        "link_id": "linked__id",
+        "color_scheme": "scheme-98632136-f0d5-47d2-8a66-6efffcb2dc29",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "FREQUENTLY BOUGHT TOGETHER",
+        "content": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "disabled": true,
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "block_swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "disabled": true,
+          "settings": {}
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "settings": {
+            "title": "Pairs well with",
+            "products_count": 2,
+            "show_below_gallery": true,
+            "stack_products": false,
+            "show_quick_buy": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": true
+          }
+        },
+        "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq": {
+          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "separator",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "payment_terms",
+        "complementary_products",
+        "description",
+        "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-a84d5221-7c7d-4719-b7c8-39b62af7c514",
+        "container_size": "lg",
+        "product_info_size": 50,
+        "show_sticky_add_to_cart": false,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "desktop_media_grid_gap": 0,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    },
+    "1717260890abe57d94": {
+      "type": "apps",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "text_with_image_7kcWgU": {
+      "type": "text-with-image",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "maufactured_image_text": "shopify://shop_images/Rectangle_324.png",
+        "manufactured_inline_text": "<h2>beauty products that are good for your skin</h2><p>Loving who you are is about taking care of yourself, and that’s why our products include good-for-you elements, like nourishing hydration and moisturizing that you won’t find in any other concealer. We also source only the highest-quality ingredients, because your skin deserves nothing less.<br/></p><h2>manufactured for the highest quality</h2><p>Love Who You Are beauty products are designed to bring out your natural beauty, no matter your age. That’s why we’re so particular about what we put into our products—and it’s why you get the best look, every time, without creasing, flaking, or fading. </p><h2>lab tested for safety<br/></h2><p>Your safety is our priority. That’s why each of our Love Who You Are beauty products is tested by a third-party lab and we NEVER test on animals.</p>",
+        "txtbg": "#f6f6f6",
+        "txtColor": "#1c1d52"
+      }
+    },
+    "custom_video_section_AGkJni": {
+      "type": "custom-video-section",
+      "disabled": true,
+      "settings": {
+        "video": "shopify://files/videos/FlahsLash_Rosa(1)_1bd698ce-0c92-4afd-accd-caa56cf77651.mp4",
+        "mobile_video": "shopify://files/videos/Beauty Header_v2 (1).mp4",
+        "external_video_url": "",
+        "autoplay": true,
+        "show_controls": false,
+        "video_size": "md",
+        "title__video": "<h2>TRUSTED BY<br/>THOUSANDS OF<br/>WOMEN</h2>"
+      }
+    },
+    "featured_text_pEBz9q": {
+      "type": "Featured-text",
+      "settings": {
+        "line": "Yes, we’re striving for perfection!",
+        "image_text": "shopify://shop_images/Frame_2087324888.png",
+        "line3": "",
+        "line2": "This is your go-to daily concealer. Gone in a Swipe Center Core Concealer does it all. It’s magic for all ages, but it’s especially good for mature skin. Even without color correction, you’re going to be amazed at how well it covers and matches your skin. It’s truly revolutionary."
+      }
+    },
+    "image_width_button_metafield_MfWW9i": {
+      "type": "image-width-button-metafield",
+      "settings": {}
+    },
+    "text_with_video_jNqAxX": {
+      "type": "text-with-video",
+      "blocks": {
+        "add_video_qMmxy8": {
+          "type": "add-video",
+          "settings": {
+            "new_video": "shopify://files/videos/CoilRing_Square.mp4"
+          }
+        },
+        "add_video_gmxzQR": {
+          "type": "add-video",
+          "settings": {
+            "new_video": "shopify://files/videos/CoilRing_Square.mp4"
+          }
+        },
+        "add_video_cTxRUV": {
+          "type": "add-video",
+          "settings": {
+            "new_video": "shopify://files/videos/CoilRing_Square.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "add_video_qMmxy8",
+        "add_video_gmxzQR",
+        "add_video_cTxRUV"
+      ],
+      "settings": {
+        "main_text": "Conceal & Illuminate Mastery",
+        "new_text": "<p>Learn the art of camouflaging imperfections and brightening up your complexion with expert techniques and tips. Discover how to seamlessly blend concealers, color correct, and highlight to create a flawless canvas for your makeup looks. </p>",
+        "new_color": "#1c1d52",
+        "new_colorrr": "#f6f6f6",
+        "container_lager": false,
+        "autoplay": true,
+        "show_controls": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "rich_text_3x468D": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Mhe8Wd": {
+          "type": "heading",
+          "settings": {
+            "text": "Reviews",
+            "heading_tag": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Mhe8Wd"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "content_width": "lg",
+        "text_position": "center",
+        "remove_vertical_spacing": true
+      }
+    },
+    "17220567748b05d25e": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_gallery_carousel_section_ckrmXq": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-gallery-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "maxWidth": 1100,
+            "borderRadius": 12,
+            "itemsPerView": 5,
+            "mobileItemsPerView": 1,
+            "imageRatio": "1.25",
+            "reviewerNameColor": "#ffffff",
+            "starsColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "none",
+            "border_active": false,
+            "border_width": 2,
+            "border_color": "#000000",
+            "productIds": ""
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_gallery_carousel_section_ckrmXq"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "faq_MWCmbp": {
+      "type": "faq",
+      "blocks": {
+        "question_RyD8yE": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>How do I pick my shade?</strong>",
+            "answer": "<p>For under the eyes, it's very common to want to brighten this area as much as possible.  So it's common to select a shade or 2 lighter. Be mindful of what foundation color you're wearing as this is how you base how light to go with concealer, typically 1/2 shades lighter is enough. If in the instance, you have a fresh colour or lots of tan, be mindful not to have your concealer too much brighter or else it will look too obvious.</p><p>For all over conceal and cover, we would suggest selecting a shade that matches your foundation so that it seamlessly blends and totally camouflages.  Luckily, Gone In A Swipe Center Core Concealer's creamy texture and finely milled pigments are extremely blendable to match a diverse variety of foundation shades, especially when paired with our Gone In A Swipe Center Core Foundation.</p>"
+          }
+        },
+        "question_kQ9XwX": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>Should I put concealer on before or after foundation?</strong>",
+            "answer": "<p>This is usually a personal preference so we suggest sticking to what you’re used to. However, when it comes to the delicate area under the eyes, our biggest advice is to avoid putting both in that area since it doesn't need that double layer! We suggest applying your foundation up to the cheekbone and concealer under the eyes and let the two meet. <br/></p>"
+          }
+        },
+        "question_inretD": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>Should I not apply concealer under my eyes over foundation?</strong>",
+            "answer": "<p>The skin under your eyes is thin and delicate enough so we would always suggest to only apply your concealer here. We know this can be really hard not to do if you're in a habit of always putting foundation on top but it could end up only clogging up that area and potentially giving you lines in places you don't want them. Resist Girl Resist!  Apply your foundation up to the tip of the cheekbone and then your concealer under the eyes - the two will meet and should blend nicely without there being a double layer of either.</p>"
+          }
+        },
+        "question_xx6kNx": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>How do I stop my concealer from creasing?</strong>",
+            "answer": "<p>Some common ways that can cause your concealer to crease would be applying too much - if you have loads of concealer on it has nowhere to go and so ends up gathering which we don't want. This will only highlight fine lines or even worse create lines that aren't meant to be there!<br/><br/>It can also help to be mindful that it's well blended in - using the heat of your hand to tap and pat after your brush or sponge has blended or ensuring you use a correct size brush or sponge for that area can really help for a seamless finish. Our Gone In A Swipe Pro Concealer Sponge is the perfect tool to make sure to get a seamless blend to your concealer.<br/><br/>It's only natural as our skin gets older to have a few lines that can grab hold of the product but actual creasing can also be avoided with a little powder on top sometimes. If you know your under eye is quite oily, a small layer of a translucent powder on top of your concealer as you finish your makeup can go a long way.</p>"
+          }
+        },
+        "question_4bReDn": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>Should I apply my concealer with a brush or my finger or a sponge?</strong>",
+            "answer": "<p>We always say you do you! Apply whatever way feels natural to you.  Our preference would be the Gone In A Swipe Concealer Sponge - it's unique dual-ended shape allows it to blend product seamlessly in the tiniest corners of eyes as well as cover spot areas to a perfect finish.  The main thing to watch out for would be that it's well blended and not too much product applied regardless of what way it goes on </p>"
+          }
+        },
+        "question_aPy4fM": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>I have mature skin.  What is your advice on applying concealer?</strong>",
+            "answer": "<p>Although lots of people feel mature skin needs to be catered for very differently, the same rules actually apply when using concealer.  The main thing - Don't over do with the concealer.  Mature skin is finer so less is more (like with everything in makeup!) and again make sure that you don't go too light or bright under the eyes.  The same rules apply for  all ages.</p>"
+          }
+        },
+        "question_y6DzDd": {
+          "type": "question",
+          "disabled": true,
+          "settings": {
+            "question": "<strong>Q: Can I buy LWYA anywhere else?</strong>",
+            "answer": "<p>You can contact us through our contact page! We will be happy to assist you.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_RyD8yE",
+        "question_kQ9XwX",
+        "question_inretD",
+        "question_xx6kNx",
+        "question_4bReDn",
+        "question_aPy4fM",
+        "question_y6DzDd"
+      ],
+      "settings": {
+        "color_scheme": "scheme-98632136-f0d5-47d2-8a66-6efffcb2dc29",
+        "separate_section_with_border": false,
+        "container_lager": false,
+        "show_categories": false,
+        "subheading": "",
+        "title": "frequently asked questions",
+        "heading_color": "#1c1d52",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "main_product2_CbnnjX",
+    "main_product2_HCgepN",
+    "1724846714a9763d58",
+    "video_card_afQCwp",
+    "related_product2nd_MTpmxi",
+    "main",
+    "1717260890abe57d94",
+    "text_with_image_7kcWgU",
+    "custom_video_section_AGkJni",
+    "featured_text_pEBz9q",
+    "image_width_button_metafield_MfWW9i",
+    "text_with_video_jNqAxX",
+    "rich_text_3x468D",
+    "17220567748b05d25e",
+    "faq_MWCmbp"
+  ]
+}

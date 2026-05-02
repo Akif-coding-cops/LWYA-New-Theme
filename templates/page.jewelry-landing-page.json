@@ -1,0 +1,306 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": false,
+        "page_width": "sm"
+      }
+    },
+    "menu_links_WanpcW": {
+      "type": "menu-links",
+      "blocks": {
+        "links_gQBWci": {
+          "type": "links",
+          "settings": {
+            "button__text": "all",
+            "button_link": "#"
+          }
+        },
+        "links_pYVRUE": {
+          "type": "links",
+          "settings": {
+            "button__text": "necklace",
+            "button_link": "#"
+          }
+        },
+        "links_BEQNxR": {
+          "type": "links",
+          "settings": {
+            "button__text": "ring",
+            "button_link": "#"
+          }
+        },
+        "links_MUU7jK": {
+          "type": "links",
+          "settings": {
+            "button__text": "earrings",
+            "button_link": "#"
+          }
+        },
+        "links_PTUNEE": {
+          "type": "links",
+          "settings": {
+            "button__text": "cuffs",
+            "button_link": "#"
+          }
+        },
+        "links_DePzhK": {
+          "type": "links",
+          "settings": {
+            "button__text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "links_gQBWci",
+        "links_pYVRUE",
+        "links_BEQNxR",
+        "links_MUU7jK",
+        "links_PTUNEE",
+        "links_DePzhK"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "video_with_text_button_H8Qb7H": {
+      "type": "video-with-text-button",
+      "blocks": {
+        "heading_HjVD8H": {
+          "type": "heading",
+          "settings": {
+            "text": "Dare to shine"
+          }
+        },
+        "paragraph_fEHUGE": {
+          "type": "paragraph",
+          "settings": {
+            "text": "love who you are"
+          }
+        }
+      },
+      "block_order": [
+        "heading_HjVD8H",
+        "paragraph_fEHUGE"
+      ],
+      "settings": {
+        "video": "shopify://files/videos/jewelry_Final_2_d4741dcf-cd2b-4e02-8e69-3e473aa5edbb.mp4",
+        "autoplay": true
+      }
+    },
+    "video_with_text_button_pX9XMF": {
+      "type": "video-with-text-button",
+      "disabled": true,
+      "name": "Video Section",
+      "settings": {
+        "video": "shopify://files/videos/LWYA_Jewelry_MothersDay_Banner_1.mp4",
+        "autoplay": false
+      }
+    },
+    "center_image_with_text_TxzzdX": {
+      "type": "center-image-with-text",
+      "blocks": {
+        "images_block_kaeeB6": {
+          "type": "images_block",
+          "settings": {
+            "images__center": "shopify://shop_images/image_6.png",
+            "Image_Position": "right",
+            "Dare_to_shine_text": "",
+            "manufactured_inline_bottom_text": ""
+          }
+        },
+        "images_block_NM3dH9": {
+          "type": "images_block",
+          "settings": {
+            "images__center": "shopify://shop_images/Frame_85.png",
+            "Image_Position": "right",
+            "Dare_to_shine_text": "",
+            "manufactured_inline_bottom_text": ""
+          }
+        },
+        "images_block_N7pbAe": {
+          "type": "images_block",
+          "settings": {
+            "images__center": "shopify://shop_images/image_9.png",
+            "Image_Position": "right",
+            "Dare_to_shine_text": "",
+            "manufactured_inline_bottom_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "images_block_kaeeB6",
+        "images_block_NM3dH9",
+        "images_block_N7pbAe"
+      ],
+      "disabled": true,
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "featured_collections_NtKAaq": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_tdPxLF": {
+          "type": "collection",
+          "settings": {
+            "collection": "jewelry",
+            "products_count": 6,
+            "title": "our collection",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_tdPxLF"
+      ],
+      "settings": {
+        "color_scheme": "scheme-98632136-f0d5-47d2-8a66-6efffcb2dc29",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "button__explore_label": "explore",
+        "button_explore_link": "shopify://collections/jewelry"
+      }
+    },
+    "text_with_image_G4yMwy": {
+      "type": "text-with-image",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "maufactured_image_text": "shopify://shop_images/4.png",
+        "manufactured_inline_text": "<h1>Wear Your Power, Own Your Shine.</h1>",
+        "txtbg": "#1c1d52",
+        "txtColor": "#ffffff"
+      }
+    },
+    "1744302473abba20bd": {
+      "type": "apps",
+      "blocks": {
+        "reelup_shoppable_videos_reels_reelup_playlist_jfEDpM": {
+          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_playlist/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "settings": {
+            "playlist_id": "rl_pl_15577"
+          }
+        }
+      },
+      "block_order": [
+        "reelup_shoppable_videos_reels_reelup_playlist_jfEDpM"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "image_with_qoute_mQhEgf": {
+      "type": "image-with-qoute",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "maufactured_image_text": "shopify://shop_images/Frame_77_3.png",
+        "Image_Position": "left",
+        "manufactured_inline_text": "<p>“</p>",
+        "manufactured_inline_text_2nd": "Our brand’s mission is all about spreading some love, joy, and a whole lot of fabulous experiences to women like you. We’re here to throw a big, sparkling celebration in honor of the incredible beauty, unshakable strength, and undeniable resilience that defines women everywhere.",
+        "manufactured_inline_text_3rd": "Xoxo, Kim"
+      }
+    },
+    "video_card_MmBVgQ": {
+      "type": "video-card",
+      "blocks": {
+        "video_crbeTD": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Star Necklace Hannah Allysin.mp4",
+            "text": ""
+          }
+        },
+        "video_3FUj3g": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/StarNecklace_Square.mp4",
+            "text": ""
+          }
+        },
+        "video_deKgeP": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Coil Ring bracelet Allisyn.mov",
+            "text": ""
+          }
+        },
+        "video_dPK3kN": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/H - Ear ring_4_1.mp4",
+            "text": ""
+          }
+        },
+        "video_fqPVtY": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/StarNecklace_Square.mp4",
+            "text": ""
+          }
+        },
+        "video_AaajQF": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/StarNecklace_Square.mp4",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_crbeTD",
+        "video_3FUj3g",
+        "video_deKgeP",
+        "video_dPK3kN",
+        "video_fqPVtY",
+        "video_AaajQF"
+      ],
+      "disabled": true,
+      "settings": {
+        "vidwo__card__title": "love who you are",
+        "font-color": "#ffffff",
+        "bg-color": "#f3f3f3",
+        "font-size": 16,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "before_after": 10
+      }
+    }
+  },
+  "order": [
+    "main",
+    "menu_links_WanpcW",
+    "video_with_text_button_H8Qb7H",
+    "video_with_text_button_pX9XMF",
+    "center_image_with_text_TxzzdX",
+    "featured_collections_NtKAaq",
+    "text_with_image_G4yMwy",
+    "1744302473abba20bd",
+    "image_with_qoute_mQhEgf",
+    "video_card_MmBVgQ"
+  ]
+}

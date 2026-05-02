@@ -1,0 +1,226 @@
+<style>
+   .custom_text_container  {
+       padding-top:40px;
+     }
+ 
+   @media screen and (min-width:750px){
+    /* .product_image_picker-3 .svg_image_icon:after, .product_image_picker-1 .svg_image_icon:after {
+    content: '';
+    border-bottom: 1px solid #1C1D52;
+    position: absolute;
+    
+    top: 70%;
+    left: 47%;
+}
+     .product_image_picker-3 .svg_image_icon:after {
+       width: 400px;
+     }
+     .product_image_picker-1 .svg_image_icon:after {
+       width:300px;
+     }
+    .product_image_picker-2 .svg_image_icon:after {
+    content: '';
+    border-bottom: 1px solid #1C1D52;
+    position: absolute;
+    width: 350px;
+    top: 70%;
+    right: 60%;
+}
+     .product_image_picker-1{
+      position: absolute;
+    left: 25%;
+    top: 15%;
+  }
+  .product_image_picker-2 {
+    position: absolute;
+    right: 20%;
+    top: 30%;
+}
+  .product_image_picker-3 {
+    position: absolute;
+    left:15%;
+    top: 40%;
+}
+      .product_image_picker-1 .svg_image_icon {
+    width: 31px;
+   height: 31px;
+  }
+  .product_image_picker-2 .svg_image_icon {
+    width: 47px;
+   height: 47px;
+  }
+  .product_image_picker-3 .svg_image_icon {
+    width: 83px;
+   height: 83px;
+  } */
+     .related_product_heading {
+      font-size: 64px;
+      line-height: normal;
+      text-transform: uppercase;
+       letter-spacing:normal;
+     }
+    .inner_title {
+        font-size: 64px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+     .inner_content {
+        max-width: 25rem;
+       font-size:16px;
+        margin: auto;
+        line-height: normal;
+    }
+     .stars_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+   .custom_icon {
+    display: flex;
+    gap: 5px;
+    max-width: 25rem;
+    margin: auto;
+    align-items: center;
+    line-height: normal;
+    padding-bottom: 1%;
+}
+    
+     .stars_image {
+    width: 30%;
+    height: fit-content;
+}
+}
+  @media screen and (max-width:749px){
+    /* .product_image_picker-3 .svg_image_icon:after, .product_image_picker-1 .svg_image_icon:after {
+    content: '';
+    border-bottom: 1px solid #1C1D52;
+    position: absolute;
+    width: 130px;
+    top: 70%;
+    left: 25%;
+}
+    .product_image_picker-2 .svg_image_icon:after {
+    content: '';
+    border-bottom: 1px solid #1C1D52;
+    position: absolute;
+    width: 100px;
+    top: 70%;
+    right: 80%;
+}
+    .product_image_picker-1{
+      position: absolute;
+    left: 10%;
+    top: 15%;
+  }
+  .product_image_picker-2 {
+    position: absolute;
+    right: 2%;
+    top: 25%;
+}
+  .product_image_picker-3 {
+    position: absolute;
+    left:2%;
+    top: 30%;
+}
+     .product_image_picker-1 .svg_image_icon {
+    width: 10px;
+   height: 10px;
+  }
+  .product_image_picker-2 .svg_image_icon {
+    width: 16px;
+   height: 16px;
+  }
+  .product_image_picker-3 .svg_image_icon {
+    width: 26px;
+   height: 26px;
+  } */
+    .text_heading {
+    text-align: center;
+    font-size: 14px;
+    padding: 0 10px 10px;
+}
+    .product-title_2nd {
+      font-size:24px;
+      letter-spacing:normal;
+    }
+   .inner_title {
+    text-align: left;
+    font-size: 32px;
+    line-height: normal;
+}
+    .stars_image {
+    width: 50%;
+    height: auto;
+}
+    .stars_image img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+    .custom_icon {
+    display: flex;
+    gap: 5px;
+      padding:10px 0;
+}
+   .inner_content {
+    max-width: 100%;
+     font-size: 16px;
+    line-height: normal;
+}
+     .related_product_heading {
+      font-size: 32px;
+       letter-spacing:normal;
+     }
+  }
+</style>
+<div class="custom_text_container container">
+  <div class="background__meta">
+        <div class="inner_title globalClassInria_Sans"> {{ section.settings.line }} </div>
+  {% if section.settings.image_text !=blank %}
+    <div class="custom_icon">
+            <div class="stars_image"> 
+              {{
+                section.settings.image_text
+                | image_url: width: 1500
+                | image_tag
+              }} 
+            </div>
+         <div class="simple_text inria-sans-regular_global"> {{ section.settings.line3 }} </div>
+  </div>
+    {% endif %}
+       <div class="inner_content inria-sans-regular_global">  {{ section.settings.line2 }} </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Featured text",
+    "settings": [
+              {
+          "type": "inline_richtext",
+          "id": "line",
+          "label": "Heading"
+        },
+         {
+            "type": "image_picker",
+            "id": "image_text",
+            "label": "Select image"
+          },
+         {
+            "type": "inline_richtext",
+            "id": "line3",
+            "label": "Description"
+          },
+          {
+          "type": "inline_richtext",
+          "id": "line2",
+          "label": "Description"
+        },
+   
+    ],
+  "presets": [
+    {
+      "name": "Featured text"
+    }
+  ]
+  }
+  {% endschema %}

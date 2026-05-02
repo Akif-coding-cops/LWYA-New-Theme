@@ -1,0 +1,289 @@
+{% comment %}
+  Reusable LWYA product card — used on Bundle & Save and Sale pages
+  Props:
+    - product      : Shopify product object (required)
+    - sec_settings : section.settings object (optional) — font/color overrides
+    - show_badge   : pass false to force-hide the discount badge (default: auto — shows when on sale)
+{% endcomment %}
+
+{% style %}
+  .bsc-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .bsc-card__img-wrap {
+    display: block;
+    overflow: hidden;
+    position: relative;
+  }
+  .bsc-card__img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+  .bsc-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 16px;
+  }
+  .bsc-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bsc-card__title {
+    font-family: 'Gotham_Bold', sans-serif;
+    line-height: 1.3;
+    text-decoration: none;
+    display: block;
+    margin-top: 4px;
+  }
+  .bsc-card__subtitle {
+    font-family: 'Gotham', sans-serif;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  .bsc-card__price {
+    font-family: 'Gotham_Bold', sans-serif;
+    margin-top: 8px;
+  }
+  .bsc-card__compare-price {
+    font-size: 16px;
+    color: #9b9b9b;
+    margin-left: 6px;
+  }
+  .bsc-card__swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 6px;
+  }
+  .bsc-card__swatch {
+    display: block;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    border: 1.5px solid transparent;
+    text-decoration: none;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+  .bsc-card__swatch:hover {
+    border-color: #d41870;
+  }
+  .bsc-card__swatch--sold-out {
+    opacity: 0.4;
+  }
+{% endstyle %}
+
+{%- liquid
+  assign s = sec_settings | default: ''
+
+  assign title_size = s.product_title_size | default: 19
+  assign title_weight = s.product_title_weight | default: '700'
+  assign title_color = s.product_title_color | default: '#000000'
+
+  assign price_size = s.product_price_size | default: 19
+  assign price_weight = s.product_price_weight | default: '700'
+  assign price_color = s.product_price_color | default: '#00000080'
+
+  assign star_size = s.product_star_size | default: 18
+  assign star_color = s.product_star_color | default: '#000000'
+  assign rating_size = s.product_rating_size | default: 19
+  assign rating_color = s.product_rating_color | default: '#00000080'
+
+  assign first_variant = product.selected_or_first_available_variant
+
+  assign variant_subtitle = ''
+  unless product.has_only_default_variant
+    unless first_variant.title == 'Default Title'
+      assign variant_subtitle = first_variant.title
+    endunless
+  endunless
+
+  assign variant_price = first_variant.price
+  assign variant_compare_at_price = first_variant.compare_at_price | default: 0
+  assign on_sale = false
+  if variant_compare_at_price > variant_price and variant_compare_at_price > 0
+    assign on_sale = true
+  endif
+
+  assign discount_pct = 0
+  if on_sale
+    assign diff = variant_compare_at_price | minus: variant_price
+    assign discount_pct = diff | times: 100.0 | divided_by: variant_compare_at_price | round
+  endif
+
+  assign display_badge = on_sale
+  if show_badge == false
+    assign display_badge = false
+  endif
+
+  assign badge = product.metafields.custom.product_badge.value
+
+  assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
+  assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />'
+-%}
+
+<div class="bsc-card">
+  <a href="{{ product.url }}" class="bsc-card__img-wrap">
+    <img
+      src="{{ product.featured_image | image_url: width: 700 }}"
+      alt="{{ product.title | escape }}"
+      width="700"
+      height="700"
+      loading="lazy"
+      class="bsc-card__img"
+    >
+    {% if badge != blank %}
+      {% render 'badge', position: 'top-right', text: badge.text, bg_color: badge.background_color %}
+    {% endif %}
+  </a>
+
+  <div class="bsc-card__info">
+    <div
+      class="bsc-card__rating"
+      style="--bsc-star-size: {{ star_size }}px; --bsc-star-color: {{ star_color }}; --bsc-rating-size: {{ rating_size }}px; --bsc-rating-color: {{ rating_color }};"
+    >
+      <div
+        class="loox-rating bsc-card__stars"
+        data-id="{{ product.id }}"
+        data-rating="{{ product.metafields.loox.avg_rating }}"
+        data-raters="{{ product.metafields.loox.num_reviews }}"
+      ></div>
+    </div>
+
+    <a
+      href="{{ product.url }}"
+      class="bsc-card__title"
+      style="font-size: {{ title_size }}px; font-weight: {{ title_weight }}; color: {{ title_color }};"
+    >
+      {{ product.title }}
+    </a>
+
+    {% if variant_subtitle != '' %}
+      <div
+        class="bsc-card__subtitle"
+        style="font-size: {{ title_size }}px; color: {{ title_color }};"
+      >
+        {{ variant_subtitle }}
+      </div>
+    {% endif %}
+
+    {%- comment -%} Color swatches — mirrors newpdp-variants.liquid logic {%- endcomment -%}
+    {% unless product.has_only_default_variant %}
+      {% for option in product.options_with_values %}
+        {%- assign option_downcase = option.name | downcase -%}
+        {%- assign is_color = false -%}
+        {% for color_label in color_label_list %}
+          {% if option_downcase == color_label %}
+            {%- assign is_color = true -%}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% if is_color %}
+          {%- capture swatches_html -%}
+            {%- for value in option.values -%}
+              {%- assign downcase_value = value | downcase | strip -%}
+
+              {%- assign value_variant   = null -%}
+              {%- assign value_available = false -%}
+              {%- assign value_disabled  = false -%}
+              {%- assign has_available_variant = false -%}
+              {%- assign option_index = option.position | minus: 1 -%}
+
+              {%- for variant in product.variants -%}
+                {%- if variant.options[option_index] == value -%}
+                  {%- if value_variant == null -%}
+                    {%- assign value_variant   = variant -%}
+                    {%- assign value_available = variant.available -%}
+                    {%- if variant.metafields.custom.disable_variant != blank -%}
+                      {%- assign vd_raw = variant.metafields.custom.disable_variant -%}
+                      {%- assign vd_str = vd_raw | downcase | strip -%}
+                      {%- if vd_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
+                        {%- assign value_disabled = true -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                  {%- assign check_disabled = false -%}
+                  {%- if variant.metafields.custom.disable_variant != blank -%}
+                    {%- assign vd_raw = variant.metafields.custom.disable_variant -%}
+                    {%- assign vd_str = vd_raw | downcase | strip -%}
+                    {%- if vd_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
+                      {%- assign check_disabled = true -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                  {%- unless variant.available == false or check_disabled -%}
+                    {%- assign has_available_variant = true -%}
+                  {%- endunless -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              {%- assign h_raw = value_variant.metafields.custom.hidden -%}
+              {%- assign h_str = h_raw | downcase | strip -%}
+              {%- if h_raw == true or h_str == 'true' or h_str == '1' or h_str == 'yes' -%}{%- continue -%}{%- endif -%}
+
+              {%- if has_available_variant == false -%}
+                {%- assign value_disabled = true -%}
+              {%- endif -%}
+
+              {%- assign is_sold_out = false -%}
+              {%- if value_available == false or value_disabled -%}
+                {%- assign is_sold_out = true -%}
+              {%- endif -%}
+
+              {%- assign swatch_value     = '' -%}
+              {%- assign has_swatch_color = false -%}
+
+              {%- assign color_code = value_variant.metafields.custom.color_code -%}
+              {%- if color_code != blank -%}
+                {%- assign swatch_value     = color_code -%}
+                {%- assign has_swatch_color = true -%}
+              {%- else -%}
+                {%- for swatch_item in swatch_config -%}
+                  {%- assign swatch_parts = swatch_item | split: ':' -%}
+                  {%- assign swatch_name  = swatch_parts.first | downcase | strip -%}
+                  {%- if downcase_value == swatch_name -%}
+                    {%- assign swatch_val = swatch_parts.last | strip -%}
+                    {%- if swatch_val contains '#' or swatch_val contains 'linear-gradient(' -%}
+                      {%- assign swatch_value = swatch_val -%}
+                    {%- elsif images[swatch_val] != blank -%}
+                      {%- assign swatch_img_url = images[swatch_val] | image_url: width: 72 -%}
+                      {%- assign swatch_value = 'url(' | append: swatch_img_url | append: ')' -%}
+                    {%- else -%}
+                      {%- assign swatch_value = swatch_val -%}
+                    {%- endif -%}
+                    {%- assign has_swatch_color = true -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+
+              {%- if has_swatch_color -%}<a href="{{ product.url }}?variant={{ value_variant.id }}" class="bsc-card__swatch{% if is_sold_out %} bsc-card__swatch--sold-out{% endif %}" title="{% if is_sold_out %}{{ value | escape }} - Sold Out{% else %}{{ value | escape }}{% endif %}" style="background: {{ swatch_value }};"></a>{%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- unless swatches_html == blank -%}
+            <div class="bsc-card__swatches">{{ swatches_html }}</div>
+          {%- endunless -%}
+        {% endif %}
+      {% endfor %}
+    {% endunless %}
+
+    <div
+      class="bsc-card__price"
+      style="font-size: {{ price_size }}px; font-weight: {{ price_weight }}; color: {{ price_color }};"
+    >
+      {% if variant_price == 0 %}
+        Free
+      {% else %}
+        {{ variant_price | money }}
+        {% if on_sale %}
+          <s class="bsc-card__compare-price">{{ variant_compare_at_price | money }}</s>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>

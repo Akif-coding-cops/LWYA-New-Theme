@@ -1,0 +1,540 @@
+{% schema %}
+{
+  "name": "12 Days of Christmas",
+  "tag": "section",
+  "class": "twelve-days-christmas",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "12 Days. Endless Ways to Shine."
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "DAILY SURPRISES, EXCLUSIVE SAVINGS, AND A WHOLE LOT OF LOVE."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#D41870"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Padding top/bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "day_product",
+      "name": "Day Product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "day_label",
+          "label": "Day Label",
+          "default": "DAY 1",
+          "info": "e.g., DAY 1, DAY 2, etc."
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Image (before countdown ends)",
+          "info": "This image shows while countdown is active"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product (revealed after countdown)"
+        },
+        {
+          "type": "text",
+          "id": "countdown_date",
+          "label": "Countdown End Date/Time",
+          "default": "2025-12-25 00:00:00",
+          "info": "Format: YYYY-MM-DD HH:MM:SS (e.g., 2025-12-25 23:59:59)"
+        },
+        {
+          "type": "select",
+          "id": "price_during_countdown",
+          "label": "Price display during countdown",
+          "options": [
+            {
+              "value": "show_price",
+              "label": "Show actual price"
+            },
+            {
+              "value": "show_placeholder",
+              "label": "Show $XX placeholder"
+            },
+            {
+              "value": "hide_price",
+              "label": "Hide price completely"
+            }
+          ],
+          "default": "show_placeholder",
+          "info": "Choose how to display price while countdown is active"
+        },
+        {
+          "type": "select",
+          "id": "after_countdown",
+          "label": "After countdown ends",
+          "options": [
+            {
+              "value": "show_text",
+              "label": "Show custom text"
+            },
+            {
+              "value": "hide",
+              "label": "Hide countdown area"
+            }
+          ],
+          "default": "show_text"
+        },
+        {
+          "type": "text",
+          "id": "countdown_end_text",
+          "label": "Text after countdown (if 'Show custom text' selected)",
+          "default": "Available Now!",
+          "info": "This text will appear when countdown ends"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "ADD TO CART"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "12 Days of Christmas",
+      "blocks": [
+        { "type": "day_product", "settings": { "day_label": "DAY 1" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 2" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 3" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 4" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 5" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 6" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 7" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 8" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 9" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 10" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 11" } },
+        { "type": "day_product", "settings": { "day_label": "DAY 12" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  id="AI-12DaysChristmas"
+  class="tw-w-full"
+  style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-px-[16px] md:tw-px-[24px]">
+    {%- comment -%}Section Header{%- endcomment -%}
+    <div class="tw-text-center tw-mb-[40px] md:tw-mb-[60px]">
+      {% if section.settings.section_title != blank %}
+        <h2 class="!tw-font-didot tw-text-[28px] md:tw-text-[42px] tw-font-[400] tw-italic tw-text-[#000000] tw-mb-[12px]">
+          {{ section.settings.section_title }}
+        </h2>
+      {% endif %}
+      {% if section.settings.section_subtitle != blank %}
+        <p class="tw-text-[12px] md:tw-text-[24px] tw-font-[600] tw-text-[#000000] tw-tracking-[0.05em] tw-uppercase">
+          {{ section.settings.section_subtitle }}
+        </p>
+      {% endif %}
+    </div>
+
+    {%- comment -%}Products Grid{%- endcomment -%}
+    <div class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 md:tw-grid-cols-3 tw-gap-[16px] md:tw-gap-[20px]">
+      {% for block in section.blocks %}
+        {% if block.type == 'day_product' %}
+          {% assign prod = block.settings.product %}
+          {% assign product_obj = null %}
+          {% if prod != blank %}
+            {% assign product_obj = all_products[prod] %}
+          {% endif %}
+
+          <div
+            class="christmas-day-card tw-bg-white tw-overflow-hidden tw-transition-all tw-duration-300"
+            style="background: {{ section.settings.card_bg }};"
+            data-countdown-end="{{ block.settings.countdown_date }}"
+            data-price-during-countdown="{{ block.settings.price_during_countdown }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- comment -%}Image Container{%- endcomment -%}
+            <div class="tw-relative tw-w-full tw-aspect-square tw-bg-[#f5f5f5] tw-overflow-hidden">
+              {%- comment -%}Custom Image (shown during countdown){%- endcomment -%}
+              {% if block.settings.custom_image %}
+                <img
+                  src="{{ block.settings.custom_image | image_url: width: 600 }}"
+                  alt="{{ block.settings.day_label }}"
+                  class="countdown-custom-image tw-w-full tw-h-full tw-object-cover tw-transition-opacity tw-duration-500"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="countdown-custom-image tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-bg-gradient-to-br tw-from-[#D41870] tw-to-[#9c0d4f] tw-transition-opacity tw-duration-500">
+                  <div class="tw-text-white tw-text-center tw-px-[20px]">
+                    <div class="tw-text-[48px] md:tw-text-[64px] tw-font-[700] tw-mb-[8px]">?</div>
+                    <div class="tw-text-[14px] md:tw-text-[16px] tw-font-[600] tw-uppercase">Coming Soon</div>
+                  </div>
+                </div>
+              {% endif %}
+
+              {%- comment -%}Product Image (shown after countdown){%- endcomment -%}
+              {% if product_obj.featured_image %}
+                <img
+                  src="{{ product_obj.featured_image | image_url: width: 600 }}"
+                  alt="{{ product_obj.title | escape }}"
+                  class="countdown-product-image tw-w-full tw-h-full tw-object-cover tw-absolute tw-top-0 tw-left-0 tw-opacity-0 tw-transition-opacity tw-duration-500"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+
+            {%- comment -%}Card Content{%- endcomment -%}
+            <div class="tw-p-[20px] md:tw-p-[24px]">
+              {%- comment -%}Countdown Timer{%- endcomment -%}
+              <div
+                class="countdown-timer tw-mb-[16px]"
+                data-after-countdown="{{ block.settings.after_countdown }}"
+                data-end-text="{{ block.settings.countdown_end_text | escape }}"
+              >
+                <div class="tw-text-[14px] md:tw-text-[16px] tw-font-[600] tw-text-[#000000] tw-mb-[8px]">
+                  <span class="countdown-display">00 hrs : 00 mins: 00 secs</span>
+                </div>
+              </div>
+
+              {%- comment -%}Day Label{%- endcomment -%}
+              <h3 class="tw-text-[18px] md:tw-text-[20px] tw-font-[700] tw-text-[#000000] tw-mb-[12px] tw-uppercase">
+                {{ block.settings.day_label }}
+              </h3>
+
+              {%- comment -%}Price{%- endcomment -%}
+              <div class="price-container tw-mb-[16px]">
+                {% if product_obj != blank %}
+                  {% assign price = product_obj.price | default: 0 %}
+                  {% assign compare = product_obj.compare_at_price | default: 0 %}
+
+                  {%- comment -%}Actual Price (hidden by default, shown by JS){%- endcomment -%}
+                  {% if compare > price and price > 0 %}
+                    <div class="actual-price tw-flex tw-items-center tw-gap-[8px]">
+                      <span class="tw-text-[16px] md:tw-text-[18px] tw-font-[600] tw-line-through tw-text-[#999999]">
+                        {{ compare | money }}
+                      </span>
+                      <span class="tw-text-[20px] md:tw-text-[24px] tw-font-[700] tw-text-[#000000]">
+                        {{ price | money }}
+                      </span>
+                    </div>
+                  {% else %}
+                    <span class="actual-price tw-text-[20px] md:tw-text-[24px] tw-font-[700] tw-text-[#000000]">
+                      {% if price > 0 %}
+                        {{ price | money }}
+                      {% else %}
+                        $XX
+                      {% endif %}
+                    </span>
+                  {% endif %}
+
+                  {%- comment -%}Placeholder (shown during countdown if selected){%- endcomment -%}
+                  <span
+                    class="placeholder-price tw-text-[20px] md:tw-text-[24px] tw-font-[700] tw-text-[#999999]"
+                    style="display: none;"
+                  >
+                    $XX
+                  </span>
+                {% else %}
+                  <span class="tw-text-[20px] md:tw-text-[24px] tw-font-[700] tw-text-[#999999]"> $XX </span>
+                {% endif %}
+              </div>
+
+              {%- comment -%}Add to Cart Button{%- endcomment -%}
+              {% if product_obj != blank %}
+                {% assign first_variant = product_obj.selected_or_first_available_variant %}
+                {% if first_variant %}
+                  <button
+                    type="button"
+                    class="christmas-add-to-cart-btn tw-inline-block tw-py-[10px] tw-px-[24px] tw-text-[14px] md:tw-text-[16px] tw-font-[700] tw-transition-all tw-duration-300 tw-uppercase"
+                    style="background: {{ section.settings.button_bg }}; color: {{ section.settings.button_text }};"
+                    data-variant-id="{{ first_variant.id }}"
+                  >
+                    {{ block.settings.button_label }}
+                  </button>
+                {% endif %}
+              {% else %}
+                <button
+                  type="button"
+                  class="tw-inline-block tw-py-[10px] tw-px-[24px] tw-text-[14px] md:tw-text-[16px] tw-font-[700] tw-uppercase tw-opacity-50 tw-cursor-not-allowed"
+                  style="background: {{ section.settings.button_bg }}; color: {{ section.settings.button_text }};"
+                  disabled
+                >
+                  {{ block.settings.button_label }}
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    .christmas-add-to-cart-btn:hover:not(:disabled) {
+      filter: brightness(0.9);
+    }
+
+    .christmas-add-to-cart-btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .christmas-add-to-cart-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Countdown animations */
+    .countdown-timer {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    /* Image transition classes */
+    .countdown-active .countdown-custom-image {
+      opacity: 1;
+    }
+
+    .countdown-active .countdown-product-image {
+      opacity: 0;
+    }
+
+    .countdown-ended .countdown-custom-image {
+      opacity: 0;
+    }
+
+    .countdown-ended .countdown-product-image {
+      opacity: 1;
+    }
+  </style>
+
+  <script>
+    (function () {
+      const section = document.getElementById('AI-12DaysChristmas');
+      if (!section) return;
+
+      const cards = section.querySelectorAll('.christmas-day-card');
+
+      // Countdown logic for each card
+      cards.forEach((card) => {
+        const countdownEndStr = card.getAttribute('data-countdown-end');
+        if (!countdownEndStr) return;
+
+        const countdownDisplay = card.querySelector('.countdown-display');
+        const countdownTimer = card.querySelector('.countdown-timer');
+        const customImage = card.querySelector('.countdown-custom-image');
+        const productImage = card.querySelector('.countdown-product-image');
+        const priceContainer = card.querySelector('.price-container');
+        const actualPrice = card.querySelector('.actual-price');
+        const placeholderPrice = card.querySelector('.placeholder-price');
+
+        // Get countdown end behavior settings
+        const afterCountdown = countdownTimer ? countdownTimer.getAttribute('data-after-countdown') : 'show_text';
+        const endText = countdownTimer ? countdownTimer.getAttribute('data-end-text') : 'Available Now!';
+        const priceDuringCountdown = card.getAttribute('data-price-during-countdown') || 'show_placeholder';
+
+        // Parse the countdown end date
+        const endDate = new Date(countdownEndStr);
+
+        function updateCountdown() {
+          const now = new Date();
+          const diff = endDate - now;
+
+          // Get button in this card
+          const btn = card.querySelector('.christmas-add-to-cart-btn');
+
+          if (diff <= 0) {
+            // Countdown ended - show product
+            card.classList.remove('countdown-active');
+            card.classList.add('countdown-ended');
+
+            // Handle countdown display based on setting
+            if (afterCountdown === 'hide') {
+              // Hide the entire countdown timer area
+              if (countdownTimer) {
+                countdownTimer.style.display = 'none';
+              }
+            } else {
+              // Show custom text
+              countdownDisplay.textContent = endText || 'Available Now!';
+            }
+
+            // Always show actual price after countdown ends
+            if (actualPrice) actualPrice.style.display = '';
+            if (placeholderPrice) placeholderPrice.style.display = 'none';
+            if (priceContainer) priceContainer.style.display = '';
+
+            // Enable button
+            if (btn) {
+              btn.disabled = false;
+              btn.classList.remove('tw-opacity-50', 'tw-cursor-not-allowed');
+            }
+            return;
+          }
+
+          // Countdown active - show custom image
+          card.classList.add('countdown-active');
+          card.classList.remove('countdown-ended');
+
+          // Handle price display during countdown
+          if (priceDuringCountdown === 'show_price') {
+            // Show actual price
+            if (actualPrice) actualPrice.style.display = '';
+            if (placeholderPrice) placeholderPrice.style.display = 'none';
+            if (priceContainer) priceContainer.style.display = '';
+          } else if (priceDuringCountdown === 'show_placeholder') {
+            // Show $XX placeholder
+            if (actualPrice) actualPrice.style.display = 'none';
+            if (placeholderPrice) placeholderPrice.style.display = '';
+            if (priceContainer) priceContainer.style.display = '';
+          } else if (priceDuringCountdown === 'hide_price') {
+            // Hide price completely
+            if (priceContainer) priceContainer.style.display = 'none';
+          }
+
+          // Disable button during countdown
+          if (btn) {
+            btn.disabled = true;
+            btn.classList.add('tw-opacity-50', 'tw-cursor-not-allowed');
+          }
+
+          // Calculate time remaining
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          // Format display with proper singular/plural
+          let displayText = '';
+          if (days > 0) {
+            const dayLabel = days === 1 ? 'day' : 'days';
+            const hourLabel = hours === 1 ? 'hr' : 'hrs';
+            const minLabel = minutes === 1 ? 'min' : 'mins';
+            const secLabel = seconds === 1 ? 'sec' : 'secs';
+            displayText = `${days} ${dayLabel} : ${hours} ${hourLabel} : ${minutes} ${minLabel}: ${seconds} ${secLabel}`;
+          } else {
+            const hourLabel = hours === 1 ? 'hr' : 'hrs';
+            const minLabel = minutes === 1 ? 'min' : 'mins';
+            const secLabel = seconds === 1 ? 'sec' : 'secs';
+            displayText = `${hours.toString().padStart(2, '0')} ${hourLabel} : ${minutes
+              .toString()
+              .padStart(2, '0')} ${minLabel}: ${seconds.toString().padStart(2, '0')} ${secLabel}`;
+          }
+
+          countdownDisplay.textContent = displayText;
+
+          // Continue countdown
+          requestAnimationFrame(() => {
+            setTimeout(updateCountdown, 1000);
+          });
+        }
+
+        // Start countdown
+        updateCountdown();
+      });
+
+      // Add to cart functionality
+      const buttons = section.querySelectorAll('.christmas-add-to-cart-btn');
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', function () {
+          const variantId = btn.getAttribute('data-variant-id');
+          if (!variantId) return;
+
+          const originalText = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'ADDING...';
+
+          const formData = new FormData();
+          formData.append('id', variantId);
+          formData.append('quantity', 1);
+
+          fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              // Trigger Rebuy cart drawer
+              if (window.Rebuy && window.Rebuy.SmartCart) {
+                window.Rebuy.SmartCart.show();
+              }
+
+              // Dispatch custom events for cart update
+              const variantEvt = new CustomEvent('variant:add', {
+                detail: {
+                  variant: data,
+                  quantity: 1,
+                },
+              });
+              document.documentElement.dispatchEvent(variantEvt);
+
+              const cartEvt = new CustomEvent('cart:change');
+              document.documentElement.dispatchEvent(cartEvt);
+
+              // Reset button
+              btn.disabled = false;
+              btn.textContent = originalText;
+            })
+            .catch((err) => {
+              console.error('Add to cart error', err);
+              btn.disabled = false;
+              btn.textContent = originalText;
+              alert('Failed to add to cart. Please try again.');
+            });
+        });
+      });
+    })();
+  </script>
+</section>

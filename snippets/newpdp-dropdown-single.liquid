@@ -1,0 +1,120 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+
+  assign variant_description       = current_variant.metafields.custom.variant_description
+  assign using_variant_description = false
+  if variant_description != blank
+    assign description = variant_description
+    assign using_variant_description = true
+  else
+    assign description = product.description
+  endif
+
+  assign how_to_use = current_variant.metafields.custom.variant_how_to_use_dropdown
+  if how_to_use == blank
+    assign how_to_use = product.metafields.custom.how_to_use_description
+  endif
+
+  assign benefits = current_variant.metafields.custom.variant_benefits_dropdown
+  if benefits == blank
+    assign benefits = product.metafields.custom.benefit_paragraph
+  endif
+
+  assign ingredients = current_variant.metafields.custom.variant_full_ingredient_dropdown
+  if ingredients == blank
+    assign ingredients = product.metafields.custom.ingredient_paragraph
+  endif
+
+  assign pro_tips = current_variant.metafields.custom.variant_lwya_pro_tips_dropdown
+  if pro_tips == blank
+    assign pro_tips = product.metafields.custom.lwya_pro_tips
+  endif
+-%}
+
+<div class="tw-mt-[24px] tw-w-full md:tw-max-w-[75%] newpdp-dropdown" {{ block.shopify_attributes }}>
+  <div class="tw-divide-y tw-divide-[#eaeaea] tw-border-y tw-border-[#eaeaea]">
+    {% comment %} WHY WE LOVE IT - Product Description {% endcomment %}
+    {% if description != blank %}
+      <details class="tw-group tw-py-[10px]">
+        <summary class="tw-flex tw-items-center tw-justify-between tw-text-[16px] tw-font-bold tw-cursor-pointer tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-uppercase" >
+          <span>WHY WE LOVE IT</span>
+          <span class="dropdown-icon tw-text-[#000000]/40 tw-text-[18px] tw-font-gotham tw-font-700 tw-leading-none tw-transition-all tw-duration-300 tw-ease-in-out">
+            <span class="dropdown-icon-plus">+</span>
+            <span class="dropdown-icon-minus">−</span>
+          </span>
+        </summary>
+        <div class="tw-pt-[8px] tw-text-[13px] tw-leading-[20px] tw-text-[#000000]">
+          {% if using_variant_description %}
+            {{ description | metafield_tag }}
+          {% else %}
+            {{ description }}
+          {% endif %}
+        </div>
+      </details>
+    {% endif %}
+
+    {% comment %} HOW TO USE {% endcomment %}
+    {% if how_to_use != blank %}
+      <details class="tw-group tw-py-[10px]">
+        <summary class="tw-flex tw-items-center tw-justify-between tw-text-[16px] tw-font-bold tw-cursor-pointer tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-uppercase">
+          <span>HOW TO USE</span>
+          <span class="dropdown-icon tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-text-[18px] tw-leading-none tw-transition-all tw-duration-300 tw-ease-in-out">
+            <span class="dropdown-icon-plus">+</span>
+            <span class="dropdown-icon-minus">−</span>
+          </span>
+        </summary>
+        <div class="tw-pt-[8px] tw-text-[13px] tw-leading-[20px] tw-text-[#000000]">
+          {{ how_to_use | metafield_tag }}
+        </div>
+      </details>
+    {% endif %}
+
+    {% comment %} BENEFITS {% endcomment %}
+    {% if benefits != blank %}
+      <details class="tw-group tw-py-[10px]">
+        <summary class="tw-flex tw-items-center tw-justify-between tw-text-[16px] tw-font-bold tw-cursor-pointer tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-uppercase">
+          <span>BENEFITS</span>
+          <span class="dropdown-icon tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-text-[18px] tw-leading-none tw-transition-all tw-duration-300 tw-ease-in-out">
+            <span class="dropdown-icon-plus">+</span>
+            <span class="dropdown-icon-minus">−</span>
+          </span>
+        </summary>
+        <div class="tw-pt-[8px] tw-text-[13px] tw-leading-[20px] tw-text-[#000000]">
+          {{ benefits | metafield_tag }}
+        </div>
+      </details>
+    {% endif %}
+
+    {% comment %} INGREDIENTS {% endcomment %}
+    {% if ingredients != blank %}
+      <details class="tw-group tw-py-[10px]">
+        <summary class="tw-flex tw-items-center tw-justify-between tw-text-[16px] tw-font-bold tw-cursor-pointer tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-uppercase">
+          <span>INGREDIENTS</span>
+          <span class="dropdown-icon tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-text-[18px] tw-leading-none tw-transition-all tw-duration-300 tw-ease-in-out">
+            <span class="dropdown-icon-plus">+</span>
+            <span class="dropdown-icon-minus">−</span>
+          </span>
+        </summary>
+        <div class="tw-pt-[8px] tw-text-[13px] tw-leading-[20px] tw-text-[#000000]">
+          {{ ingredients | metafield_tag }}
+        </div>
+      </details>
+    {% endif %}
+
+    {% comment %} LWYA'S PRO TIPS {% endcomment %}
+    {% if pro_tips != blank %}
+      <details class="tw-group tw-py-[10px]">
+        <summary class="tw-flex tw-items-center tw-justify-between tw-text-[16px] tw-font-bold tw-cursor-pointer tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-uppercase">
+          <span>LWYA'S PRO TIPS</span>
+          <span class="dropdown-icon tw-text-[#000000]/40 tw-font-gotham tw-font-700 tw-text-[18px] tw-leading-none tw-transition-all tw-duration-300 tw-ease-in-out">
+            <span class="dropdown-icon-plus">+</span>
+            <span class="dropdown-icon-minus">−</span>
+          </span>
+        </summary>
+        <div class="tw-pt-[8px] tw-text-[13px] tw-leading-[20px] tw-text-[#000000]">
+          {{ pro_tips | metafield_tag }}
+        </div>
+      </details>
+    {% endif %}
+  </div>
+</div>

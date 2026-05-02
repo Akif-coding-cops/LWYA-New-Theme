@@ -1,0 +1,361 @@
+{% comment %}
+  AI-VideoCarousel Section
+  - Swipeable video carousel with product cards
+  - Mobile: 2 slides visible, Desktop: 3 slides visible
+  - Videos autoplay muted when visible (Intersection Observer)
+  - Performance optimized - only plays videos in viewport
+  - Uses Tailwind CSS with tw- prefix
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "AI Video Carousel",
+  "tag": "section",
+  "class": "ai-video-carousel-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "info": "Leave empty for no title"
+    },
+    {
+      "type": "range",
+      "id": "desktop_slides",
+      "label": "Desktop Slides Visible",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "mobile_slides",
+      "label": "Mobile Slides Visible",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Padding top/bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Arrow Styles"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg",
+      "label": "Arrow background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_slide",
+      "name": "Video Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Video"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Upload video from Shopify Files"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Or Video URL",
+          "accept": ["youtube", "vimeo"],
+          "info": "YouTube or Vimeo URL (used if no video uploaded)"
+        },
+        {
+          "type": "header",
+          "content": "Product Overlay"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_product",
+          "label": "Show Product Overlay",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Video Carousel",
+      "blocks": [{ "type": "video_slide" }, { "type": "video_slide" }, { "type": "video_slide" }]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  id="AI-VideoCarousel-{{ section.id }}"
+  class="ai-video-carousel tw-w-full"
+  style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
+>
+  <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
+
+  <div class="tw-max-w-[1400px] tw-mx-auto tw-px-[10px]">
+    {%- comment -%} Section Title {%- endcomment -%}
+    {% if section.settings.section_title != blank %}
+      <h2 class="tw-text-responsive-[22,36] tw-font-bold tw-text-black tw-text-center tw-mb-8 tw-uppercase tw-tracking-wide">
+        {{ section.settings.section_title }}
+      </h2>
+    {% endif %}
+
+    {%- comment -%} Video Carousel with Side Arrows {%- endcomment -%}
+    <div class="tw-flex tw-items-center tw-gap-3 md:tw-gap-4">
+      {%- comment -%} Left Arrow {%- endcomment -%}
+      <button
+        class="swiper-nav-prev-{{ section.id }} tw-flex-shrink-0 tw-w-6 tw-h-6 md:tw-w-9 md:tw-h-9 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-transition-all tw-duration-300 hover:tw-opacity-80"
+        style="background: {{ section.settings.arrow_bg }}; color: {{ section.settings.arrow_color }};"
+        aria-label="Previous slide"
+      >
+        <svg class="tw-w-3 tw-h-3 md:tw-w-4 md:tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+
+      {%- comment -%} Swiper Container {%- endcomment -%}
+      <div class="tw-flex-1 tw-min-w-0">
+        <div class="swiper video-carousel-swiper-{{ section.id }}">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              {% if block.type == 'video_slide' %}
+                <div class="swiper-slide" {{ block.shopify_attributes }}>
+                  <div class="tw-relative tw-overflow-hidden tw-bg-black tw-aspect-[9/16]">
+                    {%- comment -%} Video Element {%- endcomment -%}
+                    {% if block.settings.video != blank %}
+                      {{
+                        block.settings.video
+                        | video_tag:
+                          autoplay: false,
+                          loop: true,
+                          muted: true,
+                          controls: true,
+                          class: 'video-item tw-w-full tw-h-full tw-object-cover',
+                          preload: 'metadata',
+                          playsinline: true
+                      }}
+                    {% elsif block.settings.video_url != blank %}
+                      {% if block.settings.video_url.type == 'youtube' %}
+                        <iframe
+                          class="tw-w-full tw-h-full tw-object-cover"
+                          src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=0&mute=1&loop=1&playlist={{ block.settings.video_url.id }}&controls=1&playsinline=1"
+                          frameborder="0"
+                          allow="autoplay; encrypted-media"
+                          allowfullscreen
+                          loading="lazy"
+                        ></iframe>
+                      {% elsif block.settings.video_url.type == 'vimeo' %}
+                        <iframe
+                          class="tw-w-full tw-h-full tw-object-cover"
+                          src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay=0&muted=1&loop=1"
+                          frameborder="0"
+                          allow="autoplay; encrypted-media"
+                          allowfullscreen
+                          loading="lazy"
+                        ></iframe>
+                      {% endif %}
+                    {% else %}
+                      <div class="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-bg-gray-800">
+                        <svg
+                          class="tw-w-16 tw-h-16 tw-text-gray-500"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                      </div>
+                    {% endif %}
+
+                    {%- comment -%} Product Overlay at Bottom {%- endcomment -%}
+                    {% if block.settings.show_product and block.settings.product != blank %}
+                      {% assign product_obj = all_products[block.settings.product] %}
+                      {% if product_obj != blank %}
+                        <a
+                          href="{{ product_obj.url }}"
+                          class="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-p-3 tw-bg-gradient-to-t tw-from-black/80 tw-via-black/40 tw-to-transparent"
+                        >
+                          <div class="tw-flex tw-items-center tw-gap-3">
+                            {%- comment -%} Product Image {%- endcomment -%}
+                            {% if product_obj.featured_image %}
+                              <div class="tw-w-12 tw-h-12 tw-rounded-lg tw-overflow-hidden tw-flex-shrink-0 tw-bg-white tw-shadow">
+                                <img
+                                  src="{{ product_obj.featured_image | image_url: width: 100 }}"
+                                  alt="{{ product_obj.title }}"
+                                  class="tw-w-full tw-h-full tw-object-cover"
+                                  loading="lazy"
+                                  width="48"
+                                  height="48"
+                                >
+                              </div>
+                            {% endif %}
+
+                            {%- comment -%} Product Info {%- endcomment -%}
+                            <div class="tw-flex-1 tw-min-w-0">
+                              <h4 class="tw-text-[13px] tw-font-semibold tw-text-white tw-leading-tight tw-line-clamp-1">
+                                {{ product_obj.title }}
+                              </h4>
+                              <p class="tw-text-[14px] tw-font-bold tw-text-white">
+                                {{ product_obj.price | money }}
+                              </p>
+                            </div>
+                          </div>
+                        </a>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Right Arrow {%- endcomment -%}
+      <button
+        class="swiper-nav-next-{{ section.id }} tw-flex-shrink-0 tw-w-6 tw-h-6 md:tw-w-9 md:tw-h-9 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-transition-all tw-duration-300 hover:tw-opacity-80"
+        style="background: {{ section.settings.arrow_bg }}; color: {{ section.settings.arrow_color }};"
+        aria-label="Next slide"
+      >
+        <svg class="tw-w-3 tw-h-3 md:tw-w-4 md:tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <style>
+    /* Hide arrows when disabled */
+    .swiper-nav-prev-{{ section.id }}.swiper-button-disabled,
+    .swiper-nav-next-{{ section.id }}.swiper-button-disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    /* Line clamp utility */
+    .tw-line-clamp-1 {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+
+  {%- comment -%} JavaScript {%- endcomment -%}
+  <script>
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        const sectionId = '{{ section.id }}';
+        const desktopSlides = {{ section.settings.desktop_slides }};
+        const mobileSlides = {{ section.settings.mobile_slides }};
+
+        // Initialize Swiper
+        if (typeof Swiper !== 'undefined') {
+          const swiperEl = document.querySelector('.video-carousel-swiper-' + sectionId);
+
+          if (swiperEl) {
+            const swiper = new Swiper(swiperEl, {
+              slidesPerView: mobileSlides,
+              spaceBetween: 12,
+              loop: false,
+              navigation: {
+                nextEl: '.swiper-nav-next-' + sectionId,
+                prevEl: '.swiper-nav-prev-' + sectionId
+              },
+              breakpoints: {
+                768: {
+                  slidesPerView: desktopSlides,
+                  spaceBetween: 16
+                }
+              }
+            });
+          }
+        }
+
+        // Intersection Observer for video autoplay
+        const sectionEl = document.getElementById('AI-VideoCarousel-' + sectionId);
+        const videos = sectionEl ? sectionEl.querySelectorAll('.video-item') : [];
+
+        if (videos.length > 0 && 'IntersectionObserver' in window) {
+          const videoObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              const video = entry.target;
+
+              if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                // Play video when more than 50% visible
+                if (video.paused) {
+                  video.play().catch(function(e) {
+                    // Autoplay might be blocked, that's ok
+                    console.log('Video autoplay prevented:', e.message);
+                  });
+                  video.classList.add('playing');
+                }
+              } else {
+                // Pause video when out of view
+                if (!video.paused) {
+                  video.pause();
+                  video.classList.remove('playing');
+                }
+              }
+            });
+          }, {
+            threshold: [0, 0.5, 1],
+            rootMargin: '0px'
+          });
+
+          videos.forEach(function(video) {
+            videoObserver.observe(video);
+          });
+        }
+
+        // Click to toggle play/pause
+        videos.forEach(function(video) {
+          video.addEventListener('click', function() {
+            if (video.paused) {
+              video.play();
+              video.classList.add('playing');
+            } else {
+              video.pause();
+              video.classList.remove('playing');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</section>

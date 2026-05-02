@@ -1,0 +1,496 @@
+<!doctype html>
+
+<html lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}">
+  <head>
+    <meta charset="utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0"
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> {% endcomment %}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    <title>
+      {% if page_title == blank -%}
+        {{- shop.name -}}
+      {%- else -%}
+        {{- page_title -}}
+        {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+      {%- endif %}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 96 }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
+    {%- endif -%}
+
+    {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
+    {%- unless settings.heading_font.system? -%}
+      <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
+    {%- endunless -%}
+
+    {%- unless settings.text_font.system? -%}
+      <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
+    {%- endunless -%}
+
+    {%- render 'social-meta-tags' -%}
+    {%- render 'microdata-schema' -%}
+    {%- render 'css-variables' -%}
+    {%- render 'js-variables' -%}
+
+    {%- if request.page_type == 'gift_card' -%}
+      <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>
+    {%- endif -%}
+    <style>
+      @font-face {
+        font-family: 'Gotham_Bold';
+        src: url(https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Gotham-Bold.woff2?v=1721802907) format('woff2');
+        font-display: swap;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .h1,
+      .h2,
+      .h3,
+      .h4,
+      .h5,
+      .h6 {
+        font-family: 'Gotham_Bold' !important;
+      }
+
+      @font-face {
+        font-family: 'FoundersGrotesk-Bold';
+        src: url(https://cdn.shopify.com/s/files/1/0669/0360/5506/files/FoundersGrotesk-Bold.woff2?v=1727773829)
+          format('woff2');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Didot-LT-Roman-Italic';
+        src: url(https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Didot_LT_Roman_Italic.ttf?v=1770906040)
+          format('truetype');
+        font-weight: normal;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Didot';
+        src: url(https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Didot-01.woff2?v=1771006864) format('woff2');
+        font-weight: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Didot';
+        src: url(https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Didot-Italic-02.woff2?v=1771006864)
+          format('woff2');
+        font-weight: normal;
+        font-style: italic;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Didot';
+        src: url(https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Didot-Bold-03.woff2?v=1771006864)
+          format('woff2');
+        font-weight: normal;
+        font-style: bold;
+        font-display: swap;
+      }
+
+      .var__jewelry-landing-page .collection__title_adjustment h2,
+      .var__jewelry-landing-page .manufactured_text h1,
+      .var__jewelry-landing-page p.video__card__title {
+        font-family: 'FoundersGrotesk-Bold' !important;
+        font-weight: 700 !important;
+        letter-spacing: normal;
+      }
+      .inria-sans-regular_global,
+      .var__updated-product-page .manufactured_text p,
+      .inria-sans-regular_global h2,
+      a.inria-sans-regular_global,
+      .var__beauty .smallcaps,
+      .var__jewelry .smallcaps,
+      .var__jewelry .for_collection,
+      .var__beauty .for_collection {
+        font-family: 'Inria Sans', sans-serif !important;
+        font-weight: 400 !important;
+        font-style: normal !important;
+        color: #1c1d52;
+      }
+      .related_product_heading,
+      .var__updated-product-page .globalClassInria_Sans,
+      .var__updated-product-page .manufactured_text h2,
+      .globalClassInria_Sans p,
+      .globalClassInria_Sans h2,
+      .globalClassInria_Sans a,
+      a.globalClassInria_Sans,
+      p.globalClassInria_Sans,
+      .var__beauty .beauty__recentecly__viewed,
+      .var__beauty .beauty_style,
+      .var__jewelry .beauty_style,
+      .var__beauty .collection_tittle_adjusment,
+      .var__jewelry .collection_tittle_adjusment {
+        font-family: 'Inria Sans', sans-serif !important;
+        font-weight: 700 !important;
+        font-style: normal !important;
+        color: #1c1d52;
+      }
+      .italianno-regular {
+        font-family: 'Italianno', cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Ivar Text Hydro Regular';
+        src: url('https://db.onlinewebfonts.com/t/22aff4497483f2c6a5e001453850b935.woff2') format('woff2');
+      }
+      .integar_font_family h2,
+      .integar_font_family {
+        font-family: 'Ivar Text Hydro Regular' !important;
+      }
+      @media screen and (min-width: 699px) and (max-width: 1250px) {
+        .var__beauty .collection-toolbar,
+        .var__jewelry .collection-toolbar {
+          /* top:-250px; */
+        }
+      }
+      @media screen and (min-width: 766px) and (max-width: 1250px) {
+        .var__jewelry-landing-page .manufactured_text h1,
+        .name__style {
+          font-size: 40px;
+        }
+        .qoute__style {
+          font-size: 130px;
+        }
+        .description__style {
+          font-size: 20px;
+        }
+      }
+      [part='header'] [aria-label='Close'] svg {
+        height: 24px;
+        width: 24px;
+      }
+      .bg-lwya-stripes {
+        background-image: url('https://cdn.shopify.com/s/files/1/0669/0360/5506/files/LWYA_BlackFriday_Stripes_BG_1114.png?v=1763177737') !important;
+        background-repeat: no-repeat;
+        background-position: center -30px;
+        background-size: contain;
+      }
+    </style>
+    <script>
+      if (!(HTMLScriptElement.supports && HTMLScriptElement.supports('importmap'))) {
+        const importMapPolyfill = document.createElement('script');
+        importMapPolyfill.async = true;
+        importMapPolyfill.src = "{{ 'es-module-shims.min.js' | asset_url }}";
+
+        document.head.appendChild(importMapPolyfill);
+      }
+    </script>
+
+    <script type="importmap">
+      {%- comment -%}On Safari 16.3 and lower, a polyfill is used to load importmap{%- endcomment -%}
+      {
+        "imports": {
+          "vendor": "{{ 'vendor.min.js' | asset_url }}",
+          "theme": "{{ 'theme.js' | asset_url }}",
+          "photoswipe": "{{ 'photoswipe.min.js' | asset_url }}"
+        }
+      }
+    </script>
+
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
+
+    {{ content_for_header }}
+
+    {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
+    {{- 'product.css' | asset_url | stylesheet_tag: preload: true -}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    >
+    {{ 'output.css' | asset_url | stylesheet_tag }}
+  </head>
+
+  {% liquid
+    assign features_class = ''
+
+    if settings.show_button_transition
+      assign features_class = features_class | append: 'features--button-transition '
+    endif
+
+    if settings.show_image_zoom_on_hover
+      assign features_class = features_class | append: 'features--zoom-image '
+    endif
+
+    if settings.show_page_transition
+      assign features_class = features_class | append: 'features--page-transition '
+    endif
+  %}
+
+  <body
+    class="
+      {{ features_class }} color-scheme color-scheme--{{ settings.default_color_scheme.id }} var__{{ template.suffix}} name__{{ template.name }}
+      {% if template == 'index' %} tw-relative tw-min-h-screen bg-lwya-stripes {% endif %}
+    "
+  >
+    {%- render 'shadow-dom-templates' -%}
+    <loading-bar class="loading-bar" aria-hidden="true"></loading-bar>
+    <a href="#main" allow-hash-change class="skip-to-content sr-only">
+      {{- 'general.accessibility.skip_to_content' | t -}}
+    </a>
+
+    <span
+      id="header-scroll-tracker"
+      style="position: absolute; width: 1px; height: 1px; top: var(--header-scroll-tracker-offset, 10px); left: 0;"
+    >
+      {%- comment -%}
+        This allows our theme to track when the user has scrolled a given amount of pixels, without relying on a global scroll listener. This helps
+        to improve performance and reduce reflows.
+      {%- endcomment -%}
+    </span>
+
+    {%- if request.page_type != 'password' -%}
+      {%- if template.suffix == 'vivacity'
+        or template.suffix == 'audacity'
+        or template.suffix == 'tenacity'
+        or template.suffix == 'flash-lash-3'
+        or template.suffix == 'fragrance'
+      -%}
+        {%- sections 'header-group-vivacity' -%}
+      {%- else -%}
+        {%- sections 'header-group-newpdp' -%}
+      {%- endif -%}
+      {%- sections 'overlay-group' -%}
+    {%- endif -%}
+
+    <main id="main" class="anchor">
+      {{ content_for_layout }}
+      {%- if request.page_type != 'password' -%}
+        {%- sections 'footer-group-newpdp' -%}
+      {%- endif -%}
+    </main>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      document.addEventListener(
+        'submit',
+        function (e) {
+          const form = e.target;
+
+          if (form.action && form.action.includes('/cart/add')) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            const submitButton = form.querySelector('[type="submit"]');
+            if (submitButton) submitButton.disabled = true;
+
+            fetch('/cart/add.js', {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            })
+              .then((response) => response.json())
+              .then(async (data) => {
+                const cart = await (await fetch('/cart.js')).json();
+
+                // Trigger Rebuy events
+                document.documentElement.dispatchEvent(
+                  new CustomEvent('variant:add', {
+                    bubbles: true,
+                    detail: { items: data.items || [data], cart: cart },
+                  })
+                );
+
+                document.documentElement.dispatchEvent(
+                  new CustomEvent('cart:change', {
+                    bubbles: true,
+                    detail: { baseEvent: 'variant:add', cart: cart },
+                  })
+                );
+
+                // Open Rebuy drawer
+                setTimeout(() => {
+                  if (window.Rebuy?.SmartCart) {
+                    window.Rebuy.SmartCart.show();
+                  } else if (window.rebuyCart) {
+                    window.rebuyCart.show();
+                  } else {
+                    document.querySelector('[data-rebuy-cart-trigger]')?.click();
+                  }
+                }, 100);
+
+                if (submitButton) submitButton.disabled = false;
+              })
+              .catch((error) => {
+                console.error('Cart add error:', error);
+                if (submitButton) submitButton.disabled = false;
+              });
+          }
+        },
+        true
+      );
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        const $highlightsSection = $('.highlights-section');
+
+        let isDragging = false;
+        let startX, scrollLeft;
+
+        $highlightsSection.on('mousedown', function (e) {
+          isDragging = true;
+          startX = e.pageX - $highlightsSection.offset().left;
+          scrollLeft = $highlightsSection.scrollLeft();
+          $highlightsSection.css('cursor', 'grabbing');
+        });
+
+        $highlightsSection.on('mouseleave mouseup', function () {
+          isDragging = false;
+          $highlightsSection.css('cursor', 'grab');
+        });
+
+        $highlightsSection.on('mousemove', function (e) {
+          if (!isDragging) return;
+          e.preventDefault();
+          const x = e.pageX - $highlightsSection.offset().left;
+          const scroll = (x - startX) * 2; // Adjust the speed (2 is a multiplier)
+          $highlightsSection.scrollLeft(scrollLeft - scroll);
+        });
+      });
+    </script>
+    <script>
+      // First set of conditions
+      const hiddenTitles1 = ['Fragrance', 'Beauty'];
+      const targetURLs1 = [
+        '/collections/bracelets',
+        '/collections/rings',
+        '/collections/necklaces',
+        '/collections/earrings',
+      ];
+
+      if (targetURLs1.includes(window.location.pathname)) {
+        hiddenTitles1.forEach((title) => {
+          document.querySelectorAll(`[data-title="${title}"]`).forEach((el) => {
+            el.style.display = 'none';
+          });
+        });
+      }
+
+      // Second set of conditions
+      const hiddenTitles2 = ['Jewelry'];
+      const targetURLs2 = [
+        '/collections/all-beauty',
+        '/collections/beauty-bundles',
+        '/collections/body',
+        '/collections/eyes',
+        '/collections/lips',
+        '/collections/face',
+        '/collections/brushes-tools',
+      ];
+
+      if (targetURLs2.includes(window.location.pathname)) {
+        hiddenTitles2.forEach((title) => {
+          document.querySelectorAll(`[data-title="${title}"]`).forEach((el) => {
+            el.style.display = 'none';
+          });
+        });
+      }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        const sectionSelector = '#shopify-section-template--20633282281730__faq_aNyGrD';
+        const contentSelector = sectionSelector + ' .faq__content';
+
+        const $content = $(contentSelector);
+
+        // Check if element exists before accessing html()
+        if ($content.length === 0) {
+          return;
+        }
+
+        const contentHTML = ($content.html() || '').trim();
+
+        const hasValidTag = $content.find('h1, h2, h3, h4, h5, h6, p, span, video').length > 0;
+
+        if (contentHTML === '' || !hasValidTag) {
+          $(sectionSelector).hide();
+        } else {
+          $(sectionSelector).show();
+        }
+      });
+    </script>
+
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        new Swiper('.myVideoSwiper', {
+          loop: true,
+          slidesPerView: 4,
+          spaceBetween: 20,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          breakpoints: {
+            0: { slidesPerView: 1 },
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
+          },
+        });
+      });
+    </script>
+
+    <!-- Loox Reviews: Hide empty iframe -->
+    <script>
+      jQuery(window).on('load', function () {
+        setTimeout(function () {
+          var abc = jQuery('iframe#looxReviewsFrame').attr('height');
+          if (abc >= 0) {
+            jQuery('iframe#looxReviewsFrame').parent().parent().parent().parent().parent().hide();
+          }
+        }, 1000);
+      });
+    </script>
+
+    <style>
+      {% comment %} FOR REBUY APPS {% endcomment %}
+        [data-rebuy-component=cart-items] .rebuy-cart__flyout-item-media a   {
+          pointer-events: none !important;
+        }
+
+        .rebuy-cart__flyout-item-product-title, .rebuy-cart__flyout-item-product-title:hover, .rebuy-cart__flyout-item-product-title:active, .rebuy-cart__flyout-item-product-title:visited, [data-rebuy-component="cart-items"] .rebuy-cart__flyout-item-product-title, [data-rebuy-component="cart-items"] .rebuy-cart__flyout-item-product-title:hover, [data-rebuy-component="cart-items"] .rebuy-cart__flyout-item-product-title:active, [data-rebuy-component="cart-items"] .rebuy-cart__flyout-item-product-title:visited {
+           pointer-events: none !important;
+        }
+    </style>
+  </body>
+</html>

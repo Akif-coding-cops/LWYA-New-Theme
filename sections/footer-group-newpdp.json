@@ -1,0 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group - New PDP",
+  "sections": {
+    "footer_new": {
+      "type": "AI-NewFooter",
+      "blocks": {
+        "menu_support": {
+          "type": "menu_column",
+          "settings": {
+            "title": "SUPPORT",
+            "menu": "footer-left-menu"
+          }
+        },
+        "menu_discover": {
+          "type": "menu_column",
+          "settings": {
+            "title": "DISCOVER",
+            "menu": "footer-right-menu"
+          }
+        }
+      },
+      "block_order": [
+        "menu_support",
+        "menu_discover"
+      ],
+      "settings": {
+        "logo": "shopify://shop_images/LWYA_Logo_Final_PINK_6.png",
+        "text_line_1": "JOIN IN ON THE FUN!",
+        "text_line_2": "Sign up for early access & exclusives",
+        "bg_color": "#efefef",
+        "text_color": "#000000",
+        "subscribe_modal_image": "shopify://shop_images/Rectangle102.png",
+        "facebook_url": "https://www.facebook.com/kimgravelofficial",
+        "instagram_url": "https://www.instagram.com/lwyabrand/",
+        "x_url": "",
+        "tiktok_url": "https://www.tiktok.com/@lwyabrand",
+        "youtube_url": "https://www.youtube.com/@LWYA_brand",
+        "copyright_text": "© 2026 Love Who You Are, All Rights Reserved"
+      }
+    }
+  },
+  "order": [
+    "footer_new"
+  ]
+}

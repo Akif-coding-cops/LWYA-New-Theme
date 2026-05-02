@@ -1,0 +1,207 @@
+{% comment %} AI-BeforeAfterCards.liquid - Diva & Glam Before/After Section {% endcomment %}
+
+<section class="tw-w-full tw-relative tw-overflow-hidden tw-flex tw-justify-center" style="background-color: {{ section.settings.background_color }};">
+  
+  <div class="tw-relative tw-w-full tw-overflow-hidden" style="max-width: 1440px;">
+    
+    {%- comment -%} Background Image {%- endcomment -%}
+    {% if section.settings.background_image != blank %}
+      <div class="tw-absolute tw-inset-0 tw-w-full tw-h-full tw-z-0">
+        <img 
+          src="{{ section.settings.background_image | image_url: width: 1440 }}"
+          srcset="{{ section.settings.background_image | image_url: width: 768 }} 768w,
+                  {{ section.settings.background_image | image_url: width: 1024 }} 1024w,
+                  {{ section.settings.background_image | image_url: width: 1440 }} 1440w"
+          sizes="(max-width: 1440px) 100vw, 1440px"
+          alt="Background"
+          class="tw-w-full tw-h-full tw-object-cover tw-opacity-[0.15]"
+          loading="lazy"
+        />
+      </div>
+    {% endif %}
+
+    {%- comment -%} Content Container {%- endcomment -%}
+    <div class="tw-relative tw-z-10 tw-w-full">
+      <div class="tw-px-[20px] md:tw-px-[40px] tw-py-[60px] md:tw-py-[80px]">
+      
+      {%- comment -%} Image Cards Container {%- endcomment -%}
+      <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-[20px] md:tw-gap-[40px] tw-mb-[40px] md:tw-mb-[60px] tw-max-w-[1000px] tw-mx-auto">
+        
+        {%- comment -%} Card 1 - Diva {%- endcomment -%}
+        {% if section.settings.card_1_image != blank %}
+          <div class="tw-relative">
+            <img 
+              src="{{ section.settings.card_1_image | image_url: width: 600 }}"
+              srcset="{{ section.settings.card_1_image | image_url: width: 400 }} 400w,
+                      {{ section.settings.card_1_image | image_url: width: 600 }} 600w"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              alt="{{ section.settings.card_1_title | escape }}"
+              class="tw-w-full tw-h-auto"
+              style="box-shadow: 0 10px 30px rgba(0,0,0,0.2);"
+              loading="lazy"
+            />
+          </div>
+        {% else %}
+          <div class="tw-bg-gray-200 tw-flex tw-items-center tw-justify-center tw-min-h-[300px]">
+            <span class="tw-text-gray-500">Card 1 Image</span>
+          </div>
+        {% endif %}
+
+        {%- comment -%} Card 2 - Glam {%- endcomment -%}
+        {% if section.settings.card_2_image != blank %}
+          <div class="tw-relative">
+            <img 
+              src="{{ section.settings.card_2_image | image_url: width: 600 }}"
+              srcset="{{ section.settings.card_2_image | image_url: width: 400 }} 400w,
+                      {{ section.settings.card_2_image | image_url: width: 600 }} 600w"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              alt="{{ section.settings.card_2_title | escape }}"
+              class="tw-w-full tw-h-auto"
+              style="box-shadow: 0 10px 30px rgba(0,0,0,0.2);"
+              loading="lazy"
+            />
+          </div>
+        {% else %}
+          <div class="tw-bg-gray-200 tw-flex tw-items-center tw-justify-center tw-min-h-[300px]">
+            <span class="tw-text-gray-500">Card 2 Image</span>
+          </div>
+        {% endif %}
+
+      </div>
+
+      {%- comment -%} CTA Section {%- endcomment -%}
+      <div class="tw-text-center tw-flex tw-flex-col tw-items-center">
+        
+        {%- comment -%} Button {%- endcomment -%}
+        {% if section.settings.button_text != blank %}
+          <a 
+            href="{{ section.settings.button_link | default: '#' }}"
+            class="tw-inline-block tw-font-black tw-uppercase tw-rounded-md tw-transition-all tw-duration-300 hover:tw-opacity-90 hover:tw-scale-105 tw-mb-[24px] md:tw-mb-[32px]"
+            style="padding: clamp(16px, 2.5vw, 24px) clamp(40px, 6vw, 80px); background-color: {{ section.settings.button_bg_color }}; color: {{ section.settings.button_text_color }}; font-size: clamp(18px, 2.5vw, 28px); letter-spacing: 0.5px;"
+          >
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+
+        {%- comment -%} Disclaimer Text {%- endcomment -%}
+        {% if section.settings.disclaimer_text != blank %}
+          <div 
+            class="tw-font-medium tw-uppercase tw-tracking-wide tw-leading-relaxed tw-max-w-[600px]"
+            style="font-size: clamp(13px, 1.8vw, 18px); color: {{ section.settings.disclaimer_color }};"
+          >
+            {{ section.settings.disclaimer_text | newline_to_br }}
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Before/After Cards ",
+  "tag": "section",
+  "class": "before-after-cards-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Background image with mascara/lashes"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "header",
+      "content": "Card 1 (Diva)"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_image",
+      "label": "Card 1 Image",
+      "info": "Full card image with before/after, badge, and product"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Card 1 Alt Text",
+      "default": "Diva Before After"
+    },
+    {
+      "type": "header",
+      "content": "Card 2 (Glam)"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_image",
+      "label": "Card 2 Image",
+      "info": "Full card image with before/after, badge, and product"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Card 2 Alt Text",
+      "default": "Glam Before After"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "GET MY VIP OFFER"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#C2185B"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Disclaimer"
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer_text",
+      "label": "Disclaimer Text",
+      "default": "30 DAY MONEY BACK GUARANTEED,\nNO AUTOSHIP - NO COMMITMENT"
+    },
+    {
+      "type": "color",
+      "id": "disclaimer_color",
+      "label": "Disclaimer Text Color",
+      "default": "#666666"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before/After Cards"
+    }
+  ]
+}
+{% endschema %}

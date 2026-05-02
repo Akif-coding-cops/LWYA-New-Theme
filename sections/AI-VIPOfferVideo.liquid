@@ -1,0 +1,411 @@
+<section class="tw-w-full tw-flex tw-justify-center">
+  <div class="tw-w-full tw-max-w-[1440px]">
+    
+    <div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-0 lg:tw-max-h-[800px]">
+      
+      {%- comment -%} LEFT: Video Section {%- endcomment -%}
+      <div class="tw-w-full tw-order-1 lg:tw-order-1 lg:tw-h-[800px]">
+        <div class="tw-relative tw-w-full tw-h-full tw-bg-black" style="min-height: 500px;">
+          {% if section.settings.video != blank %}
+            {{
+              section.settings.video
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: true,
+                class: 'tw-w-full tw-h-full tw-object-cover',
+                playsinline: true
+            }}
+          {% elsif section.settings.video_url != blank %}
+            {{
+              section.settings.video_url
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: true,
+                class: 'tw-w-full tw-h-full tw-object-cover'
+            }}
+          {% else %}
+            <div class="tw-absolute tw-inset-0 tw-flex tw-items-center tw-justify-center tw-text-white tw-text-2xl tw-font-bold">
+              <div class="tw-text-center">
+                <svg class="tw-w-16 tw-h-16 tw-mx-auto tw-mb-2 tw-text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+                <p class="tw-text-gray-400 tw-text-base">Add Video</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {%- comment -%} RIGHT: Content Section with Background {%- endcomment -%}
+      <div class="tw-w-full tw-order-2 lg:tw-order-2 tw-relative lg:tw-h-[800px]" style="min-height: 500px;">
+        
+        {%- comment -%} Background Image {%- endcomment -%}
+        {% if section.settings.background_image != blank %}
+          <div class="tw-absolute tw-inset-0 tw-w-full tw-h-full">
+            <img
+              src="{{ section.settings.background_image | image_url: width: 800 }}"
+              srcset="{{ section.settings.background_image | image_url: width: 400 }} 400w,
+                      {{ section.settings.background_image | image_url: width: 600 }} 600w,
+                      {{ section.settings.background_image | image_url: width: 800 }} 800w"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              alt="{{ section.settings.title | escape }}"
+              class="tw-w-full tw-h-full tw-object-cover"
+              loading="lazy"
+            >
+          </div>
+        {% else %}
+          <div class="tw-absolute tw-inset-0 tw-w-full tw-h-full" style="background-color: {{ section.settings.background_color }};"></div>
+        {% endif %}
+
+        {%- comment -%} Content Overlay {%- endcomment -%}
+        <div class="tw-relative tw-h-full tw-flex tw-flex-col tw-justify-center tw-px-8 md:tw-px-12 lg:tw-px-16 tw-py-12 md:tw-py-16">
+          
+          {%- comment -%} Title (Hello Gorgeous) {%- endcomment -%}
+          {% if section.settings.title != blank %}
+            <h3 
+              class="tw-mb-2"
+              style="
+                font-size: clamp(28px, 4vw, 50px);
+                line-height: 1.2;
+                letter-spacing: 0.05em;
+                font-weight: 400;
+                color: {{ section.settings.title_color }};
+              "
+            >
+              {{ section.settings.title }}
+            </h3>
+          {% endif %}
+
+          {%- comment -%} Subtitle (YOUR VIP LASH OFFER) - Richtext {%- endcomment -%}
+          {% if section.settings.subtitle != blank %}
+            <div 
+              class="tw-mb-6"
+              style="
+                font-family: 'Bebas Neue', sans-serif;
+                font-size: clamp(90px, 6vw, 110px);
+                line-height: 0.95;
+                letter-spacing: 0.02em;
+                text-transform: uppercase;
+                margin-top:10px;
+                color: {{ section.settings.subtitle_color }};
+              "
+            >
+              {{ section.settings.subtitle }}
+            </div>
+          {% endif %}
+
+          {%- comment -%} Description Text {%- endcomment -%}
+          {% if section.settings.description != blank %}
+            <div 
+              class="tw-mb-8"
+              style="
+                font-size: clamp(14px, 2vw, 18px);
+                line-height: 1.6;
+                max-width: 500px;
+                color: {{ section.settings.description_color }};
+              "
+            >
+              {{ section.settings.description }}
+            </div>
+          {% endif %}
+
+          {%- comment -%} Countdown Timer {%- endcomment -%}
+          <div class="countdown-timer tw-mb-6" data-end-date="{{ section.settings.countdown_end }}">
+            <div class="tw-flex tw-gap-3 tw-items-center">
+              
+              {%- comment -%} Days {%- endcomment -%}
+              <div class="countdown-item tw-flex tw-flex-col tw-items-center">
+                <div 
+                  class="countdown-value tw-font-black tw-leading-none"
+                  style="
+                    font-family: 'Bebas Neue', sans-serif;
+                    font-size: clamp(36px, 6vw, 56px);
+                    color: {{ section.settings.countdown_color }};
+                  "
+                >
+                  <span class="days">00</span>
+                </div>
+                <div 
+                  class="countdown-label tw-uppercase tw-font-semibold tw-mt-1"
+                  style="
+                    font-size: clamp(10px, 1.5vw, 14px);
+                    letter-spacing: 0.1em;
+                    color: {{ section.settings.countdown_color }};
+                  "
+                >
+                  DAYS
+                </div>
+              </div>
+
+              {%- comment -%} Separator {%- endcomment -%}
+              <div 
+                class="countdown-separator tw-font-black tw-leading-none tw-pb-6"
+                style="
+                  font-family: 'Bebas Neue', sans-serif;
+                  font-size: clamp(36px, 6vw, 56px);
+                  color: {{ section.settings.countdown_color }};
+                "
+              >:</div>
+              
+              {%- comment -%} Hours {%- endcomment -%}
+              <div class="countdown-item tw-flex tw-flex-col tw-items-center">
+                <div 
+                  class="countdown-value tw-font-black tw-leading-none"
+                  style="
+                    font-family: 'Bebas Neue', sans-serif;
+                    font-size: clamp(36px, 6vw, 56px);
+                    color: {{ section.settings.countdown_color }};
+                  "
+                >
+                  <span class="hours">00</span>
+                </div>
+                <div 
+                  class="countdown-label tw-uppercase tw-font-semibold tw-mt-1"
+                  style="
+                    font-size: clamp(10px, 1.5vw, 14px);
+                    letter-spacing: 0.1em;
+                    color: {{ section.settings.countdown_color }};
+                  "
+                >
+                  HRS
+                </div>
+              </div>
+
+              {%- comment -%} Separator {%- endcomment -%}
+              <div 
+                class="countdown-separator tw-font-black tw-leading-none tw-pb-6"
+                style="
+                  font-family: 'Bebas Neue', sans-serif;
+                  font-size: clamp(36px, 6vw, 56px);
+                  color: {{ section.settings.countdown_color }};
+                "
+              >:</div>
+
+              {%- comment -%} Minutes {%- endcomment -%}
+              <div class="countdown-item tw-flex tw-flex-col tw-items-center">
+                <div 
+                  class="countdown-value tw-font-black tw-leading-none"
+                  style="
+                    font-family: 'Bebas Neue', sans-serif;
+                    font-size: clamp(36px, 6vw, 56px);
+                    color: {{ section.settings.countdown_color }};
+                  "
+                >
+                  <span class="minutes">00</span>
+                </div>
+                <div 
+                  class="countdown-label tw-uppercase tw-font-semibold tw-mt-1"
+                  style="
+                    font-size: clamp(10px, 1.5vw, 14px);
+                    letter-spacing: 0.1em;
+                    color: {{ section.settings.countdown_color }};
+                  "
+                >
+                  MIN
+                </div>
+              </div>
+
+              {%- comment -%} Separator {%- endcomment -%}
+              <div 
+                class="countdown-separator tw-font-black tw-leading-none tw-pb-6"
+                style="
+                  font-family: 'Bebas Neue', sans-serif;
+                  font-size: clamp(36px, 6vw, 56px);
+                  color: {{ section.settings.countdown_color }};
+                "
+              >:</div>
+
+              {%- comment -%} Seconds {%- endcomment -%}
+              <div class="countdown-item tw-flex tw-flex-col tw-items-center">
+                <div 
+                  class="countdown-value tw-font-black tw-leading-none"
+                  style="
+                    font-family: 'Bebas Neue', sans-serif;
+                    font-size: clamp(36px, 6vw, 56px);
+                    color: {{ section.settings.countdown_color }};
+                  "
+                >
+                  <span class="seconds">00</span>
+                </div>
+                <div 
+                  class="countdown-label tw-uppercase tw-font-semibold tw-mt-1"
+                  style="
+                    font-size: clamp(10px, 1.5vw, 14px);
+                    letter-spacing: 0.1em;
+                    color: {{ section.settings.countdown_color }};
+                  "
+                >
+                  SEC
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const countdownTimers = document.querySelectorAll('.countdown-timer');
+  
+  countdownTimers.forEach(timer => {
+    const endDate = timer.getAttribute('data-end-date');
+    if (!endDate) return;
+    
+    const endTime = new Date(endDate).getTime();
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+      
+      if (distance < 0) {
+        timer.querySelector('.days').textContent = '00';
+        timer.querySelector('.hours').textContent = '00';
+        timer.querySelector('.minutes').textContent = '00';
+        timer.querySelector('.seconds').textContent = '00';
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      timer.querySelector('.days').textContent = String(days).padStart(2, '0');
+      timer.querySelector('.hours').textContent = String(hours).padStart(2, '0');
+      timer.querySelector('.minutes').textContent = String(minutes).padStart(2, '0');
+      timer.querySelector('.seconds').textContent = String(seconds).padStart(2, '0');
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  });
+});
+
+// Video autoplay on scroll
+(function() {
+  const videos = document.querySelectorAll('section video');
+  
+  videos.forEach(video => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(err => console.log('Autoplay prevented:', err));
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(video);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "AI VIP Offer Video",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Video Section"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video Upload"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL (YouTube/Vimeo)",
+      "accept": ["youtube", "vimeo"],
+      "info": "Alternative to uploaded video"
+    },
+    {
+      "type": "header",
+      "content": "Right Content Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color (Fallback)",
+      "default": "#3D1B58"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "HELLO GORGEOUS."
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle (Large)",
+      "default": "<p>YOUR VIP<br>LASH OFFER</p>"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>As one of our VIPs, you're getting exclusive early access to our best deal of the season on Flash Lash False Lashes — the instant way to turn everyday eyes into holiday showstoppers.</p>"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Countdown Timer"
+    },
+    {
+      "type": "text",
+      "id": "countdown_end",
+      "label": "End Date & Time",
+      "info": "Format: YYYY-MM-DD HH:MM:SS (e.g., 2025-12-31 23:59:59)",
+      "default": "2025-12-31 23:59:59"
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI VIP Offer Video"
+    }
+  ]
+}
+{% endschema %}

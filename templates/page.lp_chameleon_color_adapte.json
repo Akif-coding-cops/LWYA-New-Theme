@@ -1,0 +1,754 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ai_vip_offer_video_ehtX69": {
+      "type": "AI-VIPOfferVideo",
+      "disabled": true,
+      "name": "AI VIP Offer Video",
+      "settings": {
+        "video": "shopify://files/videos/Kim_Flash Lash Version 2.mp4",
+        "video_url": "",
+        "background_image": "shopify://shop_images/Rectangle_176.png",
+        "background_color": "#3d1b58",
+        "title": "HELLO GORGEOUS.",
+        "title_color": "#ffffff",
+        "subtitle": "<p>YOUR VIP <br/>LASH OFFER</p>",
+        "subtitle_color": "#ffffff",
+        "description": "<p>As one of our VIPs, you're getting exclusive early access to our best deal of the season on Flash Lash False Lashes — the instant way to turn everyday eyes into holiday showstoppers.</p>",
+        "description_color": "#ffffff",
+        "countdown_end": "2025-12-31 23:59:59",
+        "countdown_color": "#ffffff"
+      }
+    },
+    "ai_image_with_video_jHYEGr": {
+      "type": "AI-ImageWithVideo",
+      "blocks": {
+        "title_bQB3bA": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "content": "Your VIP Holiday Offer Ends Soon!",
+            "color": "#ffffff",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        "text_zWVxDb": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "content": "<p>This exclusive Vivacity holiday offer is only available for a limited time — once it’s gone, it’s gone for the season. Don’t wait to give (or get) the scent of joy.</p>",
+            "color": "#ffffff",
+            "margin_top": 24,
+            "margin_bottom": 18
+          }
+        },
+        "countdown_kmdciz": {
+          "type": "countdown",
+          "disabled": true,
+          "settings": {
+            "target_datetime": "2025-12-25 01:00",
+            "time_color": "#ffffff",
+            "margin_top": 54,
+            "margin_bottom": 20
+          }
+        },
+        "button_g9rQ6x": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "label": "Get My VIP Offer",
+            "link": "#AI-FeaturedProduct",
+            "btn_bg": "#7242d6",
+            "btn_color": "#ffffff",
+            "margin_top": 62,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_bQB3bA",
+        "text_zWVxDb",
+        "countdown_kmdciz",
+        "button_g9rQ6x"
+      ],
+      "name": "Text + video right",
+      "settings": {
+        "right_video_url": "",
+        "right_image": "shopify://shop_images/6e39a8bb2e840911a6e6285e0355351df23cf5cd.jpg",
+        "right_image_position_x": 50,
+        "right_image_position_y": 50,
+        "right_image_scale": 100,
+        "left_bg_color": "#1b3e20",
+        "left_bg_image": "shopify://shop_images/LWYA_Meta_Ad_BUMP_Hair_Powder_1080x1080_4.png",
+        "left_bg_size": "cover",
+        "padding_y": 0
+      }
+    },
+    "ai_video_with_text2_zRFRNV": {
+      "type": "AI-VideoWithText2",
+      "blocks": {
+        "title_ruttan_dVeYzG": {
+          "type": "title_ruttan",
+          "settings": {
+            "content": "<p>HELLO GORGEOUS.</p>",
+            "color": "#ffffff",
+            "font_size_desktop": 80,
+            "font_size_mobile": 32,
+            "margin_top": 0,
+            "margin_bottom": 10
+          }
+        },
+        "title_DKXJxE": {
+          "type": "title",
+          "settings": {
+            "content": "<p>YOUR VIP<br/>LASH OFFER</p>",
+            "color": "#ffffff",
+            "font_size_desktop": 400,
+            "font_size_mobile": 36,
+            "margin_top": 0,
+            "margin_bottom": 10
+          }
+        },
+        "text_mmJybR": {
+          "type": "text",
+          "settings": {
+            "content": "<p>As one of our VIPs, you’re getting exclusive early access to our best deal of the season on Flash Lash False Lashes — the instant way to turn everyday eyes into holiday showstoppers.</p>",
+            "color": "#ffffff",
+            "font_size_desktop": 16,
+            "font_size_mobile": 14,
+            "margin_top": 0,
+            "margin_bottom": 26
+          }
+        }
+      },
+      "block_order": [
+        "title_ruttan_dVeYzG",
+        "title_DKXJxE",
+        "text_mmJybR"
+      ],
+      "disabled": true,
+      "name": "AI-Video with text 2",
+      "settings": {
+        "video_file": "shopify://files/videos/Kim_Flash Lash Version 2.mp4",
+        "video_url": "",
+        "text_alignment": "left",
+        "bg_type": "image",
+        "bg_color": "#bed034",
+        "bg_image": "shopify://shop_images/Rectangle_176.png",
+        "content_padding": 60,
+        "section_padding_y": 0
+      }
+    },
+    "ai_flash_lash_section2_UMwxPX": {
+      "type": "AI-FlashLashSection2",
+      "name": "Flash Lash Section 2",
+      "settings": {
+        "background_image": "shopify://shop_images/Rectangle_191_1.png",
+        "background_color": "linear-gradient(90deg, rgba(233, 30, 99, 1), rgba(255, 87, 34, 1) 100%)",
+        "section_height": 200,
+        "text": "CHOOSE MY EXCLUSIVE ONE TIME OFFER",
+        "text_size": 62,
+        "text_color": "#ffffff"
+      }
+    },
+    "ai_featured_product_GftJFA": {
+      "type": "AI-FeaturedProduct",
+      "blocks": {
+        "product_item_73HBJT": {
+          "type": "product_item",
+          "settings": {
+            "product": "flash-lash-glam",
+            "custom_title": "",
+            "rating_value": "4.8",
+            "rating_count": "(20)",
+            "button_label": "ADD TO CART"
+          }
+        },
+        "product_item_GdEDLX": {
+          "type": "product_item",
+          "settings": {
+            "product": "flash-lash-glam-diva",
+            "custom_title": "",
+            "rating_value": "4.8",
+            "rating_count": "(31)",
+            "button_label": "ADD TO CART"
+          }
+        },
+        "product_item_94PLj8": {
+          "type": "product_item",
+          "settings": {
+            "product": "flash-lash-glam-x2-diva-x2",
+            "custom_title": "",
+            "rating_value": "4.8",
+            "rating_count": "(40)",
+            "button_label": "ADD TO CART"
+          }
+        }
+      },
+      "block_order": [
+        "product_item_73HBJT",
+        "product_item_GdEDLX",
+        "product_item_94PLj8"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "name": "Featured products (3)",
+      "settings": {
+        "enable_product_links": false,
+        "bg_color": "#ffffff",
+        "footer_text": "<p>NO AUTOSHIP - NO COMMITMENT. <br/>OFFER FOR FIRST-TIME CUSTOMERS ONLY.</p>",
+        "sale_color": "#d41870",
+        "button_bg": "#d41870",
+        "button_text": "#ffffff",
+        "padding_y": 15
+      }
+    },
+    "ai_video_with_image_6bRDX7": {
+      "type": "AI-VideoWithImage",
+      "disabled": true,
+      "name": "AI Video With Image",
+      "settings": {
+        "video": "shopify://files/videos/24293b87173848679dffc345f8a3b948.mp4",
+        "video_url": "",
+        "image": "shopify://shop_images/Group_203.png",
+        "button_link": "#AI-FeaturedProduct",
+        "button_aria_label": "Click to view more"
+      }
+    },
+    "ai_flash_lash_section3_C8dDVi": {
+      "type": "AI-FlashLashSection3",
+      "name": "AI Flash Lash Section 3",
+      "settings": {
+        "background_color": "#fe7353",
+        "main_heading": "LASHES THAT SPEAKS VOLUMES",
+        "heading_size": 80,
+        "description": "<p>Thousands of women are discovering their boldest, <br/>most beautiful look with Flash Lash Self-Adhesive Lashes.</p>",
+        "description_size": 28
+      }
+    },
+    "ai_2reviews_gTeqeD": {
+      "type": "AI-2reviews",
+      "blocks": {
+        "review_rCH4XK": {
+          "type": "review",
+          "settings": {
+            "photo": "shopify://shop_images/c1fd2a114454a1e54560d6d14e747c4d475f3f6f.jpg",
+            "name": "Kimberly G.",
+            "subtitle": "Verified Customer",
+            "quote": "They are amazing!",
+            "rating": 5,
+            "star_color": "#fe7353"
+          }
+        },
+        "review_7fbW6X": {
+          "type": "review",
+          "settings": {
+            "photo": "shopify://shop_images/cebb1d1b64369e682543fb63e887fad5555119c8.jpg",
+            "name": "Bridget S.",
+            "subtitle": "Verified Customer",
+            "quote": "I don't use any other lashes and the applicator is a game changer!",
+            "rating": 5,
+            "star_color": "#fe7353"
+          }
+        }
+      },
+      "block_order": [
+        "review_rCH4XK",
+        "review_7fbW6X"
+      ],
+      "disabled": true,
+      "name": "Two Reviews (default)",
+      "settings": {}
+    },
+    "ai_before_after_cards_aMijRj": {
+      "type": "AI-BeforeAfterCards",
+      "disabled": true,
+      "name": "Before/After Cards",
+      "settings": {
+        "background_image": "shopify://shop_images/Rectangle_195.png",
+        "background_color": "#f5f5f5",
+        "card_1_image": "shopify://shop_images/Group_200.png",
+        "card_1_title": "Diva Before After",
+        "card_2_image": "shopify://shop_images/Group_201.png",
+        "card_2_title": "Glam Before After",
+        "button_text": "GET MY VIP OFFER",
+        "button_link": "#AI-FeaturedProduct",
+        "button_bg_color": "#c2185b",
+        "button_text_color": "#ffffff",
+        "disclaimer_text": "30 DAY MONEY BACK GUARANTEED,\nNO AUTOSHIP - NO COMMITMENT",
+        "disclaimer_color": "#666666"
+      }
+    },
+    "ai_how_to_use_3pYEf6": {
+      "type": "AI-HowToUse",
+      "blocks": {
+        "how_to_step_WaVxFU": {
+          "type": "how_to_step",
+          "settings": {
+            "step_image": "shopify://shop_images/713YYIYuqKL._AC_UF1000_1000_QL80__2.png",
+            "step_number": "STEP 1",
+            "step_number_color": "#e91e8c",
+            "step_title": "ALIGN & PREP",
+            "step_title_color": "#000000",
+            "step_description": "<p>Gently remove the lashes from the tray and align them with your natural lash line to check the fit. Trim the outer edge if needed.</p>",
+            "step_description_color": "#000000",
+            "divider_color": "#ffffff"
+          }
+        },
+        "how_to_step_fzKQME": {
+          "type": "how_to_step",
+          "settings": {
+            "step_image": "shopify://shop_images/713YYIYuqKL._AC_UF1000_1000_QL80__3.png",
+            "step_number": "STEP 2",
+            "step_number_color": "#e91e8c",
+            "step_title": "APPLY & PRESS",
+            "step_title_color": "#000000",
+            "step_description": "<p>Gently remove the lashes from the tray and align them with your natural lash line to check the fit. Trim the outer edge if needed.</p>",
+            "step_description_color": "#000000",
+            "divider_color": "#ffffff"
+          }
+        },
+        "how_to_step_aHLGw6": {
+          "type": "how_to_step",
+          "settings": {
+            "step_image": "shopify://shop_images/713YYIYuqKL._AC_UF1000_1000_QL80__4.png",
+            "step_number": "STEP 3",
+            "step_number_color": "#e91e8c",
+            "step_title": "PERFECT & REUSE",
+            "step_title_color": "#000000",
+            "step_description": "<p>Gently remove the lashes from the tray and align them with your natural lash line to check the fit. Trim the outer edge if needed.</p>",
+            "step_description_color": "#000000",
+            "divider_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "how_to_step_WaVxFU",
+        "how_to_step_fzKQME",
+        "how_to_step_aHLGw6"
+      ],
+      "name": "AI-How To Use",
+      "settings": {
+        "bg_color": "#e8d4f8",
+        "constrain_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "left_video_url": "",
+        "left_image": "shopify://shop_images/Kim_Flash_Lash_Version_2_1.png",
+        "main_title": "<p>HOW TO USE</p>",
+        "title_color": "#e91e8c"
+      }
+    },
+    "ai_before_after_flash_lash_PWwdyT": {
+      "type": "AI-BeforeAfterFlashLash",
+      "name": "AI-Before After Split",
+      "settings": {
+        "left_image": "shopify://shop_images/Group_185.png",
+        "before_image": "shopify://shop_images/Rectangle_91.png",
+        "after_image": "shopify://shop_images/Rectangle_91_1.png",
+        "right_bg_color": "#ff764b",
+        "main_title": "<p>READY. SET. LASH!</p>",
+        "main_title_color": "#ffffff",
+        "subtitle": "<p>It's a GAME-CHANGER and MUST HAVE this Holiday Season.</p>",
+        "subtitle_color": "#ffffff",
+        "button_text": "GET YOURS NOW",
+        "button_link": "#AI-FeaturedProduct",
+        "button_bg": "#d41870",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "ai_rich_text_rby7HU": {
+      "type": "AI-RichText",
+      "blocks": {
+        "richtext_title_neue_DRxgKC": {
+          "type": "richtext_title_neue",
+          "settings": {
+            "content": "<p>Root lift that defies gravity.</p>",
+            "color": "#d41870",
+            "mobile_size": 36,
+            "desktop_size": 122,
+            "margin_top": 0,
+            "margin_bottom": 20,
+            "max_width_mobile": 400,
+            "max_width_desktop": 800
+          }
+        },
+        "richtext_paragraph_9QjYTC": {
+          "type": "richtext_paragraph",
+          "settings": {
+            "content": "<p>BUMP transforms flat strands into full, lifted hair in seconds. No crunch, no residue — just instant, effortless texture that stays.</p>",
+            "color": "#000000",
+            "mobile_size": 14,
+            "desktop_size": 29,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "max_width_mobile": 400,
+            "max_width_desktop": 730
+          }
+        }
+      },
+      "block_order": [
+        "richtext_title_neue_DRxgKC",
+        "richtext_paragraph_9QjYTC"
+      ],
+      "name": "AI-RichText",
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "max_width": 1200
+      }
+    },
+    "ai_video_grid_PBCH9H": {
+      "type": "AI-VideoGrid",
+      "blocks": {
+        "video_XP7BRF": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/BHP_VB001_e8dcad76-c938-42c0-a8f0-b0b0c90964ca.mp4",
+            "video_url": "",
+            "video_title": ""
+          }
+        },
+        "video_iGQwEc": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/AQNiUWV9IJROG3lp1wCBOqURkHclpBG17fuPnjAS5P5LAXmWwh3KtZv8OCLTOE4xfmd2GX6RdNn0anRn4YP3jqEigaJqeMuUyFK9Den7WY3CQw.mp4",
+            "video_url": "",
+            "video_title": ""
+          }
+        },
+        "video_DPm3qL": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/BHP_VB002.mp4",
+            "video_url": "",
+            "video_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_XP7BRF",
+        "video_iGQwEc",
+        "video_DPm3qL"
+      ],
+      "name": "AI-Video Grid",
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "section_title": "",
+        "title_color": "#000000",
+        "title_margin_bottom": 40
+      }
+    },
+    "ai_simple_button_wYiNda": {
+      "type": "AI-SimpleButton",
+      "name": "Simple button center",
+      "settings": {
+        "label": "GET YOURS NOW",
+        "link": "#AI-FeaturedProduct",
+        "section_bg": "#ffffff",
+        "btn_bg": "#d41870",
+        "btn_text": "#ffffff",
+        "padding_y": 45,
+        "font_mobile": 16,
+        "font_desktop": 25
+      }
+    },
+    "ai_flash_lash_section1_PB8cNp": {
+      "type": "AI-FlashLashSection1",
+      "name": "Flash Lash Section 1",
+      "settings": {
+        "image": "shopify://shop_images/LWYA-FinalEdit_Q12025_Square-93_2_1.png",
+        "background_color": "#ff764b",
+        "big_number": "60,000+",
+        "big_number_color": "#c2185b",
+        "subtitle": "LASHES SOLD",
+        "subtitle_color": "#ffffff",
+        "main_heading": "<p>LOVE IT OR <br/>RETURN IT</p>",
+        "main_heading_color": "#c2185b",
+        "description": "<p>We want you to love your look — no <br/>strings (or lash glue) attached.</p>",
+        "description_color": "#ffffff"
+      }
+    },
+    "ai_our_values_9KwmhW": {
+      "type": "AI-OurValues",
+      "blocks": {
+        "value_KTC9jY": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/bb3e422c01ed7052d624b20e15dce00c479fc413.png",
+            "label": "<p>Paraben <br/>Free</p>"
+          }
+        },
+        "value_8yfQPe": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/9f4cc42e3feaa6f8404e62c473ab7f76c6b3fd23.png",
+            "label": "<p>Sulfate <br/>Free</p>"
+          }
+        },
+        "value_GzGgk4": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/c7d97a8fe7ca24b571d158b4cf85c89f23c561a6.png",
+            "label": "<p>Mineral Oil <br/>Free</p>"
+          }
+        },
+        "value_PRU4qz": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/2cee51a37afe2117e2c50c91077772a53c5ad478.png",
+            "label": "<p>Talc<br/>Free</p>"
+          }
+        },
+        "value_XDabnH": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/57f322f8e8eac3dde254e572819cdebde8f6c223.png",
+            "label": "<p>Leaping <br/>Bunny <br/>Certified</p>"
+          }
+        },
+        "value_PBJRiT": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/fa9855df9cf279da8d7d69fa41ba2dd2421f0cf4.png",
+            "label": "<p>Formaldehydes <br/>Free</p>"
+          }
+        }
+      },
+      "block_order": [
+        "value_KTC9jY",
+        "value_8yfQPe",
+        "value_GzGgk4",
+        "value_PRU4qz",
+        "value_XDabnH",
+        "value_PBJRiT"
+      ],
+      "name": "LWYA Promise",
+      "settings": {
+        "heading": "The LWYA Promise",
+        "bg_color": "#d41870",
+        "bg_opacity": 5,
+        "heading_color": "#000000",
+        "padding_y": 70,
+        "padding_x": 115
+      }
+    },
+    "ai_accordion_P9N7mm": {
+      "type": "AI-Accordion",
+      "blocks": {
+        "faq_item_TPmLba": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need glue for these lashes?",
+            "answer": "<p> No. The self-adhesive band is pre-coated with a gentle adhesive that secures the lashes without glue.<br/><br/></p>"
+          }
+        },
+        "faq_item_UddUaa": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I reuse them?",
+            "answer": "<p>Yes. With proper care, Flash Lash can be reused multiple times. Simply remove them gently and place them back on the tray after each wear.<br/><br/></p>"
+          }
+        },
+        "faq_item_NJJ3kw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are they comfortable to wear?",
+            "answer": "<p>Yes. The flexible adhesive band is designed for lightweight comfort and a natural feel throughout the day.<br/><br/></p>"
+          }
+        },
+        "faq_item_yTh4Am": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I remove them safely?",
+            "answer": "<p>Gently peel from the outer corner while holding the lash band—not the hairs—to avoid damage</p>"
+          }
+        },
+        "faq_item_WHPJWg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I trim them to fit my eye shape?",
+            "answer": "<p>Absolutely. Use small scissors to trim from the outer edge to achieve a perfect fit.</p>"
+          }
+        },
+        "faq_item_LtJHKB": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long do they stay on?",
+            "answer": "<p>The self-adhesive band provides secure wear for hours of comfortable use.<br/><br/></p>"
+          }
+        },
+        "faq_item_44adbr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are they cruelty-free?",
+            "answer": "<p>Yes. Like all Love Who You Are products, Flash Lash Self-Adhesive False Lashes are cruelty-free and EU compliant—crafted with care and designed for safe, comfortable beauty.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_TPmLba",
+        "faq_item_UddUaa",
+        "faq_item_NJJ3kw",
+        "faq_item_yTh4Am",
+        "faq_item_WHPJWg",
+        "faq_item_LtJHKB",
+        "faq_item_44adbr"
+      ],
+      "name": "FAQ - Accordion",
+      "settings": {
+        "heading": "FAQ",
+        "bg_color": "#efefef",
+        "title_color": "#000000",
+        "line_color": "#000000",
+        "dot_color": "#c02b2b",
+        "content_width": 720,
+        "spacing_title_to_list": 65,
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "1762515596d09097c4": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_agg_section_QB6P8L": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-agg-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": true,
+            "hide_thumbnails": false,
+            "product_handle": "vivacity",
+            "aggregated": true,
+            "data-limit": 20,
+            "maxwidth": 1920,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_agg_section_QB6P8L"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".container {max-width: 1440px;}"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
+    "ai_countdown_hero_U7xAwy": {
+      "type": "AI-CountdownHero",
+      "name": "Countdown Hero",
+      "settings": {
+        "background_image": "shopify://shop_images/Banner_1.png",
+        "background_color": "#ffffff",
+        "heading": "Time is running out—",
+        "heading_color": "#000000",
+        "subheading": "but your perfect Holiday gift?",
+        "subheading_color": "#000000",
+        "tagline": "Just a click away.",
+        "tagline_color": "#000000",
+        "countdown_end": "2025-12-31 23:59:59",
+        "countdown_color": "#ffffff",
+        "button_text": "Get My VIP Offer",
+        "button_link": "#AI-FeaturedProduct",
+        "button_bg_color": "#c2185b",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "ai_confidence_section_TXjXr7": {
+      "type": "AI-ConfidenceSection",
+      "name": "AI Confidence Section",
+      "settings": {
+        "desktop_banner": "shopify://shop_images/Frame_21_1.png",
+        "mobile_bg_color": "#f5e6f0",
+        "mobile_image_left": "shopify://shop_images/Web_IMG_0202_1.png",
+        "name": "",
+        "name_color": "#000000",
+        "signature_image": "shopify://shop_images/Group_163.png",
+        "confidence_title": "Confidence",
+        "confidence_color": "#000000",
+        "main_heading": "ONE WINK AT A TIME",
+        "heading_color": "#c2185b",
+        "description": "<p>I created Flash Lash for real women who want instant confidence — the kind that doesn't need filters or hours in front of a mirror.</p><p>This season, I wanted to give our VIP community something special — the chance to feel instantly glamorous, effortlessly beautiful, and fully themselves.</p><p>Whether you're gifting it or wearing it to light up the room, Flash Lash is your reminder that confidence is the best accessory.</p>",
+        "text_color": "#000000"
+      }
+    },
+    "1762954370f222f979": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_agg_section_3GL44P": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-agg-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "hide_thumbnails": false,
+            "product_handle": "flash-lash-glam",
+            "aggregated": false,
+            "data-limit": 20,
+            "maxwidth": 1080,
+            "is_sample": false
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_agg_section_3GL44P"
+      ],
+      "custom_css": [
+        ".container {max-width: 1440px;}"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    }
+  },
+  "order": [
+    "ai_vip_offer_video_ehtX69",
+    "ai_image_with_video_jHYEGr",
+    "ai_video_with_text2_zRFRNV",
+    "ai_flash_lash_section2_UMwxPX",
+    "ai_featured_product_GftJFA",
+    "ai_video_with_image_6bRDX7",
+    "ai_flash_lash_section3_C8dDVi",
+    "ai_2reviews_gTeqeD",
+    "ai_before_after_cards_aMijRj",
+    "ai_how_to_use_3pYEf6",
+    "ai_before_after_flash_lash_PWwdyT",
+    "ai_rich_text_rby7HU",
+    "ai_video_grid_PBCH9H",
+    "ai_simple_button_wYiNda",
+    "ai_flash_lash_section1_PB8cNp",
+    "ai_our_values_9KwmhW",
+    "ai_accordion_P9N7mm",
+    "main",
+    "1762515596d09097c4",
+    "ai_countdown_hero_U7xAwy",
+    "ai_confidence_section_TXjXr7",
+    "1762954370f222f979"
+  ]
+}

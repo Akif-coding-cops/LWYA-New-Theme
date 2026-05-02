@@ -1,0 +1,350 @@
+{% schema %}
+{
+  "name": "AI-SolidBanner",
+  "tag": "section",
+  "class": "holiday-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left image (optional, 527px desktop)"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment (when image is present)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "info": "Only applies when left image is added"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#BED034"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_inside_container",
+      "label": "Limit background to 1440px container",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_outer",
+      "label": "Outer padding",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "inner_padding",
+      "label": "Inner padding (inside border)",
+      "min": 40,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "countdown",
+      "name": "Countdown",
+      "settings": [
+        {
+          "type": "text",
+          "id": "target_datetime",
+          "label": "Target datetime (YYYY-MM-DD HH:MM)",
+          "info": "Example: 2025-12-31 23:59"
+        },
+        {
+          "type": "color",
+          "id": "time_color",
+          "label": "Time color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Time is running out—<br>but your perfect Holiday gift?<br><strong>Just a click away.</strong></p>"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "mobile_size",
+          "label": "Mobile font size",
+          "min": 14,
+          "max": 34,
+          "step": 1,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "desktop_size",
+          "label": "Desktop font size",
+          "min": 18,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 46
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 34
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Choose My Holiday VIP Offer"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "btn_bg",
+          "label": "Button background",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "btn_color",
+          "label": "Button text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Holiday banner (countdown)",
+      "blocks": [
+        { "type": "countdown" },
+        { "type": "text" },
+        { "type": "button" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="background: {% if section.settings.bg_inside_container %}transparent{% else %}{{ section.settings.bg_color }}{% endif %}; padding: {{ section.settings.padding_outer }}px;"
+>
+  <div
+    class="tw-max-w-[1440px] tw-mx-auto tw-text-center {% if section.settings.left_image != blank %}tw-flex tw-flex-col md:tw-flex-row tw-items-stretch{% else %}tw-flex tw-flex-col tw-items-center{% endif %}"
+    style="background: {% if section.settings.bg_inside_container %}{{ section.settings.bg_color }}{% else %}transparent{% endif %}; border: 8px solid {{ section.settings.border_color }}; {% if section.settings.left_image != blank %}padding: 0;{% else %}padding: {{ section.settings.inner_padding }}px 16px;{% endif %}"
+  >
+    {% if section.settings.left_image != blank %}
+      {% assign align_class = 'tw-items-start tw-text-left' %}
+      {% if section.settings.content_alignment == 'center' %}
+        {% assign align_class = 'tw-items-center tw-text-center' %}
+      {% elsif section.settings.content_alignment == 'right' %}
+        {% assign align_class = 'tw-items-end tw-text-right' %}
+      {% endif %}
+      <div class="tw-w-full md:tw-w-responsive-[300,527] tw-flex-shrink-0">
+        <img
+          src="{{ section.settings.left_image | image_url: width: 1000 }}"
+          alt="{{ section.settings.left_image.alt | escape }}"
+          class="tw-w-full tw-h-full tw-object-cover"
+        >
+      </div>
+      <div class="tw-flex-1 tw-flex tw-flex-col tw-justify-center {{ align_class }}" style="padding: {{ section.settings.inner_padding }}px 16px; padding-left: 16px;">
+        <style>
+          @media (min-width: 768px) {
+            #shopify-section-{{ section.id }} .tw-flex-1 {
+              padding-left: 80px !important;
+            }
+          }
+        </style>
+    {% endif %}
+    
+    {% for block in section.blocks %}
+      {% assign mt = block.settings.margin_top | append: 'px' %}
+      {% assign mb = block.settings.margin_bottom | append: 'px' %}
+      {% case block.type %}
+        {% when 'countdown' %}
+          <div
+            class="countdown-wrap tw-text-ruttan"
+            style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.time_color }};"
+            data-countdown-target="{{ block.settings.target_datetime | escape }}"
+          >
+            <div class="tw-flex tw-gap-[8px] {% if section.settings.left_image != blank %}tw-justify-start{% else %}tw-justify-center{% endif %} tw-items-center tw-flex-wrap">
+              <div class="tw-flex tw-flex-col tw-items-center">
+                <div class="tw-text-[32px] md:tw-text-[46px] tw-font-[700] tw-leading-none days">00</div>
+                <div class="tw-text-[10px] md:tw-text-[12px] tw-uppercase tw-tracking-[0.15em] tw-mt-[4px]">DAYS</div>
+              </div>
+              <div class="tw-text-[32px] md:tw-text-[46px] tw-font-[700] tw-leading-none tw-mb-[20px] md:tw-mb-[24px]">:</div>
+              <div class="tw-flex tw-flex-col tw-items-center">
+                <div class="tw-text-[32px] md:tw-text-[46px] tw-font-[700] tw-leading-none hours">00</div>
+                <div class="tw-text-[10px] md:tw-text-[12px] tw-uppercase tw-tracking-[0.15em] tw-mt-[4px]">HRS</div>
+              </div>
+              <div class="tw-text-[32px] md:tw-text-[46px] tw-font-[700] tw-leading-none tw-mb-[20px] md:tw-mb-[24px]">:</div>
+              <div class="tw-flex tw-flex-col tw-items-center">
+                <div class="tw-text-[32px] md:tw-text-[46px] tw-font-[700] tw-leading-none minutes">00</div>
+                <div class="tw-text-[10px] md:tw-text-[12px] tw-uppercase tw-tracking-[0.15em] tw-mt-[4px]">MIN</div>
+              </div>
+              <div class="tw-text-[32px] md:tw-text-[46px] tw-font-[700] tw-leading-none tw-mb-[20px] md:tw-mb-[24px]">:</div>
+              <div class="tw-flex tw-flex-col tw-items-center">
+                <div class="tw-text-[32px] md:tw-text-[46px] tw-font-[700] tw-leading-none seconds">00</div>
+                <div class="tw-text-[10px] md:tw-text-[12px] tw-uppercase tw-tracking-[0.15em] tw-mt-[4px]">SEC</div>
+              </div>
+            </div>
+          </div>
+        {% when 'text' %}
+          <div
+            class="tw-richtext"
+            style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.text_color }}; font-size: clamp({{ block.settings.mobile_size }}px, 3.5vw, {{ block.settings.desktop_size }}px); line-height: 1.25;"
+          >
+            {{ block.settings.content }}
+          </div>
+        {% when 'button' %}
+          {% if block.settings.label != blank %}
+            <div style="margin-top: {{ mt }}; margin-bottom: {{ mb }};">
+              <a
+                {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
+                class="tw-inline-block tw-rounded-none"
+                style="background: {{ block.settings.btn_bg }}; color: {{ block.settings.btn_color }}; padding: 12px 28px; font-size: clamp(18px, 3vw, 26px); font-weight: 600;"
+              >
+                {{ block.settings.label }}
+              </a>
+            </div>
+          {% endif %}
+      {% endcase %}
+    {% endfor %}
+    
+    {% if section.settings.left_image != blank %}
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+    (function() {
+      var root = document.currentScript && document.currentScript.closest
+        ? document.currentScript.closest('section')
+        : null;
+      if (!root) return;
+      var timers = root.querySelectorAll('.countdown-wrap');
+      timers.forEach(function(timer) {
+        var target = timer.getAttribute('data-countdown-target');
+        if (!target) return;
+        var targetTime = new Date(target.replace(/-/g, '/')).getTime();
+        if (isNaN(targetTime)) return;
+        function tick() {
+          var now = Date.now();
+          var diff = targetTime - now;
+          if (diff < 0) diff = 0;
+          var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          var hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          var secs = Math.floor((diff % (1000 * 60)) / 1000);
+          var dEl = timer.querySelector('.days');
+          var hEl = timer.querySelector('.hours');
+          var mEl = timer.querySelector('.minutes');
+          var sEl = timer.querySelector('.seconds');
+          if (!dEl || !hEl || !mEl || !sEl) return;
+          dEl.textContent = String(days).padStart(2, '0');
+          hEl.textContent = String(hrs).padStart(2, '0');
+          mEl.textContent = String(mins).padStart(2, '0');
+          sEl.textContent = String(secs).padStart(2, '0');
+        }
+        tick();
+        setInterval(tick, 1000);
+      });
+    })();
+  </script>
+</section>

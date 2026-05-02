@@ -1,0 +1,492 @@
+{% schema %}
+{
+  "name": "AI-Video with text ",
+  "tag": "section",
+  "class": "video-text-panel",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video_file",
+      "label": "Video (upload)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL (YouTube/Vimeo)",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "color",
+      "id": "outer_bg",
+      "label": "Right outer background",
+      "default": "#BED034"
+    },
+    {
+      "type": "color",
+      "id": "inner_bg",
+      "label": "Right inner background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "outer_padding",
+      "label": "Right outer padding",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "inner_padding",
+      "label": "Right inner padding",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_y",
+      "label": "Section padding top/bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Title",
+      "type": "title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Title",
+          "default": "WELCOME BEAUTIFUL"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Title color",
+          "default": "#B7C025"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 10
+        }
+      ]
+    },
+    {
+      "name": "Subtitle",
+      "type": "subtitle",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Subtitle",
+          "default": "<p>Your Exclusive VIP Holiday Fragrance Offer Awaits</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Subtitle color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "name": "Divider",
+      "type": "divider",
+      "settings": [
+        {
+          "type": "color",
+          "id": "line_color",
+          "label": "Line color",
+          "default": "#B7C025"
+        },
+        {
+          "type": "range",
+          "id": "line_height",
+          "label": "Line thickness",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "unit": "px",
+          "default": 4
+        },
+        {
+          "type": "range",
+          "id": "line_width",
+          "label": "Line width (%)",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 35
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "type": "text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>You’ve made our Nice List!</p><p>As one of our most loyal customers, you’re getting first dibs on our limited-edition holiday fragrance offers — before they sell out.</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 26
+        }
+      ]
+    },
+    {
+      "name": "Button",
+      "type": "button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button label",
+          "default": "Unlock Your Holiday VIP Offer"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "btn_bg",
+          "label": "Button background",
+          "default": "#B7C025"
+        },
+        {
+          "type": "color",
+          "id": "btn_color",
+          "label": "Button text",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "name": "Countdown",
+      "type": "countdown",
+      "settings": [
+        {
+          "type": "text",
+          "id": "target_datetime",
+          "label": "Target datetime (YYYY-MM-DD HH:MM)",
+          "info": "Example: 2025-12-31 23:59"
+        },
+        {
+          "type": "color",
+          "id": "time_color",
+          "label": "Countdown color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Font size",
+          "min": 16,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "AI-Video with text ",
+      "blocks": [
+        { "type": "title" },
+        { "type": "subtitle" },
+        { "type": "divider" },
+        { "type": "text" },
+        { "type": "button" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="padding-top: {{ section.settings.section_padding_y }}px; padding-bottom: {{ section.settings.section_padding_y }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row md:tw-px-0 tw-gap-0 md:tw-max-h-[750px]">
+    <!-- Left video 50% -->
+    <div class="tw-w-full md:tw-w-1/2 tw-overflow-hidden tw-bg-black md:tw-h-[750px]">
+      {% if section.settings.video_file != blank %}
+        {{ section.settings.video_file | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'tw-w-full tw-h-full tw-object-cover' }}
+      {% elsif section.settings.video_url != blank %}
+        <div class="tw-relative tw-w-full tw-pt-[56.25%]">
+          <iframe
+            src="{{ section.settings.video_url | video_url }}"
+            class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+          ></iframe>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Right panel 50% -->
+    <div class="tw-w-full md:tw-w-1/2">
+      <div
+        style="background: {{ section.settings.outer_bg }}; padding: {{ section.settings.outer_padding }}px;"
+        class="tw-h-full"
+      >
+        <div
+          style="background: {{ section.settings.inner_bg }}; padding: {{ section.settings.inner_padding }}px;"
+          class="tw-h-full tw-flex tw-flex-col tw-items-center tw-text-center tw-justify-center"
+        >
+          {% for block in section.blocks %}
+            {% assign mt = block.settings.margin_top | append: 'px' %}
+            {% assign mb = block.settings.margin_bottom | append: 'px' %}
+            {% case block.type %}
+              {% when 'title' %}
+                <h2
+                  style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.color }}; font-size: clamp(22px, 3vw, 46px); font-weight: 700;"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.content }}
+                </h2>
+              {% when 'subtitle' %}
+                <div
+                  style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.color }}; font-size: clamp(16px, 2.2vw, 28px); font-weight: 600;"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.content }}
+                </div>
+              {% when 'divider' %}
+                <div style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; display: flex; justify-content: center; width: 100%;" {{ block.shopify_attributes }}>
+                  <div
+                    style="width: {{ block.settings.line_width }}%; height: {{ block.settings.line_height }}px; background: {{ block.settings.line_color }};"
+                  ></div>
+                </div>
+              {% when 'text' %}
+                <div
+                  style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.color }}; font-size: clamp(14px, 1.8vw, 16px); line-height: 1.6;"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.content }}
+                </div>
+              {% when 'button' %}
+                {% if block.settings.label != blank %}
+                  <div style="margin-top: {{ mt }}; margin-bottom: {{ mb }};">
+                    <a
+                      {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
+                      class="tw-inline-block tw-rounded-none"
+                      style="background: {{ block.settings.btn_bg }}; color: {{ block.settings.btn_color }}; padding: clamp(10px, 1.5vw, 12px) clamp(20px, 2.5vw, 26px); font-weight: 600; font-size: clamp(14px, 1.8vw, 16px);"
+                    >
+                      {{ block.settings.label }}
+                    </a>
+                  </div>
+                {% endif %}
+              {% when 'countdown' %}
+                {% if block.settings.target_datetime != blank %}
+                  <div
+                    class="video-countdown tw-text-ruttan"
+                    style="margin-top: {{ mt }}; margin-bottom: {{ mb }}; color: {{ block.settings.time_color }};"
+                    data-countdown-target="{{ block.settings.target_datetime | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <div class="tw-flex tw-gap-[12px] tw-items-baseline tw-justify-center tw-flex-wrap">
+                      <div class="tw-inline-block tw-relative">
+                        <div class="tw-font-[700] tw-leading-none days" style="font-size: clamp(24px, 3vw, {{ block.settings.font_size }}px);">00</div>
+                        <div class="tw-text-[12px] tw-tracking-[0.16em] tw-uppercase tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-full tw-mt-[2px] tw-whitespace-nowrap">DAYS</div>
+                      </div>
+                      <div class="tw-font-[700] tw-leading-none" style="font-size: clamp(24px, 3vw, {{ block.settings.font_size }}px);">:</div>
+                      <div class="tw-inline-block tw-relative">
+                        <div class="tw-font-[700] tw-leading-none hours" style="font-size: clamp(24px, 3vw, {{ block.settings.font_size }}px);">00</div>
+                        <div class="tw-text-[12px] tw-tracking-[0.16em] tw-uppercase tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-full tw-mt-[2px] tw-whitespace-nowrap">HRS</div>
+                      </div>
+                      <div class="tw-font-[700] tw-leading-none" style="font-size: clamp(24px, 3vw, {{ block.settings.font_size }}px);">:</div>
+                      <div class="tw-inline-block tw-relative">
+                        <div class="tw-font-[700] tw-leading-none minutes" style="font-size: clamp(24px, 3vw, {{ block.settings.font_size }}px);">00</div>
+                        <div class="tw-text-[12px] tw-tracking-[0.16em] tw-uppercase tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-full tw-mt-[2px] tw-whitespace-nowrap">MIN</div>
+                      </div>
+                      <div class="tw-font-[700] tw-leading-none" style="font-size: clamp(24px, 3vw, {{ block.settings.font_size }}px);">:</div>
+                      <div class="tw-inline-block tw-relative">
+                        <div class="tw-font-[700] tw-leading-none seconds" style="font-size: clamp(24px, 3vw, {{ block.settings.font_size }}px);">00</div>
+                        <div class="tw-text-[12px] tw-tracking-[0.16em] tw-uppercase tw-absolute tw-left-1/2 tw--translate-x-1/2 tw-top-full tw-mt-[2px] tw-whitespace-nowrap">SEC</div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var root = document.currentScript && document.currentScript.closest
+        ? document.currentScript.closest('section')
+        : null;
+      if (!root) return;
+      var timers = root.querySelectorAll('.video-countdown');
+      timers.forEach(function(timer) {
+        var target = timer.getAttribute('data-countdown-target');
+        if (!target) return;
+        var targetTime = new Date(target.replace(/-/g, '/')).getTime();
+        if (isNaN(targetTime)) return;
+
+        function tick() {
+          var now = Date.now();
+          var diff = targetTime - now;
+          if (diff < 0) diff = 0;
+          var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          var hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          var secs = Math.floor((diff % (1000 * 60)) / 1000);
+          var dEl = timer.querySelector('.days');
+          var hEl = timer.querySelector('.hours');
+          var mEl = timer.querySelector('.minutes');
+          var sEl = timer.querySelector('.seconds');
+          if (!dEl || !hEl || !mEl || !sEl) return;
+          dEl.textContent = String(days).padStart(2, '0');
+          hEl.textContent = String(hrs).padStart(2, '0');
+          mEl.textContent = String(mins).padStart(2, '0');
+          sEl.textContent = String(secs).padStart(2, '0');
+        }
+        tick();
+        setInterval(tick, 1000);
+      });
+    })();
+  </script>
+</section>
+

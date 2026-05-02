@@ -1,0 +1,305 @@
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Outer Background",
+      "default": "#FFE1E2"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Inner Border Color",
+      "default": "#D41870"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "How It Works",
+      "label": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "default": 45,
+      "label": "Title Font Size"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "default": "#000000",
+      "label": "Title Color"
+    },
+
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "We believe beauty gets better with time — and we’re here to reward the women who prove it.",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "default": 32,
+      "label": "Description Font Size"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "default": "#000000",
+      "label": "Description Color"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Step Number",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Step Heading",
+          "default": "JOIN THE CLUB"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Step Description",
+          "default": "Create your account in seconds."
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+<section class="how-it-works-{{ section.id }}">
+  <div class="hiw-inner">
+
+    <h2 class="hiw-title">{{ section.settings.title }}</h2>
+
+    <div class="hiw-description">
+      {{ section.settings.description }}
+    </div>
+
+    <div class="hiw-steps">
+      {% for block in section.blocks %}
+        <div class="hiw-step">
+
+          <div class="hiw-icon">
+            <span>{{ block.settings.number }}</span>
+          </div>
+
+          <h3 class="hiw-step-title">
+            {{ block.settings.heading }}
+          </h3>
+
+          <div class="hiw-step-text">
+            {{ block.settings.text }}
+          </div>
+
+        </div>
+
+        {% unless forloop.last %}
+          <div class="hiw-divider"></div>
+        {% endunless %}
+
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+
+<style>
+
+.how-it-works-{{ section.id }} {
+   max-width: 1400px;
+   margin: 0 auto;
+  background: {{ section.settings.section_bg }};
+  padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px;
+}
+
+.hiw-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  border: {{ section.settings.border_width }}px solid {{ section.settings.border_color }};
+  padding: 60px 40px;
+  box-sizing: border-box;
+}
+
+.hiw-title {
+  font-family: "Gotham", sans-serif;
+  font-weight: 700;
+  font-size: {{ section.settings.title_size }}px;
+  color: {{ section.settings.title_color }};
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hiw-description {
+  font-family: "Gotham-Book", sans-serif;
+  font-weight: 325;
+  font-size: {{ section.settings.desc_size }}px;
+  color: {{ section.settings.desc_color }};
+  text-align: center;
+  max-width: 1099px;
+  margin: 0 auto 60px;
+}
+
+.hiw-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* IMPORTANT */
+  position: relative;
+}
+
+.hiw-step {
+  flex: 1;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hiw-icon {
+  width: 80px;
+  height: 65px;
+  margin: 0 auto 25px;
+  background: {{ section.settings.border_color }};
+  clip-path: path("M40 65C-10 35 15 0 40 20C65 0 90 35 40 65Z");
+  display: flex;
+  align-items:flex-end;
+  justify-content: center;
+}
+
+.hiw-icon span {
+  font-family: "Gotham", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.hiw-step-title {
+  font-family: "Gotham", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+.hiw-step-text {
+  font-family: "Gotham-Book", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  max-width: 287px;
+  margin: 0 auto;
+  color: #000000;
+}
+.hiw-divider {
+  width: 2px;
+  background: {{ section.settings.border_color }};
+  margin: 0 10px;
+  align-self: stretch;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 990px) {
+
+  .hiw-steps {
+    flex-direction: column;
+  }
+
+  .hiw-divider {
+    display: none;
+  }
+
+  .hiw-step {
+    margin-bottom: 40px;
+  }
+
+  .hiw-description {
+    font-size: calc({{ section.settings.desc_size }}px * 0.8);
+  }
+
+  .hiw-title {
+    font-size: calc({{ section.settings.title_size }}px * 0.8);
+  }
+
+}
+
+</style>

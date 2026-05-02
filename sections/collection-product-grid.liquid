@@ -1,0 +1,318 @@
+{% style %}
+  .collection-grid-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .collection-grid-container {
+    max-width: {{ section.settings.section_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ section.settings.grid_gap }}px;
+  }
+
+  .product-card {
+    text-align: left;
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+  }
+
+  .product-card__img-wrapper {
+    position: relative;
+  }
+
+  .product-card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+
+  .product-title {
+      width: 80%;
+      font-family: 'Gotham';
+    font-size: {{ section.settings.title_size }}px;
+      /* font-weight: bold; */
+    font-weight: {{ section.settings.title_weight }};
+    margin-top: 10px;
+    color: {{ section.settings.title_color }};
+  }
+
+  .product-price {
+       font-family: 'Gotham';
+    font-size: {{ section.settings.price_size }}px;
+    font-weight: {{ section.settings.price_weight }};
+    color: {{ section.settings.price_color }};
+  }
+
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .stars {
+    color: {{ section.settings.star_color }};
+    font-size: {{ section.settings.star_size }}px;
+  }
+
+  .rating-count {
+    font-size: {{ section.settings.rating_size }}px;
+    color: {{ section.settings.rating_color }};
+  }
+  .card-variant-count {
+    font-size: 1rem;
+    color: #777;
+  }
+  /* Tablet */
+  @media(max-width: 1024px){
+    .collection-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Mobile */
+  @media(max-width: 768px){
+    .collection-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
+
+<section class="collection-grid-section">
+  <div class="collection-grid-container">
+    <div class="collection-grid">
+      {% assign selected_collection = collections[section.settings.collection] %}
+
+      {% if collection != blank %}
+        {% if section.settings.enable_limit %}
+          {% assign product_limit = section.settings.products_to_show %}
+        {% else %}
+          {% assign product_limit = collection.products_count %}
+        {% endif %}
+
+        {% paginate collection.products by product_limit %}
+          {% for product in collection.products %}
+            {% assign badge = product.metafields.custom.product_badge.value %}
+            <div class="product-card">
+              <a href="{{ product.url }}" class="product-card__img-wrapper">
+                <img
+                  src="{{ product.featured_image | image_url: width: 700 }}"
+                  alt="{{ product.title }}"
+                  loading="lazy"
+                >
+                {% if badge != blank %}
+                  {% render 'badge', position: 'top-right', text: badge.text, bg_color: badge.background_color %}
+                {% endif %}
+              </a>
+
+              <div class="product-title">
+                {{ product.title }}
+              </div>
+
+              <div class="product-price">
+                {% comment %} {{ product.price | money }} {% endcomment %}
+                {% if product.price > 0 %}
+                  {{ product.price | money }}
+                  {%- if product.compare_at_price > product.price -%}
+                    <s class="tw-text-[16px] tw-text-[#9b9b9b] tw-ml-[8px]">{{ product.compare_at_price | money }}</s>
+                  {%- endif -%}
+                {% else %}
+                  —
+                {% endif %}
+              </div>
+
+              <div class="product-rating">
+                <div
+                  class="loox-rating stars rating-count"
+                  data-id="{{ product.id }}"
+                  data-rating="{{ product.metafields.loox.avg_rating }}"
+                  data-raters="{{ product.metafields.loox.num_reviews }}"
+                ></div>
+              </div>
+              {% if product.has_only_default_variant == false %}
+                {% assign option = product.options_with_values.first %}
+                <p class="card-variant-count">
+                  Available in {{ option.values.size }}
+                  {{ option.name | append: 's' }}
+                </p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% endpaginate %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Product Grid",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_limit",
+      "label": "Limit number of products",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to Show (if limit enabled)",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "section_width",
+      "label": "Section Width",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "default": 1250
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid Gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 50
+    },
+
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title Font Weight",
+      "default": "700",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+
+    {
+      "type": "header",
+      "content": "Price Settings"
+    },
+    {
+      "type": "range",
+      "id": "price_size",
+      "label": "Price Font Size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "select",
+      "id": "price_weight",
+      "label": "Price Font Weight",
+      "default": "700",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price Color",
+      "default": "#00000080"
+    },
+
+    {
+      "type": "header",
+      "content": "Rating Settings"
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "rating_size",
+      "label": "Rating Text Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 19
+    },
+    {
+      "type": "color",
+      "id": "rating_color",
+      "label": "Rating Text Color",
+      "default": "#00000080"
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Product Grid"
+    }
+  ]
+}
+{% endschema %}

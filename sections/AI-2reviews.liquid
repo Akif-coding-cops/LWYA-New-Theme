@@ -1,0 +1,138 @@
+{% comment %} sections/reviews-two.liquid {% endcomment %}
+<section class="tw-w-full tw-bg-white">
+  <div class="container-responsive">
+    <div class="tw-max-w-[1440px] tw-mx-auto">
+      <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-[12px] md:tw-gap-[20px] tw-items-stretch">
+        {% for block in section.blocks %}
+          <article class="tw-relative tw-flex tw-flex-col md:tw-flex-row tw-bg-[#D41870] tw-text-white tw-overflow-hidden tw-rounded-[4px]">
+            <!-- Image column -->
+            <div class="tw-w-full md:tw-w-[240px] tw-h-[200px] md:tw-h-auto tw-flex-shrink-0">
+              {% if block.settings.photo != blank %}
+                <img
+                  src="{{ block.settings.photo | img_url: '800x' }}"
+                  alt="{{ block.settings.name | escape }}"
+                  class="tw-w-full tw-h-full tw-object-cover md:tw-object-contain"
+                />
+              {% else %}
+                <div class="tw-w-full tw-h-full tw-bg-gray-200"></div>
+              {% endif %}
+            </div>
+
+            <!-- Content column -->
+            <div class="tw-px-[32px] tw-py-[16px] md:tw-px-[52px] md:tw-py-[28px] tw-flex tw-flex-col tw-justify-center tw-gap-[8px]">
+              <!-- Stars -->
+              <div class="tw-flex tw-items-center tw-gap-[6px]">
+                {% assign r = block.settings.rating | default: 5 %}
+                {% assign star_color = block.settings.star_color | default: '#FFD700' %}
+                {% for i in (1..5) %}
+                  {% if i <= r %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="{{ star_color }}" class="tw-w-[24px] tw-h-[24px]">
+                      <path d="M12 .587l3.668 7.431L23.5 9.75l-5.75 5.602L19.335 24 12 19.897 4.665 24l1.585-8.648L.5 9.75l7.832-1.732L12 .587z"/>
+                    </svg>
+                  {% else %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(255,255,255,0.22)" class="tw-w-[24px] tw-h-[24px]">
+                      <path d="M12 .587l3.668 7.431L23.5 9.75l-5.75 5.602L19.335 24 12 19.897 4.665 24l1.585-8.648L.5 9.75l7.832-1.732L12 .587z"/>
+                    </svg>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <!-- Quote -->
+              <p class="tw-text-[20px] md:tw-text-[24px] tw-leading-[1.3] tw-font-medium">
+                {{ block.settings.quote }}
+              </p>
+
+              <!-- Name & subtitle -->
+              <div class="tw-mt-[8px]">
+                <div class="tw-text-[16px] tw-font-semibold">{{ block.settings.name }}</div>
+                <div class="tw-text-[14px] tw-opacity-80">{{ block.settings.subtitle }}</div>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews — 2 Columns ",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Verified Customer"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "This product is amazing! I love it."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating (1-5)",
+          "default": 5,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "type": "color",
+          "id": "star_color",
+          "label": "Star Color",
+          "default": "#FFD700"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two Reviews (default)",
+      "category": "Testimonials",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "photo": "",
+            "name": "Kimberly G.",
+            "subtitle": "Verified Customer",
+            "quote": "They are amazing!",
+            "rating": 5
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "photo": "",
+            "name": "Bridget S.",
+            "subtitle": "Verified Customer",
+            "quote": "I don't use any other lashes and the applicator is a game changer!",
+            "rating": 5
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 2
+}
+{% endschema %}

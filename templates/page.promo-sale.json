@@ -1,0 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "promo_sale": {
+      "type": "promo-sale",
+      "custom_css": [
+        "p {font-family: \"Gotham_bold\"; font-style: normal; font-weight: 700; line-height: 55px; text-align: center; text-transform: uppercase; color: #d41870;}"
+      ],
+      "settings": {
+        "section_title": "Limited Time Event",
+        "section_subtitle": "Shop our latest promotion",
+        "collection": "promo",
+        "title": "ENDS IN",
+        "target_datetime": "",
+        "title_color": "#000000",
+        "title_size": 34,
+        "count_color": "#000000",
+        "bg_color": "#ffffff",
+        "button_bg": "#d41870",
+        "padding_y": 0
+      }
+    }
+  },
+  "order": [
+    "promo_sale"
+  ]
+}

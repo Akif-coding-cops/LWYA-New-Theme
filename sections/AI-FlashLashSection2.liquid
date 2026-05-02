@@ -1,0 +1,116 @@
+{% comment %} AI-FlashLashSection2.liquid - Simple Text Banner {% endcomment %}
+
+{% style %}
+ 
+
+  #shopify-section-{{ section.id }} .font-bebas-neue {
+    font-family: 'Bebas Neue', sans-serif;
+  }
+{% endstyle %}
+
+<section class="tw-w-full tw-flex tw-justify-center tw-overflow-hidden">
+  
+  <div class="tw-relative tw-w-full tw-overflow-hidden" style="max-width: 1440px;">
+    
+    {%- comment -%} Background Image {%- endcomment -%}
+    {% if section.settings.background_image != blank %}
+      <div class="tw-absolute tw-inset-0 tw-w-full tw-h-full tw-z-0">
+        <img 
+          src="{{ section.settings.background_image | image_url: width: 1440 }}"
+          srcset="{{ section.settings.background_image | image_url: width: 768 }} 768w,
+                  {{ section.settings.background_image | image_url: width: 1024 }} 1024w,
+                  {{ section.settings.background_image | image_url: width: 1440 }} 1440w"
+          sizes="(max-width: 1440px) 100vw, 1440px"
+          alt="Background"
+          class="tw-w-full tw-h-full tw-object-cover"
+          loading="lazy"
+        />
+      </div>
+    {% else %}
+      {%- comment -%} Fallback Background Color {%- endcomment -%}
+      <div class="tw-absolute tw-inset-0 tw-w-full tw-h-full tw-z-0" style="background: {{ section.settings.background_color }};"></div>
+    {% endif %}
+
+    {%- comment -%} Text Content {%- endcomment -%}
+    <div class="tw-relative tw-z-10 tw-flex tw-items-center tw-justify-center tw-text-center tw-px-[20px] md:tw-px-[40px]" style="min-height: {{ section.settings.section_height }}px;">
+      
+      {% if section.settings.text != blank %}
+        <h2 
+          class="font-bebas-neue tw-uppercase tw-leading-tight"
+          style="font-size: clamp(32px, 6vw, {{ section.settings.text_size }}px); color: {{ section.settings.text_color }}; letter-spacing: 2px;"
+        >
+          {{ section.settings.text }}
+        </h2>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Flash Lash Section 2",
+  "tag": "section",
+  "class": "flash-lash-section-2",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Gradient or colored background image"
+    },
+    {
+      "type": "color_background",
+      "id": "background_color",
+      "label": "Background Color (fallback)",
+      "default": "linear-gradient(90deg, #E91E63 0%, #FF5722 100%)"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 100,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Height",
+      "default": 200
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "50% OFF - NOVEMBER VIP SPECIAL"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 32,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Text Size (Desktop)",
+      "default": 72
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flash Lash Section 2"
+    }
+  ]
+}
+{% endschema %}

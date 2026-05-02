@@ -1,0 +1,282 @@
+{% schema %}
+{
+  "name": "Ways To Earn",
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Ways To Earn",
+      "label": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "default": 45,
+      "label": "Title Font Size"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "default": "#000000",
+      "label": "Title Color"
+    },
+
+    {
+      "type": "header",
+      "content": "Subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "default": "Earn points for celebrating your beauty, your way.",
+      "label": "Subtitle"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 50,
+      "step": 1,
+      "default": 32,
+      "label": "Subtitle Font Size"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "default": "#000000",
+      "label": "Subtitle Color"
+    },
+
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#D41870"
+    }
+
+  ],
+
+  "blocks": [
+    {
+      "type": "earning",
+      "name": "Earning Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image (SVG recommended)"
+        },
+        {
+          "type": "text",
+          "id": "points",
+          "label": "Points Text",
+          "default": "10 Points"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Create an account"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Ways To Earn",
+      "blocks": [
+        { "type": "earning" },
+        { "type": "earning" },
+        { "type": "earning" },
+        { "type": "earning" },
+        { "type": "earning" },
+        { "type": "earning" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+
+<section class="ways-earn-{{ section.id }}">
+  <div class="ways-container">
+
+    <h2 class="ways-title">
+      {{ section.settings.title }}
+    </h2>
+
+    <div class="ways-subtitle">
+      {{ section.settings.subtitle }}
+    </div>
+
+    <div class="ways-grid">
+
+      {% for block in section.blocks %}
+        <div class="ways-item">
+
+          {% if block.settings.icon != blank %}
+            <div class="ways-icon">
+              <img 
+                src="{{ block.settings.icon | image_url: width: 150 }}" 
+                alt="{{ block.settings.points }}"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+
+          <div class="ways-text">
+            <div class="ways-points">
+              {{ block.settings.points }}
+            </div>
+            <div class="ways-desc">
+              {{ block.settings.description }}
+            </div>
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<style>
+
+.ways-earn-{{ section.id }} {
+  background: {{ section.settings.section_bg }};
+  padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px;
+}
+
+.ways-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ways-title {
+  font-family: "Gotham", sans-serif;
+  font-weight: 700;
+  font-size: {{ section.settings.title_size }}px;
+  color: {{ section.settings.title_color }};
+  margin-bottom: 20px;
+}
+
+.ways-subtitle {
+  font-family: "Gotham-Book", sans-serif;
+  font-weight: 400;
+  font-size: {{ section.settings.subtitle_size }}px;
+  color: {{ section.settings.subtitle_color }};
+  max-width: 1099px;
+  margin: 0 auto 60px;
+}
+
+.ways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px 40px;
+}
+
+.ways-item {
+  text-align: center;
+  color: #000000;
+}
+
+.ways-icon {
+  width: 89px;
+  height: 81px;
+  margin: 0 auto 20px;
+}
+
+.ways-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ways-points {
+  font-family: "Gotham", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.ways-desc {
+  font-family: "Gotham-Book", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  max-width: 240px;
+  margin: auto;
+}
+
+/* Tablet */
+@media screen and (max-width: 990px) {
+  .ways-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 600px) {
+
+  .ways-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ways-title {
+    font-size: calc({{ section.settings.title_size }}px * 0.75);
+  }
+
+  .ways-subtitle {
+    font-size: calc({{ section.settings.subtitle_size }}px * 0.8);
+  }
+
+}
+
+</style>

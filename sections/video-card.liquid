@@ -1,0 +1,185 @@
+<style>
+   .section-{{ section.id }}-padding {
+          padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+          padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+        }
+
+  .video_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+ .video_text::before {
+    content: "";
+    background: #000000{{section.settings.before_after}};
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.9;
+}
+ .video_text {
+    position: relative;
+    width: calc(20% - 10px);
+     height:440px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+  .video_text video {
+      width: 100%;
+      height: 100%;
+      display: block;
+     object-fit:cover;
+  }
+
+  .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color:{{section.settings.font-color}};
+      font-size: {{section.settings.font-size}}px;
+      font-weight: bold;
+    text-transform:uppercase;
+  }
+  .sectionn__background {
+    background:{{section.settings.bg-color}};
+      padding: 20px;
+    border-radius: 8px;
+  }
+ p.video__card__title {
+    color: #1C1D52;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom:24px;
+  }
+  @media (max-width: 768px) {
+      .video_container {
+          display: block;
+          white-space: nowrap;
+          overflow-x: scroll;
+      }
+       p.video__card__title {
+    font-size: 35px;
+    
+  }
+      .video_text {
+          display: inline-block;
+          width: 80%;
+          margin-right: 10px;
+          vertical-align: top;
+      }
+  }
+   @media screen and (min-width: 750px) {
+          .section-{{ section.id }}-padding {
+            padding-top: {{ section.settings.padding_top }}px;
+            padding-bottom: {{ section.settings.padding_bottom }}px;
+          }
+        }
+</style>
+<div class="section-{{ section.id }}-padding">
+<div class="container sectionn__background">
+  <p class="video__card__title inria-sans-regular_global">
+    {{ section.settings.vidwo__card__title }}
+  </p>
+  <div class="video_container">
+  {% for block in section.blocks %}
+    <div class="video_text">
+      {{
+        block.settings.video
+        | video_tag: image_size: '1100x', loop: true, controls: false, muted: true, autoplay: true
+      }}
+
+      <div class="overlay-text">{{ block.settings.text }}</div>
+    </div>
+  {% endfor %}
+</div>
+</div>
+</div>
+{% schema %}
+{
+  "name": "Video Card",
+  "settings": [
+    {
+  "type": "text",
+  "id": "vidwo__card__title",
+  "label": "Heading"
+},
+  {
+  "type": "color",
+  "id": "font-color",
+  "label": "Content Font Color",
+  "default": "#121212"
+},
+   {
+  "type": "color",
+  "id": "bg-color",
+  "label": "Container Background ",
+  "default": "#F3F3F3"
+},{
+    "type": "range",
+    "id": "font-size",
+    "min": 10,
+    "max": 60,
+    "step": 2,
+    "unit": "px",
+    "label": "Font size",
+    "default": 16
+  },
+    {
+    "type": "range",
+    "id": "padding_top",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Padding top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Padding bottom",
+    "default": 36
+  },
+     {
+  "type": "range",
+  "id": "before_after",
+  "min": 5,
+  "max": 90,
+  "step": 5,
+  "unit": "px",
+  "label": "Layer opacity",
+  "default": 10
+}
+  ],
+  "blocks": [
+    {
+  "type": "video",
+  "name": "video block",
+  "settings": [
+   {
+"type": "video",
+"id": "video",
+"label": "Video"
+  },
+    {
+    "type": "richtext",
+    "id": "text",
+    "label": "Text"
+  }
+  ]
+   }
+  ],"presets":[
+  {
+ "name": "Video Card"
+  }
+  ]
+}
+{% endschema %}

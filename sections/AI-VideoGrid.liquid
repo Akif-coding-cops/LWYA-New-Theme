@@ -1,0 +1,215 @@
+{% schema %}
+{
+  "name": "AI-Video Grid",
+  "tag": "section",
+  "class": "video-grid-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Optional Title"
+    },
+    {
+      "type": "richtext",
+      "id": "section_title",
+      "label": "Section title (optional)"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "video",
+          "id": "video_file",
+          "label": "Video upload"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video URL (YouTube/Vimeo)",
+          "accept": ["youtube", "vimeo"],
+          "info": "Use this if you don't upload a video file"
+        },
+        {
+          "type": "text",
+          "id": "video_title",
+          "label": "Video title (optional)",
+          "info": "Shown below the video"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "AI-Video Grid",
+      "blocks": [
+        { "type": "video" },
+        { "type": "video" },
+        { "type": "video" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="video-grid-section tw-w-full"
+  style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-px-responsive-[16,50]">
+    {% if section.settings.section_title != blank %}
+      <div
+        class="tw-text-center tw-text-responsive-[28,48] tw-font-[700] tw-text-ruttan"
+        style="color: {{ section.settings.title_color }}; margin-bottom: {{ section.settings.title_margin_bottom }}px;"
+      >
+        {{ section.settings.section_title }}
+      </div>
+    {% endif %}
+
+    <div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-gap-responsive-[20,38]">
+      {% for block in section.blocks %}
+        {% if block.type == 'video' %}
+          <div class="video-grid-item" {{ block.shopify_attributes }}>
+            <div class="tw-relative tw-w-full tw-overflow-hidden tw-bg-[#f5f5f5]">
+              <div class="tw-relative tw-w-full" style="padding-bottom: 133.33%;">
+                {% if block.settings.video_file != blank %}
+                  {{
+                    block.settings.video_file
+                    | video_tag:
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: true,
+                      class: 'tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover',
+                      playsinline: true
+                  }}
+                {% elsif block.settings.video_url != blank %}
+                  {{
+                    block.settings.video_url
+                    | video_tag:
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: true,
+                      class: 'tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover'
+                  }}
+                {% endif %}
+              </div>
+            </div>
+            {% if block.settings.video_title != blank %}
+              <div class="tw-mt-[12px] tw-text-center tw-text-responsive-[14,16] tw-font-[500]">
+                {{ block.settings.video_title }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    .video-grid-section video {
+      transition: opacity 0.3s ease;
+    }
+  </style>
+
+  <script>
+    (function() {
+      const section = document.currentScript.closest('section');
+      if (!section) return;
+
+      const allVideos = section.querySelectorAll('video');
+      
+      // 🎯 LAZY LOAD - Load video when near viewport
+      const videoObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const video = entry.target;
+            
+            // Ensure video plays
+            video.play().catch(err => {
+              console.log('Autoplay prevented, user interaction needed:', err);
+            });
+            
+            observer.unobserve(video);
+          }
+        });
+      }, {
+        rootMargin: '100px' // Load 100px before entering viewport
+      });
+
+      allVideos.forEach(video => {
+        videoObserver.observe(video);
+        
+        // Play when video is loaded
+        video.addEventListener('loadeddata', () => {
+          video.play().catch(err => console.log('Play error:', err));
+        });
+      });
+
+      // 🎯 AUTO PAUSE when out of viewport
+      const playPauseObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play().catch(err => console.log('Play error:', err));
+          } else {
+            video.pause();
+          }
+        });
+      }, {
+        threshold: 0.3 // Play when 30% visible
+      });
+
+      allVideos.forEach(video => {
+        playPauseObserver.observe(video);
+      });
+
+    })();
+  </script>
+</section>

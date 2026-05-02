@@ -1,0 +1,321 @@
+{% schema %}
+{
+  "name": "Rewards Shop",
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 120,
+      "label": "Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 120,
+      "label": "Padding Bottom"
+    },
+
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Rewards Shop",
+      "label": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "default": 45,
+      "label": "Title Font Size"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "default": "#000000",
+      "label": "Title Color"
+    },
+
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "Your glow deserves a thank-you gift. Redeem your points for exclusive products and limited-edition favorites designed to keep you feeling confident, radiant, and authentically you.",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "min": 14,
+      "max": 50,
+      "step": 1,
+      "default": 30,
+      "label": "Description Font Size"
+    },
+    {
+      "type": "range",
+      "id": "desc_line",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "default": 40,
+      "label": "Description Line Height"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "default": "#000000",
+      "label": "Description Color"
+    },
+
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "JOIN NOW TO ACCESS",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "default": "#D41870",
+      "label": "Button Background"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "default": "#FFFFFF",
+      "label": "Button Text Color"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "default": 24,
+      "label": "Button Font Size"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Upload Icon"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Rewards Shop",
+      "blocks": [
+        { "type": "icon" },
+        { "type": "icon" },
+        { "type": "icon" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+
+<section class="rewards-{{ section.id }}">
+  <div class="rewards-overlay"></div>
+
+  <div class="rewards-container">
+
+    <h2 class="rewards-title">
+      {{ section.settings.title }}
+    </h2>
+
+    <div class="rewards-description">
+      {{ section.settings.description }}
+    </div>
+
+    <div class="rewards-icons">
+      {% for block in section.blocks %}
+        {% if block.settings.icon_image != blank %}
+          <div class="rewards-icon">
+            <img 
+              src="{{ block.settings.icon_image | image_url: width: 300 }}" 
+              alt="icon"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="rewards-btn">
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
+
+  </div>
+</section>
+
+
+
+<style>
+
+.rewards-{{ section.id }} {
+     max-width: 1400px;
+   margin: 0 auto;
+  position: relative;
+  background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+  background-size: cover;
+  background-position: center;
+  padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px;
+  text-align: center;
+}
+
+.rewards-overlay {
+  position: absolute;
+  inset: 0;
+  background: {{ section.settings.overlay_color }};
+  opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+}
+
+.rewards-container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.rewards-title {
+  font-family: "Gotham", sans-serif;
+  font-weight: 700;
+  font-size: {{ section.settings.title_size }}px;
+  color: {{ section.settings.title_color }};
+  margin-bottom: 25px;
+}
+
+.rewards-description {
+  font-family: "Gotham-Book", sans-serif;
+  font-weight: 400;
+  font-size: {{ section.settings.desc_size }}px;
+  line-height: {{ section.settings.desc_line }}px;
+  color: {{ section.settings.desc_color }};
+  max-width: 1099px;
+  margin: 0 auto 60px;
+}
+
+.rewards-icons {
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.rewards-icon img {
+  max-width: 150px;
+  height: auto;
+}
+
+.rewards-btn {
+  display: inline-block;
+  padding: 15px 40px;
+  background: {{ section.settings.button_bg }};
+  color: {{ section.settings.button_color }};
+  font-family: "Gotham", sans-serif;
+  font-weight: 700;
+  font-size: {{ section.settings.button_font_size }}px;
+  text-decoration: none;
+  min-width: 320px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 990px) {
+
+  .rewards-icons {
+    gap: 60px;
+  }
+
+  .rewards-title {
+    font-size: calc({{ section.settings.title_size }}px * 0.8);
+  }
+
+  .rewards-description {
+    font-size: calc({{ section.settings.desc_size }}px * 0.85);
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .rewards-icons {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .rewards-btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+}
+
+</style>

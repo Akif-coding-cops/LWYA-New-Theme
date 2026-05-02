@@ -1,0 +1,309 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_nxiiJU": {
+      "type": "slideshow",
+      "blocks": {
+        "video_GPrTqP": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Beauty Header_v2 (1).mp4",
+            "allow_sound": false,
+            "subheading": "",
+            "title": "LOVE WHO YOU ARE",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 780,
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_1_style": "solid",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#000000",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 50,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": "linear-gradient(180deg, rgba(54, 54, 54, 0.2), rgba(4, 4, 4, 0.65) 100%)"
+          }
+        }
+      },
+      "block_order": [
+        "video_GPrTqP"
+      ],
+      "disabled": true,
+      "settings": {
+        "allow_transparent_header": true,
+        "show_next_section_button": true,
+        "media_size": "lg",
+        "show_initial_transition": false,
+        "autoplay": true,
+        "autoplay_pause_on_video": true,
+        "cycle_speed": 5,
+        "background": "#000000",
+        "controls_color": "#ffffff"
+      }
+    },
+    "video_with_text_button_YVPJf8": {
+      "type": "video-with-text-button",
+      "disabled": true,
+      "custom_css": [
+        ".video-wrapper {width: 100%; max-height: 437px; position: relative; overflow: hidden;}",
+        ".video-wrapper video {width: 100%; height: 100%; object-fit: cover;}"
+      ],
+      "name": "Video Section",
+      "settings": {
+        "video": "shopify://files/videos/LWYA_Web_Banner_Makeup_Landing_Page_1020.mp4",
+        "autoplay": true,
+        "fullwidth": true,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0
+      }
+    },
+    "image_video_metafields_collection_FECRAd": {
+      "type": "image-video-metafields-collection",
+      "name": "Collection Image / Metafield Video",
+      "settings": {
+        "autoplay": true
+      }
+    },
+    "heading_banner_8w3xgN": {
+      "type": "heading-banner",
+      "custom_css": [
+        ".custom-heading-text {font-family: \"Gotham\";}"
+      ],
+      "name": "Custom Heading Banner",
+      "settings": {
+        "heading_text": "",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "text_align": "center",
+        "font_size": 33,
+        "mobile_font_size": 22,
+        "font_weight": "300",
+        "line_height": 100,
+        "letter_spacing": 0,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "collection-banner": {
+      "type": "collection-banner",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image_size": "sm",
+        "allow_transparent_header": true,
+        "reveal": true,
+        "enable_parallax": true,
+        "show_image": true,
+        "show_collection_title": false,
+        "show_collection_description": true,
+        "show_breadcrumb": true,
+        "section_spaciing": false,
+        "section_container_width": false,
+        "content_width": "xl",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "collection_product_grid_6cBApF": {
+      "type": "collection-product-grid",
+      "name": "Collection Product Grid",
+      "settings": {
+        "enable_limit": false,
+        "products_to_show": 3,
+        "section_width": 1250,
+        "grid_gap": 50,
+        "title_size": 19,
+        "title_weight": "700",
+        "title_color": "#000000",
+        "price_size": 19,
+        "price_weight": "700",
+        "price_color": "#00000080",
+        "star_size": 18,
+        "star_color": "#000000",
+        "rating_size": 19,
+        "rating_color": "#00000080",
+        "padding_top": 20,
+        "padding_bottom": 60
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "collection__title": "",
+        "our_collection": "",
+        "hide_product_information": false,
+        "show_announcement_availibilty": true,
+        "products_per_page": 48,
+        "products_per_row_mobile": "2",
+        "products_size_desktop": "large",
+        "show_grid_mode_selector": false,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "filter_layout": "drawer",
+        "quick_links_menu": "product-menu",
+        "show_sort_by": true,
+        "show_filters": true,
+        "show_results_count": true,
+        "show_filter_group_name": false,
+        "show_filter_values_count": false,
+        "open_filters_by_default": false
+      }
+    },
+    "recently_viewed_products_aMnfri": {
+      "type": "recently-viewed-products",
+      "disabled": true,
+      "settings": {
+        "separate_section_with_border": false,
+        "color_scheme": "scheme-98632136-f0d5-47d2-8a66-6efffcb2dc29",
+        "hide_product_information": true,
+        "stack_products": false,
+        "products_count": 9,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 3,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Recently viewed products",
+        "content": ""
+      }
+    },
+    "custom_collection_videos_EF8Gzi": {
+      "type": "custom-collection-videos",
+      "name": "Collection Video Slider",
+      "settings": {}
+    },
+    "ss_circle_menu_xxUz7H": {
+      "type": "ss-circle-menu",
+      "blocks": {
+        "image_9nKpb7": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_365.png",
+            "bubble_text": "FACE",
+            "bubble_link": "https://lwya.com/collections/face"
+          }
+        },
+        "image_Cgxbat": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle64.png",
+            "bubble_text": "EYES",
+            "bubble_link": "https://lwya.com/collections/eyes"
+          }
+        },
+        "image_VFYJ6J": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_367.png",
+            "bubble_text": "LIPS",
+            "bubble_link": "https://lwya.com/collections/lips"
+          }
+        },
+        "image_Xx8XN4": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_368.png",
+            "bubble_text": "HAIR",
+            "bubble_link": "https://lwya.com/collections/hair"
+          }
+        },
+        "image_KbqxjC": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_369.png",
+            "bubble_text": "BODY",
+            "bubble_link": "https://lwya.com/collections/body"
+          }
+        },
+        "image_bpxVdA": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle126_2.png",
+            "bubble_text": "FRAGRANCE",
+            "bubble_link": "https://lwya.com/collections/fragrance"
+          }
+        }
+      },
+      "block_order": [
+        "image_9nKpb7",
+        "image_Cgxbat",
+        "image_VFYJ6J",
+        "image_Xx8XN4",
+        "image_KbqxjC",
+        "image_bpxVdA"
+      ],
+      "custom_css": [
+        ".custom-wrapper-category {display: grid !important;}"
+      ],
+      "name": "SS - Circle Menu",
+      "settings": {
+        "slider_width": 100,
+        "slider_gap": 8,
+        "slider_gap_mobile": 16,
+        "icon_size": 220,
+        "icon_size_mobile": 74,
+        "icon_space": 0,
+        "icon_space_mobile": 0,
+        "icon_border_thickness": 0,
+        "icon_square": true,
+        "use_hover": true,
+        "text_custom": true,
+        "text_font": "josefin_sans_n4",
+        "text_size": 28,
+        "text_size_mobile": 10,
+        "text_height": 100,
+        "text_mt": 18,
+        "icon_border_color": "#121212",
+        "icon_border_gradient": "",
+        "text_color": "#121212",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#121212",
+        "border_gradient": "",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 36,
+        "padding_bottom": 100,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 1500,
+        "border_thickness": 0,
+        "lazy": true,
+        "hide_mobile": false,
+        "hide_desktop": false
+      }
+    }
+  },
+  "order": [
+    "slideshow_nxiiJU",
+    "video_with_text_button_YVPJf8",
+    "image_video_metafields_collection_FECRAd",
+    "heading_banner_8w3xgN",
+    "collection-banner",
+    "collection_product_grid_6cBApF",
+    "main",
+    "recently_viewed_products_aMnfri",
+    "custom_collection_videos_EF8Gzi",
+    "ss_circle_menu_xxUz7H"
+  ]
+}

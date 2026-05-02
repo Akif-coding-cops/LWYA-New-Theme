@@ -1,0 +1,422 @@
+{% schema %}
+{
+  "name": "Image with text - Holiday",
+  "tag": "section",
+  "class": "holiday-image-with-text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "top_label_text",
+      "label": "Top label text",
+      "default": "Choose My Holiday VIP Offer"
+    },
+    {
+      "type": "color",
+      "id": "top_label_bg",
+      "label": "Top label background",
+      "default": "#BED034"
+    },
+    {
+      "type": "color",
+      "id": "top_label_color",
+      "label": "Top label text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "top_label_gap",
+      "label": "Space between label and content (desktop)",
+      "min": 40,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "default": 126
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main image (desktop first)"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Text",
+          "default": "A GIFT FROM THE HEART"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#BED034"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "mobile_size",
+          "label": "Mobile font size",
+          "min": 16,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "desktop_size",
+          "label": "Desktop font size",
+          "min": 20,
+          "max": 64,
+          "step": 1,
+          "unit": "px",
+          "default": 48
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>I created Vivacity as more than a fragrance — it’s pure joy in a bottle. The kind that makes you feel radiant, confident, and completely yourself.</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "mobile_size",
+          "label": "Mobile font size",
+          "min": 14,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "desktop_size",
+          "label": "Desktop font size",
+          "min": 16,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Line divider",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Line color",
+          "default": "#BED034"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "width_percent",
+          "label": "Line width (%)",
+          "min": 10,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "thickness",
+          "label": "Line thickness",
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "unit": "px",
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Signature image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Max width",
+          "min": 60,
+          "max": 400,
+          "step": 10,
+          "unit": "px",
+          "default": 150
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Image with text - Holiday",
+      "blocks": [
+        { "type": "title" },
+        { "type": "text" },
+        { "type": "divider" },
+        { "type": "text" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="tw-w-full"
+  style="background: {{ section.settings.section_bg }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="tw-max-w-[1400px] tw-mx-auto tw-px-[16px] md:tw-px-0 tw-flex tw-flex-col tw-items-center">
+    {% if section.settings.top_label_text != blank %}
+      <div
+        class="tw-inline-block tw-text-center"
+        style="background: {{ section.settings.top_label_bg }}; color: {{ section.settings.top_label_color }}; padding: 7px 10px; font-size: clamp(18px, 2.2vw, 28px); font-weight: 500;"
+      >
+        {{ section.settings.top_label_text }}
+      </div>
+    {% endif %}
+  </div>
+  <div
+    class="tw-max-w-[1400px] tw-mx-auto tw-flex tw-flex-col md:tw-flex-row tw-gap-[32px] md:tw-gap-0 tw-px-[16px] md:tw-px-0"
+    style="margin-top: clamp(48px, 6vw, {{ section.settings.top_label_gap }}px);"
+  >
+    <div class="tw-w-full md:tw-w-[592px] md:tw-flex-none tw-flex tw-justify-center md:tw-justify-start">
+      {% if section.settings.main_image != blank %}
+        <div class="tw-w-full md:tw-w-[592px]">
+          <img
+            src="{{ section.settings.main_image | image_url: width: 1200 }}"
+            alt="{{ section.settings.main_image.alt | escape }}"
+            class="tw-w-full tw-h-auto"
+            style="border-radius: {{ section.settings.image_radius }}px;"
+            loading="lazy"
+          >
+        </div>
+      {% endif %}
+    </div>
+    <div class="tw-w-full md:tw-max-w-[808px] md:tw-pl-[56px] md:tw-pr-[56px] tw-flex tw-flex-col tw-justify-center">
+      {% for block in section.blocks %}
+        {% assign mt = block.settings.margin_top | append: 'px' %}
+        {% assign mb = block.settings.margin_bottom | append: 'px' %}
+        {% assign align = block.settings.text_align %}
+        {% case block.type %}
+          {% when 'title' %}
+            <h2
+              class="tw-font-metric-medium tw-uppercase tw-text-ruttan"
+              style="margin-top:{{mt}};margin-bottom:{{mb}};color:{{block.settings.color}};font-weight:700;text-align:{{align}};font-size:clamp({{block.settings.mobile_size}}px,4vw,{{block.settings.desktop_size}}px);"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.content }}
+            </h2>
+          {% when 'text' %}
+            <div
+              class="tw-richtext tw-font-metric-light"
+              style="margin-top:{{mt}};margin-bottom:{{mb}};color:{{block.settings.color}};text-align:{{align}};font-size:clamp({{block.settings.mobile_size}}px,2.4vw,{{block.settings.desktop_size}}px);line-height:1.4;"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.content }}
+            </div>
+          {% when 'divider' %}
+            <div style="margin-top:{{mt}};margin-bottom:{{mb}};text-align:{{align}};" {{ block.shopify_attributes }}>
+              <div
+                style="display:inline-block;width:{{block.settings.width_percent}}%;max-width:400px;height:{{block.settings.thickness}}px;background:{{block.settings.color}};"
+              ></div>
+            </div>
+          {% when 'image' %}
+            {% if block.settings.image != blank %}
+              <div style="margin-top:{{mt}};margin-bottom:{{mb}};text-align:{{align}};width:100%;" {{ block.shopify_attributes }}>
+                <img
+                  src="{{ block.settings.image | image_url: width: 600 }}"
+                  alt="{{ block.settings.image.alt | escape }}"
+                  style="max-width:{{block.settings.max_width}}px;height:auto;display:inline-block;"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

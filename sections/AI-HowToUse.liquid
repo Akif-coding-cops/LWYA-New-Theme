@@ -1,0 +1,361 @@
+{% schema %}
+{
+  "name": "AI-How To Use",
+  "tag": "section",
+  "class": "how-to-use-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#E8D4F8"
+    },
+    {
+      "type": "checkbox",
+      "id": "constrain_width",
+      "label": "Constrain background to 1440px",
+      "default": true,
+      "info": "When enabled, background color will be limited to 1440px width"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Left Video Section"
+    },
+    {
+      "type": "video",
+      "id": "left_video",
+      "label": "Video upload"
+    },
+    {
+      "type": "video_url",
+      "id": "left_video_url",
+      "label": "Video URL (YouTube/Vimeo)",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Image (fallback if no video)",
+      "info": "Will display if no video is added"
+    },
+    {
+      "type": "header",
+      "content": "Right Content"
+    },
+    {
+      "type": "richtext",
+      "id": "main_title",
+      "label": "Main title",
+      "default": "<p>HOW TO USE</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#E91E8C"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "how_to_step",
+      "name": "Step",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "step_image",
+          "label": "Step image"
+        },
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step number",
+          "default": "STEP 1"
+        },
+        {
+          "type": "color",
+          "id": "step_number_color",
+          "label": "Step number color",
+          "default": "#E91E8C"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step title",
+          "default": "ALIGN & PREP"
+        },
+        {
+          "type": "color",
+          "id": "step_title_color",
+          "label": "Step title color",
+          "default": "#000000"
+        },
+        {
+          "type": "richtext",
+          "id": "step_description",
+          "label": "Step description",
+          "default": "<p>Gently remove the lashes from the tray and align them with your natural lash line to check the fit. Trim the outer edge if needed.</p>"
+        },
+        {
+          "type": "color",
+          "id": "step_description_color",
+          "label": "Step description color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "divider_color",
+          "label": "Divider line color",
+          "default": "#FFFFFF"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "AI-How To Use",
+      "blocks": [
+        {
+          "type": "how_to_step",
+          "settings": {
+            "step_number": "STEP 1",
+            "step_title": "ALIGN & PREP"
+          }
+        },
+        {
+          "type": "how_to_step",
+          "settings": {
+            "step_number": "STEP 2",
+            "step_title": "APPLY & PRESS"
+          }
+        },
+        {
+          "type": "how_to_step",
+          "settings": {
+            "step_number": "STEP 3",
+            "step_title": "PERFECT & REUSE"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+<section
+  class="how-to-use-section tw-w-full {% if section.settings.constrain_width %}tw-flex tw-justify-center{% endif %}"
+>
+  <div class="tw-max-w-[1440px] tw-mx-auto tw-flex tw-flex-col lg:tw-flex-row tw-gap-responsive-[30,50] {% if section.settings.constrain_width %}tw-w-full{% endif %}" style="{% if section.settings.constrain_width %}background-color: {{ section.settings.bg_color }};{% else %}background-color: {{ section.settings.bg_color }};{% endif %} padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+   
+    <!-- LEFT SECTION: Video/Image - 50% -->
+    <div class="tw-w-full lg:tw-w-1/2 tw-px-responsive-[16,40]">
+      <div class="tw-relative tw-w-full tw-overflow-hidden tw-bg-[#f5f5f5]" style="padding-bottom: 145%;">
+        {% if section.settings.left_video != blank %}
+          {{
+            section.settings.left_video
+            | video_tag:
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: true,
+              class: 'tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover',
+              playsinline: true
+          }}
+        {% elsif section.settings.left_video_url != blank %}
+          {{
+            section.settings.left_video_url
+            | video_tag:
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: true,
+              class: 'tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover'
+          }}
+        {% elsif section.settings.left_image != blank %}
+          <img
+            src="{{ section.settings.left_image | image_url: width: 800 }}"
+            alt="{{ section.settings.left_image.alt | escape }}"
+            class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover"
+            width="800"
+            height="1066"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="tw-absolute tw-inset-0 tw-flex tw-items-center tw-justify-center tw-text-gray-400 tw-text-responsive-[16,20]">
+            Add Video or Image
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+
+    <!-- RIGHT SECTION: Steps -->
+    <div class="tw-w-full lg:tw-w-[55%] tw-px-responsive-[16,50] tw-flex tw-flex-col tw-justify-start tw-pt-responsive-[0,20] tw-gap-responsive-[40,70]">
+     
+      <!-- Main Title - CENTERED & BIG -->
+      {% if section.settings.main_title != blank %}
+        <div
+          class="tw-text-center tw-text-responsive-[48,80] tw-font-[700] tw-leading-[0.95] tw-mb-responsive-[35,50] tw-uppercase"
+          style="color: {{ section.settings.title_color }}; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em;"
+        >
+          {{ section.settings.main_title }}
+        </div>
+      {% endif %}
+
+
+      <!-- Steps -->
+      <div>
+        {% for block in section.blocks %}
+          {% if block.type == 'how_to_step' %}
+            <div {{ block.shopify_attributes }}>
+              <div class="tw-py-responsive-[25,35]">
+                <div class="tw-flex tw-gap-responsive-[20,30] tw-items-center">
+                 
+                  <!-- Step Image Circle -->
+                  {% if block.settings.step_image != blank %}
+                    <div class="tw-flex-shrink-0 tw-w-responsive-[90,120] tw-h-responsive-[90,120] tw-rounded-full tw-overflow-hidden tw-bg-white tw-shadow-md">
+                      <img
+                        src="{{ block.settings.step_image | image_url: width: 240 }}"
+                        alt="{{ block.settings.step_title | escape }}"
+                        class="tw-w-full tw-h-full tw-object-cover"
+                        width="240"
+                        height="240"
+                        loading="lazy"
+                      >
+                    </div>
+                  {% endif %}
+
+
+                  <!-- Step Content - 3 PARTS (CENTERED) -->
+                  <div class="tw-flex-1">
+                    <!-- 1. Step Number -->
+                    {% if block.settings.step_number != blank %}
+                      <div
+                        class="tw-text-responsive-[20,24] tw-font-[700] tw-uppercase tw-mb-[4px] tw-tracking-wider"
+                        style="color: {{ block.settings.step_number_color }}; letter-spacing: 0.05em;"
+                      >
+                        {{ block.settings.step_number }}
+                      </div>
+                    {% endif %}
+
+
+                    <!-- 2. Step Title (SAME SIZE AS STEP NUMBER) -->
+                    {% if block.settings.step_title != blank %}
+                      <div
+                        class="tw-text-responsive-[20,24] tw-font-[700] tw-uppercase tw-mb-[10px] tw-leading-[1.2]"
+                        style="color: {{ block.settings.step_title_color }}; letter-spacing: 0.02em;"
+                      >
+                        {{ block.settings.step_title }}
+                      </div>
+                    {% endif %}
+
+
+                    <!-- 3. Description -->
+                    {% if block.settings.step_description != blank %}
+                      <div
+                        class="tw-text-responsive-[14,16] tw-leading-[1.6]"
+                        style="color: {{ block.settings.step_description_color }};"
+                      >
+                        {{ block.settings.step_description }}
+                      </div>
+                    {% endif %}
+                  </div>
+
+
+                </div>
+              </div>
+
+
+              <!-- Divider Line OUTSIDE & BELOW PADDING (except last step) -->
+              {% unless forloop.last %}
+                <div
+                  class="tw-w-full tw-h-[3px]"
+                  style="background-color: {{ block.settings.divider_color }};"
+                ></div>
+              {% endunless %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+
+    </div>
+
+
+  </div>
+</section>
+
+
+<style>
+  .how-to-use-section video {
+    transition: opacity 0.3s ease;
+  }
+
+
+  /* Ensure video covers area */
+  .how-to-use-section .tw-relative video {
+    object-fit: cover;
+  }
+</style>
+
+
+<script>
+  (function() {
+    const section = document.currentScript.closest('section');
+    if (!section) return;
+
+
+    const video = section.querySelector('video');
+   
+    if (video) {
+      // Lazy load and autoplay
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            video.play().catch(err => {
+              console.log('Autoplay prevented:', err);
+            });
+          } else {
+            video.pause();
+          }
+        });
+      }, {
+        threshold: 0.3
+      });
+
+
+      observer.observe(video);
+    }
+  })();
+</script>
+
+
+
+
+
+
+
+
+
