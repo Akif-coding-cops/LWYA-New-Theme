@@ -1,0 +1,187 @@
+{%- style -%}
+  .au-belief {
+    background-color: {{ section.settings.background_color }};
+    padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px {{ section.settings.padding_horizontal_mobile }}rem {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  .au-belief__container {
+    max-width: {{ section.settings.content_width }}px;
+    margin: 0 auto;
+  }
+  .au-belief__heading {
+    font-family: 'Didot', serif !important;
+    font-style: italic;
+    font-weight: 400;
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 28px;
+    line-height: 1.2;
+  }
+  .au-belief__body {
+    font-family: 'Gotham-Book', sans-serif !important;
+    font-size: {{ section.settings.text_size_mobile }}px;
+    line-height: 35px;
+    color: {{ section.settings.text_color }};
+  }
+  .au-belief__body p {
+    margin: 0 0 18px;
+  }
+  .au-belief__body p:last-child {
+    margin-bottom: 0;
+  }
+  @media (min-width: 1024px) {
+    .au-belief {
+      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_horizontal }}rem {{ section.settings.padding_bottom }}px;
+    }
+    .au-belief__heading {
+      font-size: {{ section.settings.heading_size }}px;
+    }
+    .au-belief__body {
+      font-size: {{ section.settings.text_size }}px;
+      line-height: 35px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="au-belief">
+  <div class="au-belief__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="au-belief__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body_text != blank -%}
+      <div class="au-belief__body">{{ section.settings.body_text }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AU - Belief",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Belief"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "<p><strong>LWYA, Love Who You Are</strong>, was built on a simple but radical idea: <strong>beauty should make you feel more like yourself, not less.</strong></p><p>We are a beauty and lifestyle brand founded by Kim Gravel, and <strong>everything we make starts with the same question, does this actually work for real women?</strong> Not models. Not curated skin. Real women, with real lives, in real lighting.</p><p>Women who are raising families, building careers, showing up every single day, and sometimes just trying to get out the door looking like they have it together.</p>"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#d41870"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading font size",
+      "min": 24,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading font size - mobile",
+      "min": 20,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text font size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text font size - mobile",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding sides",
+      "min": 0,
+      "max": 15,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Padding sides - mobile",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1300
+    }
+  ],
+  "presets": [
+    {
+      "name": "AU - Belief"
+    }
+  ]
+}
+{% endschema %}
