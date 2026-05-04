@@ -1,9 +1,7 @@
 {%- style -%}
-  .au-belief {
+  .au-belief__container {
     background-color: {{ section.settings.background_color }};
     padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px {{ section.settings.padding_horizontal_mobile }}rem {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-  .au-belief__container {
     max-width: {{ section.settings.content_width }}px;
     margin: 0 auto;
   }
@@ -42,15 +40,13 @@
   }
 {%- endstyle -%}
 
-<section class="au-belief">
-  <div class="au-belief__container">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="au-belief__heading">{{ section.settings.heading }}</h2>
-    {%- endif -%}
-    {%- if section.settings.body_text != blank -%}
-      <div class="au-belief__body">{{ section.settings.body_text }}</div>
-    {%- endif -%}
-  </div>
+<section class="au-belief__container">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="au-belief__heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+  {%- if section.settings.body_text != blank -%}
+    <div class="au-belief__body">{{ section.settings.body_text }}</div>
+  {%- endif -%}
 </section>
 
 {% schema %}
