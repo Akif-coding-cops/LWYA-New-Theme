@@ -9,7 +9,10 @@
 
 {%- comment -%}SEO: Canonical URL with variant parameter{%- endcomment -%}
 {% if current_product.selected_or_first_available_variant %}
-  <link rel="canonical" href="{{ shop.url }}{{ current_product.url }}?variant={{ current_product.selected_or_first_available_variant.id }}">
+  <link
+    rel="canonical"
+    href="{{ shop.url }}{{ current_product.url }}?variant={{ current_product.selected_or_first_available_variant.id }}"
+  >
 {% else %}
   <link rel="canonical" href="{{ shop.url }}{{ current_product.url }}">
 {% endif %}
@@ -26,14 +29,120 @@
     opacity: 0.5;
     font-family: 'Gotham-book', sans-serif !important;
   }
+
+  /* ============================================
+     RECHARGE WIDGET - COMPLETE STYLE CONTROLS
+     ============================================ */
+
+  recharge-subscription-widget::part(rc-purchase-option) {
+    border: none;
+    padding: 0;
+  }
+
+  recharge-subscription-widget::part(rc-purchase-option__label) {
+    padding: 0;
+    font-family: 'Gotham-Book', sans-serif !important;
+    font-weight: 400 !important;
+  }
+
+  recharge-subscription-widget::part(rc-purchase-option__selector) {
+    padding: 0;
+    font-family: 'Gotham-Book', sans-serif !important;
+    font-weight: 400 !important;
+  }
+
+  recharge-subscription-widget::part(rc-purchase-option__badge) {
+    display: none;
+  }
+
+  recharge-subscription-widget::part(rc-purchase-option__prices) {
+    display: none;
+  }
 </style>
+
+<script>
+  function initRechargeWidget() {
+    const widget = document.querySelector('recharge-subscription-widget');
+    if (!widget) return;
+
+    // Wait for shadowRoot to be available
+    const waitForShadow = setInterval(() => {
+      if (!widget.shadowRoot) return;
+      clearInterval(waitForShadow);
+
+      const observer = new MutationObserver(() => {
+        const radioIcons = widget.shadowRoot.querySelectorAll('rc-radio-icon');
+        const discountbadge = widget.shadowRoot.querySelector('.rc-purchase-option__badge');
+        const badgeContent = discountbadge ? ` and get ${discountbadge.textContent}` : '';
+
+        const subOption = widget.shadowRoot.querySelector(
+          '.rc-purchase-option__subscription .rc-purchase-option__selector'
+        );
+
+        if (subOption && !subOption.querySelector('.custom-sub-label')) {
+          subOption.childNodes.forEach((node) => {
+            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+              const span = document.createElement('span');
+              span.className = 'custom-sub-label';
+              span.innerHTML = `Subscribe${badgeContent}`;
+              node.replaceWith(span);
+            }
+          });
+        }
+
+        radioIcons.forEach((icon) => {
+          if (!icon.shadowRoot || icon.shadowRoot.querySelector('style')) return;
+
+          const style = document.createElement('style');
+          style.textContent = `
+          rect { display: none; }
+          .rc-checked-icon circle {
+            fill: var(--rc-widget-brand-color);
+            r: 12;
+          }
+          .rc-unchecked-icon svg { display: none; }
+          :host {
+            display: block;
+            width: 1.15em;
+            height: 1.15em;
+            border-radius: 50%;
+          }
+          :host(:not([checked])) {
+            display: block;
+            width: 1.15em;
+            height: 1.15em;
+            border-radius: 50%;
+            background: #D9D9D9;
+          }
+        `;
+          icon.shadowRoot.appendChild(style);
+        });
+      });
+
+      observer.observe(widget.shadowRoot, { childList: true, subtree: true });
+    }, 100);
+  }
+  // Watch for widget being added/changed in DOM at all times
+  const bodyObserver = new MutationObserver(() => {
+    const widget = document.querySelector('recharge-subscription-widget');
+    if (widget && !widget.dataset.initialized) {
+      widget.dataset.initialized = 'true'; // prevent running twice
+      initRechargeWidget();
+    }
+  });
+
+  bodyObserver.observe(document.body, { childList: true, subtree: true });
+</script>
 
 <section id="lwya-newpdp" class="tw-w-full tw-py-[24px]">
   {{ 'newpdp.css' | asset_url | stylesheet_tag }}
   <div class="tw-max-w-[1400px] tw-mx-auto tw-px-[16px] md:tw-px-[24px] lg:tw-px-[60px] xxl:tw-px-0">
     <div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-[24px] md:tw-gap-[50px] tw-items-start">
       <div class="tw-min-w-0 tw-overflow-hidden">
-        {% render 'newpdp-gallery', product: current_product, show_best_seller_badge: section.settings.show_best_seller_badge %}
+        {% render 'newpdp-gallery',
+          product: current_product,
+          show_best_seller_badge: section.settings.show_best_seller_badge
+        %}
       </div>
       <aside class="tw-space-y-[24px] lg:tw-sticky lg:tw-top-[160px] lg:tw-self-start product-section-class">
         {% comment %} Render all blocks in right column {% endcomment %}
@@ -74,13 +183,14 @@
             {% when 'dropdown' %}
               <div {{ block.shopify_attributes }}>
                 {% render 'newpdp-dropdown-single', product: current_product, block: block %}
-              </div> 
+              </div>
             {% when 'rating' %}
-              <div class="loox-rating stars rating-count"
+              <div
+                class="loox-rating stars rating-count"
                 data-id="{{ current_product.id }}"
                 data-rating="{{ current_product.metafields.loox.avg_rating }}"
-                data-raters="{{ current_product.metafields.loox.num_reviews }}">
-              </div>
+                data-raters="{{ current_product.metafields.loox.num_reviews }}"
+              ></div>
             {% when '@app' %}
               {%- render block -%}
           {% endcase %}
@@ -90,27 +200,41 @@
   </div>
 
   {%- comment -%}Sticky Add to Cart Bar{%- endcomment -%}
-  <div id="sticky-atc" class="tw-fixed tw-bottom-0 tw-left-0 tw-right-0 tw-z-[999] tw-bg-white tw-shadow-[0_-2px_16px_rgba(0,0,0,0.1)] tw-translate-y-full tw-transition-transform tw-duration-300" style="transform: translateY(100%);">
+  <div
+    id="sticky-atc"
+    class="tw-fixed tw-bottom-0 tw-left-0 tw-right-0 tw-z-[999] tw-bg-white tw-shadow-[0_-2px_16px_rgba(0,0,0,0.1)] tw-translate-y-full tw-transition-transform tw-duration-300"
+    style="transform: translateY(100%);"
+  >
     <div class="tw-max-w-[1400px] tw-mx-auto tw-px-[16px] md:tw-px-[12px] tw-py-[12px]">
       <div class="tw-flex tw-items-center tw-gap-[12px] md:tw-gap-[16px]">
         {%- comment -%}Product Image + Title{%- endcomment -%}
         <div class="tw-flex tw-items-center tw-gap-[12px] tw-flex-1 tw-min-w-0">
           {% if current_product.featured_image %}
-            <img 
-              src="{{ current_product.featured_image | image_url: width: 80 }}" 
+            <img
+              src="{{ current_product.featured_image | image_url: width: 80 }}"
               alt="{{ current_product.title }}"
               class="tw-w-[50px] tw-h-[50px] md:tw-w-[60px] md:tw-h-[60px] tw-object-cover tw-rounded-[4px] tw-flex-shrink-0"
               loading="lazy"
             >
           {% endif %}
           <div class="tw-min-w-0 tw-flex-1">
-            <h3 class="tw-text-[14px] md:tw-text-[16px] tw-font-metric-medium tw-truncate">{{ current_product.title }}</h3>
+            <h3 class="tw-text-[14px] md:tw-text-[16px] tw-font-metric-medium tw-truncate">
+              {{ current_product.title }}
+            </h3>
             <p class="tw-text-[13px] md:tw-text-[14px] tw-text-[#6b6b6b] tw-mt-[2px]" data-sticky-price>
-              {% if current_product.selected_or_first_available_variant.compare_at_price > current_product.selected_or_first_available_variant.price %}
-                <span class="tw-line-through tw-text-[#999] tw-mr-[6px]">{{ current_product.selected_or_first_available_variant.compare_at_price | money }}</span>
-                <span class="tw-text-[#d41870] tw-font-metric-medium">{{ current_product.selected_or_first_available_variant.price | money }}</span>
+              {% if current_product.selected_or_first_available_variant.compare_at_price
+                  > current_product.selected_or_first_available_variant.price
+              %}
+                <span class="tw-line-through tw-text-[#999] tw-mr-[6px]">
+                  {{- current_product.selected_or_first_available_variant.compare_at_price | money -}}
+                </span>
+                <span class="tw-text-[#d41870] tw-font-metric-medium">
+                  {{- current_product.selected_or_first_available_variant.price | money -}}
+                </span>
               {% else %}
-                <span class="tw-text-black">{{ current_product.selected_or_first_available_variant.price | money }}</span>
+                <span class="tw-text-black">
+                  {{- current_product.selected_or_first_available_variant.price | money -}}
+                </span>
               {% endif %}
             </p>
           </div>
@@ -127,28 +251,46 @@
               assign variant_disabled = true
             endif
           -%}
-          
+
           {%- unless variant_disabled -%}
             {%- comment -%}Quantity Selector{%- endcomment -%}
             <div class="tw-hidden md:tw-flex tw-items-center tw-border tw-border-[#d8d8d8] tw-w-[90px] tw-h-[44px]">
-              <button type="button" class="tw-w-[26px] tw-h-full tw-flex tw-items-center tw-justify-center tw-text-[16px] tw-text-[#6b6b6b] hover:tw-text-black tw-transition-colors" data-sticky-qty-dec aria-label="Decrease quantity">−</button>
-              <input 
-                value="1" 
-                class="tw-w-[38px] tw-h-full tw-text-center tw-border-0 tw-text-[14px] tw-font-metric-medium tw-outline-none" 
+              <button
+                type="button"
+                class="tw-w-[26px] tw-h-full tw-flex tw-items-center tw-justify-center tw-text-[16px] tw-text-[#6b6b6b] hover:tw-text-black tw-transition-colors"
+                data-sticky-qty-dec
+                aria-label="Decrease quantity"
+              >
+                −
+              </button>
+              <input
+                value="1"
+                class="tw-w-[38px] tw-h-full tw-text-center tw-border-0 tw-text-[14px] tw-font-metric-medium tw-outline-none"
                 inputmode="numeric"
                 pattern="[0-9]*"
                 min="1"
                 data-sticky-qty-input
-                readonly>
-              <button type="button" class="tw-w-[26px] tw-h-full tw-flex tw-items-center tw-justify-center tw-text-[16px] tw-text-[#6b6b6b] hover:tw-text-black tw-transition-colors" data-sticky-qty-inc aria-label="Increase quantity">+</button>
+                readonly
+              >
+              <button
+                type="button"
+                class="tw-w-[26px] tw-h-full tw-flex tw-items-center tw-justify-center tw-text-[16px] tw-text-[#6b6b6b] hover:tw-text-black tw-transition-colors"
+                data-sticky-qty-inc
+                aria-label="Increase quantity"
+              >
+                +
+              </button>
             </div>
 
             {%- comment -%}Add to Cart Button{%- endcomment -%}
-            <button 
-              type="button" 
+            <button
+              type="button"
               class="tw-h-[38px] md:tw-h-[44px] tw-px-[20px] md:tw-px-[32px] tw-bg-[#d41870] hover:tw-bg-[#b91460] tw-text-white tw-text-[13px] md:tw-text-[14px] tw-font-metric-medium tw-uppercase tw-transition-colors tw-whitespace-nowrap"
               data-sticky-atc-btn
-              {% unless current_variant.available %}disabled{% endunless %}>
+              {% unless current_variant.available %}
+                disabled
+              {% endunless %}
+            >
               {% if current_variant.available %}
                 Add to Cart
               {% else %}
@@ -215,7 +357,12 @@
       "name": "Our Products in Action",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "videos_metafield_key", "label": "Videos metafield (namespace.key)", "default": "custom.custom_product_videos" }
+        {
+          "type": "text",
+          "id": "videos_metafield_key",
+          "label": "Videos metafield (namespace.key)",
+          "default": "custom.custom_product_videos"
+        }
       ]
     },
     {
@@ -223,8 +370,18 @@
       "name": "Pair / Save With Sets",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "pair_metafield_key", "label": "Pair-it-with metafield (list.product)", "default": "custom.pair_it_with" },
-        { "type": "text", "id": "sets_metafield_key", "label": "Save-with-sets metafield (list.product)", "default": "custom.save_with_sets" }
+        {
+          "type": "text",
+          "id": "pair_metafield_key",
+          "label": "Pair-it-with metafield (list.product)",
+          "default": "custom.pair_it_with"
+        },
+        {
+          "type": "text",
+          "id": "sets_metafield_key",
+          "label": "Save-with-sets metafield (list.product)",
+          "default": "custom.save_with_sets"
+        }
       ]
     },
     {
@@ -238,8 +395,6 @@
       "limit": 1
     }
   ],
-  "presets": [
-    { "name": "New Main Product" }
-  ]
+  "presets": [{ "name": "New Main Product" }]
 }
 {% endschema %}
