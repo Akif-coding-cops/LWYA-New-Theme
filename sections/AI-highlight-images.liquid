@@ -74,9 +74,9 @@
 {% endschema %}
 
 {%- liquid
-  assign current_variant          = product.selected_or_first_available_variant
+  assign current_variant = product.selected_or_first_available_variant
   assign variant_highlight_images = current_variant.metafields.custom.variant_highlight_images.value
-  assign highlight_images         = nil
+  assign highlight_images = null
 
   if variant_highlight_images != blank and variant_highlight_images.size > 0
     assign highlight_images = variant_highlight_images
@@ -90,30 +90,118 @@
     class="tw-w-full highlight-images-section"
     style="padding-top: {{ section.settings.padding_top_mobile }}px; padding-bottom: {{ section.settings.padding_bottom_mobile }}px;"
   >
+    <style>
+      .hi-desktop {
+        display: block;
+      }
+      .hi-mobile {
+        display: none;
+      }
+      @media (min-width: 768px) {
+        .hi-desktop {
+          display: block;
+        }
+        .hi-mobile {
+          display: none;
+        }
+      }
+      @media (max-width: 767px) {
+        .hi-desktop {
+          display: none;
+        }
+        .hi-mobile {
+          display: block;
+        }
+      }
+      .hi-video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+    </style>
+
     <div
       class="tw-grid tw-grid-cols-12 tw-w-full tw-max-w-[1400px] tw-mx-auto"
       style="column-gap: {{ section.settings.column_gap }}px; row-gap: {{ section.settings.row_gap }}px;"
     >
       {% for item in highlight_images %}
-        {%- assign img  = item.image -%}
         {%- assign cols = item.columns | default: 12 -%}
-        {% if img == blank %}{% continue %}{% endif %}
+        {%- assign img = item.image -%}
+        {%- assign img_mobile = item.mobile_image -%}
+        {%- assign vid = item.video.value.sources[1].url -%}
+        {%- assign vid_mobile = item.mobile_video.value.sources[1].url -%}
+
+        {%- comment -%} Determine what will actually render on each viewport {%- endcomment -%}
+        {%- assign has_desktop = false -%}
+        {%- assign has_mobile = false -%}
+        {%- if img != blank or vid != blank -%}{%- assign has_desktop = true -%}{%- endif -%}
+        {%- if img_mobile != blank or vid_mobile != blank -%}{%- assign has_mobile = true -%}{%- endif -%}
+
+        {%- comment -%}
+          If nothing at all is provided, skip the item entirely.
+          If only desktop OR only mobile is provided we still render —
+          the empty side just shows nothing (display:none handles it).
+        {%- endcomment -%}
+        {% unless has_desktop or has_mobile %}{% continue %}{% endunless %}
 
         <div class="tw-col-span-12 md:tw-col-span-{{ cols }}">
           <div
             class="tw-w-full tw-h-full {% if item.apply_horizontal_padding == true %}tw-px-[16px] md:tw-px-[24px] lg:tw-px-[60px] xxl:tw-px-0{% endif %}"
             style="margin: 0 auto;"
           >
-            <img
-              src="{{ img | image_url: width: 1600 }}"
-              srcset="{{ img | image_url: width: 800 }} 800w,
-                      {{ img | image_url: width: 1200 }} 1200w,
-                      {{ img | image_url: width: 1600 }} 1600w"
-              sizes="(max-width: 768px) 100vw, {{ cols | times: 100 | divided_by: 12 }}vw"
-              alt="{{ img.alt | default: product.title }}"
-              class="tw-w-full tw-h-full tw-object-cover tw-block"
-              loading="lazy"
-            >
+            {%- comment -%} ── DESKTOP MEDIA ── {%- endcomment -%}
+            <div class="hi-desktop">
+              {% if img != blank %}
+                <img
+                  src="{{ img | image_url: width: 1600 }}"
+                  srcset="
+                    {{ img | image_url: width: 800 }} 800w,
+                    {{ img | image_url: width: 1200 }} 1200w,
+                    {{ img | image_url: width: 1600 }} 1600w
+                  "
+                  sizes="{{ cols | times: 100 | divided_by: 12 }}vw"
+                  alt="{{ img.alt | default: product.title }}"
+                  class="tw-w-full tw-h-full tw-object-cover tw-block"
+                  loading="lazy"
+                >
+              {% elsif vid != blank %}
+                <video
+                  class="hi-video"
+                  src="{{ vid }}"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                ></video>
+              {% endif %}
+            </div>
+
+            {%- comment -%} ── MOBILE MEDIA ── {%- endcomment -%}
+            <div class="hi-mobile">
+              {% if img_mobile != blank %}
+                <img
+                  src="{{ img_mobile | image_url: width: 800 }}"
+                  srcset="
+                    {{ img_mobile | image_url: width: 400 }} 400w,
+                    {{ img_mobile | image_url: width: 800 }} 800w
+                  "
+                  sizes="100vw"
+                  alt="{{ img_mobile.alt | default: product.title }}"
+                  class="tw-w-full tw-h-full tw-object-cover tw-block"
+                  loading="lazy"
+                >
+              {% elsif vid_mobile != blank %}
+                <video
+                  class="hi-video"
+                  src="{{ vid_mobile }}"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                ></video>
+              {% endif %}
+            </div>
           </div>
         </div>
       {% endfor %}
