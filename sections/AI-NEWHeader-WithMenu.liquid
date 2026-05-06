@@ -257,6 +257,24 @@
       }
     }
   {%- endif -%}
+  /* Dropdown positioning */
+  #shopify-section-{{ section.id }} .header__primary-nav-item.has-submenu {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    z-index: 100;
+    list-style: none;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item.has-submenu:hover .dropdown-menu {
+    display: block !important;
+  }
 </style>
 
 <script>
@@ -472,7 +490,7 @@
         </a>
 
         {%- if has_dropdown -%}
-          <ul class="dropdown-menu shadow-md border absolute bg-white p-4 hidden navbar-links-li" style="left:120px; ">
+          <ul class="dropdown-menu shadow-md border absolute bg-white p-4 hidden navbar-links-li" >
             {%- for childlink in link.links -%}
               <li class="dropdown-item py-1">
                 <a href="{{ childlink.url }}" class="text-sm hover:text-red-500">

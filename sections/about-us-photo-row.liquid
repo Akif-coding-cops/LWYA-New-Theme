@@ -6,7 +6,7 @@
   }
   .au-photo-row__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: {{ section.settings.gap }}px;
     max-width: {{ section.settings.content_width }}px;
     margin: 0 auto;
@@ -22,10 +22,18 @@
     object-fit: cover;
     display: block;
   }
+  @media (min-width: 600px) {
+    .au-photo-row__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   @media (min-width: 1024px) {
     .au-photo-row {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .au-photo-row__grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 {%- endstyle -%}

@@ -1,41 +1,47 @@
 {%- style -%}
   .au-belief__container {
-    background-color: {{ section.settings.background_color }};
     padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px {{ section.settings.padding_horizontal_mobile }}rem {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     max-width: {{ section.settings.content_width }}px;
     margin: 0 auto;
+    background-color: {{ section.settings.background_color }};
   }
   .au-belief__heading {
     font-family: 'Didot', serif !important;
     font-style: italic;
     font-weight: 400;
-    font-size: {{ section.settings.heading_size_mobile }}px;
-    color: {{ section.settings.heading_color }};
     margin: 0 0 28px;
     line-height: 1.2;
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    color: {{ section.settings.heading_color }};
   }
   .au-belief__body {
-    font-family: 'Gotham-Book', sans-serif !important;
     font-size: {{ section.settings.text_size_mobile }}px;
+    font-family: 'Gotham-Book', sans-serif !important;
     line-height: 35px;
-    color: {{ section.settings.text_color }};
   }
   .au-belief__body p {
     margin: 0 0 18px;
+    color: {{ section.settings.text_color }};
   }
   .au-belief__body p:last-child {
     margin-bottom: 0;
   }
-  @media (min-width: 1024px) {
-    .au-belief {
-      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_horizontal }}rem {{ section.settings.padding_bottom }}px;
+
+  @media (min-width: 1025px) {
+    .au-belief__container {
+      padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px {{ section.settings.padding_horizontal_tablet }}rem {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
     .au-belief__heading {
       font-size: {{ section.settings.heading_size }}px;
     }
     .au-belief__body {
       font-size: {{ section.settings.text_size }}px;
-      line-height: 35px;
+    }
+  }
+
+  @media (min-width: 1401px) {
+    .au-belief__container {
+      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_horizontal }}rem {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
@@ -147,6 +153,16 @@
       "type": "range",
       "id": "padding_horizontal",
       "label": "Padding sides",
+      "min": 0,
+      "max": 15,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_tablet",
+      "label": "Padding sides - tablet",
       "min": 0,
       "max": 15,
       "step": 0.5,

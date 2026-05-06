@@ -17,7 +17,7 @@
         "message_LAnnxc": {
           "type": "message",
           "settings": {
-            "text": "FREE SHIPPING IN ALL ORDER MORE THAN 50$"
+            "text": "<strong>Free shipping on orders over $75</strong>"
           }
         },
         "message-1": {
