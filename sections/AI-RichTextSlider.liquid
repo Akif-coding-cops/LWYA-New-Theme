@@ -65,17 +65,29 @@
   ],
   "blocks": [
     {
-      "type": "text_block",
-      "name": "Text Block",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content",
-          "default": "<p>Your text content here</p>"
-        }
-      ]
+  "type": "text_block",
+  "name": "Text Block",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Your text content here</p>"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author Name",
+      "default": "Nancy S."
+    },
+    {
+      "type": "text",
+      "id": "date",
+      "label": "Date",
+      "default": "10/11/2025"
     }
+  ]
+}
   ],
   "presets": [
     {
@@ -120,6 +132,28 @@
     font-size: 14px;
     font-weight: bold;
   }
+   #shopify-section-{{ section.id }} .testimonial-text {
+    font-size: 32px;
+    letter-spacing: 5%;
+    line-height: 1.6;
+    margin-top: 20px;
+    padding-top: 30px;
+    font-weight: 400;
+  }
+
+  #shopify-section-{{ section.id }} .testimonial-name {
+    font-size: 32px;
+    letter-spacing: 5%;
+    color: #ec3974ff; /* pink like your design */
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .testimonial-date {
+    font-size: 20px;
+    color: #000000;
+     font-weight: 400;
+  }
 
   @media (min-width: 768px) {
     .text-slider-{{ section.id }} .swiper-button-prev,
@@ -162,7 +196,21 @@
           {%- for block in section.blocks -%}
             <div class="swiper-slide" {{ block.shopify_attributes }}>
               <div class="slide-content tw-text-center tw-max-w-[800px] tw-mx-auto tw-px-8 md:tw-px-0 tw-leading-relaxed">
-                {{ block.settings.content }}
+                {% comment %} {{ block.settings.content }} {% endcomment %}
+                       <!-- Quote -->
+                      <div class="testimonial-text" style="color: {{ section.settings.text_color }};">
+                        {{ block.settings.content }}
+                      </div>
+
+                      <!-- Name -->
+                      <div class="testimonial-name">
+                        {{ block.settings.author_name }}
+                      </div>
+
+                      <!-- Date -->
+                      <div class="testimonial-date">
+                        {{ block.settings.date }}
+                      </div>
               </div>
             </div>
           {%- endfor -%}

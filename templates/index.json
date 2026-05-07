@@ -38,10 +38,10 @@
           "settings": {
             "tab_title": "BEST SELLERS",
             "collection_1": "bestsellers",
-            "product_1": "skintastic-airbrush-liquid-foundation",
-            "product_2": "gone-in-a-swipe-center-core-foundation",
-            "product_3": "chameleon-color-adaptor",
-            "product_4": "beach-babe-bronzer-stick"
+            "product_1": "chameleon-color-adaptor",
+            "product_2": "skintastic-airbrush-liquid-foundation",
+            "product_3": "chameleon-black-blush-2",
+            "product_4": "bump-hair-texturizing-powder"
           }
         },
         "tab_item_rGtBUE": {
@@ -149,7 +149,8 @@
           "type": "collection_item",
           "settings": {
             "collection": "all-beauty",
-            "custom_title": "",
+            "custom_title": "BEAUTY",
+            "custom_image": "shopify://shop_images/BEAUTY_Category.png",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -159,7 +160,7 @@
           "type": "collection_item",
           "settings": {
             "collection": "body",
-            "custom_title": "",
+            "custom_title": "BODY CARE",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -169,7 +170,8 @@
           "type": "collection_item",
           "settings": {
             "collection": "hair",
-            "custom_title": "",
+            "custom_title": "HAIR CARE",
+            "custom_image": "shopify://shop_images/Rectangle_35_963d24ee-6f56-4e6c-a7b6-dd2c6861ef55.png",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -224,19 +226,25 @@
         "text_block_pABR84": {
           "type": "text_block",
           "settings": {
-            "content": "<p>I've NEVER used a product so wonderful! I didn't have to put on more makeup. I just put eyebrows on, a little, blush and lipstick, good to go!</p>"
+            "content": "<p>\"I haven't worn makeup in quite awhile. Discovering the LWYA brand of makeup and being clean beauty made me a believer. These chameleon products are pure genius.\"</p>",
+            "author_name": "Nancy S.",
+            "date": "10/11/2025"
           }
         },
         "text_block_LUfVPe": {
           "type": "text_block",
           "settings": {
-            "content": "<p>This product changed my life! Amazing quality and results that I never expected. Highly recommend to everyone!</p>"
+            "content": "<p>This product changed my life! Amazing quality and results that I never expected. Highly recommend to everyone!</p>",
+            "author_name": "Nancy S.",
+            "date": "10/11/2025"
           }
         },
         "text_block_PaUtRN": {
           "type": "text_block",
           "settings": {
-            "content": "<p>Absolutely love this! It's become an essential part of my daily routine. Can't imagine going without it now.</p>"
+            "content": "<p>Absolutely love this! It's become an essential part of my daily routine. Can't imagine going without it now.</p>",
+            "author_name": "Nancy S.",
+            "date": "10/11/2025"
           }
         }
       },
@@ -264,10 +272,10 @@
           "settings": {
             "tab_title": "NEW ARRIVAL",
             "collection_1": "",
-            "product_1": "skintastic-brightening-konjac-lychee-polishing-cleanser",
-            "product_2": "liptastic-hydrating-tinted-lip-serum",
-            "product_3": "chameleon-glow-moisturizer",
-            "product_4": "two-timer-dual-ended-mascara"
+            "product_1": "skintastic-facefix-cloud-cream",
+            "product_2": "skintastic-soothing-cleansing-cream",
+            "product_3": "two-timer-dual-ended-mascara",
+            "product_4": "liptastic-hydrating-tinted-lip-serum"
           }
         }
       },
@@ -288,13 +296,16 @@
     },
     "ai_image_text_9BBxtY": {
       "type": "AI-ImageText",
+      "custom_css": [
+        "strong {font-family: Gotham;}"
+      ],
       "name": "AI Image Text",
       "settings": {
         "section_bg_color": "#ffffff",
         "left_image": "shopify://shop_images/e0cf419abddf8e8dc8990b368928de73cf3a4e54.jpg",
         "right_bg_color": "#f5f5f5",
         "right_title": "<h4>ABOUT LWYA</h4>",
-        "right_text": "<p>We empower women to embrace their true selves, love their lives, and write their own stories.</p>",
+        "right_text": "<p><strong>LWYA, Love Who You Are, </strong>was built on a simple but radical idea: <strong>beauty should make you feel more like yourself, not less.</strong></p>",
         "right_button_text": "LEARN MORE",
         "right_button_link": "shopify://pages/about-us",
         "right_button_bg": "#000000",
@@ -322,7 +333,8 @@
         "right_button_text": "LEARN MORE",
         "right_button_link": "shopify://pages/bff-club",
         "right_button_bg": "#000000",
-        "right_button_text_color": "#ffffff"
+        "right_button_text_color": "#ffffff",
+        "right_image": "shopify://shop_images/Group_360.png"
       }
     }
   },

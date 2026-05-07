@@ -260,7 +260,7 @@
                     {{ product.title }}
                   </h3>
 
-                  <p class="tw-text-[14px] mt-2 tw-text-gray-600 tw-font-bold">
+                  <p class="tw-text-[14px] mt-2 tw-text-gray-600 tw-font-bold grid-price">
                     {{ product.price | money }}
                     {%- if product.compare_at_price > product.price -%}
                       <s class="tw-text-[12px] tw-text-[#9b9b9b] tw-ml-[8px]">{{ product.compare_at_price | money }}</s>
@@ -304,6 +304,13 @@
     /* Dropdown hover effects */
     .tab-option-{{ section.id }}:hover .tab-check-{{ section.id }} {
       border-color: #000 !important;
+    }
+    .grid-price{
+     font-family: Gotham;
+     font-size: 16px;
+     margin-top: 5px;
+     margin-bottom: 5px;
+     color: rgba(0, 0, 0, 0.5);
     }
   </style>
   {%- comment -%} JavaScript {%- endcomment -%}

@@ -62,6 +62,11 @@
           "info": "Leave blank to use collection's first product image"
         },
         {
+          "type": "video",
+          "id": "media_video",
+          "label": "Video"
+        },
+        {
           "type": "text",
           "id": "button_text",
           "label": "Button Text",
@@ -142,7 +147,7 @@
             {{ block.shopify_attributes }}
           >
             {%- comment -%} Image Container {%- endcomment -%}
-            <a
+            {% comment %} <a
               href="{{ collection_url }}"
               class="tw-block tw-relative tw-overflow-hidden tw-aspect-square tw-mb-4"
             >
@@ -162,8 +167,47 @@
                   </svg>
                 </div>
               {% endif %}
-            </a>
+            </a> {% endcomment %}
+              <a
+                href="{{ collection_url }}"
+                class="tw-block tw-relative tw-overflow-hidden tw-aspect-square tw-mb-4"
+              >
 
+                {% if block.settings.media_video != blank %}
+                  
+                  <!-- VIDEO -->
+                  {{
+                    block.settings.media_video
+                    | video_tag:
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      class: 'tw-w-full tw-h-full tw-object-cover'
+                  }}
+
+                {% elsif block.settings.custom_image != blank %}
+                  
+                  <!-- IMAGE -->
+                  <img
+                    src="{{ block.settings.custom_image | image_url: width: 800 }}"
+                    alt="{{ display_title | escape }}"
+                    class="tw-w-full tw-h-full tw-object-cover group-hover:tw-scale-105 tw-transition-transform tw-duration-300"
+                    loading="lazy"
+                    width="800"
+                    height="800"
+                  >
+
+                {% else %}
+                  
+                  <!-- FALLBACK -->
+                  <div class="tw-w-full tw-h-full tw-bg-gray-200 tw-flex tw-items-center tw-justify-center">
+                    No media
+                  </div>
+
+                {% endif %}
+
+              </a>
             {%- comment -%} Title {%- endcomment -%}
             <h3 class="tw-text-responsive-[14,20] tw-font-bold tw-uppercase tw-tracking-wider tw-text-center tw-mb-3">
               {{ display_title }}
