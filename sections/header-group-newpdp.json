@@ -19,17 +19,10 @@
           "settings": {
             "text": "<strong>Free shipping on orders over $75</strong>"
           }
-        },
-        "message-1": {
-          "type": "message",
-          "settings": {
-            "text": "✨The Flawless Five - $164 value for $75✨"
-          }
         }
       },
       "block_order": [
-        "message_LAnnxc",
-        "message-1"
+        "message_LAnnxc"
       ],
       "settings": {
         "color_scheme": "scheme-ff14b769-00ce-4a5f-a184-ca5c61268089",
