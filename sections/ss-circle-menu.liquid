@@ -91,7 +91,7 @@
   .circle-item-{{ section.id }} {
     width: 100%;
     text-decoration: none;
-    max-width: {{ icon_size_mobile }}px;
+    max-width: 100%;
     box-sizing: border-box;
     transform: scale(1) !important;
     transition: all 0.25s ease 0s;
@@ -104,8 +104,8 @@
   .circle-icon-{{ section.id }} {
     margin: 0px auto;
     display: block;
-    width: {{ icon_size_mobile }}px;
-    height: {{ icon_size_mobile }}px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     border: {{ icon_border_thickness }}px solid {{ icon_border_color }};
     overflow: hidden;
   }
@@ -168,6 +168,7 @@
     .circle-icon-{{ section.id }} {
       width: {{ icon_size }}px;
       height: {{ icon_size }}px;
+      aspect-ratio: auto;
     }
 
     .circle-icon-{{ section.id }} img,

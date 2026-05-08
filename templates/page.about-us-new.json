@@ -403,50 +403,68 @@
         "lazy": false
       }
     },
-    "slideshow_gxnqQQ": {
-      "type": "slideshow",
+    "ai_our_values_aboutus": {
+      "type": "AI-OurValues",
       "blocks": {
-        "image_Myf6Kt": {
-          "type": "image",
+        "value_9QNPfg": {
+          "type": "value",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_from_2026-02-13_16-11-45.png",
-            "subheading": "",
-            "title": "",
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_text_position": "sm:place-self-center sm:text-center",
-            "content_max_width": 780,
-            "button_1_text": "",
-            "button_1_link": "",
-            "button_1_style": "solid",
-            "button_1_background": "#ffffff",
-            "button_1_text_color": "#000000",
-            "button_2_text": "",
-            "button_2_link": "",
-            "button_2_style": "link",
-            "button_2_background": "#e32c2b",
-            "button_2_text_color": "#e23a95",
-            "background": "rgba(0,0,0,0)",
-            "background_opacity": 74,
-            "text_color": "#ffffff",
-            "border_color": "",
-            "gradient_overlay": ""
+            "icon": "shopify://shop_images/bb3e422c01ed7052d624b20e15dce00c479fc413.png",
+            "label": "<p>Paraben <br/>Free</p>"
+          }
+        },
+        "value_WrX8eB": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/9f4cc42e3feaa6f8404e62c473ab7f76c6b3fd23.png",
+            "label": "<p>Sulfate <br/>Free</p>"
+          }
+        },
+        "value_tAzDwn": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/c7d97a8fe7ca24b571d158b4cf85c89f23c561a6.png",
+            "label": "<p>Mineral Oil <br/>Free</p>"
+          }
+        },
+        "value_AdDLjg": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/2cee51a37afe2117e2c50c91077772a53c5ad478.png",
+            "label": "<p>Talc<br/>Free</p>"
+          }
+        },
+        "value_adnnWR": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/57f322f8e8eac3dde254e572819cdebde8f6c223.png",
+            "label": "<p>Leaping <br/>Bunny <br/>Certified</p>"
+          }
+        },
+        "value_mYhzxm": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/fa9855df9cf279da8d7d69fa41ba2dd2421f0cf4.png",
+            "label": "<p>Formaldehydes <br/>Free</p>"
           }
         }
       },
       "block_order": [
-        "image_Myf6Kt"
+        "value_9QNPfg",
+        "value_WrX8eB",
+        "value_tAzDwn",
+        "value_AdDLjg",
+        "value_adnnWR",
+        "value_mYhzxm"
       ],
-      "name": "t:sections.slideshow.presets.slideshow.name",
+      "name": "LWYA Promise",
       "settings": {
-        "allow_transparent_header": true,
-        "show_next_section_button": true,
-        "media_size": "auto",
-        "show_initial_transition": false,
-        "autoplay": true,
-        "autoplay_pause_on_video": true,
-        "cycle_speed": 5,
-        "background": "#000000",
-        "controls_color": "#ffffff"
+        "heading": "The LWYA Promise",
+        "bg_color": "#d41870",
+        "bg_opacity": 5,
+        "heading_color": "#000000",
+        "padding_y": 70,
+        "padding_x": 115
       }
     },
     "ss_hero_27_founder": {
@@ -704,7 +722,7 @@
     "beauty_unfiltered_EQeUNj",
     "love_who_you_are_pq6fQC",
     "ss_hero_27_3weQiJ",
-    "slideshow_gxnqQQ",
+    "ai_our_values_aboutus",
     "ss_hero_27_founder",
     "ss_circle_menu_xxUz7H"
   ]
