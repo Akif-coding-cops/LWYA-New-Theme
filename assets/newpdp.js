@@ -575,11 +575,12 @@ document.addEventListener('DOMContentLoaded', () => {
         currency: window.Shopify?.currency?.active || 'USD'
       });
 
-      let priceHTML = formatter.format(variant.price / 100);
+      let priceHTML = '';
 
       if (variant.compare_at_price && variant.compare_at_price > variant.price) {
-        priceHTML += `<s class="tw-text-[18px] tw-text-[#9b9b9b] tw-ml-[8px]">${formatter.format(variant.compare_at_price / 100)}</s>`;
+        priceHTML += `<s class="pdp-price__compare tw-text-[35px] tw-font-bold tw-text-[#c5c5c5] tw-no-underline">${formatter.format(variant.compare_at_price / 100)}</s>`;
       }
+      priceHTML += `<span class="tw-text-[35px] tw-font-bold tw-text-[#d41870]">${formatter.format(variant.price / 100)}</span>`;
 
       priceContainer.innerHTML = priceHTML;
     }
