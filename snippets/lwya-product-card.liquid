@@ -48,11 +48,17 @@
   .bsc-card__price {
     font-family: 'Gotham_Bold', sans-serif;
     margin-top: 8px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
   }
   .bsc-card__compare-price {
-    font-size: 16px;
-    color: #9b9b9b;
-    margin-left: 6px;
+    color: rgba(0, 0, 0, 0.4);
+    text-decoration: line-through;
+    text-decoration-color: rgba(0, 0, 0, 0.4);
+  }
+  .bsc-card__sale-price {
+    color: #d41870;
   }
   .bsc-card__swatches {
     display: flex;
@@ -132,8 +138,13 @@
   assign show_swatches = true
 
   if forced_variant
-    if forced_variant.metafields.custom.featured_card_image
-      assign card_image = forced_variant.metafields.custom.featured_card_image
+    assign variant_media_list = forced_variant.metafields.custom.variant_media.value
+    if variant_media_list != blank and variant_media_list.size > 0
+      for vm in variant_media_list
+        if forloop.index0 == 0
+          assign card_image = vm
+        endif
+      endfor
     endif
     if forced_variant.title == 'Default Title'
       assign card_subtitle = ''
@@ -310,15 +321,15 @@
 
     <div
       class="bsc-card__price"
-      style="font-size: {{ price_size }}px; font-weight: {{ price_weight }}; color: {{ price_color }};"
+      style="font-size: {{ price_size }}px; font-weight: {{ price_weight }};"
     >
       {% if variant_price == 0 %}
-        Free
+        <span style="color: {{ price_color }};">Free</span>
+      {% elsif on_sale %}
+        <s class="bsc-card__compare-price">{{ variant_compare_at_price | money }}</s>
+        <span class="bsc-card__sale-price">{{ variant_price | money }}</span>
       {% else %}
-        {{ variant_price | money }}
-        {% if on_sale %}
-          <s class="bsc-card__compare-price">{{ variant_compare_at_price | money }}</s>
-        {% endif %}
+        <span style="color: {{ price_color }};">{{ variant_price | money }}</span>
       {% endif %}
     </div>
   </div>

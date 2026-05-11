@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const incBtn = form.querySelector('[data-qty-inc]');
   // Get selects from form OR from variant selector container (if blocks are separated)
   const variantSelector = document.querySelector('[data-variant-selector]');
-  const selects = variantSelector 
+  const selects = variantSelector
     ? Array.from(variantSelector.querySelectorAll('select[name^="options["]'))
     : Array.from(form.querySelectorAll('select[name^="options["]'));
   const rechargeEl = document.getElementById('lwya-recharge-widget');
 
   let variantsData = null;
   let mobileSwiper = null;
-  
+
   try {
     const jsonEl = document.getElementById('lwya-product-variants');
     if (jsonEl) variantsData = JSON.parse(jsonEl.textContent.trim());
@@ -39,15 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updateVariantImage = (variant) => {
     console.log('🖼️ updateVariantImage called with variant:', variant);
-    
+
     if (!variant || !variant.featured_image) {
       console.log('⚠️ Variant has no featured_image');
       return;
     }
-    
+
     const featuredImage = variant.featured_image;
     console.log('📸 Variant featured_image:', featuredImage);
-    
+
     // Update desktop gallery
     const mainImg = document.querySelector('[data-main-image-1]');
     const mainLink = document.querySelector('[data-main-image-link]');
@@ -55,13 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentImageId = mainImg.getAttribute('data-image-id');
       console.log('🖼️ Current desktop image ID:', currentImageId);
       console.log('🎯 Target image ID:', featuredImage.id);
-      
+
       if (String(currentImageId) !== String(featuredImage.id)) {
         console.log('🔄 Switching desktop image...');
-        
+
         // Smooth fade transition
         mainImg.style.opacity = '0';
-        
+
         setTimeout(() => {
           // Update with variant's featured image
           const baseUrl = featuredImage.src.split('?')[0];
@@ -69,14 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
           mainImg.srcset = `${baseUrl}?width=900 900w, ${baseUrl}?width=1200 1200w, ${baseUrl}?width=1600 1600w`;
           mainImg.setAttribute('data-image-id', featuredImage.id);
           mainImg.alt = featuredImage.alt || '';
-          
+
           // Update GLightbox link href
           if (mainLink) {
             mainLink.href = baseUrl + '?width=2000';
           }
-          
+
           console.log('✅ Desktop image updated to:', featuredImage.id);
-          
+
           setTimeout(() => {
             mainImg.style.opacity = '1';
           }, 50);
@@ -87,15 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       console.log('❌ Main image element not found');
     }
-    
+
     // Update mobile gallery (Swiper)
     if (mobileSwiper) {
       console.log('📱 Updating mobile gallery...');
       const slides = Array.from(document.querySelectorAll('[data-slide-image-id]'));
       const targetIndex = slides.findIndex(slide => String(slide.getAttribute('data-slide-image-id')) === String(featuredImage.id));
-      
+
       console.log('📱 Target slide index:', targetIndex, 'Current:', mobileSwiper.activeIndex);
-      
+
       if (targetIndex !== -1 && mobileSwiper.activeIndex !== targetIndex) {
         mobileSwiper.slideTo(targetIndex, 400);
         console.log('✅ Mobile gallery slid to index:', targetIndex);
@@ -126,10 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const reinitAccordion = (container, btnSelector, targetAttr) => {
     container.querySelectorAll(btnSelector).forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         const body = container.querySelector('#' + btn.getAttribute(targetAttr));
         if (!body) return;
-        const icon   = btn.querySelector('.plus-icon');
+        const icon = btn.querySelector('.plus-icon');
         const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
         if (isOpen) {
           body.style.maxHeight = '0px';
@@ -172,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Re-init Swiper
     if (typeof Swiper !== 'undefined') {
       const swiperEl = curEl.querySelector('.lwya-videos-swiper');
-      const prevBtn  = curEl.querySelector('.lwya-videos-prev');
-      const nextBtn  = curEl.querySelector('.lwya-videos-next');
+      const prevBtn = curEl.querySelector('.lwya-videos-prev');
+      const nextBtn = curEl.querySelector('.lwya-videos-next');
 
       if (swiperEl) {
         const swiper = new Swiper(swiperEl, {
@@ -184,14 +184,14 @@ document.addEventListener('DOMContentLoaded', () => {
             prevEl: prevBtn,
           },
           breakpoints: {
-            0:    { slidesPerView: 1.3, spaceBetween: 12 },
-            480:  { slidesPerView: 2,   spaceBetween: 12 },
-            640:  { slidesPerView: 2.5, spaceBetween: 12 },
-            1024: { slidesPerView: 3,   spaceBetween: 12 }
+            0: { slidesPerView: 1.3, spaceBetween: 12 },
+            480: { slidesPerView: 2, spaceBetween: 12 },
+            640: { slidesPerView: 2.5, spaceBetween: 12 },
+            1024: { slidesPerView: 3, spaceBetween: 12 }
           },
           on: {
-            init:        function() { updateVideoArrows(this, prevBtn, nextBtn); },
-            slideChange: function() { updateVideoArrows(this, prevBtn, nextBtn); }
+            init: function () { updateVideoArrows(this, prevBtn, nextBtn); },
+            slideChange: function () { updateVideoArrows(this, prevBtn, nextBtn); }
           }
         });
       }
@@ -208,14 +208,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updateVideoArrows = (swiper, prevBtn, nextBtn) => {
     if (prevBtn) {
-      prevBtn.classList.toggle('tw-opacity-0',           swiper.isBeginning);
+      prevBtn.classList.toggle('tw-opacity-0', swiper.isBeginning);
       prevBtn.classList.toggle('tw-pointer-events-none', swiper.isBeginning);
-      prevBtn.classList.toggle('tw-opacity-100',         !swiper.isBeginning);
+      prevBtn.classList.toggle('tw-opacity-100', !swiper.isBeginning);
     }
     if (nextBtn) {
-      nextBtn.classList.toggle('tw-opacity-0',           swiper.isEnd);
+      nextBtn.classList.toggle('tw-opacity-0', swiper.isEnd);
       nextBtn.classList.toggle('tw-pointer-events-none', swiper.isEnd);
-      nextBtn.classList.toggle('tw-opacity-100',         !swiper.isEnd);
+      nextBtn.classList.toggle('tw-opacity-100', !swiper.isEnd);
     }
   };
 
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const el = document.querySelector(selector);
       if (!el) return;
       el.classList.add('lwya-skeleton');
-      el.style.opacity       = '0.4';
+      el.style.opacity = '0.4';
       el.style.pointerEvents = 'none';
     });
   };
@@ -247,15 +247,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const el = document.querySelector(selector);
       if (!el) return;
       el.classList.remove('lwya-skeleton');
-      el.style.opacity       = '1';
+      el.style.opacity = '1';
       el.style.pointerEvents = '';
     });
   };
 
   const replaceGalleryHTML = (doc) => {
     const slots = [
-      { selector: '[data-main-gallery]',   label: 'Desktop gallery' },
-      { selector: '[data-mobile-gallery]', label: 'Mobile gallery'  }
+      { selector: '[data-main-gallery]', label: 'Desktop gallery' },
+      { selector: '[data-mobile-gallery]', label: 'Mobile gallery' }
     ];
 
     slots.forEach(({ selector, label }) => {
@@ -271,13 +271,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const reinitGLightbox = () => {
     if (typeof GLightbox === 'undefined') return;
     GLightbox({
-      selector:       '.glightbox',
+      selector: '.glightbox',
       touchNavigation: true,
-      loop:            true,
-      autoplayVideos:  false,
-      openEffect:      'fade',
-      closeEffect:     'fade',
-      skin:            'clean'
+      loop: true,
+      autoplayVideos: false,
+      openEffect: 'fade',
+      closeEffect: 'fade',
+      skin: 'clean'
     });
   };
 
@@ -286,13 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const el = document.querySelector('.newpdp-mobile-gallery');
     if (!el) return;
     mobileSwiper = new Swiper(el, {
-      loop:           false,
-      spaceBetween:   12,
-      slidesPerView:  1.3,
+      loop: false,
+      spaceBetween: 12,
+      slidesPerView: 1.3,
       centeredSlides: false,
-      speed:          400,
+      speed: 400,
       breakpoints: {
-        480: { slidesPerView: 2,   spaceBetween: 12 },
+        480: { slidesPerView: 2, spaceBetween: 12 },
         640: { slidesPerView: 2.5, spaceBetween: 12 }
       }
     });
@@ -438,16 +438,16 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('❌ No variants data available');
       return;
     }
-    
+
     // Collect values from both select dropdowns and radio inputs by position
     const selectedOptions = [];
     const optionCount = variantsData.options ? variantsData.options.length : 0;
-    
+
     console.log('📊 Option count:', optionCount);
-    
+
     // Search scope: variant selector container OR form (for backward compatibility)
     const searchScope = variantSelector || form;
-    
+
     for (let i = 0; i < optionCount; i++) {
       // Check radio first
       const radio = searchScope.querySelector(`input[type="radio"][data-option-position="${i + 1}"]:checked`);
@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (label) label.textContent = radio.value;
         continue;
       }
-      
+
       // Then check select
       const select = searchScope.querySelector(`select[data-option-position="${i + 1}"]`);
       if (select) {
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (label) label.textContent = select.value;
       }
     }
-    
+
     console.log('✨ Selected options array:', selectedOptions);
 
     const match = variantsData.variants.find(v => {
@@ -481,26 +481,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       return true;
     });
-    
+
     if (match && variantInput) {
       console.log('✅ Found matching variant:', match);
       console.log('🆔 Variant ID:', match.id);
       console.log('💰 Price:', match.price);
       console.log('📦 Available:', match.available);
-      
+
       variantInput.value = match.id;
-      
+
       // Update submit button state
 
-      const submitBtn      = form.querySelector('button[type="submit"]');
-      const atcWrapper     = form.querySelector('[data-atc-wrapper]');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const atcWrapper = form.querySelector('[data-atc-wrapper]');
       const unavailableMsg = form.querySelector('[data-unavailable-msg]');
 
       if (match.disabled) {
-        if (atcWrapper)     atcWrapper.style.display    = 'none';
+        if (atcWrapper) atcWrapper.style.display = 'none';
         if (unavailableMsg) unavailableMsg.style.display = '';
       } else {
-        if (atcWrapper)     atcWrapper.style.display    = '';
+        if (atcWrapper) atcWrapper.style.display = '';
         if (unavailableMsg) unavailableMsg.style.display = 'none';
 
         if (submitBtn) {
@@ -517,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
-      
+
       // const submitBtn = form.querySelector('button[type="submit"]');
       // if (submitBtn) {
       //   if (match.available && !match.disabled) {
@@ -532,58 +532,58 @@ document.addEventListener('DOMContentLoaded', () => {
       //     submitBtn.classList.remove('tw-bg-[#d41870]', 'hover:tw-bg-[#b91460]');
       //   }
       // }
-      
+
       // Update Recharge widget
       if (rechargeEl) {
-        try { rechargeEl.setAttribute('default-variant-id', String(match.id)); } catch (_) {}
+        try { rechargeEl.setAttribute('default-variant-id', String(match.id)); } catch (_) { }
       }
-      
+
       // Update price if available
       updatePrice(match);
-      
+
       // Update URL with variant parameter
       updateURL(match.id);
-      
+
       // Update SEO metadata
       updateSEOMetadata(match);
-      
+
       // Update main gallery image
       console.log('🚀 Calling updateVariantImage with variant object');
       updateTitle(match);
       updateIngredientImage(match);
 
       // Only fetch gallery if variant has images
-      const hasVariantMedia  = match.variant_media && match.variant_media.length > 0;
-      const hasFeaturedImage = match.featured_image;
+      // const hasVariantMedia = match.variant_media && match.variant_media.length > 0;
+      // const hasFeaturedImage = match.featured_image;
 
-      if (hasVariantMedia || hasFeaturedImage) {
-        await updateGallery(match.id, true);
-      }
+      await updateGallery(match.id, true);
+      // if (hasVariantMedia || hasFeaturedImage) {
+      // }
     } else {
       console.log('❌ No matching variant found for options:', selectedOptions);
       console.log('📋 Available variants:', variantsData.variants);
     }
   };
-  
+
   const updatePrice = (variant) => {
     if (!variant || !variant.price) return;
-    
+
     const priceContainer = document.querySelector('[data-product-price]');
     if (priceContainer) {
       const formatter = new Intl.NumberFormat(undefined, {
         style: 'currency',
         currency: window.Shopify?.currency?.active || 'USD'
       });
-      
+
       let priceHTML = formatter.format(variant.price / 100);
-      
+
       if (variant.compare_at_price && variant.compare_at_price > variant.price) {
         priceHTML += `<s class="tw-text-[18px] tw-text-[#9b9b9b] tw-ml-[8px]">${formatter.format(variant.compare_at_price / 100)}</s>`;
       }
-      
+
       priceContainer.innerHTML = priceHTML;
     }
-    
+
     // Also update sticky price
     const stickyPriceEl = document.querySelector('[data-sticky-price]');
     if (stickyPriceEl) {
@@ -591,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
         style: 'currency',
         currency: window.Shopify?.currency?.active || 'USD'
       });
-      
+
       let priceHTML = '';
       if (variant.compare_at_price && variant.compare_at_price > variant.price) {
         priceHTML = `<span class="tw-line-through tw-text-[#999] tw-mr-[6px]">${formatter.format(variant.compare_at_price / 100)}</span>`;
@@ -599,10 +599,10 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         priceHTML = `<span class="tw-text-black">${formatter.format(variant.price / 100)}</span>`;
       }
-      
+
       stickyPriceEl.innerHTML = priceHTML;
     }
-    
+
     // Update sticky button state
     const stickyAtcBtn = document.querySelector('[data-sticky-atc-btn]');
     if (stickyAtcBtn) {
@@ -619,55 +619,55 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   };
-  
+
   const updateURL = (variantId) => {
     if (!variantsData || !variantsData.url) return;
-    
+
     const url = new URL(window.location.href);
     url.searchParams.set('variant', variantId);
-    
+
     // Update browser URL without page reload
     window.history.replaceState({ variantId: variantId }, '', url.toString());
     console.log('✅ URL updated to include variant:', variantId);
   };
-  
+
   const updateSEOMetadata = (variant) => {
     if (!variant) return;
-    
+
     // Update meta description if variant has unique description
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc && variant.sku) {
       // You can customize this based on your needs
       console.log('📝 SEO metadata ready for variant:', variant.sku);
     }
-    
+
     // Update Open Graph image if variant has featured image
     if (variant.featured_image) {
       let ogImage = document.querySelector('meta[property="og:image"]');
       if (ogImage) {
         ogImage.setAttribute('content', variant.featured_image.src);
       }
-      
+
       let twitterImage = document.querySelector('meta[name="twitter:image"]');
       if (twitterImage) {
         twitterImage.setAttribute('content', variant.featured_image.src);
       }
-      
+
       console.log('🖼️ OG/Twitter images updated');
     }
   };
 
   selects.forEach(s => s.addEventListener('change', updateVariant));
-  
+
   // Add listeners for radio buttons (color swatches) using data-option-position
   // Search from variant selector container OR form (for backward compatibility)
   const radioInputs = variantSelector
     ? Array.from(variantSelector.querySelectorAll('input[type="radio"][data-option-position]'))
     : Array.from(form.querySelectorAll('input[type="radio"][data-option-position]'));
   radioInputs.forEach(r => r.addEventListener('change', updateVariant));
-  
+
   // Handle form submission - ensure variant options from separated block are included
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', function (e) {
     if (variantSelector) {
       // Get all option inputs from variant selector
       const optionInputs = variantSelector.querySelectorAll('input[type="radio"]:checked, select[name^="options["]');
@@ -693,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = Array.from(tabsRoot.querySelectorAll('[data-tab]'));
     const panels = Array.from(panelsRoot.querySelectorAll('[data-panel]'));
     const indicator = tabsRoot.querySelector('.lwya-tab-indicator');
-    
+
     const activate = (name) => {
       tabButtons.forEach(b => {
         const active = b.getAttribute('data-tab') === name;
@@ -707,7 +707,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         b.setAttribute('aria-selected', active ? 'true' : 'false');
       });
-      
+
       // Update indicator position and width to match active tab button
       if (indicator) {
         const activeButton = tabButtons.find(b => b.getAttribute('data-tab') === name);
@@ -717,14 +717,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const containerRect = tabsContainer.getBoundingClientRect();
           const leftOffset = buttonRect.left - containerRect.left;
           const buttonWidth = buttonRect.width;
-          
+
           indicator.style.width = buttonWidth + 'px';
           indicator.style.left = leftOffset + 'px';
         } else {
           indicator.style.width = '0';
         }
       }
-      
+
       panels.forEach(p => {
         const show = p.getAttribute('data-panel') === name;
         p.classList.toggle('tw-hidden', !show);
@@ -777,13 +777,13 @@ document.addEventListener('DOMContentLoaded', () => {
           fade: { in: 'fadeIn', out: 'fadeOut' }
         }
       });
-      
+
       console.log('✅ GLightbox initialized with black background');
     } else {
       console.warn('⚠️ GLightbox not loaded');
     }
   };
-  
+
   // Initialize GLightbox after a short delay
   setTimeout(initGLightbox, 200);
 
@@ -797,45 +797,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const stickyIncBtn = stickyBar.querySelector('[data-sticky-qty-inc]');
     const stickyAtcBtn = stickyBar.querySelector('[data-sticky-atc-btn]');
     const stickyPriceEl = stickyBar.querySelector('[data-sticky-price]');
-    
+
     let lastScrollY = window.scrollY;
     let ticking = false;
-    
+
     // Show/hide sticky bar based on scroll position
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const mainFormRect = mainForm ? mainForm.getBoundingClientRect() : null;
-      
+
       // Show sticky bar when main form is scrolled out of view (above viewport)
       if (mainFormRect && mainFormRect.bottom < 0 && currentScrollY > 200) {
         stickyBar.style.transform = 'translateY(0)';
       } else {
         stickyBar.style.transform = 'translateY(100%)';
       }
-      
+
       lastScrollY = currentScrollY;
       ticking = false;
     };
-    
+
     const requestScrollTick = () => {
       if (!ticking) {
         window.requestAnimationFrame(handleScroll);
         ticking = true;
       }
     };
-    
+
     window.addEventListener('scroll', requestScrollTick, { passive: true });
-    
+
     // Sync quantity between main form and sticky bar
     if (mainQtyInput && stickyQtyInput) {
       // Update sticky when main changes
       const syncToSticky = () => {
         stickyQtyInput.value = mainQtyInput.value;
       };
-      
+
       mainQtyInput.addEventListener('input', syncToSticky);
       mainQtyInput.addEventListener('change', syncToSticky);
-      
+
       // Sticky quantity controls
       if (stickyDecBtn) {
         stickyDecBtn.addEventListener('click', () => {
@@ -844,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
           mainQtyInput.value = newVal;
         });
       }
-      
+
       if (stickyIncBtn) {
         stickyIncBtn.addEventListener('click', () => {
           const newVal = parseInt(stickyQtyInput.value, 10) + 1;
@@ -853,20 +853,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
-    
+
     // Sticky add to cart button - trigger main form submission
     if (stickyAtcBtn && mainForm) {
       stickyAtcBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         // Sync quantity one more time before submit
         if (mainQtyInput && stickyQtyInput) {
           mainQtyInput.value = stickyQtyInput.value;
         }
-        
+
         // Trigger main form submit
         mainForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-        
+
         // If not prevented, submit the form
         if (!e.defaultPrevented) {
           mainForm.submit();
