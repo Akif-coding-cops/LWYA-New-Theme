@@ -58,6 +58,7 @@
     --------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
   {%- assign badge = product.metafields.custom.product_badge.value -%}
+  {%- assign product_badges = product.metafields.custom.product_badges.value -%}
 
   {%- if product.media.size > 0 -%}
     <div class="product-card__figure">
@@ -67,7 +68,9 @@
         {%- endif -%}
       {% endcomment %}
 
-      {% if badge != blank %}
+      {% if product_badges != blank and product_badges.size > 0 %}
+        {% render 'badge', position: 'top-right', badges: product_badges, size: 'small' %}
+      {% elsif badge != blank %}
         {% render 'badge', position: 'top-right', text: badge.text, bg_color: badge.background_color, size: 'small' %}
       {% endif %}
 

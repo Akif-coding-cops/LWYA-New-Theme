@@ -63,77 +63,93 @@
 </style>
 
 <script>
-  function initRechargeWidget() {
-    const widget = document.querySelector('recharge-subscription-widget');
-    if (!widget) return;
+  (function () {
+    var ICON_STYLE = [
+      'rect { display: none; }',
+      '.rc-checked-icon circle { fill: var(--rc-widget-brand-color); r: 12; }',
+      '.rc-unchecked-icon svg { display: none; }',
+      ':host { display: block; width: 1.15em; height: 1.15em; border-radius: 50%; }',
+      ':host(:not([checked])) { display: block; width: 1.15em; height: 1.15em; border-radius: 50%; background: #D9D9D9; }'
+    ].join('\n');
 
-    // Wait for shadowRoot to be available
-    const waitForShadow = setInterval(() => {
-      if (!widget.shadowRoot) return;
-      clearInterval(waitForShadow);
-
-      const observer = new MutationObserver(() => {
-        const radioIcons = widget.shadowRoot.querySelectorAll('rc-radio-icon');
-        const discountbadge = widget.shadowRoot.querySelector('.rc-purchase-option__badge');
-        const badgeContent = discountbadge ? ` and get ${discountbadge.textContent}` : '';
-
-        const subOption = widget.shadowRoot.querySelector(
-          '.rc-purchase-option__subscription .rc-purchase-option__selector'
-        );
-
-        if (subOption && !subOption.querySelector('.custom-sub-label')) {
-          subOption.childNodes.forEach((node) => {
-            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-              const span = document.createElement('span');
-              span.className = 'custom-sub-label';
-              span.innerHTML = `Subscribe${badgeContent}`;
-              node.replaceWith(span);
-            }
-          });
-        }
-
-        radioIcons.forEach((icon) => {
-          if (!icon.shadowRoot || icon.shadowRoot.querySelector('style')) return;
-
-          const style = document.createElement('style');
-          style.textContent = `
-          rect { display: none; }
-          .rc-checked-icon circle {
-            fill: var(--rc-widget-brand-color);
-            r: 12;
-          }
-          .rc-unchecked-icon svg { display: none; }
-          :host {
-            display: block;
-            width: 1.15em;
-            height: 1.15em;
-            border-radius: 50%;
-          }
-          :host(:not([checked])) {
-            display: block;
-            width: 1.15em;
-            height: 1.15em;
-            border-radius: 50%;
-            background: #D9D9D9;
-          }
-        `;
-          icon.shadowRoot.appendChild(style);
-        });
-      });
-
-      observer.observe(widget.shadowRoot, { childList: true, subtree: true });
-    }, 100);
-  }
-  // Watch for widget being added/changed in DOM at all times
-  const bodyObserver = new MutationObserver(() => {
-    const widget = document.querySelector('recharge-subscription-widget');
-    if (widget && !widget.dataset.initialized) {
-      widget.dataset.initialized = 'true'; // prevent running twice
-      initRechargeWidget();
+    function injectIconStyle(icon) {
+      if (!icon.shadowRoot || icon.shadowRoot.querySelector('style[data-lwya]')) return;
+      var s = document.createElement('style');
+      s.setAttribute('data-lwya', '1');
+      s.textContent = ICON_STYLE;
+      icon.shadowRoot.appendChild(s);
     }
-  });
 
-  bodyObserver.observe(document.body, { childList: true, subtree: true });
+    // rc-radio-icon may not have its own shadowRoot yet — poll up to 2 s
+    function watchIconShadow(icon) {
+      if (icon.shadowRoot) { injectIconStyle(icon); return; }
+      var n = 0;
+      var t = setInterval(function () {
+        if (icon.shadowRoot) { clearInterval(t); injectIconStyle(icon); }
+        else if (++n >= 40) clearInterval(t);
+      }, 50);
+    }
+
+    function applyWidgetStyles(shadow) {
+      // Subscribe label
+      var badge = shadow.querySelector('.rc-purchase-option__badge');
+      var extra = badge ? ' and get ' + badge.textContent.trim() : '';
+      var subOption = shadow.querySelector('.rc-purchase-option__subscription .rc-purchase-option__selector');
+      if (subOption && !subOption.querySelector('.custom-sub-label')) {
+        subOption.childNodes.forEach(function (node) {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+            var span = document.createElement('span');
+            span.className = 'custom-sub-label';
+            span.innerHTML = 'Subscribe' + extra;
+            node.replaceWith(span);
+          }
+        });
+      }
+      // Radio icons (each has its own nested shadow root)
+      shadow.querySelectorAll('rc-radio-icon').forEach(watchIconShadow);
+    }
+
+    function attachWidgetObserver(widget) {
+      if (widget.dataset.lwyaObserving) return;
+      widget.dataset.lwyaObserving = '1';
+      var shadow = widget.shadowRoot;
+      // Apply immediately — shadow may already be fully rendered at this point
+      applyWidgetStyles(shadow);
+      // Re-apply on any future Recharge re-render (variant change, subscription toggle, etc.)
+      new MutationObserver(function () { applyWidgetStyles(shadow); })
+        .observe(shadow, { childList: true, subtree: true });
+    }
+
+    function initRechargeWidget() {
+      var widget = document.querySelector('recharge-subscription-widget');
+      if (!widget) return;
+      if (widget.shadowRoot) { attachWidgetObserver(widget); return; }
+      // Shadow not attached yet — poll up to 10 s
+      var n = 0;
+      var t = setInterval(function () {
+        if (widget.shadowRoot) { clearInterval(t); attachWidgetObserver(widget); }
+        else if (++n >= 100) clearInterval(t);
+      }, 100);
+    }
+
+    function tryInit() {
+      var widget = document.querySelector('recharge-subscription-widget');
+      if (widget && !widget.dataset.lwyaInit) {
+        widget.dataset.lwyaInit = '1';
+        initRechargeWidget();
+      }
+    }
+
+    // Watch for widget added/re-added (section reloads, theme editor, SPA navigation)
+    new MutationObserver(tryInit).observe(document.body, { childList: true, subtree: true });
+
+    // Also run immediately — widget may already be in the DOM
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryInit);
+    } else {
+      tryInit();
+    }
+  })();
 </script>
 
 <section id="lwya-newpdp" class="tw-w-full tw-py-[24px]">

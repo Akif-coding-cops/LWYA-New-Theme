@@ -128,6 +128,7 @@
   endif
 
   assign card_badge = product.metafields.custom.product_badge.value
+  assign card_badges = product.metafields.custom.product_badges.value
 
   assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
   assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />'
@@ -154,6 +155,7 @@
     assign card_url = product.url | append: '?variant=' | append: forced_variant.id
     assign show_swatches = false
     assign card_badge = forced_variant.metafields.custom.variant_badge.value
+    assign card_badges = forced_variant.metafields.custom.variant_badges.value
     assign variant_price = forced_variant.price
     assign variant_compare_at_price = forced_variant.compare_at_price | default: 0
     assign on_sale = false
@@ -182,7 +184,9 @@
       loading="lazy"
       class="bsc-card__img"
     >
-    {% if card_badge != blank %}
+    {% if card_badges != blank and card_badges.size > 0 %}
+      {% render 'badge', position: 'top-right', badges: card_badges %}
+    {% elsif card_badge != blank %}
       {% render 'badge', position: 'top-right', text: card_badge.text, bg_color: card_badge.background_color %}
     {% endif %}
   </a>

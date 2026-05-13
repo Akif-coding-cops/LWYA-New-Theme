@@ -21,6 +21,8 @@
 
   assign badge = product.metafields.custom.product_badge.value
   assign variant_badge = current_variant.metafields.custom.variant_badge.value
+  assign product_badges = product.metafields.custom.product_badges.value
+  assign variant_badges = current_variant.metafields.custom.variant_badges.value
 
   if variant_media_list != blank and variant_media_list.size > 0
     assign using_variant_media = true
@@ -110,7 +112,11 @@
     {% endif %}
   {% endcomment %}
 
-  {% if badge != blank %}
+  {% if product_badges != blank and product_badges.size > 0 %}
+    {% render 'badge', position: 'top-right', badges: product_badges %}
+  {% elsif variant_badges != blank and variant_badges.size > 0 %}
+    {% render 'badge', position: 'top-right', badges: variant_badges %}
+  {% elsif badge != blank %}
     {% render 'badge', position: 'top-right', text: badge.text, bg_color: badge.background_color %}
   {% elsif variant_badge != blank %}
     {% render 'badge', position: 'top-right', text: variant_badge.text, bg_color: variant_badge.background_color %}
@@ -240,14 +246,14 @@
             {% endif %}
           {% endcomment %}
 
-          {% if badge != blank %}
+          {% if product_badges != blank and product_badges.size > 0 %}
+            {% render 'badge', position: 'top-right', badges: product_badges %}
+          {% elsif variant_badges != blank and variant_badges.size > 0 %}
+            {% render 'badge', position: 'top-right', badges: variant_badges %}
+          {% elsif badge != blank %}
             {% render 'badge', position: 'top-right', text: badge.text, bg_color: badge.background_color %}
           {% elsif variant_badge != blank %}
-            {% render 'badge',
-              position: 'top-right',
-              text: variant_badge.text,
-              bg_color: variant_badge.background_color
-            %}
+            {% render 'badge', position: 'top-right', text: variant_badge.text, bg_color: variant_badge.background_color %}
           {% endif %}
 
           {% comment %}
