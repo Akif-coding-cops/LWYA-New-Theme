@@ -20,6 +20,7 @@
     },
     "video_with_text_button_6ePkpE": {
       "type": "video-with-text-button",
+      "disabled": true,
       "name": "Video Section",
       "settings": {
         "video": "shopify://files/videos/Skintastic Lychee Cleanser DESKTOP.mp4",
@@ -28,6 +29,24 @@
         "fullwidth": true,
         "padding_horizontal": 0,
         "padding_horizontal_mobile": 0
+      }
+    },
+    "ai_split_banner_XXXXX": {
+      "type": "AI-split-banner",
+      "name": "AI Split Banner",
+      "settings": {
+        "left_image": "shopify://shop_images/Group_368.jpg",
+        "left_basis": 40,
+        "hide_left_mobile": true,
+        "right_video": "shopify://files/videos/Glow Goals Shimmer Body Oil V1 - Square.mp4",
+        "right_basis": 60,
+        "hide_right_mobile": false,
+        "banner_link": "shopify://products/glow-goals-shimmering-body-oil",
+        "row_reverse": false,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0
       }
     },
     "ai_4_grid_tab_product_kChN7W": {
@@ -90,36 +109,27 @@
         "video_slide_QPGJDY": {
           "type": "video_slide",
           "settings": {
-            "video": "shopify://files/videos/Kim_Take A Brow.mov",
+            "video": "shopify://files/videos/Mary Garner Color Adaptor 05_2025.mp4",
             "video_url": "",
-            "product": "gone-in-a-swipe-center-core-foundation",
+            "product": "chameleon-color-adaptor",
             "show_product": true
           }
         },
         "video_slide_tGcdhH": {
           "type": "video_slide",
           "settings": {
-            "video": "shopify://files/videos/reelup_1ciev5w7g831764795475432_original.mp4",
+            "video": "shopify://files/videos/Allisyn_Skintastic_Foundation.mp4",
             "video_url": "",
-            "product": "gone-in-a-swipe-concealer-and-sponge-set",
+            "product": "skintastic-airbrush-liquid-foundation",
             "show_product": true
           }
         },
         "video_slide_MrTczX": {
           "type": "video_slide",
           "settings": {
-            "video": "shopify://files/videos/872643520251113195840.mp4",
+            "video": "shopify://files/videos/250716 - Laura K - GIAS Foundation Reel.mp4",
             "video_url": "",
             "product": "gone-in-a-swipe-center-core-foundation",
-            "show_product": true
-          }
-        },
-        "video_slide_mngekn": {
-          "type": "video_slide",
-          "settings": {
-            "video": "shopify://files/videos/reelup_kvrrrkkunuk1762983327807_original.mp4",
-            "video_url": "",
-            "product": "gone-in-a-swipe-concealer-sponge",
             "show_product": true
           }
         }
@@ -127,8 +137,7 @@
       "block_order": [
         "video_slide_QPGJDY",
         "video_slide_tGcdhH",
-        "video_slide_MrTczX",
-        "video_slide_mngekn"
+        "video_slide_MrTczX"
       ],
       "custom_css": [],
       "name": "AI Video Carousel",
@@ -161,6 +170,7 @@
           "settings": {
             "collection": "body",
             "custom_title": "BODY CARE",
+            "media_video": "shopify://files/videos/Quenched Body Creme - Island Bliss - V2 - Vertical.mp4",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -182,6 +192,7 @@
           "settings": {
             "collection": "fragrance",
             "custom_title": "",
+            "media_video": "shopify://files/videos/Fragrance-FullSize_79560b91-b001-4367-8e08-4cbd9ffa6a2d.mp4",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -226,7 +237,7 @@
         "text_block_pABR84": {
           "type": "text_block",
           "settings": {
-            "content": "<p>\"I haven't worn makeup in quite awhile. Discovering the LWYA brand of makeup and being clean beauty made me a believer. These chameleon products are pure genius.\"</p>",
+            "content": "<p>\"I haven't worn makeup in quite awhile.  Discovering the lwya brand of makeup and being clean beauty made me a believer.  These chameleon products are pure genius.\"</p>",
             "author_name": "Nancy S.",
             "date": "10/11/2025"
           }
@@ -234,24 +245,42 @@
         "text_block_LUfVPe": {
           "type": "text_block",
           "settings": {
-            "content": "<p>This product changed my life! Amazing quality and results that I never expected. Highly recommend to everyone!</p>",
-            "author_name": "Nancy S.",
-            "date": "10/11/2025"
+            "content": "<p>\"I have everything of the makeup and love it.<br/>I have Gone In A Swipe and second round of the Skintastic and Chameleon.\"</p>",
+            "author_name": "Shirley C.",
+            "date": "1/29/2026"
           }
         },
         "text_block_PaUtRN": {
           "type": "text_block",
           "settings": {
-            "content": "<p>Absolutely love this! It's become an essential part of my daily routine. Can't imagine going without it now.</p>",
-            "author_name": "Nancy S.",
-            "date": "10/11/2025"
+            "content": "<p>\"I'm already on my third purchase. Love these products.\"</p>",
+            "author_name": "Wendi H.",
+            "date": "11/16/2025"
+          }
+        },
+        "text_block_j8zgUK": {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>\"Love LWYA products!\" </p>",
+            "author_name": "Michele C.",
+            "date": "2/23/2026"
+          }
+        },
+        "text_block_4QTEtd": {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>\"I absolutely love all LAWYA products.   I'm a 75 year old woman and I was recently told by a makeup artist in our area that my makeup looked beautiful on me. \"</p>",
+            "author_name": "Cathy R.",
+            "date": "2/27/2026"
           }
         }
       },
       "block_order": [
         "text_block_pABR84",
         "text_block_LUfVPe",
-        "text_block_PaUtRN"
+        "text_block_PaUtRN",
+        "text_block_j8zgUK",
+        "text_block_4QTEtd"
       ],
       "name": "AI Rich Text Slider",
       "settings": {
@@ -273,7 +302,7 @@
             "tab_title": "NEW ARRIVAL",
             "collection_1": "",
             "product_1": "skintastic-facefix-cloud-cream",
-            "product_2": "skintastic-soothing-cleansing-cream",
+            "product_2": "skintastic-brightening-konjac-lychee-polishing-cleanser",
             "product_3": "two-timer-dual-ended-mascara",
             "product_4": "liptastic-hydrating-tinted-lip-serum"
           }
@@ -341,6 +370,7 @@
   "order": [
     "main",
     "video_with_text_button_6ePkpE",
+    "ai_split_banner_XXXXX",
     "ai_4_grid_tab_product_kChN7W",
     "ai_video_carousel_7z44iD",
     "ai_4gridcollection_cGAh6W",

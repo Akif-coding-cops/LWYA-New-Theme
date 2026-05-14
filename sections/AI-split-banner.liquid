@@ -1,0 +1,245 @@
+<style>
+  #shopify-section-{{ section.id }} .split-banner__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .split-banner__inner {
+    display: flex;
+    flex-direction: {% if section.settings.row_reverse %}row-reverse{% else %}row{% endif %};
+    width: 100%;
+    align-items: stretch;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .split-banner__left {
+    flex: 0 0 {{ section.settings.left_basis }}%;
+    max-width: {{ section.settings.left_basis }}%;
+  }
+
+  #shopify-section-{{ section.id }} .split-banner__right {
+    flex: 0 0 {{ section.settings.right_basis }}%;
+    max-width: {{ section.settings.right_basis }}%;
+  }
+
+  #shopify-section-{{ section.id }} .split-banner__left img,
+  #shopify-section-{{ section.id }} .split-banner__right video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 767px) {
+    #shopify-section-{{ section.id }} .split-banner__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .split-banner__inner {
+      flex-direction: column;
+    }
+
+    #shopify-section-{{ section.id }} .split-banner__left,
+    #shopify-section-{{ section.id }} .split-banner__right {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    {% if section.settings.hide_left_mobile %}
+      #shopify-section-{{ section.id }} .split-banner__left { display: none; }
+    {% endif %}
+
+    {% if section.settings.hide_right_mobile %}
+      #shopify-section-{{ section.id }} .split-banner__right { display: none; }
+    {% endif %}
+  }
+
+  #shopify-section-{{ section.id }} {
+    background-color: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+</style>
+
+{%- liquid
+  assign banner_link = section.settings.banner_link
+  if banner_link != blank
+    assign wrapper_tag = 'a'
+    assign wrapper_attrs = 'href="' | append: banner_link | append: '"'
+  else
+    assign wrapper_tag = 'div'
+    assign wrapper_attrs = ''
+  endif
+-%}
+
+<section style="padding-top: {{ section.settings.padding_top_mobile }}px; padding-bottom: {{ section.settings.padding_bottom_mobile }}px;">
+  <div class="split-banner__container">
+  <{{ wrapper_tag }} class="split-banner__inner" {{ wrapper_attrs }}>
+
+    {%- if section.settings.left_image != blank -%}
+      {%- assign img = section.settings.left_image -%}
+      <div class="split-banner__left">
+        <img
+          src="{{ img | image_url: width: 1200 }}"
+          srcset="{{ img | image_url: width: 600 }} 600w,
+                  {{ img | image_url: width: 900 }} 900w,
+                  {{ img | image_url: width: 1200 }} 1200w"
+          sizes="{{ section.settings.left_basis }}vw"
+          alt="{{ img.alt | default: '' }}"
+          loading="lazy"
+        >
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.right_video != blank -%}
+      <div class="split-banner__right">
+        {{-
+          section.settings.right_video
+          | video_tag:
+            autoplay: true,
+            muted: true,
+            loop: true,
+            playsinline: true,
+            class: 'split-banner__video'
+        -}}
+      </div>
+    {%- endif -%}
+
+  </{{ wrapper_tag }}>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AI Split Banner",
+  "tag": "section",
+  "class": "ai-split-banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Side"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    },
+    {
+      "type": "range",
+      "id": "left_basis",
+      "label": "Left Width (%)",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_left_mobile",
+      "label": "Hide Left on Mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Right Side"
+    },
+    {
+      "type": "video",
+      "id": "right_video",
+      "label": "Right Video"
+    },
+    {
+      "type": "range",
+      "id": "right_basis",
+      "label": "Right Width (%)",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_right_mobile",
+      "label": "Hide Right on Mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner Link",
+      "info": "Click anywhere on the banner navigates to this URL"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "row_reverse",
+      "label": "Reverse Order (video left, image right)",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 8,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 8,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Split Banner"
+    }
+  ]
+}
+{% endschema %}
