@@ -7,14 +7,16 @@
         --header-scroll-tracker-offset: var(--announcement-bar-height);
       {%- endif -%}
     }
-
+      .heading-cap {
+        text-transform: uppercase !important;
+      }
     {%- if section.settings.enable_sticky -%}
       #shopify-section-{{ section.id }} {
         position: sticky;
         top: 0;
         z-index: 5;
       }
-
+    
       .shopify-section--header ~ #shopify-section-{{ section.id }} {
         top: calc(var(--header-is-sticky, 0) * var(--header-height, 0px));
         z-index: 4; /* We have to lower the z-index in case the announcement bar is displayed after the header */
@@ -47,7 +49,7 @@
 
       <announcement-bar-carousel allow-swipe {% if section.settings.autoplay %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} id="{{ carousel_id }}" class="announcement-bar__carousel">
         {%- for block in section.blocks -%}
-          <p class="prose heading {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>{{- block.settings.text -}}</p>
+          <p class="prose heading heading-cap {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>{{- block.settings.text -}}</p>
         {%- endfor -%}
       </announcement-bar-carousel>
 
