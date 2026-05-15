@@ -51,6 +51,11 @@
       "step": 5,
       "unit": "px",
       "default": 115
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
     }
   ],
   "blocks": [
@@ -154,7 +159,7 @@
       </div>
     </div>
   <div class="lwya-promise-content">
-      <a href="#">Click Here to see extensive list</a>
+      <a href="{{ section.settings.link_url | default: '#' }}" target="_blank" rel="noopener">Click Here to see extensive list</a>
     </div>
   </section>
 
