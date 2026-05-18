@@ -1,0 +1,27 @@
+{% comment %}
+  Combo product color swatches for a product card.
+  Only variants with variant_swatcher_name set are shown — blank = hidden from UI.
+  Each dot links directly to that variant on the PDP.
+  Props: product
+{% endcomment %}
+
+{%- capture swatches_html -%}
+  {%- for variant in product.variants -%}
+    {%- assign swatch_name = variant.metafields.custom.variant_swatcher_name -%}
+    {%- if swatch_name == blank -%}{%- continue -%}{%- endif -%}
+
+    {%- assign color = variant.metafields.custom.color_code -%}
+    {%- if color == blank -%}{%- continue -%}{%- endif -%}
+
+    <a
+      href="{{ product.url }}?variant={{ variant.id }}"
+      class="bsc-card__swatch"
+      title="{{ swatch_name | escape }}"
+      style="background: {{ color }};"
+    ></a>
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- unless swatches_html == blank -%}
+  <div class="bsc-card__swatches">{{ swatches_html }}</div>
+{%- endunless -%}

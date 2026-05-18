@@ -130,9 +130,6 @@
   assign card_badge = product.metafields.custom.product_badge.value
   assign card_badges = product.metafields.custom.product_badges.value
 
-  assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
-  assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />'
-
   assign card_image = product.featured_image
   assign card_subtitle = variant_subtitle
   assign card_url = product.url
@@ -219,108 +216,18 @@
       >
         {{ card_subtitle }}
       </div>
-    {% endif %}
+    {% endif %} 
 
-    {%- comment -%} Color swatches — mirrors newpdp-variants.liquid logic {%- endcomment -%}
+    {%- comment -%} Color swatches {%- endcomment -%}
     {% if show_swatches -%}
-      {%- unless product.has_only_default_variant %}
-        {% for option in product.options_with_values %}
-          {%- assign option_downcase = option.name | downcase -%}
-          {%- assign is_color = false -%}
-          {% for color_label in color_label_list %}
-            {% if option_downcase == color_label %}
-              {%- assign is_color = true -%}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-
-          {% if is_color %}
-            {%- capture swatches_html -%}
-            {%- for value in option.values -%}
-              {%- assign downcase_value = value | downcase | strip -%}
-
-              {%- assign value_variant   = null -%}
-              {%- assign value_available = false -%}
-              {%- assign value_disabled  = false -%}
-              {%- assign has_available_variant = false -%}
-              {%- assign option_index = option.position | minus: 1 -%}
-
-              {%- for variant in product.variants -%}
-                {%- if variant.options[option_index] == value -%}
-                  {%- if value_variant == null -%}
-                    {%- assign value_variant   = variant -%}
-                    {%- assign value_available = variant.available -%}
-                    {%- if variant.metafields.custom.disable_variant != blank -%}
-                      {%- assign vd_raw = variant.metafields.custom.disable_variant -%}
-                      {%- assign vd_str = vd_raw | downcase | strip -%}
-                      {%- if vd_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
-                        {%- assign value_disabled = true -%}
-                      {%- endif -%}
-                    {%- endif -%}
-                  {%- endif -%}
-                  {%- assign check_disabled = false -%}
-                  {%- if variant.metafields.custom.disable_variant != blank -%}
-                    {%- assign vd_raw = variant.metafields.custom.disable_variant -%}
-                    {%- assign vd_str = vd_raw | downcase | strip -%}
-                    {%- if vd_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
-                      {%- assign check_disabled = true -%}
-                    {%- endif -%}
-                  {%- endif -%}
-                  {%- unless variant.available == false or check_disabled -%}
-                    {%- assign has_available_variant = true -%}
-                  {%- endunless -%}
-                {%- endif -%}
-              {%- endfor -%}
-
-              {%- assign h_raw = value_variant.metafields.custom.hidden -%}
-              {%- assign h_str = h_raw | downcase | strip -%}
-              {%- if h_raw == true or h_str == 'true' or h_str == '1' or h_str == 'yes' -%}{%- continue -%}{%- endif -%}
-
-              {%- if has_available_variant == false -%}
-                {%- assign value_disabled = true -%}
-              {%- endif -%}
-
-              {%- assign is_sold_out = false -%}
-              {%- if value_available == false or value_disabled -%}
-                {%- assign is_sold_out = true -%}
-              {%- endif -%}
-
-              {%- assign swatch_value     = '' -%}
-              {%- assign has_swatch_color = false -%}
-
-              {%- assign color_code = value_variant.metafields.custom.color_code -%}
-              {%- if color_code != blank -%}
-                {%- assign swatch_value     = color_code -%}
-                {%- assign has_swatch_color = true -%}
-              {%- else -%}
-                {%- for swatch_item in swatch_config -%}
-                  {%- assign swatch_parts = swatch_item | split: ':' -%}
-                  {%- assign swatch_name  = swatch_parts.first | downcase | strip -%}
-                  {%- if downcase_value == swatch_name -%}
-                    {%- assign swatch_val = swatch_parts.last | strip -%}
-                    {%- if swatch_val contains '#' or swatch_val contains 'linear-gradient(' -%}
-                      {%- assign swatch_value = swatch_val -%}
-                    {%- elsif images[swatch_val] != blank -%}
-                      {%- assign swatch_img_url = images[swatch_val] | image_url: width: 72 -%}
-                      {%- assign swatch_value = 'url(' | append: swatch_img_url | append: ')' -%}
-                    {%- else -%}
-                      {%- assign swatch_value = swatch_val -%}
-                    {%- endif -%}
-                    {%- assign has_swatch_color = true -%}
-                    {%- break -%}
-                  {%- endif -%}
-                {%- endfor -%}
-              {%- endif -%}
-
-              {%- if has_swatch_color -%}<a href="{{ product.url }}?variant={{ value_variant.id }}" class="bsc-card__swatch{% if is_sold_out %} bsc-card__swatch--sold-out{% endif %}" title="{% if is_sold_out %}{{ value | escape }} - Sold Out{% else %}{{ value | escape }}{% endif %}" style="background: {{ swatch_value }};"></a>{%- endif -%}
-            {%- endfor -%}
-          {%- endcapture -%}
-            {%- unless swatches_html == blank -%}
-              <div class="bsc-card__swatches">{{ swatches_html }}</div>
-            {%- endunless -%}
-          {% endif %}
-        {% endfor %}
-      {% endunless -%}
+      {%- unless product.has_only_default_variant -%}
+        {%- assign show_combo = product.metafields.custom.show_combo_variants -%}
+        {% if show_combo == true %}
+          {% render 'lwya-card-combo-swatches', product: product %}
+        {% else %}
+          {% render 'lwya-card-standard-swatches', product: product %}
+        {% endif %}
+      {%- endunless -%}
     {%- endif %}
 
     <div

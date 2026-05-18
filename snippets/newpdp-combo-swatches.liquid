@@ -1,9 +1,30 @@
+{%- assign sel_id = product.selected_or_first_available_variant.id -%}
+
+{%- comment -%} Pre-pass: check if the URL-selected variant is one of the shown combo swatches {%- endcomment -%}
+{%- assign sel_found = false -%}
+{%- for variant in product.variants -%}
+  {%- assign swatch_name = variant.metafields.custom.variant_swatcher_name -%}
+  {%- if swatch_name == blank -%}{%- continue -%}{%- endif -%}
+  {%- if variant.id == sel_id -%}
+    {%- assign sel_found = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
 {%- assign first_shown = false -%}
 <div data-combo-selector class="tw-flex tw-flex-wrap tw-gap-[8px]">
   {% for variant in product.variants %}
     {%- assign swatch_name = variant.metafields.custom.variant_swatcher_name -%}
     {%- if swatch_name == blank -%}{%- continue -%}{%- endif -%}
     {%- assign color = variant.metafields.custom.color_code | default: '#cccccc' -%}
+
+    {%- assign is_checked = false -%}
+    {%- if sel_found -%}
+      {%- if variant.id == sel_id -%}{%- assign is_checked = true -%}{%- endif -%}
+    {%- else -%}
+      {%- unless first_shown -%}{%- assign is_checked = true -%}{%- endunless -%}
+    {%- endif -%}
+
     <label
       class="tw-relative tw-cursor-pointer tw-group"
       title="{{ swatch_name | escape }}"
@@ -14,7 +35,7 @@
         value="{{ variant.id }}"
         class="peer tw-sr-only"
         data-combo-input
-        {% unless first_shown %}checked{% endunless %}>
+        {% if is_checked %}checked{% endif %}>
       <span
         class="tw-block tw-rounded-full tw-border-[2px] tw-border-transparent peer-checked:tw-border-[#d41870] tw-transition-all tw-duration-200 tw-flex-shrink-0"
         style="
