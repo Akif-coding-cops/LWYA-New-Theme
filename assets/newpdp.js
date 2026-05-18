@@ -667,6 +667,34 @@ document.addEventListener('DOMContentLoaded', () => {
     : Array.from(form.querySelectorAll('input[type="radio"][data-option-position]'));
   radioInputs.forEach(r => r.addEventListener('change', updateVariant));
 
+  // Handle combo variant swatches (bundle products with fixed combos via variant_swatcher_name metafield)
+  const comboSelector = document.querySelector('[data-combo-selector]');
+  if (comboSelector) {
+    const comboInputs = Array.from(comboSelector.querySelectorAll('input[data-combo-input]'));
+
+    const handleComboChange = (input) => {
+      const variantId = parseInt(input.value, 10);
+      variantInput.value = variantId;
+      if (variantsData) {
+        const variant = variantsData.find(v => v.id === variantId);
+        if (variant) {
+          updatePrice(variant);
+          updateGallery(variantId);
+          updateURL(variantId);
+        }
+      }
+    };
+
+    comboInputs.forEach(input => {
+      input.addEventListener('change', () => {
+        if (input.checked) handleComboChange(input);
+      });
+    });
+
+    const initialCombo = comboInputs.find(i => i.checked);
+    if (initialCombo) handleComboChange(initialCombo);
+  }
+
   // Handle form submission - ensure variant options from separated block are included
   form.addEventListener('submit', function (e) {
     if (variantSelector) {

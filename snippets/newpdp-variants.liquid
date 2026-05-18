@@ -1,7 +1,11 @@
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
+  assign show_combo = product.metafields.custom.show_combo_variants
 -%}
 
+{% if show_combo == true %}
+  {% render 'newpdp-combo-swatches', product: product %}
+{% else %}
 <div data-variant-selector>
 {% if product.has_only_default_variant == false %}
   {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
@@ -198,4 +202,5 @@
   </div>
 {% endif %}
 </div>
+{% endif %}
 

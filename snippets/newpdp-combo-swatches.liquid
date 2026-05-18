@@ -1,0 +1,33 @@
+{%- assign first_shown = false -%}
+<div data-combo-selector class="tw-flex tw-flex-wrap tw-gap-[8px]">
+  {% for variant in product.variants %}
+    {%- assign swatch_name = variant.metafields.custom.variant_swatcher_name -%}
+    {%- if swatch_name == blank -%}{%- continue -%}{%- endif -%}
+    {%- assign color = variant.metafields.custom.color_code | default: '#cccccc' -%}
+    <label
+      class="tw-relative tw-cursor-pointer tw-group"
+      title="{{ swatch_name | escape }}"
+    >
+      <input
+        type="radio"
+        name="combo_variant"
+        value="{{ variant.id }}"
+        class="peer tw-sr-only"
+        data-combo-input
+        {% unless first_shown %}checked{% endunless %}>
+      <span
+        class="tw-block tw-rounded-full tw-border-[2px] tw-border-transparent peer-checked:tw-border-[#d41870] tw-transition-all tw-duration-200 tw-flex-shrink-0"
+        style="
+          width: 28px;
+          height: 28px;
+          min-width: 28px;
+          min-height: 28px;
+          background: {{ color }};
+          padding: 2px;
+          box-sizing: border-box;
+        "
+      ></span>
+    </label>
+    {%- assign first_shown = true -%}
+  {% endfor %}
+</div>
