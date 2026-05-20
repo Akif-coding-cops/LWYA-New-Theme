@@ -31,6 +31,22 @@
         "padding_horizontal_mobile": 0
       }
     },
+    "ai_banner_slider_hXkpRz": {
+      "type": "AI-banner-slider",
+      "name": "AI Banner Slider",
+      "blocks": {
+        "slide_bs1_AbCd": { "type": "slide", "settings": {} },
+        "slide_bs2_EfGh": { "type": "slide", "settings": {} },
+        "slide_bs3_IjKl": { "type": "slide", "settings": {} }
+      },
+      "block_order": ["slide_bs1_AbCd", "slide_bs2_EfGh", "slide_bs3_IjKl"],
+      "settings": {
+        "autoplay_delay": 20,
+        "height_desktop": 560,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "ai_split_banner_XXXXX": {
       "type": "AI-split-banner",
       "name": "AI Split Banner",
@@ -370,6 +386,7 @@
   "order": [
     "main",
     "video_with_text_button_6ePkpE",
+    "ai_banner_slider_hXkpRz",
     "ai_split_banner_XXXXX",
     "ai_4_grid_tab_product_kChN7W",
     "ai_video_carousel_7z44iD",

@@ -1,0 +1,31 @@
+{% comment %}
+  One desktop media panel inside a banner slide.
+  Shows video if set, otherwise image.
+  On mobile this entire panel is hidden — the slide's mobile_image is shown instead.
+
+  Props:
+    - image : Shopify image object
+    - video : Shopify video object
+    - width : integer — flex width as a percent (e.g. 50)
+{% endcomment %}
+
+<div class="ai-bs__panel" style="flex: 0 0 {{ width }}%; max-width: {{ width }}%;">
+
+  {%- if video != blank -%}
+    {{- video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, class: 'ai-bs__video' -}}
+  {%- elsif image != blank -%}
+    <img
+      src="{{ image | image_url: width: 1400 }}"
+      srcset="{{ image | image_url: width: 600 }} 600w,
+              {{ image | image_url: width: 900 }} 900w,
+              {{ image | image_url: width: 1400 }} 1400w"
+      sizes="{{ width }}vw"
+      width="1400"
+      height="1400"
+      alt="{{ image.alt | default: '' }}"
+      loading="lazy"
+      class="ai-bs__img"
+    >
+  {%- endif -%}
+
+</div>
