@@ -222,7 +222,7 @@
         "layout_gap": 24,
         "layout_gap_mobile": 10,
         "content_padding_horizontal": 0,
-        "content_padding_horizontal_mobile": 0,
+        "content_padding_horizontal_mobile": 32,
         "content_padding_vertical": 22,
         "content_padding_vertical_mobile": 32,
         "content_radius": 16,
@@ -263,7 +263,8 @@
         "subheading1": "RESULTS",
         "subheading2": "UNDENIABLE",
         "image1": "shopify://shop_images/Rectangle_138.png",
-        "image2": "shopify://shop_images/Rectangle_137.png"
+        "image2": "shopify://shop_images/Rectangle_137.png",
+        "padding_slides_mobile": 32
       }
     },
     "love_who_you_are_pq6fQC": {

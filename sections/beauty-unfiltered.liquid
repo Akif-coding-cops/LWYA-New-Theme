@@ -29,6 +29,16 @@
       "type": "image_picker",
       "id": "image2",
       "label": "Right Image"
+    },
+    {
+      "type": "range",
+      "id": "padding_slides_mobile",
+      "label": "Slides Padding (Mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
     }
   ],
   "presets": [
@@ -100,6 +110,8 @@
   
   @media (max-width: 768px) {
     .beauty-unfiltered-section {
+      padding-left: {{ section.settings.padding_slides_mobile }}px;
+      padding-right: {{ section.settings.padding_slides_mobile }}px;
       flex-direction: column;
     }
     
