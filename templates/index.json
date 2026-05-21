@@ -33,13 +33,50 @@
     },
     "ai_banner_slider_hXkpRz": {
       "type": "AI-banner-slider",
-      "name": "AI Banner Slider",
       "blocks": {
-        "slide_bs1_AbCd": { "type": "slide", "settings": {} },
-        "slide_bs2_EfGh": { "type": "slide", "settings": {} },
-        "slide_bs3_IjKl": { "type": "slide", "settings": {} }
+        "slide_bs1_AbCd": {
+          "type": "slide",
+          "settings": {
+            "mobile_image": "shopify://shop_images/Glow_Goals_Mobile.jpg",
+            "p1_image": "shopify://shop_images/Group_368.jpg",
+            "p1_width": 40,
+            "p2_video": "shopify://files/videos/GlowGoals_Shimmering Body Oil.mp4",
+            "p2_width": 60,
+            "p3_width": 35,
+            "slide_link": "shopify://products/glow-goals-shimmering-body-oil"
+          }
+        },
+        "slide_bs2_EfGh": {
+          "type": "slide",
+          "settings": {
+            "mobile_image": "shopify://shop_images/Lychee_Cleanser_Mobile.jpg",
+            "p1_video": "shopify://files/videos/Skintastic Brightening Lychee Cleanser V3 - Square.mp4",
+            "p1_width": 40,
+            "p2_video": "shopify://files/videos/Skintastic Brightening Lychee Cleanser V2 - Square.mp4",
+            "p2_width": 40,
+            "p3_image": "shopify://shop_images/Rectangle_17.jpg",
+            "p3_width": 20,
+            "slide_link": "shopify://products/skintastic-brightening-konjac-lychee-polishing-cleanser"
+          }
+        },
+        "slide_bs3_IjKl": {
+          "type": "slide",
+          "settings": {
+            "mobile_image": "shopify://shop_images/Two_Timer_Mobile.jpg",
+            "p1_image": "shopify://shop_images/Two_Timer_Mascara_3_55afe1f4-b351-4778-8d2c-c99f7661cd19.png",
+            "p1_width": 100,
+            "p2_width": 50,
+            "p3_width": 35,
+            "slide_link": "shopify://products/two-timer-dual-ended-mascara"
+          }
+        }
       },
-      "block_order": ["slide_bs1_AbCd", "slide_bs2_EfGh", "slide_bs3_IjKl"],
+      "block_order": [
+        "slide_bs1_AbCd",
+        "slide_bs2_EfGh",
+        "slide_bs3_IjKl"
+      ],
+      "name": "AI Banner Slider",
       "settings": {
         "autoplay_delay": 20,
         "height_desktop": 560,
@@ -49,6 +86,7 @@
     },
     "ai_split_banner_XXXXX": {
       "type": "AI-split-banner",
+      "disabled": true,
       "name": "AI Split Banner",
       "settings": {
         "left_image": "shopify://shop_images/Group_368.jpg",
@@ -315,9 +353,9 @@
         "tab_item_iT8xj6": {
           "type": "tab_item",
           "settings": {
-            "tab_title": "NEW ARRIVAL",
+            "tab_title": "NEW ARRIVALS",
             "collection_1": "",
-            "product_1": "skintastic-facefix-cloud-cream",
+            "product_1": "glow-goals-shimmering-body-oil",
             "product_2": "skintastic-brightening-konjac-lychee-polishing-cleanser",
             "product_3": "two-timer-dual-ended-mascara",
             "product_4": "liptastic-hydrating-tinted-lip-serum"
