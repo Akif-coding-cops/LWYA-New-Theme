@@ -132,11 +132,11 @@
           "type": "tab_item",
           "settings": {
             "tab_title": "Bundle & Save",
-            "collection_1": "",
-            "product_1": "holiday-glam-bundle",
+            "collection_1": "bundle-save",
+            "product_1": "",
             "product_2": "michelles-concealer-bronzer-bundle",
             "product_3": "michelles-beach-babe-bundle",
-            "product_4": "3ml-fragrance-bundle"
+            "product_4": ""
           }
         }
       },
@@ -145,9 +145,7 @@
         "tab_item_rGtBUE",
         "tab_item_rGtBU"
       ],
-      "custom_css": [
-        // ".products-selection {padding-left: 100px; padding-right: 100px;}"
-      ],
+      "custom_css": [],
       "name": "AI 4 Grid Tab Product",
       "settings": {
         "bg_color": "#ffffff",
@@ -365,9 +363,7 @@
       "block_order": [
         "tab_item_iT8xj6"
       ],
-      "custom_css": [
-        // ".products-selection {padding-left: 100px; padding-right: 100px;}"
-      ],
+      "custom_css": [],
       "name": "AI 4 Grid Tab Collection",
       "settings": {
         "bg_color": "#ffffff",

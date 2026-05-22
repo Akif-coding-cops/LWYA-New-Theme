@@ -671,9 +671,7 @@
         "image_KbqxjC",
         "image_bpxVdA"
       ],
-      "custom_css": [
-
-      ],
+      "custom_css": [],
       "name": "SS - Circle Menu",
       "settings": {
         "slider_width": 100,
@@ -703,7 +701,7 @@
         "margin_bottom": 0,
         "padding_top": 36,
         "padding_bottom": 100,
-        "padding_horizontal": 0,
+        "padding_horizontal": 2,
         "padding_horizontal_mobile": 1,
         "full_width": true,
         "content_width": 1500,
