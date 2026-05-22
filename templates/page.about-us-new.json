@@ -571,7 +571,7 @@
       "name": "Meet Our Founder",
       "settings": {
         "layout": "image_content",
-        "layout_mobile": "content_image",
+        "layout_mobile": "image_content",
         "layout_height": "auto",
         "layout_fixed_height": 600,
         "image_width": 35,
@@ -672,7 +672,7 @@
         "image_bpxVdA"
       ],
       "custom_css": [
-        ".custom-wrapper-category {display: grid !important;}"
+
       ],
       "name": "SS - Circle Menu",
       "settings": {

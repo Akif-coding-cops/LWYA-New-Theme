@@ -146,7 +146,7 @@
         "tab_item_rGtBU"
       ],
       "custom_css": [
-        ".products-selection {padding-left: 100px; padding-right: 100px;}"
+        // ".products-selection {padding-left: 100px; padding-right: 100px;}"
       ],
       "name": "AI 4 Grid Tab Product",
       "settings": {
@@ -366,7 +366,7 @@
         "tab_item_iT8xj6"
       ],
       "custom_css": [
-        ".products-selection {padding-left: 100px; padding-right: 100px;}"
+        // ".products-selection {padding-left: 100px; padding-right: 100px;}"
       ],
       "name": "AI 4 Grid Tab Collection",
       "settings": {

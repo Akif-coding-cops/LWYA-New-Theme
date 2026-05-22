@@ -252,7 +252,7 @@
         "image_bpxVdA"
       ],
       "custom_css": [
-        ".custom-wrapper-category {display: grid !important;}"
+        // ".custom-wrapper-category {display: grid !important;}"
       ],
       "name": "SS - Circle Menu",
       "settings": {

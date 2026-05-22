@@ -3071,3 +3071,11 @@
 .tw-h-\[28px\] {
   height: 28px;
 }
+
+.tw-w-\[28px\] {
+  width: 28px;
+}
+
+.tw-grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}

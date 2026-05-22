@@ -50,46 +50,45 @@
 {% endschema %}
 
 <style>
-
   .section-alignment{
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
   }
   .beauty-unfiltered-section {
-   
+
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #fff; /* Adjust as needed */
   }
-  
+
   .text-column {
     flex: 0 0 40%;
     max-width: 40%;
     padding-right: 20px;
     text-align: center;
   }
-  
+
   .images-column {
     flex: 0 0 60%;
     max-width: 60%;
     display: flex;
     justify-content: space-between;
   }
-  
+
   .image-wrapper {
     flex: 0 0 48%;
     max-width: 48%;
   }
-  
+
   .image-wrapper img {
     width: 100%;
     height: auto;
     aspect-ratio: 1/1; /* Ensures square images */
     object-fit: cover;
   }
-  
+
   .heading-beauty-unfiltered {
     font-size: 52px;
     font-weight: 400;
@@ -97,7 +96,7 @@
     font-family: 'Didot' !important;
     font-style: italic;
   }
-  
+
   .subheading-beauty-unfiltered {
     font-size: 52px;
     font-weight: 325;
@@ -107,14 +106,14 @@
     line-height: 1.1;
     font-family: 'Gotham-Book', sans-serif !important;
   }
-  
+
   @media (max-width: 768px) {
     .beauty-unfiltered-section {
       padding-left: {{ section.settings.padding_slides_mobile }}px;
       padding-right: {{ section.settings.padding_slides_mobile }}px;
       flex-direction: column;
     }
-    
+
     .text-column,
     .images-column {
       flex: 0 0 100%;
@@ -122,31 +121,48 @@
       padding: 0;
       margin-bottom: 20px;
     }
-    
+
     .images-column {
       margin-bottom: 0;
+    }
+        .heading-beauty-unfiltered {
+      font-size: 36px;
+    }
+
+    .subheading-beauty-unfiltered {
+      font-size: 36px;
     }
   }
 </style>
 
 <div class="section-alignment beauty-unfiltered-section">
   <div class="text-column">
-    <h2 class="heading-beauty-unfiltered">{{ section.settings.heading-beauty-unfiltered }}</h2>
-    <h1 class="subheading-beauty-unfiltered">{{ section.settings.subheading1 }}<br>{{ section.settings.subheading2 }}</h1>
+    <h2 class="heading-beauty-unfiltered">{{ section.settings['heading-beauty-unfiltered'] }}</h2>
+    <h1 class="subheading-beauty-unfiltered">
+      {{ section.settings.subheading1 -}}
+      <br>
+      {{ section.settings.subheading2 }}
+    </h1>
   </div>
   <div class="images-column">
     <div class="image-wrapper">
       {% if section.settings.image1 != blank %}
         <img src="{{ section.settings.image1 | img_url: 'master' }}" alt="Left Image">
       {% else %}
-        <img src="https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Rectangle_138.png?v=1770935446" alt="Default Left Image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Rectangle_138.png?v=1770935446"
+          alt="Default Left Image"
+        >
       {% endif %}
     </div>
     <div class="image-wrapper">
       {% if section.settings.image2 != blank %}
         <img src="{{ section.settings.image2 | img_url: 'master' }}" alt="Right Image">
       {% else %}
-        <img src="https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Rectangle_137.png?v=1770935447" alt="Default Right Image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Rectangle_137.png?v=1770935447"
+          alt="Default Right Image"
+        >
       {% endif %}
     </div>
   </div>
