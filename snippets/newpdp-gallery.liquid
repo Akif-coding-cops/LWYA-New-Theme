@@ -69,7 +69,12 @@
   <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
   <div class="swiper newpdp-mobile-gallery">
     <div class="swiper-wrapper">
-      {% for media in media_items %}
+      {%- if using_variant_media -%}
+        {%- assign mobile_media = variant_media_list -%}
+      {%- else -%}
+        {%- assign mobile_media = media_items -%}
+      {%- endif -%}
+      {% for media in mobile_media %}
         <div class="swiper-slide" data-slide-image-id="{{ media.id }}">
           {% if media.media_type == 'image' %}
             <a href="{{ media | image_url: width: 2000 }}" class="glightbox ..." data-gallery="product-gallery">
@@ -89,7 +94,7 @@
           {% endif %}
         </div>
       {% endfor %}
-      {% if images.size == 0 %}
+      {% if mobile_media.size == 0 %}
         <div class="swiper-slide">
           <div class="tw-aspect-[4/5] tw-w-full tw-rounded-[8px] tw-bg-[#eee]"></div>
         </div>
