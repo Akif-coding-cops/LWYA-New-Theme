@@ -126,6 +126,148 @@
         "background_color": "#ffffff"
       }
     },
+    "ss_hero_27_founder": {
+      "type": "ss-hero-27",
+      "blocks": {
+        "heading_founder_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p><em>Meet Our Founder</em></p>",
+            "heading_custom": false,
+            "heading_font": "josefin_sans_n4",
+            "heading_size": 64,
+            "heading_size_mobile": 32,
+            "heading_height": 130,
+            "heading_mt": 0,
+            "heading_mt_mobile": 0,
+            "heading_color": "#d41870"
+          }
+        },
+        "subheading_founder_1": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "KIM GRAVEL",
+            "subheading_size": 46,
+            "subheading_size_mobile": 18,
+            "subheading_tracking": 2,
+            "subheading_color": "#121212",
+            "subheading_mt": 8,
+            "subheading_mt_mobile": 6
+          }
+        },
+        "text_founder_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Kim Gravel</strong> has built an extraordinary career across many chapters — <strong>Miss Georgia, television personality, motivational speaker, author, businesswoman, and QVC host</strong> — and through every single one, her <strong>core message</strong> has always been the same: <strong>you are enough, exactly as you are.</strong></p><p>She first stepped into the national spotlight as Miss Georgia, then spent decades reaching millions of women across stages, screens, and living rooms with a truth she refused to stop telling. <strong>You are worthy. You are beautiful. You are enough.</strong></p><p><strong>LWYA is the natural extension of everything Kim has always stood for.</strong> After years on television watching women shrink themselves, apologize for taking up space, and hide behind the wrong beauty products, Kim decided to build something different.</p><p><strong>A brand that starts not with what you lack, but with who you already are.</strong> She created LWYA because <strong>she believes every woman deserves beauty products that actually work, a community that actually sees her, and a daily reminder that loving yourself is not selfish.</strong> It is essential.</p><p>LWYA is Kim's love letter to every woman who has ever stood in front of a mirror and needed someone to remind her she was beautiful. Consider this your reminder.</p>",
+            "text_custom": false,
+            "text_font": "josefin_sans_n4",
+            "text_size": 25,
+            "text_size_mobile": 16,
+            "text_height": 150,
+            "text_mt": 16,
+            "text_mt_mobile": 12,
+            "text_gap": 32,
+            "text_gap_mobile": 20,
+            "text_color": "#121212"
+          }
+        },
+        "button_founder_1": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button": "Shop now",
+            "url": "",
+            "button_custom": false,
+            "button_font": "josefin_sans_n4",
+            "button_size": 16,
+            "button_size_mobile": 14,
+            "button_height": 100,
+            "button_padding_horizontal": 32,
+            "button_padding_horizontal_mobile": 32,
+            "button_padding_vertical": 16,
+            "button_padding_vertical_mobile": 16,
+            "button_radius": 0,
+            "button_border_thickness": 1,
+            "button_mt": 24,
+            "button_mt_mobile": 20,
+            "button_style": "non_outline",
+            "button_color": "#ffffff",
+            "button_hover_color": "#121212",
+            "button_bg_color": "#d41870",
+            "button_bg_hover_color": "#ffffff",
+            "button_border_color": "#121212",
+            "button_border_hover_color": "#121212"
+          }
+        },
+        "circle_founder_1": {
+          "type": "circle",
+          "disabled": true,
+          "settings": {
+            "image_width": 100,
+            "image_width_mobile": 100,
+            "image_border_radius": 100,
+            "image_border_thickness": 2,
+            "image_border_color": "#ffffff",
+            "rotate": true,
+            "speed": 8,
+            "vertical_position": 20,
+            "vertical_position_mobile": 50,
+            "horizontal_position": 50,
+            "horizontal_position_mobile": 50,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_founder_1",
+        "subheading_founder_1",
+        "text_founder_1",
+        "button_founder_1",
+        "circle_founder_1"
+      ],
+      "name": "Meet Our Founder",
+      "settings": {
+        "layout": "image_content",
+        "layout_mobile": "image_content",
+        "layout_height": "auto",
+        "layout_fixed_height": 600,
+        "image_width": 35,
+        "layout_gap": 32,
+        "layout_gap_mobile": 10,
+        "content_padding_horizontal": 56,
+        "content_padding_horizontal_mobile": 24,
+        "content_padding_vertical": 0,
+        "content_padding_vertical_mobile": 40,
+        "content_radius": 0,
+        "content_border_thickness": 0,
+        "content_align": "left",
+        "content_align_mobile": "left",
+        "content_vertical_align": "start",
+        "image": "shopify://shop_images/Group_352.jpg",
+        "image_ratio_mobile": "original",
+        "image_radius": 0,
+        "image_border_thickness": 0,
+        "content_bg_color": "#ffffff",
+        "content_border_color": "#121212",
+        "image_border_color": "#121212",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#121212",
+        "margin_top": 48,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 1300,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": false
+      }
+    },
     "ss_hero_27_BdJ8JY": {
       "type": "ss-hero-27",
       "blocks": {
@@ -469,148 +611,6 @@
         "link_url": "/pages/clean-beauty-list"
       }
     },
-    "ss_hero_27_founder": {
-      "type": "ss-hero-27",
-      "blocks": {
-        "heading_founder_1": {
-          "type": "heading",
-          "settings": {
-            "heading": "<p><em>Meet Our Founder</em></p>",
-            "heading_custom": false,
-            "heading_font": "josefin_sans_n4",
-            "heading_size": 64,
-            "heading_size_mobile": 32,
-            "heading_height": 130,
-            "heading_mt": 0,
-            "heading_mt_mobile": 0,
-            "heading_color": "#d41870"
-          }
-        },
-        "subheading_founder_1": {
-          "type": "subheading",
-          "settings": {
-            "subheading": "KIM GRAVEL",
-            "subheading_size": 46,
-            "subheading_size_mobile": 18,
-            "subheading_tracking": 2,
-            "subheading_color": "#121212",
-            "subheading_mt": 8,
-            "subheading_mt_mobile": 6
-          }
-        },
-        "text_founder_1": {
-          "type": "text",
-          "settings": {
-            "text": "<p><strong>Kim Gravel</strong> has built an extraordinary career across many chapters — <strong>Miss Georgia, television personality, motivational speaker, author, businesswoman, and QVC host</strong> — and through every single one, her <strong>core message</strong> has always been the same: <strong>you are enough, exactly as you are.</strong></p><p>She first stepped into the national spotlight as Miss Georgia, then spent decades reaching millions of women across stages, screens, and living rooms with a truth she refused to stop telling. <strong>You are worthy. You are beautiful. You are enough.</strong></p><p><strong>LWYA is the natural extension of everything Kim has always stood for.</strong> After years on television watching women shrink themselves, apologize for taking up space, and hide behind the wrong beauty products, Kim decided to build something different.</p><p><strong>A brand that starts not with what you lack, but with who you already are.</strong> She created LWYA because <strong>she believes every woman deserves beauty products that actually work, a community that actually sees her, and a daily reminder that loving yourself is not selfish.</strong> It is essential.</p><p>LWYA is Kim's love letter to every woman who has ever stood in front of a mirror and needed someone to remind her she was beautiful. Consider this your reminder.</p>",
-            "text_custom": false,
-            "text_font": "josefin_sans_n4",
-            "text_size": 25,
-            "text_size_mobile": 16,
-            "text_height": 150,
-            "text_mt": 16,
-            "text_mt_mobile": 12,
-            "text_gap": 32,
-            "text_gap_mobile": 20,
-            "text_color": "#121212"
-          }
-        },
-        "button_founder_1": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button": "Shop now",
-            "url": "",
-            "button_custom": false,
-            "button_font": "josefin_sans_n4",
-            "button_size": 16,
-            "button_size_mobile": 14,
-            "button_height": 100,
-            "button_padding_horizontal": 32,
-            "button_padding_horizontal_mobile": 32,
-            "button_padding_vertical": 16,
-            "button_padding_vertical_mobile": 16,
-            "button_radius": 0,
-            "button_border_thickness": 1,
-            "button_mt": 24,
-            "button_mt_mobile": 20,
-            "button_style": "non_outline",
-            "button_color": "#ffffff",
-            "button_hover_color": "#121212",
-            "button_bg_color": "#d41870",
-            "button_bg_hover_color": "#ffffff",
-            "button_border_color": "#121212",
-            "button_border_hover_color": "#121212"
-          }
-        },
-        "circle_founder_1": {
-          "type": "circle",
-          "disabled": true,
-          "settings": {
-            "image_width": 100,
-            "image_width_mobile": 100,
-            "image_border_radius": 100,
-            "image_border_thickness": 2,
-            "image_border_color": "#ffffff",
-            "rotate": true,
-            "speed": 8,
-            "vertical_position": 20,
-            "vertical_position_mobile": 50,
-            "horizontal_position": 50,
-            "horizontal_position_mobile": 50,
-            "hide_mobile": true
-          }
-        }
-      },
-      "block_order": [
-        "heading_founder_1",
-        "subheading_founder_1",
-        "text_founder_1",
-        "button_founder_1",
-        "circle_founder_1"
-      ],
-      "name": "Meet Our Founder",
-      "settings": {
-        "layout": "image_content",
-        "layout_mobile": "image_content",
-        "layout_height": "auto",
-        "layout_fixed_height": 600,
-        "image_width": 35,
-        "layout_gap": 32,
-        "layout_gap_mobile": 10,
-        "content_padding_horizontal": 56,
-        "content_padding_horizontal_mobile": 24,
-        "content_padding_vertical": 0,
-        "content_padding_vertical_mobile": 40,
-        "content_radius": 0,
-        "content_border_thickness": 0,
-        "content_align": "left",
-        "content_align_mobile": "left",
-        "content_vertical_align": "start",
-        "image": "shopify://shop_images/Group_352.jpg",
-        "image_ratio_mobile": "original",
-        "image_radius": 0,
-        "image_border_thickness": 0,
-        "content_bg_color": "#ffffff",
-        "content_border_color": "#121212",
-        "image_border_color": "#121212",
-        "background_color": "#ffffff",
-        "background_gradient": "",
-        "border_color": "#121212",
-        "margin_top": 48,
-        "margin_bottom": 0,
-        "margin_horizontal": 0,
-        "margin_horizontal_mobile": 0,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "padding_horizontal": 5,
-        "padding_horizontal_mobile": 1.5,
-        "full_width": true,
-        "content_width": 1300,
-        "border_thickness": 0,
-        "section_radius": 0,
-        "lazy": false
-      }
-    },
     "ss_circle_menu_xxUz7H": {
       "type": "ss-circle-menu",
       "blocks": {
@@ -687,7 +687,7 @@
         "text_custom": true,
         "text_font": "josefin_sans_n4",
         "text_size": 28,
-        "text_size_mobile": 14,
+        "text_size_mobile": 20,
         "text_height": 100,
         "text_mt": 18,
         "icon_border_color": "#121212",
@@ -718,12 +718,12 @@
     "about_us_belief_1",
     "statement_banner_EWVTDW",
     "about_us_photo_row_1",
+    "ss_hero_27_founder",
     "ss_hero_27_BdJ8JY",
     "beauty_unfiltered_EQeUNj",
     "love_who_you_are_pq6fQC",
     "ss_hero_27_3weQiJ",
     "ai_our_values_aboutus",
-    "ss_hero_27_founder",
     "ss_circle_menu_xxUz7H"
   ]
 }
