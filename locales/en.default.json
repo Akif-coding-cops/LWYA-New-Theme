@@ -33,7 +33,7 @@
       "shop": "Shop"
     },
     "label": {
-      "color": "Color,Colour",
+      "color": "Color,Colour,Shade",
       "white": "White",
       "size": "Size"
     },

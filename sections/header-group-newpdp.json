@@ -38,12 +38,50 @@
         "message_eGW66x",
         "message_LAnnxc"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-3645ab4d-fdb6-4278-bed5-8f23573ad31b",
         "enable_sticky": false,
         "autoplay": true,
         "cycle_speed": 5,
         "desktop_font_size": 10,
+        "mobile_font_size": 10
+      }
+    },
+    "new_announcement_bar_QRdW3K": {
+      "type": "new-announcement-bar",
+      "blocks": {
+        "message_8AzGhU": {
+          "type": "message",
+          "settings": {
+            "text": "New: Glow Goals Shimmering Body Oil—your instant, radiant, lit-from-within glow."
+          }
+        },
+        "message_wkT8W7": {
+          "type": "message",
+          "settings": {
+            "text": "Unlock exclusive offers, early access, and insider perks—sign up and get 15% off now."
+          }
+        },
+        "message_zz4yX9": {
+          "type": "message",
+          "settings": {
+            "text": "FREE SHIPPING On All Orders Over $75"
+          }
+        }
+      },
+      "block_order": [
+        "message_8AzGhU",
+        "message_wkT8W7",
+        "message_zz4yX9"
+      ],
+      "name": "Announcement Bar (New)",
+      "settings": {
+        "color_scheme": "scheme-3645ab4d-fdb6-4278-bed5-8f23573ad31b",
+        "enable_sticky": false,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "desktop_font_size": 11,
         "mobile_font_size": 10
       }
     },
@@ -73,6 +111,7 @@
   },
   "order": [
     "announcement-bar",
+    "new_announcement_bar_QRdW3K",
     "header-newpdp"
   ]
 }
