@@ -4,26 +4,52 @@
   On mobile this entire panel is hidden — the slide's mobile_image is shown instead.
 
   Props:
-    - image : Shopify image object
-    - video : Shopify video object
-    - width : integer — flex width as a percent (e.g. 50)
+    - image    : Shopify image object
+    - video    : Shopify video object
+    - width    : integer — flex width as a percent (e.g. 50)
+    - eager    : boolean — always true now (all slides load eagerly)
+    - priority : boolean — true only for first slide panels (fetchpriority="high")
 {% endcomment %}
 
 <div class="ai-bs__panel" style="flex: 0 0 {{ width }}%; max-width: {{ width }}%;">
 
   {%- if video != blank -%}
-    {{- video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, class: 'ai-bs__video' -}}
+    {%- assign _vid_class = 'ai-bs__video ' -%}
+    {%- if priority -%}
+      {%- assign _vid_class = _vid_class | append: 'ai-bs__priority-video' -%}
+    {%- else -%}
+      {%- assign _vid_class = _vid_class | append: 'ai-bs__lazy-video' -%}
+    {%- endif -%}
+    {%- assign _poster_url = video.preview_image | image_url: width: 700, format: 'webp' -%}
+    {%- if priority -%}
+      <video
+        class="{{ _vid_class }}"
+        poster="{{ _poster_url }}"
+        preload="metadata"
+        fetchpriority="high"
+        muted
+        loop
+        playsinline
+      >
+        {%- for source in video.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+      </video>
+    {%- else -%}
+      {{ video | video_tag: muted: true, loop: true, playsinline: true, class: _vid_class, preload: 'none', poster: _poster_url }}
+    {%- endif -%}
   {%- elsif image != blank -%}
     <img
-      src="{{ image | image_url: width: 1400 }}"
-      srcset="{{ image | image_url: width: 600 }} 600w,
-              {{ image | image_url: width: 900 }} 900w,
-              {{ image | image_url: width: 1400 }} 1400w"
+      src="{{ image | image_url: width: 1400, format: 'webp' }}"
+      srcset="{{ image | image_url: width: 600, format: 'webp' }} 600w,
+              {{ image | image_url: width: 900, format: 'webp' }} 900w,
+              {{ image | image_url: width: 1400, format: 'webp' }} 1400w"
       sizes="{{ width }}vw"
-      width="1400"
-      height="1400"
-      alt="{{ image.alt | default: '' }}"
-      loading="lazy"
+      width="{{ image.width }}"
+      height="{{ image.height }}"
+      alt="{{ image.alt | default: shop.name | append: ' banner' | escape }}"
+      loading="{% if priority %}eager{% else %}lazy{% endif %}"
+      fetchpriority="{% if priority %}high{% else %}auto{% endif %}"
       class="ai-bs__img"
     >
   {%- endif -%}

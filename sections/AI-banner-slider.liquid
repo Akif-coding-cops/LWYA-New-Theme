@@ -43,8 +43,20 @@
     bottom: 12px;
   }
 
+  #shopify-section-{{ section.id }} .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    opacity: 0.45;
+    padding: 3px;
+    box-sizing: content-box;
+    background-clip: content-box;
+    background-color: #ffffff;
+  }
+
   #shopify-section-{{ section.id }} .swiper-pagination-bullet-active {
-    background: #d41870;
+    background-color: #d41870;
+    opacity: 1;
   }
 
   @media (max-width: 767px) {
@@ -67,10 +79,98 @@
   }
 </style>
 
+{%- comment -%} Preload the first slide's LCP images so the browser fetches them immediately {%- endcomment -%}
+{%- assign _preload_slide_count = 0 -%}
+{%- for block in section.blocks -%}
+  {%- unless block.type == 'slide' -%}{%- continue -%}{%- endunless -%}
+  {%- assign _preload_slide_count = _preload_slide_count | plus: 1 -%}
+  {%- assign _is_first_slide = false -%}
+  {%- if _preload_slide_count == 1 -%}{%- assign _is_first_slide = true -%}{%- endif -%}
+
+  {%- comment -%} Mobile image — high priority only on slide 1 {%- endcomment -%}
+  {%- if block.settings.mobile_image != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ block.settings.mobile_image | image_url: width: 800, format: 'webp' }}"
+      imagesrcset="{{ block.settings.mobile_image | image_url: width: 375, format: 'webp' }} 375w, {{ block.settings.mobile_image | image_url: width: 450, format: 'webp' }} 450w, {{ block.settings.mobile_image | image_url: width: 600, format: 'webp' }} 600w, {{ block.settings.mobile_image | image_url: width: 800, format: 'webp' }} 800w"
+      imagesizes="100vw"
+      fetchpriority="high"
+
+      media="(max-width: 767px)"
+    >
+  {%- endif -%}
+
+  {%- comment -%} Panel 1 — LCP on slide 1, so fetchpriority="high" only there {%- endcomment -%}
+  {%- if block.settings.p1_image != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ block.settings.p1_image | image_url: width: 1400, format: 'webp' }}"
+      imagesrcset="{{ block.settings.p1_image | image_url: width: 600, format: 'webp' }} 600w, {{ block.settings.p1_image | image_url: width: 900, format: 'webp' }} 900w, {{ block.settings.p1_image | image_url: width: 1400, format: 'webp' }} 1400w"
+      imagesizes="{{ block.settings.p1_width }}vw"
+
+      fetchpriority="high"
+
+      media="(min-width: 768px)"
+    >
+  {%- elsif block.settings.p1_video != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ block.settings.p1_video.preview_image | image_url: width: 700, format: 'webp' }}"
+      fetchpriority="high"
+      media="(min-width: 768px)"
+    >
+  {%- endif -%}
+
+  {%- if block.settings.p2_image != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ block.settings.p2_image | image_url: width: 1400, format: 'webp' }}"
+      imagesrcset="{{ block.settings.p2_image | image_url: width: 600, format: 'webp' }} 600w, {{ block.settings.p2_image | image_url: width: 900, format: 'webp' }} 900w, {{ block.settings.p2_image | image_url: width: 1400, format: 'webp' }} 1400w"
+      imagesizes="{{ block.settings.p2_width }}vw"
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    >
+  {%- elsif block.settings.p2_video != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ block.settings.p2_video.preview_image | image_url: width: 700, format: 'webp' }}"
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    >
+  {%- endif -%}
+
+  {%- comment -%} Panel 3 — never fetchpriority="high", tertiary content {%- endcomment -%}
+  {%- if block.settings.p3_image != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ block.settings.p3_image | image_url: width: 1400, format: 'webp' }}"
+      imagesrcset="{{ block.settings.p3_image | image_url: width: 600, format: 'webp' }} 600w, {{ block.settings.p3_image | image_url: width: 900, format: 'webp' }} 900w, {{ block.settings.p3_image | image_url: width: 1400, format: 'webp' }} 1400w"
+      imagesizes="{{ block.settings.p3_width }}vw"
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    >
+  {%- elsif block.settings.p3_video != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ block.settings.p3_video.preview_image | image_url: width: 700, format: 'webp' }}"
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    >
+  {%- endif -%}
+
+  {%- if _preload_slide_count >= 2 -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+
 <div class="ai-bslider">
   <div class="swiper js-ai-bs-{{ section.id }}">
     <div class="swiper-wrapper">
-
       {%- for block in section.blocks -%}
         {%- unless block.type == 'slide' -%}{%- continue -%}{%- endunless -%}
 
@@ -83,47 +183,59 @@
           <div class="swiper-slide" {{ block.shopify_attributes }}>
         {%- endif -%}
 
-          {%- comment -%} Mobile: one full-width image per slide {%- endcomment -%}
-          {%- if block.settings.mobile_image != blank -%}
-            <img
-              src="{{ block.settings.mobile_image | image_url: width: 800 }}"
-              width="800"
-              height="800"
-              alt="{{ block.settings.mobile_image.alt | default: '' }}"
-              loading="lazy"
-              class="ai-bs__mobile-img"
-            >
-          {%- endif -%}
+        {%- comment -%} Mobile: one full-width image per slide {%- endcomment -%}
+        {%- if block.settings.mobile_image != blank -%}
+          <img
+            src="{{ block.settings.mobile_image | image_url: width: 800, format: 'webp' }}"
+            srcset="
+              {{ block.settings.mobile_image | image_url: width: 375, format: 'webp' }} 375w,
+              {{ block.settings.mobile_image | image_url: width: 450, format: 'webp' }} 450w,
+              {{ block.settings.mobile_image | image_url: width: 600, format: 'webp' }} 600w,
+              {{ block.settings.mobile_image | image_url: width: 800, format: 'webp' }} 800w
+            "
+            sizes="100vw"
+            width="{{ block.settings.mobile_image.width }}"
+            height="{{ block.settings.mobile_image.height }}"
+            alt="{{ block.settings.mobile_image.alt | default: shop.name | append: ' banner' | escape }}"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}"
+            class="ai-bs__mobile-img"
+          >
+        {%- endif -%}
 
-          {%- comment -%} Desktop: up to 3 panels, each an image or video with a configurable width {%- endcomment -%}
-          {%- if block.settings.p1_image != blank or block.settings.p1_video != blank -%}
-            {%- render 'ai-banner-panel',
-              image: block.settings.p1_image,
-              video: block.settings.p1_video,
-              width: block.settings.p1_width
-            -%}
-          {%- endif -%}
+        {%- comment -%} Desktop: up to 3 panels, each an image or video with a configurable width {%- endcomment -%}
+        {%- if block.settings.p1_image != blank or block.settings.p1_video != blank -%}
+          {%- render 'ai-banner-panel',
+            image: block.settings.p1_image,
+            video: block.settings.p1_video,
+            width: block.settings.p1_width,
+            eager: true,
+            priority: forloop.first
+          -%}
+        {%- endif -%}
 
-          {%- if block.settings.p2_image != blank or block.settings.p2_video != blank -%}
-            {%- render 'ai-banner-panel',
-              image: block.settings.p2_image,
-              video: block.settings.p2_video,
-              width: block.settings.p2_width
-            -%}
-          {%- endif -%}
+        {%- if block.settings.p2_image != blank or block.settings.p2_video != blank -%}
+          {%- render 'ai-banner-panel',
+            image: block.settings.p2_image,
+            video: block.settings.p2_video,
+            width: block.settings.p2_width,
+            eager: true,
+            priority: false
+          -%}
+        {%- endif -%}
 
-          {%- if block.settings.p3_image != blank or block.settings.p3_video != blank -%}
-            {%- render 'ai-banner-panel',
-              image: block.settings.p3_image,
-              video: block.settings.p3_video,
-              width: block.settings.p3_width
-            -%}
-          {%- endif -%}
+        {%- if block.settings.p3_image != blank or block.settings.p3_video != blank -%}
+          {%- render 'ai-banner-panel',
+            image: block.settings.p3_image,
+            video: block.settings.p3_video,
+            width: block.settings.p3_width,
+            eager: true,
+            priority: false
+          -%}
+        {%- endif -%}
 
         {%- if slide_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
-
       {%- endfor -%}
-
     </div>
 
     <div class="swiper-pagination"></div>
@@ -145,19 +257,49 @@
         pagination: {
           el: '.js-ai-bs-{{ section.id }} .swiper-pagination',
           clickable: true
+        },
+        on: {
+          init: function () {
+            if (window.innerWidth < 768) return;
+            var activeSlide = this.slides[this.activeIndex];
+            if (activeSlide) {
+              activeSlide.querySelectorAll('.ai-bs__priority-video, .ai-bs__lazy-video').forEach(function (v) {
+                v.play().catch(function () {});
+              });
+            }
+          },
+          slideChange: function () {
+            var container = document.querySelector('.js-ai-bs-{{ section.id }}');
+            if (!container) return;
+            container.querySelectorAll('.ai-bs__lazy-video, .ai-bs__priority-video').forEach(function (v) { v.pause(); });
+            if (window.innerWidth < 768) return;
+            var activeSlide = this.slides[this.activeIndex];
+            if (activeSlide) {
+              activeSlide.querySelectorAll('.ai-bs__priority-video, .ai-bs__lazy-video').forEach(function (v) {
+                v.play().catch(function () {});
+              });
+            }
+          }
         }
       });
     }
 
+    function fixVideoThumbnailAlts() {
+      document.querySelectorAll('.js-ai-bs-{{ section.id }} .ai-bs__video img').forEach(function (img) {
+        if (!img.hasAttribute('alt')) img.setAttribute('alt', '');
+      });
+    }
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSlider);
+      document.addEventListener('DOMContentLoaded', function () { initSlider(); fixVideoThumbnailAlts(); });
     } else {
       initSlider();
+      fixVideoThumbnailAlts();
     }
 
     // Re-init when section is reloaded in the theme editor
     document.addEventListener('shopify:section:load', function (e) {
-      if (e.detail.sectionId === '{{ section.id }}') initSlider();
+      if (e.detail.sectionId === '{{ section.id }}') { initSlider(); fixVideoThumbnailAlts(); }
     });
   })();
 </script>
@@ -322,11 +464,7 @@
   "presets": [
     {
       "name": "AI Banner Slider",
-      "blocks": [
-        { "type": "slide" },
-        { "type": "slide" },
-        { "type": "slide" }
-      ]
+      "blocks": [{ "type": "slide" }, { "type": "slide" }, { "type": "slide" }]
     }
   ]
 }

@@ -263,10 +263,12 @@
                       >
                         {% if product.featured_image %}
                           <img
-                            src="{{ product.featured_image | image_url: width: 800 }}"
+                            src="{{ product.featured_image | image_url: width: 276, format: 'webp' }}"
                             alt="{{ product.title | escape }}"
                             class="tw-w-full tw-h-full tw-object-cover group-hover:tw-scale-105 tw-transition-transform tw-duration-500"
                             loading="lazy"
+                            width="276"
+                            height="276"
                           >
                         {% endif %}
                       </a>
@@ -281,14 +283,12 @@
                               {{- product.compare_at_price | money -}}
                             </s>
                           {%- endif -%}
-                          <a href="{{ product.url }}">
-                            <div
-                              class="loox-rating"
-                              data-id="{{ product.id }}"
-                              data-rating="{{ product.metafields.loox.avg_rating }}"
-                              data-raters="{{ product.metafields.loox.num_reviews }}"
-                            ></div>
-                          </a>
+                          <div
+                            class="loox-rating"
+                            data-id="{{ product.id }}"
+                            data-rating="{{ product.metafields.loox.avg_rating }}"
+                            data-raters="{{ product.metafields.loox.num_reviews }}"
+                          ></div>
                         </p>
                       </div>
                     </div>
@@ -311,6 +311,39 @@
   </div>
   {%- comment -%} Styles {%- endcomment -%}
   <style>
+    /* Pre-init slide layout — mirrors Swiper breakpoints to prevent CLS before JS runs */
+    #AI-4GridTabProduct-{{ section.id }} .swiper-wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    #AI-4GridTabProduct-{{ section.id }} .swiper-slide {
+      flex-shrink: 0;
+      width: 100%;
+      margin-right: 12px;
+      box-sizing: border-box;
+    }
+    @media (min-width: 480px) {
+      #AI-4GridTabProduct-{{ section.id }} .swiper-slide {
+        width: calc(50% - 6px);
+      }
+    }
+    @media (min-width: 768px) {
+      #AI-4GridTabProduct-{{ section.id }} .swiper-slide {
+        width: calc(33.333% - 10.667px);
+        margin-right: 16px;
+      }
+    }
+    @media (min-width: 1024px) {
+      #AI-4GridTabProduct-{{ section.id }} .swiper-slide {
+        {% if desktop_cols == '2' %}
+        width: calc(50% - 12px);
+        {% else %}
+        width: calc(25% - 18px);
+        {% endif %}
+        margin-right: 24px;
+      }
+    }
+
     /* Premium Dropdown Animation */
     .tab-dropdown-{{ section.id }}.show {
       opacity: 1 !important;
@@ -342,7 +375,7 @@
      font-size: 16px;
      margin-top: 5px;
      margin-bottom: 5px;
-     color: rgba(0, 0, 0, 0.5);
+     color: rgba(0, 0, 0, 0.6);
     }
   </style>
   {%- comment -%} JavaScript {%- endcomment -%}

@@ -150,25 +150,18 @@
               href="{{ collection_url }}"
               class="tw-block tw-relative tw-overflow-hidden tw-aspect-square tw-mb-4"
             >
+              <span class="tw-sr-only">{{ display_title | escape }}</span>
 
               {% if block.settings.media_video != blank %}
-                
-                <!-- VIDEO -->
-                {{
-                  block.settings.media_video
-                  | video_tag:
-                    autoplay: true,
-                    loop: true,
-                    muted: true,
-                    controls: false,
-                    class: 'tw-w-full tw-h-full tw-object-cover'
-                }}
+
+                <!-- VIDEO: preload=none defers download until section is visible; IntersectionObserver below autoplays it -->
+                {{ block.settings.media_video | video_tag: muted: true, loop: true, playsinline: true, preload: 'none', class: 'ai-4gc-video tw-w-full tw-h-full tw-object-cover' }}
 
               {% elsif block.settings.custom_image != blank %}
                 
                 <!-- IMAGE -->
                 <img
-                  src="{{ block.settings.custom_image | image_url: width: 800 }}"
+                  src="{{ block.settings.custom_image | image_url: width: 800, format: 'webp' }}"
                   alt="{{ display_title | escape }}"
                   class="tw-w-full tw-h-full tw-object-cover group-hover:tw-scale-105 tw-transition-transform tw-duration-300"
                   loading="lazy"
@@ -210,3 +203,49 @@
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    function initCollectionVideos() {
+      var section = document.querySelector('.ai-4grid-collection-{{ section.id }}');
+      if (!section) return;
+      var videos = section.querySelectorAll('.ai-4gc-video');
+      if (!videos.length) return;
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var v = entry.target;
+            if (entry.isIntersecting) {
+              if (v.readyState === 0) { v.load(); }
+              v.play().catch(function () {});
+            } else {
+              v.pause();
+            }
+          });
+        }, { threshold: 0.25 });
+
+        videos.forEach(function (v) { observer.observe(v); });
+      } else {
+        videos.forEach(function (v) { v.load(); v.play().catch(function () {}); });
+      }
+    }
+
+    function fixVideoThumbnailAlts() {
+      document.querySelectorAll('.ai-4grid-collection-{{ section.id }} .ai-4gc-video img').forEach(function (img) {
+        if (!img.hasAttribute('alt')) img.setAttribute('alt', '');
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { initCollectionVideos(); fixVideoThumbnailAlts(); });
+    } else {
+      initCollectionVideos();
+      fixVideoThumbnailAlts();
+    }
+
+    document.addEventListener('shopify:section:load', function (e) {
+      if (e.detail.sectionId === '{{ section.id }}') { initCollectionVideos(); fixVideoThumbnailAlts(); }
+    });
+  })();
+</script>

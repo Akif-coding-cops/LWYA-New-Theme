@@ -96,10 +96,12 @@
     >
       {% if section.settings.left_image != blank %}
         <img
-          src="{{ section.settings.left_image | image_url: width: 1200 }}"
-          alt="{{ section.settings.left_image.alt | escape }}"
+          src="{{ section.settings.left_image | image_url: width: 1200, format: 'webp' }}"
+          alt="{{ section.settings.left_image.alt | default: shop.name | escape }}"
           class="tw-w-full tw-h-full tw-object-cover"
           loading="lazy"
+          width="1200"
+          height="1200"
         >
       {% else %}
         <div class="tw-w-full tw-h-full tw-bg-gray-200 tw-flex tw-items-center tw-justify-center">
@@ -142,12 +144,16 @@
         {% endif %}
 
         {% if section.settings.right_button_text != blank %}
+          {%- assign _btn_title = section.settings.right_title | strip_html | strip -%}
           <a
             href="{{ section.settings.right_button_link | default: '#' }}"
             class="tw-inline-block tw-px-6 tw-py-3 tw-text-responsive-[14,19] tw-font-bold tw-uppercase tw-tracking-wider hover:tw-opacity-80 tw-transition-opacity"
             style="background-color: {{ section.settings.right_button_bg }}; color: {{ section.settings.right_button_text_color }};"
           >
             {{ section.settings.right_button_text }}
+            {%- if _btn_title != blank -%}
+              <span class="tw-sr-only"> about {{ _btn_title }}</span>
+            {%- endif -%}
           </a>
         {% endif %}
       </div>
