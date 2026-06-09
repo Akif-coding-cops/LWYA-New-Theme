@@ -105,11 +105,12 @@
               {%- endif -%}
               
               <label class="tw-relative tw-cursor-pointer tw-group {% if is_sold_out %}tw-opacity-50 tw-cursor-not-allowed{% endif %}" title="{% if is_sold_out %}{{ value | escape }} - Sold Out{% else %}{{ value | escape }}{% endif %}">
-                <input 
-                  type="radio" 
-                  name="options[{{ option.name | escape }}]" 
-                  value="{{ value | escape }}" 
-                  class="peer tw-sr-only" 
+                <input
+                  type="radio"
+                  name="options[{{ option.name | escape }}]"
+                  value="{{ value | escape }}"
+                  class="peer tw-sr-only"
+                  aria-label="{% if is_sold_out %}{{ value | escape }} - Sold Out{% else %}{{ value | escape }}{% endif %}"
                   data-option-position="{{ option.position }}"
                   data-variant-option="{{ value | escape }}"
                   {% if is_sold_out %}disabled{% endif %}
@@ -181,11 +182,12 @@
               {%- endif -%}
               
               <label class="tw-relative tw-cursor-pointer {% if is_sold_out %}tw-opacity-50 tw-cursor-not-allowed{% endif %}">
-                <input 
-                  type="radio" 
-                  name="options[{{ option.name | escape }}]" 
-                  value="{{ value | escape }}" 
-                  class="peer tw-sr-only" 
+                <input
+                  type="radio"
+                  name="options[{{ option.name | escape }}]"
+                  value="{{ value | escape }}"
+                  class="peer tw-sr-only"
+                  aria-label="{% if is_sold_out %}{{ option.name | escape }}: {{ value | escape }} - Sold Out{% else %}{{ option.name | escape }}: {{ value | escape }}{% endif %}"
                   data-option-position="{{ option.position }}"
                   data-variant-option="{{ value | escape }}"
                   {% if is_sold_out %}disabled{% endif %}

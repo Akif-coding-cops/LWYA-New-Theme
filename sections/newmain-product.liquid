@@ -4,7 +4,8 @@
 <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
 {%- comment -%}GLightbox for image zoom{%- endcomment -%}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css"></noscript>
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js" defer></script>
 
 {%- comment -%}SEO: Canonical URL with variant parameter{%- endcomment -%}

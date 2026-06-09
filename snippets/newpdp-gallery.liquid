@@ -66,7 +66,6 @@
 {% endfor %}
 
 <div class="md:tw-hidden tw-relative tw-px-[8px]" data-mobile-gallery data-variant-images="{{ variant_images }}">
-  <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
   <div class="swiper newpdp-mobile-gallery">
     <div class="swiper-wrapper">
       {%- if using_variant_media -%}
@@ -75,20 +74,36 @@
         {%- assign mobile_media = media_items -%}
       {%- endif -%}
       {% for media in mobile_media %}
+        {%- if forloop.index0 < 3 -%}
+          {%- assign media_loading = 'eager' -%}
+          {%- assign media_preload = 'metadata' -%}
+        {%- else -%}
+          {%- assign media_loading = 'lazy' -%}
+          {%- assign media_preload = 'none' -%}
+        {%- endif -%}
         <div class="swiper-slide" data-slide-image-id="{{ media.id }}">
           {% if media.media_type == 'image' %}
-            <a href="{{ media | image_url: width: 2000 }}" class="glightbox ..." data-gallery="product-gallery">
+            <a
+              href="{{ media | image_url: width: 2000, format: 'webp' }}"
+              class="glightbox ..."
+              data-gallery="product-gallery"
+            >
               <img
-                src="{{ media | image_url: width: 1200 }}"
-                srcset="{{ media | image_url: width: 600 }} 600w, {{ media | image_url: width: 900 }} 900w, {{ media | image_url: width: 1200 }} 1200w"
+                src="{{ media | image_url: width: 1200, format: 'webp' }}"
+                srcset="{{ media | image_url: width: 600, format: 'webp' }} 600w, {{ media | image_url: width: 900, format: 'webp' }} 900w, {{ media | image_url: width: 1200, format: 'webp' }} 1200w"
                 sizes="100vw"
-                alt="{{ media.alt | escape }}"
-                loading="lazy"
+                alt="{{ media.alt | default: product.title | escape }}"
+                width="{{ media.width }}"
+                height="{{ media.height }}"
+                loading="{{ media_loading }}"
                 class="tw-w-full tw-h-full tw-object-cover tw-block"
               >
             </a>
           {% elsif media.media_type == 'video' %}
-            {{ media | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-h-full' }}
+            {{
+              media
+              | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-h-full', preload: media_preload
+            }}
           {% elsif media.media_type == 'external_video' %}
             {{ media | external_video_tag }}
           {% endif %}
@@ -144,7 +159,7 @@
         {% if img2 %}
           {% if img2.media_type == 'image' %}
             <a
-              href="{{ img2 | image_url: width: 2000 }}"
+              href="{{ img2 | image_url: width: 2000, format: 'webp' }}"
               data-gallery-slot-link="2"
               class="glightbox tw-overflow-hidden tw-bg-white tw-cursor-zoom-in tw-relative tw-group tw-block"
               data-gallery="product-gallery"
@@ -153,19 +168,24 @@
                 data-gallery-slot="2"
                 data-image-id="{{ img2.id }}"
                 data-default-id="{{ media_items[1].id }}"
-                data-default-src="{{ media_items[1] | image_url: width: 1600 }}"
-                data-default-alt="{{ media_items[1].alt | escape }}"
-                src="{{ img2 | image_url: width: 900 }}"
-                srcset="{{ img2 | image_url: width: 600 }} 600w, {{ img2 | image_url: width: 900 }} 900w"
+                data-default-src="{{ media_items[1] | image_url: width: 1600, format: 'webp' }}"
+                data-default-alt="{{ media_items[1].alt | default: product.title | escape }}"
+                src="{{ img2 | image_url: width: 900, format: 'webp' }}"
+                srcset="{{ img2 | image_url: width: 600, format: 'webp' }} 600w, {{ img2 | image_url: width: 900, format: 'webp' }} 900w"
                 sizes="(min-width:1024px) 33vw, 100vw"
-                alt="{{ img2.alt | escape }}"
-                loading="lazy"
+                alt="{{ img2.alt | default: product.title | escape }}"
+                width="{{ img2.width }}"
+                height="{{ img2.height }}"
+                loading="eager"
                 class="tw-w-full tw-h-full tw-object-contain"
               >
             </a>
           {% elsif img2.media_type == 'video' %}
             <div data-gallery-slot-link="2" data-gallery-slot-video="2">
-              {{ img2 | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-h-full' }}
+              {{
+                img2
+                | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-h-full', preload: 'metadata'
+              }}
             </div>
           {% elsif img2.media_type == 'external_video' %}
             <div data-gallery-slot-link="2" data-gallery-slot-video="2">
@@ -179,7 +199,7 @@
           {%- if img3.alt contains 'no-ratio' -%}{%- assign disable_ratio = true -%}{%- endif -%}
           {% if img3.media_type == 'image' %}
             <a
-              href="{{ img3 | image_url: width: 2000 }}"
+              href="{{ img3 | image_url: width: 2000, format: 'webp' }}"
               data-gallery-slot-link="3"
               class="glightbox {% unless disable_ratio %}tw-aspect-square{% endunless %} tw-overflow-hidden tw-bg-white tw-cursor-zoom-in tw-relative tw-group tw-block"
               data-gallery="product-gallery"
@@ -188,19 +208,24 @@
                 data-gallery-slot="3"
                 data-image-id="{{ img3.id }}"
                 data-default-id="{{ media_items[2].id }}"
-                data-default-src="{{ media_items[2] | image_url: width: 1600 }}"
-                data-default-alt="{{ media_items[2].alt | escape }}"
-                src="{{ img3 | image_url: width: 900 }}"
-                srcset="{{ img3 | image_url: width: 600 }} 600w, {{ img3 | image_url: width: 900 }} 900w"
+                data-default-src="{{ media_items[2] | image_url: width: 1600, format: 'webp' }}"
+                data-default-alt="{{ media_items[2].alt | default: product.title | escape }}"
+                src="{{ img3 | image_url: width: 900, format: 'webp' }}"
+                srcset="{{ img3 | image_url: width: 600, format: 'webp' }} 600w, {{ img3 | image_url: width: 900, format: 'webp' }} 900w"
                 sizes="(min-width:1024px) 33vw, 100vw"
-                alt="{{ img3.alt | escape }}"
-                loading="lazy"
+                alt="{{ img3.alt | default: product.title | escape }}"
+                width="{{ img3.width }}"
+                height="{{ img3.height }}"
+                loading="eager"
                 class="tw-w-full tw-h-full tw-object-contain"
               >
             </a>
           {% elsif img3.media_type == 'video' %}
             <div data-gallery-slot-link="3" data-gallery-slot-video="3">
-              {{ img3 | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-h-full' }}
+              {{
+                img3
+                | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-h-full', preload: 'metadata'
+              }}
             </div>
           {% elsif img3.media_type == 'external_video' %}
             <div data-gallery-slot-link="3" data-gallery-slot-video="3">
@@ -215,7 +240,7 @@
       {%- if img1.alt contains 'no-ratio' -%}{%- assign disable_ratio = true -%}{%- endif -%}
       {% if img1.media_type == 'image' %}
         <a
-          href="{{ img1 | image_url: width: 2000 }}"
+          href="{{ img1 | image_url: width: 2000, format: 'webp' }}"
           data-main-image-link
           data-gallery-slot-link="1"
           class="glightbox tw-col-span-2 {% unless disable_ratio %}tw-aspect-square{% endunless %} tw-overflow-hidden tw-bg-white tw-cursor-zoom-in tw-relative tw-group tw-block"
@@ -226,13 +251,16 @@
             data-gallery-slot="1"
             data-image-id="{{ img1.id }}"
             data-default-id="{{ media_items[0].id }}"
-            data-default-src="{{ media_items[0] | image_url: width: 1600 }}"
-            data-default-alt="{{ media_items[0].alt | escape }}"
-            src="{{ img1 | image_url: width: 1400 }}"
-            srcset="{{ img1 | image_url: width: 900 }} 900w, {{ img1 | image_url: width: 1200 }} 1200w, {{ img1 | image_url: width: 1600 }} 1600w"
+            data-default-src="{{ media_items[0] | image_url: width: 1600, format: 'webp' }}"
+            data-default-alt="{{ media_items[0].alt | default: product.title | escape }}"
+            src="{{ img1 | image_url: width: 1400, format: 'webp' }}"
+            srcset="{{ img1 | image_url: width: 900, format: 'webp' }} 900w, {{ img1 | image_url: width: 1200, format: 'webp' }} 1200w, {{ img1 | image_url: width: 1600, format: 'webp' }} 1600w"
             sizes="(min-width:1024px) 66vw, 100vw"
-            alt="{{ img1.alt | escape }}"
+            alt="{{ img1.alt | default: product.title | escape }}"
+            width="{{ img1.width }}"
+            height="{{ img1.height }}"
             loading="eager"
+            fetchpriority="high"
             class="tw-w-full tw-h-full tw-object-contain"
           >
           {% comment %}
@@ -258,7 +286,11 @@
           {% elsif badge != blank %}
             {% render 'badge', position: 'top-right', text: badge.text, bg_color: badge.background_color %}
           {% elsif variant_badge != blank %}
-            {% render 'badge', position: 'top-right', text: variant_badge.text, bg_color: variant_badge.background_color %}
+            {% render 'badge',
+              position: 'top-right',
+              text: variant_badge.text,
+              bg_color: variant_badge.background_color
+            %}
           {% endif %}
 
           {% comment %}
@@ -275,7 +307,10 @@
           data-gallery-slot-video="1"
           class="tw-col-span-2 {% unless disable_ratio %}tw-aspect-square{% endunless %} tw-overflow-hidden tw-bg-white"
         >
-          {{ img1 | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-h-full' }}
+          {{
+            img1
+            | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-h-full', preload: 'metadata'
+          }}
         </div>
       {% elsif img1.media_type == 'external_video' %}
         <div
@@ -300,24 +335,37 @@
     {% for media in extra_media offset: 3 %}
       {%- assign disable_ratio = false -%}
       {%- if media.alt contains 'no-ratio' -%}{%- assign disable_ratio = true -%}{%- endif -%}
+      {%- if forloop.first -%}
+        {%- assign extra_loading = 'eager' -%}
+        {%- assign extra_fetchpriority = 'high' -%}
+      {%- else -%}
+        {%- assign extra_loading = 'lazy' -%}
+        {%- assign extra_fetchpriority = 'auto' -%}
+      {%- endif -%}
       {% if media.media_type == 'image' %}
         <a
-          href="{{ media | image_url: width: 2000 }}"
+          href="{{ media | image_url: width: 2000, format: 'webp' }}"
           class="glightbox {% unless disable_ratio %}tw-aspect-square{% endunless %} tw-overflow-hidden tw-bg-white tw-mb-[8px] tw-cursor-zoom-in tw-relative tw-group tw-block"
           data-gallery="product-gallery"
         >
           <img
             data-image-id="{{ media.id }}"
-            src="{{ media | image_url: width: 1600 }}"
-            srcset="{{ media | image_url: width: 900 }} 900w, {{ media | image_url: width: 1400 }} 1400w, {{ media | image_url: width: 1800 }} 1800w"
+            src="{{ media | image_url: width: 1600, format: 'webp' }}"
+            srcset="{{ media | image_url: width: 900, format: 'webp' }} 900w, {{ media | image_url: width: 1400, format: 'webp' }} 1400w, {{ media | image_url: width: 1800, format: 'webp' }} 1800w"
             sizes="(min-width:1024px) 100vw, 100vw"
-            alt="{{ media.alt | escape }}"
-            loading="lazy"
+            alt="{{ media.alt | default: product.title | escape }}"
+            width="{{ media.width }}"
+            height="{{ media.height }}"
+            loading="{{ extra_loading }}"
+            fetchpriority="{{ extra_fetchpriority }}"
             class="tw-w-full tw-h-full tw-object-contain"
           >
         </a>
       {% elsif media.media_type == 'video' %}
-        {{ media | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-mb-[8px]' }}
+        {{
+          media
+          | video_tag: autoplay: true, loop: true, muted: true, class: 'tw-w-full tw-mb-[8px]', preload: 'none'
+        }}
       {% elsif media.media_type == 'external_video' %}
         {{ media | external_video_tag }}
       {% endif %}

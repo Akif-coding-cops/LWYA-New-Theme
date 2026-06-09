@@ -169,19 +169,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     curEl.innerHTML = newEl.innerHTML;
 
-    // Re-init Swiper
+    // Load first slide's video immediately; defer the rest to avoid bandwidth contention.
+    // Videos are 2.5–7.2 Mbps — loading all at once on variant switch makes the first
+    // one appear slow. Sequential loading lets the visible video start playing faster.
+    const allVideos = Array.from(curEl.querySelectorAll('video'));
+    function loadVideo(video) {
+      video.querySelectorAll('source[data-src]').forEach(function (src) {
+        if (!src.src) src.src = src.dataset.src;
+      });
+      video.load();
+      video.play().catch(function () {});
+    }
+    if (allVideos[0]) loadVideo(allVideos[0]);
+    if (allVideos.length > 1) {
+      setTimeout(function () {
+        allVideos.slice(1).forEach(loadVideo);
+      }, 800);
+    }
+
+    // Re-init Swiper — use string selectors (DOM refs break Swiper's nav module)
     if (typeof Swiper !== 'undefined') {
       const swiperEl = curEl.querySelector('.lwya-videos-swiper');
-      const prevBtn = curEl.querySelector('.lwya-videos-prev');
-      const nextBtn = curEl.querySelector('.lwya-videos-next');
 
       if (swiperEl) {
         const swiper = new Swiper(swiperEl, {
           slidesPerView: 3,
           spaceBetween: 12,
           navigation: {
-            nextEl: nextBtn,
-            prevEl: prevBtn,
+            nextEl: '.lwya-videos-next',
+            prevEl: '.lwya-videos-prev',
           },
           breakpoints: {
             0: { slidesPerView: 1.3, spaceBetween: 12 },
@@ -190,8 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
             1024: { slidesPerView: 3, spaceBetween: 12 }
           },
           on: {
-            init: function () { updateVideoArrows(this, prevBtn, nextBtn); },
-            slideChange: function () { updateVideoArrows(this, prevBtn, nextBtn); }
+            init: function () { updateVideoArrows(this, curEl.querySelector('.lwya-videos-prev'), curEl.querySelector('.lwya-videos-next')); },
+            slideChange: function () { updateVideoArrows(this, curEl.querySelector('.lwya-videos-prev'), curEl.querySelector('.lwya-videos-next')); }
           }
         });
       }
@@ -203,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
       video.addEventListener('mouseleave', () => video.removeAttribute('controls'));
     });
 
-    console.log('✅ Videos updated');
   };
 
   const updateVideoArrows = (swiper, prevBtn, nextBtn) => {

@@ -1,5 +1,8 @@
 /* Minimal PDP-specific overrides; Tailwind handles most styling. */
-#lwya-newpdp .loox-rating { display: inline-flex; align-items: center; }
+#lwya-newpdp .loox-rating {
+  display: inline-flex;
+  align-items: center;
+}
 
 /* Prevent gallery overflow to right area */
 @media (min-width: 1024px) {
@@ -9,25 +12,25 @@
     overflow: hidden;
     box-sizing: border-box;
   }
-  
-  #lwya-newpdp [data-main-gallery] > div {
+
+  #lwya-newpdp [data-main-gallery]>div {
     width: 100%;
     max-width: 100%;
     overflow: hidden;
     box-sizing: border-box;
   }
-  
+
   #lwya-newpdp [data-main-gallery] a,
   #lwya-newpdp [data-main-gallery] img {
     max-width: 100%;
     box-sizing: border-box;
   }
-  
+
   #lwya-newpdp [data-main-gallery] img:not([data-main-image-1]):not([data-main-image-5]) {
     height: auto;
     display: block;
   }
-  
+
   /* Ensure main images 1 and 5 fill container fully */
   #lwya-newpdp [data-main-image-1],
   #lwya-newpdp [data-main-image-5] {
@@ -37,14 +40,14 @@
     display: block;
     min-height: 100%;
   }
-  
+
   #lwya-newpdp [data-main-image-link] {
     display: flex !important;
     align-items: stretch;
     min-height: 100%;
     height: 100%;
   }
-  
+
   /* Ensure grid items don't overflow */
   #lwya-newpdp [data-main-gallery] .tw-grid {
     width: 100%;
@@ -54,16 +57,16 @@
 }
 
 /* Color swatch active state - fallback for peer selector */
-#lwya-newpdp input[type="radio"]:checked + span,
-#lwya-newpdp [data-variant-selector] input[type="radio"]:checked + span,
-#lwya-newpdp label input[type="radio"]:checked ~ span {
+#lwya-newpdp input[type="radio"]:checked+span,
+#lwya-newpdp [data-variant-selector] input[type="radio"]:checked+span,
+#lwya-newpdp label input[type="radio"]:checked~span {
   /* border-color: #d41870 !important;
   border-width: 2px !important; */
   box-shadow: 0 0 0 2px white, 0 0 0 4px #d41870;
 }
 
 /* Ensure peer selector works for Tailwind */
-#lwya-newpdp [data-variant-selector] label input[type="radio"]:checked + span {
+#lwya-newpdp [data-variant-selector] label input[type="radio"]:checked+span {
   /* border-color: #d41870 !important;
   border-width: 2px !important; */
   box-shadow: 0 0 0 2px white, 0 0 0 4px #d41870;
@@ -152,7 +155,7 @@
   #lwya-newpdp aside {
     /* No max-height or overflow - natural scroll with page */
   }
-  
+
   /* Adjust top offset when header is scrolled (smaller) */
   .is-scrolling #lwya-newpdp aside {
     top: 110px !important;
@@ -229,16 +232,54 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255,255,255,0.6) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%);
   animation: lwya-shimmer 1.2s infinite;
 }
 
 @keyframes lwya-shimmer {
-  0%   { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* Pre-Swiper placeholder layout for videos carousel.
+   Prevents CLS while Swiper JS initializes — breakpoints mirror the Swiper config.
+   Swiper's inline width styles on each slide override these rules on init. */
+.lwya-videos-swiper .swiper-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.lwya-videos-swiper .swiper-slide {
+  flex: 0 0 calc((100% - 24px) / 3);
+  max-width: calc((100% - 24px) / 3);
+}
+
+@media (max-width: 1023px) {
+  .lwya-videos-swiper .swiper-slide {
+    flex: 0 0 calc((100% - 12px) / 2.5);
+    max-width: calc((100% - 12px) / 2.5);
+  }
+}
+
+@media (max-width: 639px) {
+  .lwya-videos-swiper .swiper-slide {
+    flex: 0 0 calc((100% - 12px) / 2);
+    max-width: calc((100% - 12px) / 2);
+  }
+}
+
+@media (max-width: 479px) {
+  .lwya-videos-swiper .swiper-slide {
+    flex: 0 0 calc(100% / 1.3);
+    max-width: calc(100% / 1.3);
+  }
 }
