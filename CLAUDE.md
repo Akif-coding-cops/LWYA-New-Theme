@@ -2,6 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Product Pipeline
+See .claude/skills/product-pipeline.md for the automated product creation pipeline.
+
 ## Overview
 
 This is the **Love Who You Are (LWYA)** Shopify theme — a beauty/cosmetics and jewelry brand. It is built on the **Prestige theme v10.0.2** by Maestrooo, heavily customized with brand-specific sections, a custom product detail page (PDP), and Tailwind CSS integration.

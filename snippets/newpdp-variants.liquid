@@ -6,203 +6,244 @@
 {% if show_combo == true %}
   {% render 'newpdp-combo-swatches', product: product %}
 {% else %}
-<div data-variant-selector>
-{% if product.has_only_default_variant == false %}
-  {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
-  {%- assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
-  
-  <div class="tw-space-y-[16px]">
-    {% for option in product.options_with_values %}
-      {%- assign option_downcase = option.name | downcase -%}
-      {%- assign is_color = false -%}
-      {% for color_label in color_label_list %}
-        {% if option_downcase == color_label %}
-          {%- assign is_color = true -%}
-          {% break %}
-        {% endif %}
-      {% endfor %}
+  <div data-variant-selector>
+    {% if product.has_only_default_variant == false %}
+      {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
+      {%- assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
 
-      <div>
-        {% comment %} <div class="tw-text-[13px] tw-leading-[16px] tw-font-metric-medium tw-mb-[8px]">
-          {{ option.name }}: <span class="tw-font-normal" data-selected-option-{{ forloop.index0 }}>{{ option.selected_value }}</span>
-        </div> {% endcomment %}
-        
-        {% if is_color %}
-          <div class="tw-flex tw-flex-wrap tw-gap-[8px]">
-            {% for value in option.values %}
-              {%- assign downcase_value = value | downcase | strip -%}
-              {%- assign swatch_style = '--swatch-background: linear-gradient(to right, ' | append: downcase_value | append: ', ' | append: downcase_value | append: ')' -%}
-              
-              {%- comment -%}Find variant for this option value to check availability and disable_variant{%- endcomment -%}
-              {%- assign value_variant = null -%}
-              {%- assign value_available = false -%}
-              {%- assign value_disabled = false -%}
-              {%- assign has_available_variant = false -%}
-              {%- assign option_index = option.position | minus: 1 -%}
-              {%- for variant in product.variants -%}
-                {%- if variant.options[option_index] == value -%}
-                  {%- if value_variant == null -%}
-                    {%- assign value_variant = variant -%}
-                    {%- assign value_available = variant.available -%}
-                    {%- if variant.metafields.custom.disable_variant != blank -%}
-                      {%- assign variant_disabled_raw = variant.metafields.custom.disable_variant -%}
-                      {%- assign vd_str = variant_disabled_raw | downcase | strip -%}
-                      {%- if variant_disabled_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
-                        {%- assign value_disabled = true -%}
+      <div class="tw-space-y-[16px]">
+        {% for option in product.options_with_values %}
+          {%- assign option_downcase = option.name | downcase -%}
+          {%- assign is_color = false -%}
+          {% for color_label in color_label_list %}
+            {% if option_downcase == color_label %}
+              {%- assign is_color = true -%}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          <div>
+            {% comment %}
+              <div class="tw-text-[13px] tw-leading-[16px] tw-font-metric-medium tw-mb-[8px]">
+                {{ option.name }}: <span class="tw-font-normal" data-selected-option-{{ forloop.index0 }}>{{ option.selected_value }}</span>
+              </div>
+            {% endcomment %}
+
+            {% if is_color %}
+              <div class="tw-flex tw-flex-wrap tw-gap-[8px]">
+                {% for value in option.values %}
+                  {%- assign downcase_value = value | downcase | strip -%}
+                  {%- assign swatch_style = '--swatch-background: linear-gradient(to right, '
+                    | append: downcase_value
+                    | append: ', '
+                    | append: downcase_value
+                    | append: ')'
+                  -%}
+
+                  {%- comment -%}Find variant for this option value to check availability and disable_variant{%- endcomment -%}
+                  {%- assign value_variant = null -%}
+                  {%- assign value_available = false -%}
+                  {%- assign value_disabled = false -%}
+                  {%- assign has_available_variant = false -%}
+                  {%- assign option_index = option.position | minus: 1 -%}
+                  {%- for variant in product.variants -%}
+                    {%- if variant.options[option_index] == value -%}
+                      {%- if value_variant == null -%}
+                        {%- assign value_variant = variant -%}
+                        {%- assign value_available = variant.available -%}
+                        {%- if variant.metafields.custom.disable_variant != blank -%}
+                          {%- assign variant_disabled_raw = variant.metafields.custom.disable_variant -%}
+                          {%- assign vd_str = variant_disabled_raw | downcase | strip -%}
+                          {%- if variant_disabled_raw == true
+                            or vd_str == 'true'
+                            or vd_str == '1'
+                            or vd_str == 'yes'
+                          -%}
+                            {%- assign value_disabled = true -%}
+                          {%- endif -%}
+                        {%- endif -%}
                       {%- endif -%}
+                      {%- comment -%}Check if at least one variant with this option value is available{%- endcomment -%}
+                      {%- assign check_disabled = false -%}
+                      {%- if variant.metafields.custom.disable_variant != blank -%}
+                        {%- assign variant_disabled_raw = variant.metafields.custom.disable_variant -%}
+                        {%- assign vd_str = variant_disabled_raw | downcase | strip -%}
+                        {%- if variant_disabled_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
+                          {%- assign check_disabled = true -%}
+                        {%- endif -%}
+                      {%- endif -%}
+                      {%- unless variant.available == false or check_disabled -%}
+                        {%- assign has_available_variant = true -%}
+                      {%- endunless -%}
                     {%- endif -%}
+                  {%- endfor -%}
+                  {%- assign h_raw = value_variant.metafields.custom.hidden -%}
+                  {%- assign h_str = h_raw | downcase | strip -%}
+                  {%- if h_raw == true or h_str == 'true' or h_str == '1' or h_str == 'yes' -%}
+                    {%- continue -%}
                   {%- endif -%}
-                  {%- comment -%}Check if at least one variant with this option value is available{%- endcomment -%}
-                  {%- assign check_disabled = false -%}
-                  {%- if variant.metafields.custom.disable_variant != blank -%}
-                    {%- assign variant_disabled_raw = variant.metafields.custom.disable_variant -%}
-                    {%- assign vd_str = variant_disabled_raw | downcase | strip -%}
-                    {%- if variant_disabled_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
-                      {%- assign check_disabled = true -%}
+                  {%- comment -%}If no available variant found, mark as sold out{%- endcomment -%}
+                  {%- if has_available_variant == false -%}
+                    {%- assign value_disabled = true -%}
+                  {%- endif -%}
+
+                  {%- comment -%}Parse swatch config for custom colors{%- endcomment -%}
+                  {%- assign color_code = value_variant.metafields.custom.color_code -%}
+                  {%- if color_code != blank -%}
+                    {%- assign swatch_value = color_code -%}
+                  {%- else -%}
+                    {% for swatch_item in swatch_config %}
+                      {%- assign swatch_parts = swatch_item | split: ':' -%}
+                      {%- assign swatch_name = swatch_parts.first | downcase | strip -%}
+
+                      {% if downcase_value == swatch_name %}
+                        {%- assign swatch_value = swatch_parts.last | strip -%}
+
+                        {% if swatch_value contains '#' %}
+                          {%- assign swatch_style = '--swatch-background: linear-gradient(to right, '
+                            | append: swatch_value
+                            | append: ', '
+                            | append: swatch_value
+                            | append: ')'
+                          -%}
+                        {% elsif swatch_value contains 'linear-gradient(' %}
+                          {%- assign swatch_style = '--swatch-background: ' | append: swatch_value -%}
+                        {% elsif images[swatch_value] != blank %}
+                          {%- assign swatch_image = images[swatch_value] | image_url: width: 72 -%}
+                          {%- assign swatch_style = '--swatch-background: url(' | append: swatch_image | append: ')' -%}
+                        {% endif %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                  {%- endif -%}
+
+                  {%- assign is_sold_out = false -%}
+                  {%- if value_available == false or value_disabled -%}
+                    {%- assign is_sold_out = true -%}
+                  {%- endif -%}
+
+                  <label class="tw-relative tw-cursor-pointer tw-group {% if is_sold_out %}tw-opacity-50 tw-cursor-not-allowed{% endif %}">
+                    <input
+                      type="radio"
+                      name="options[{{ option.name | escape }}]"
+                      value="{{ value | escape }}"
+                      class="peer tw-sr-only"
+                      aria-label="{% if is_sold_out %}{{ value | escape }} - Sold Out{% else %}{{ value | escape }}{% endif %}"
+                      data-option-position="{{ option.position }}"
+                      data-variant-option="{{ value | escape }}"
+                      {% if is_sold_out %}
+                        disabled
+                      {% endif %}
+                      {% if option.selected_value == value %}
+                        checked
+                      {% endif %}
+                    >
+                    {% comment %}
+                      <span
+                      class="tw-block tw-w-[32px] tw-h-[32px] tw-rounded-full tw-border-[2px] tw-border-transparent peer-checked:tw-border-[#d41870] tw-transition-all tw-duration-200 {% if is_sold_out %}variant-swatch-sold-out{% endif %}"
+                      style="background: content-box {{ swatch_style | split: ': ' | last }} no-repeat center / cover; padding: 2px;"></span>
+                    {% endcomment %}
+                    <span
+                      class="tw-block tw-rounded-full tw-border-[2px] tw-border-transparent peer-checked:tw-border-[#d41870] tw-transition-all tw-duration-200 tw-flex-shrink-0 {% if is_sold_out %}variant-swatch-sold-out{% endif %}"
+                      style="
+                        width: 28px;
+                        height: 28px;
+                        min-width: 28px;
+                        min-height: 28px;
+                        background: {{ swatch_value }};
+                        padding: 2px;
+                        box-sizing: border-box;
+                      "
+                    ></span>
+                    {%- if is_sold_out -%}
+                      {%- assign pdp_tooltip_label = value | append: ' - Sold Out' -%}
+                    {%- else -%}
+                      {%- assign pdp_tooltip_label = value -%}
                     {%- endif -%}
-                  {%- endif -%}
-                  {%- unless variant.available == false or check_disabled -%}
-                    {%- assign has_available_variant = true -%}
-                  {%- endunless -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {%- assign h_raw = value_variant.metafields.custom.hidden -%}
-              {%- assign h_str = h_raw | downcase | strip -%}
-              {%- if h_raw == true or h_str == 'true' or h_str == '1' or h_str == 'yes' -%}{%- continue -%}{%- endif -%}
-              {%- comment -%}If no available variant found, mark as sold out{%- endcomment -%}
-              {%- if has_available_variant == false -%}
-                {%- assign value_disabled = true -%}
-              {%- endif -%}
-              
-              {%- comment -%}Parse swatch config for custom colors{%- endcomment -%}
-              {%- assign color_code = value_variant.metafields.custom.color_code -%}
-              {%- if color_code != blank -%}
-                {%- assign swatch_value = color_code -%}
-              {%- else -%}
-                {% for swatch_item in swatch_config %}
-                  {%- assign swatch_parts = swatch_item | split: ':' -%}
-                  {%- assign swatch_name = swatch_parts.first | downcase | strip -%}
-                  
-                  {% if downcase_value == swatch_name %}
-                    {%- assign swatch_value = swatch_parts.last | strip -%}
-                    
-                    {% if swatch_value contains '#' %}
-                      {%- assign swatch_style = '--swatch-background: linear-gradient(to right, ' | append: swatch_value | append: ', ' | append: swatch_value | append: ')' -%}
-                    {% elsif swatch_value contains 'linear-gradient(' %}
-                      {%- assign swatch_style = '--swatch-background: ' | append: swatch_value -%}
-                    {% elsif images[swatch_value] != blank %}
-                      {%- assign swatch_image = images[swatch_value] | image_url: width: 72 -%}
-                      {%- assign swatch_style = '--swatch-background: url(' | append: swatch_image | append: ')' -%}
-                    {% endif %}
-                    {% break %}
-                  {% endif %}
+                    {%- render 'lwya-swatch-tooltip', tooltip_text: pdp_tooltip_label -%}
+                  </label>
                 {% endfor %}
-              {%- endif -%}
-              
-              {%- assign is_sold_out = false -%}
-              {%- if value_available == false or value_disabled -%}
-                {%- assign is_sold_out = true -%}
-              {%- endif -%}
-              
-              <label class="tw-relative tw-cursor-pointer tw-group {% if is_sold_out %}tw-opacity-50 tw-cursor-not-allowed{% endif %}" title="{% if is_sold_out %}{{ value | escape }} - Sold Out{% else %}{{ value | escape }}{% endif %}">
-                <input
-                  type="radio"
-                  name="options[{{ option.name | escape }}]"
-                  value="{{ value | escape }}"
-                  class="peer tw-sr-only"
-                  aria-label="{% if is_sold_out %}{{ value | escape }} - Sold Out{% else %}{{ value | escape }}{% endif %}"
-                  data-option-position="{{ option.position }}"
-                  data-variant-option="{{ value | escape }}"
-                  {% if is_sold_out %}disabled{% endif %}
-                  {% if option.selected_value == value %}checked{% endif %}>
-                {% comment %} <span 
-                  class="tw-block tw-w-[32px] tw-h-[32px] tw-rounded-full tw-border-[2px] tw-border-transparent peer-checked:tw-border-[#d41870] tw-transition-all tw-duration-200 {% if is_sold_out %}variant-swatch-sold-out{% endif %}" 
-                  style="background: content-box {{ swatch_style | split: ': ' | last }} no-repeat center / cover; padding: 2px;"></span> {% endcomment %}
-                  <span 
-                    class="tw-block tw-rounded-full tw-border-[2px] tw-border-transparent peer-checked:tw-border-[#d41870] tw-transition-all tw-duration-200 tw-flex-shrink-0 {% if is_sold_out %}variant-swatch-sold-out{% endif %}" 
-                    style="
-                      width: 28px;
-                      height: 28px;
-                      min-width: 28px;
-                      min-height: 28px;
-                      background: {{ swatch_value }};
-                      padding: 2px;
-                      box-sizing: border-box;
-                    "
-                  ></span>
-              </label>
-            {% endfor %}
-          </div>
-        {% else %}
-          <div class="tw-flex tw-flex-wrap tw-gap-[8px]">
-            {% for value in option.values %}
-              {%- comment -%}Find variant for this option value to check availability and disable_variant{%- endcomment -%}
-              {%- assign value_variant = null -%}
-              {%- assign value_available = false -%}
-              {%- assign value_disabled = false -%}
-              {%- assign has_available_variant = false -%}
-              {%- assign option_index = option.position | minus: 1 -%}
-              {%- for variant in product.variants -%}
-                {%- if variant.options[option_index] == value -%}
-                  {%- if value_variant == null -%}
-                    {%- assign value_variant = variant -%}
-                    {%- assign value_available = variant.available -%}
-                    {%- if variant.metafields.custom.disable_variant != blank -%}
-                      {%- assign variant_disabled_raw = variant.metafields.custom.disable_variant -%}
-                      {%- assign vd_str = variant_disabled_raw | downcase | strip -%}
-                      {%- if variant_disabled_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
-                        {%- assign value_disabled = true -%}
+              </div>
+            {% else %}
+              <div class="tw-flex tw-flex-wrap tw-gap-[8px]">
+                {% for value in option.values %}
+                  {%- comment -%}Find variant for this option value to check availability and disable_variant{%- endcomment -%}
+                  {%- assign value_variant = null -%}
+                  {%- assign value_available = false -%}
+                  {%- assign value_disabled = false -%}
+                  {%- assign has_available_variant = false -%}
+                  {%- assign option_index = option.position | minus: 1 -%}
+                  {%- for variant in product.variants -%}
+                    {%- if variant.options[option_index] == value -%}
+                      {%- if value_variant == null -%}
+                        {%- assign value_variant = variant -%}
+                        {%- assign value_available = variant.available -%}
+                        {%- if variant.metafields.custom.disable_variant != blank -%}
+                          {%- assign variant_disabled_raw = variant.metafields.custom.disable_variant -%}
+                          {%- assign vd_str = variant_disabled_raw | downcase | strip -%}
+                          {%- if variant_disabled_raw == true
+                            or vd_str == 'true'
+                            or vd_str == '1'
+                            or vd_str == 'yes'
+                          -%}
+                            {%- assign value_disabled = true -%}
+                          {%- endif -%}
+                        {%- endif -%}
                       {%- endif -%}
+                      {%- comment -%}Check if at least one variant with this option value is available{%- endcomment -%}
+                      {%- assign check_disabled = false -%}
+                      {%- if variant.metafields.custom.disable_variant != blank -%}
+                        {%- assign variant_disabled_raw = variant.metafields.custom.disable_variant -%}
+                        {%- assign vd_str = variant_disabled_raw | downcase | strip -%}
+                        {%- if variant_disabled_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
+                          {%- assign check_disabled = true -%}
+                        {%- endif -%}
+                      {%- endif -%}
+                      {%- unless variant.available == false or check_disabled -%}
+                        {%- assign has_available_variant = true -%}
+                      {%- endunless -%}
                     {%- endif -%}
+                  {%- endfor -%}
+                  {%- assign h_raw = value_variant.metafields.custom.hidden -%}
+                  {%- assign h_str = h_raw | downcase | strip -%}
+                  {%- if h_raw == true or h_str == 'true' or h_str == '1' or h_str == 'yes' -%}
+                    {%- continue -%}
                   {%- endif -%}
-                  {%- comment -%}Check if at least one variant with this option value is available{%- endcomment -%}
-                  {%- assign check_disabled = false -%}
-                  {%- if variant.metafields.custom.disable_variant != blank -%}
-                    {%- assign variant_disabled_raw = variant.metafields.custom.disable_variant -%}
-                    {%- assign vd_str = variant_disabled_raw | downcase | strip -%}
-                    {%- if variant_disabled_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
-                      {%- assign check_disabled = true -%}
-                    {%- endif -%}
+                  {%- comment -%}If no available variant found, mark as sold out{%- endcomment -%}
+                  {%- if has_available_variant == false -%}
+                    {%- assign value_disabled = true -%}
                   {%- endif -%}
-                  {%- unless variant.available == false or check_disabled -%}
-                    {%- assign has_available_variant = true -%}
-                  {%- endunless -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {%- assign h_raw = value_variant.metafields.custom.hidden -%}
-              {%- assign h_str = h_raw | downcase | strip -%}
-              {%- if h_raw == true or h_str == 'true' or h_str == '1' or h_str == 'yes' -%}{%- continue -%}{%- endif -%}
-              {%- comment -%}If no available variant found, mark as sold out{%- endcomment -%}
-              {%- if has_available_variant == false -%}
-                {%- assign value_disabled = true -%}
-              {%- endif -%}
-              {%- assign is_sold_out = false -%}
-              {%- if value_available == false or value_disabled -%}
-                {%- assign is_sold_out = true -%}
-              {%- endif -%}
-              
-              <label class="tw-relative tw-cursor-pointer {% if is_sold_out %}tw-opacity-50 tw-cursor-not-allowed{% endif %}">
-                <input
-                  type="radio"
-                  name="options[{{ option.name | escape }}]"
-                  value="{{ value | escape }}"
-                  class="peer tw-sr-only"
-                  aria-label="{% if is_sold_out %}{{ option.name | escape }}: {{ value | escape }} - Sold Out{% else %}{{ option.name | escape }}: {{ value | escape }}{% endif %}"
-                  data-option-position="{{ option.position }}"
-                  data-variant-option="{{ value | escape }}"
-                  {% if is_sold_out %}disabled{% endif %}
-                  {% if option.selected_value == value %}checked{% endif %}>
-                <span class="tw-flex tw-items-center tw-justify-center tw-min-w-[60px] tw-h-[40px] tw-px-[16px] tw-border-[2px] tw-border-[#d8d8d8] tw-rounded-[4px] tw-text-[14px] tw-font-metric-medium tw-transition-all tw-duration-200 peer-checked:tw-border-[#d41870] peer-checked:tw-bg-[#fef5f9] {% if is_sold_out %}tw-line-through{% endif %}">
-                  {{ value }}
-                </span>
-              </label>
-            {% endfor %}
+                  {%- assign is_sold_out = false -%}
+                  {%- if value_available == false or value_disabled -%}
+                    {%- assign is_sold_out = true -%}
+                  {%- endif -%}
+
+                  <label class="tw-relative tw-cursor-pointer {% if is_sold_out %}tw-opacity-50 tw-cursor-not-allowed{% endif %}">
+                    <input
+                      type="radio"
+                      name="options[{{ option.name | escape }}]"
+                      value="{{ value | escape }}"
+                      class="peer tw-sr-only"
+                      aria-label="{% if is_sold_out %}{{ option.name | escape }}: {{ value | escape }} - Sold Out{% else %}{{ option.name | escape }}: {{ value | escape }}{% endif %}"
+                      data-option-position="{{ option.position }}"
+                      data-variant-option="{{ value | escape }}"
+                      {% if is_sold_out %}
+                        disabled
+                      {% endif %}
+                      {% if option.selected_value == value %}
+                        checked
+                      {% endif %}
+                    >
+                    <span class="tw-flex tw-items-center tw-justify-center tw-min-w-[60px] tw-h-[40px] tw-px-[16px] tw-border-[2px] tw-border-[#d8d8d8] tw-rounded-[4px] tw-text-[14px] tw-font-metric-medium tw-transition-all tw-duration-200 peer-checked:tw-border-[#d41870] peer-checked:tw-bg-[#fef5f9] {% if is_sold_out %}tw-line-through{% endif %}">
+                      {{ value }}
+                    </span>
+                  </label>
+                {% endfor %}
+              </div>
+            {% endif %}
           </div>
-        {% endif %}
+        {% endfor %}
       </div>
-    {% endfor %}
+    {% endif %}
   </div>
 {% endif %}
-</div>
-{% endif %}
-

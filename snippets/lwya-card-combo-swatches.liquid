@@ -15,10 +15,11 @@
 
     <a
       href="{{ product.url }}?variant={{ variant.id }}"
-      class="bsc-card__swatch"
-      title="{{ swatch_name | escape }}"
+      class="bsc-card__swatch tw-group tw-relative"
       style="background: {{ color }};"
-    ></a>
+    >
+      {%- render 'lwya-swatch-tooltip', tooltip_text: swatch_name -%}
+    </a>
   {%- endfor -%}
 {%- endcapture -%}
 

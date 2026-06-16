@@ -18,6 +18,17 @@
     {%- if swatch_name == blank -%}{%- continue -%}{%- endif -%}
     {%- assign color = variant.metafields.custom.color_code | default: '#cccccc' -%}
 
+    {%- assign vd_raw = variant.metafields.custom.disable_variant -%}
+    {%- assign vd_str = vd_raw | downcase | strip -%}
+    {%- assign is_disabled = false -%}
+    {%- if vd_raw == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
+      {%- assign is_disabled = true -%}
+    {%- endif -%}
+    {%- assign is_sold_out = false -%}
+    {%- if variant.available == false or is_disabled -%}
+      {%- assign is_sold_out = true -%}
+    {%- endif -%}
+
     {%- assign is_checked = false -%}
     {%- if sel_found -%}
       {%- if variant.id == sel_id -%}{%- assign is_checked = true -%}{%- endif -%}
@@ -25,9 +36,15 @@
       {%- unless first_shown -%}{%- assign is_checked = true -%}{%- endunless -%}
     {%- endif -%}
 
+    {%- if is_sold_out -%}
+      {%- assign combo_tooltip_label = swatch_name | append: ' - Sold Out' -%}
+    {%- else -%}
+      {%- assign combo_tooltip_label = swatch_name -%}
+    {%- endif -%}
+
     <label
-      class="tw-relative tw-cursor-pointer tw-group"
-      title="{{ swatch_name | escape }}"
+      class="tw-relative tw-cursor-pointer tw-group{% if is_sold_out %} tw-opacity-50 tw-cursor-not-allowed{% endif %}"
+      title="{{ combo_tooltip_label | escape }}"
     >
       <input
         type="radio"
@@ -35,7 +52,10 @@
         value="{{ variant.id }}"
         class="peer tw-sr-only"
         data-combo-input
-        {% if is_checked %}checked{% endif %}>
+        aria-label="{% if is_sold_out %}{{ swatch_name | escape }} - Sold Out{% else %}{{ swatch_name | escape }}{% endif %}"
+        {% if is_sold_out %}disabled{% endif %}
+        {% if is_checked %}checked{% endif %}
+      >
       <span
         class="tw-block tw-rounded-full tw-border-[2px] tw-border-transparent peer-checked:tw-border-[#d41870] tw-transition-all tw-duration-200 tw-flex-shrink-0"
         style="
@@ -48,6 +68,7 @@
           box-sizing: border-box;
         "
       ></span>
+      {%- render 'lwya-swatch-tooltip', tooltip_text: combo_tooltip_label -%}
     </label>
     {%- assign first_shown = true -%}
   {% endfor %}

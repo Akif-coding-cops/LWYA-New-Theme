@@ -11,14 +11,13 @@
   Props: product
 {% endcomment %}
 
-{%- assign color_labels  = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
+{%- assign color_labels = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
 {%- assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
 
 {%- for option in product.options_with_values -%}
-
   {%- comment -%} Only process color-type options {%- endcomment -%}
   {%- assign option_is_color = false -%}
-  {%- assign option_lower    = option.name | downcase -%}
+  {%- assign option_lower = option.name | downcase -%}
   {%- for label in color_labels -%}
     {%- if option_lower contains label -%}
       {%- assign option_is_color = true -%}
@@ -104,17 +103,22 @@
       {%- assign display_name = rep_variant.metafields.custom.variant_swatcher_name -%}
       {%- if display_name == blank -%}{%- assign display_name = color_value -%}{%- endif -%}
 
+      {%- if is_sold_out -%}
+        {%- assign tooltip_label = display_name | append: ' - Sold Out' -%}
+      {%- else -%}
+        {%- assign tooltip_label = display_name -%}
+      {%- endif -%}
       <a
         href="{{ product.url }}?variant={{ rep_variant.id }}"
-        class="bsc-card__swatch{% if is_sold_out %} bsc-card__swatch--sold-out{% endif %}"
-        title="{% if is_sold_out %}{{ display_name | escape }} - Sold Out{% else %}{{ display_name | escape }}{% endif %}"
+        class="bsc-card__swatch{% if is_sold_out %} bsc-card__swatch--sold-out{% endif %} tw-group tw-relative"
         style="background: {{ swatch_bg }};"
-      ></a>
+      >
+        {%- render 'lwya-swatch-tooltip', tooltip_text: tooltip_label -%}
+      </a>
     {%- endfor -%}
   {%- endcapture -%}
 
   {%- unless swatches_html == blank -%}
     <div class="bsc-card__swatches">{{ swatches_html }}</div>
   {%- endunless -%}
-
 {%- endfor -%}

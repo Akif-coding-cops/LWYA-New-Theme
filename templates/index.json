@@ -34,6 +34,17 @@
     "ai_banner_slider_hXkpRz": {
       "type": "AI-banner-slider",
       "blocks": {
+        "slide_tB9heF": {
+          "type": "slide",
+          "settings": {
+            "mobile_image": "shopify://shop_images/Liptastic_LuxLine_Plumping_Sculptor_Mobile.jpg",
+            "p1_image": "shopify://shop_images/Liptastic_LuxLine_Plumping_Sculptor.jpg",
+            "p1_width": 100,
+            "p2_width": 50,
+            "p3_width": 35,
+            "slide_link": "shopify://products/liptastic-luxeline-plumping-sculptor"
+          }
+        },
         "slide_bs1_AbCd": {
           "type": "slide",
           "settings": {
@@ -72,6 +83,7 @@
         }
       },
       "block_order": [
+        "slide_tB9heF",
         "slide_bs1_AbCd",
         "slide_bs2_EfGh",
         "slide_bs3_IjKl"
@@ -341,8 +353,8 @@
         "arrow_color": "#000000",
         "padding_top": 60,
         "padding_bottom": 60,
-        "text_size_mobile": 19,
-        "text_size_desktop": 26
+        "text_size_mobile": 16,
+        "text_size_desktop": 32
       }
     },
     "ai_4_grid_tab_product_QYcjeL": {
@@ -353,10 +365,10 @@
           "settings": {
             "tab_title": "NEW ARRIVALS",
             "collection_1": "",
-            "product_1": "glow-goals-shimmering-body-oil",
-            "product_2": "skintastic-brightening-konjac-lychee-polishing-cleanser",
-            "product_3": "two-timer-dual-ended-mascara",
-            "product_4": "liptastic-hydrating-tinted-lip-serum"
+            "product_1": "liptastic-luxeline-plumping-sculptor",
+            "product_2": "glow-goals-shimmering-body-oil",
+            "product_3": "skintastic-brightening-konjac-lychee-polishing-cleanser",
+            "product_4": "two-timer-dual-ended-mascara"
           }
         }
       },
