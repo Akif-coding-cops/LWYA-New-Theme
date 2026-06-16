@@ -31,7 +31,7 @@
 
             {% if is_color %}
               <div class="tw-flex tw-flex-wrap tw-gap-[8px]">
-                {% for value in option.values %}
+                {% for value in option.values -%}
                   {%- assign downcase_value = value | downcase | strip -%}
                   {%- assign swatch_style = '--swatch-background: linear-gradient(to right, '
                     | append: downcase_value
@@ -162,8 +162,9 @@
                     {%- endif -%}
                     {%- render 'lwya-swatch-tooltip', tooltip_text: pdp_tooltip_label -%}
                   </label>
-                {% endfor %}
+                {%- endfor %}
               </div>
+              <p class="lwya-mobile-swatch-label" data-mobile-swatch-label="{{ option.position }}">{{ option.selected_value }}</p>
             {% else %}
               <div class="tw-flex tw-flex-wrap tw-gap-[8px]">
                 {% for value in option.values %}

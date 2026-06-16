@@ -42,9 +42,11 @@
       {%- assign combo_tooltip_label = swatch_name -%}
     {%- endif -%}
 
+    {%- if is_checked -%}{%- assign initial_combo_label = swatch_name -%}{%- endif -%}
     <label
       class="tw-relative tw-cursor-pointer tw-group{% if is_sold_out %} tw-opacity-50 tw-cursor-not-allowed{% endif %}"
       title="{{ combo_tooltip_label | escape }}"
+      data-swatch-name="{{ swatch_name | escape }}"
     >
       <input
         type="radio"
@@ -73,3 +75,4 @@
     {%- assign first_shown = true -%}
   {% endfor %}
 </div>
+<p class="lwya-mobile-swatch-label" data-mobile-combo-label>{{ initial_combo_label }}</p>

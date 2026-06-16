@@ -5,6 +5,8 @@
   Usage:
     {%- render 'lwya-swatch-tooltip', tooltip_text: swatch_name -%}
   The parent element must have class "tw-group" and "tw-relative".
+  On touch devices the tooltip is hidden; a mobile label below the swatch row
+  shows the selected name instead (managed by JS injected once below).
 {% endcomment %}
 
 {%- unless lwya_swatch_tooltip_css_rendered -%}
@@ -30,7 +32,56 @@
     .tw-group:hover .swatch-tooltip {
       opacity: 1;
     }
+    /* Hide hover tooltip on touch / mobile devices */
+    @media (hover: none) {
+      .swatch-tooltip {
+        display: none;
+      }
+    }
+    /* Mobile selected-swatch label (shown below the swatch row) */
+    .lwya-mobile-swatch-label {
+      display: none;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #444;
+      margin-top: 8px;
+    }
+    @media (hover: none) {
+      .lwya-mobile-swatch-label {
+        display: block;
+      }
+    }
   </style>
+
+  <script>
+    (function () {
+      function initMobileSwatchLabels() {
+        // Standard variant swatches — each option row has its own label element
+        document.querySelectorAll('[data-variant-selector] input[type="radio"]').forEach(function (input) {
+          input.addEventListener('change', function () {
+            var label = document.querySelector('[data-mobile-swatch-label="' + this.dataset.optionPosition + '"]');
+            if (label) label.textContent = this.value;
+          });
+        });
+
+        // Combo swatches — single label element for the whole row
+        document.querySelectorAll('[data-combo-input]').forEach(function (input) {
+          input.addEventListener('change', function () {
+            var mobileLabel = document.querySelector('[data-mobile-combo-label]');
+            if (!mobileLabel) return;
+            var parentLabel = this.closest('label');
+            mobileLabel.textContent = parentLabel ? (parentLabel.dataset.swatchName || '') : '';
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileSwatchLabels);
+      } else {
+        initMobileSwatchLabels();
+      }
+    })();
+  </script>
 {%- endunless -%}
 
 <div class="swatch-tooltip" aria-hidden="true">{{ tooltip_text | escape }}</div>
