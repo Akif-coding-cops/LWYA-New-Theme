@@ -20,6 +20,7 @@
     },
     "video_with_text_button_6ePkpE": {
       "type": "video-with-text-button",
+      "disabled": true,
       "name": "Video Section",
       "settings": {
         "video": "shopify://files/videos/Skintastic Lychee Cleanser DESKTOP.mp4",
@@ -30,6 +31,90 @@
         "padding_horizontal_mobile": 0
       }
     },
+    "ai_banner_slider_hXkpRz": {
+      "type": "AI-banner-slider",
+      "blocks": {
+        "slide_tB9heF": {
+          "type": "slide",
+          "settings": {
+            "mobile_image": "shopify://shop_images/Liptastic_LuxLine_Plumping_Sculptor_Mobile.jpg",
+            "p1_image": "shopify://shop_images/Liptastic_LuxLine_Plumping_Sculptor.jpg",
+            "p1_width": 100,
+            "p2_width": 50,
+            "p3_width": 35,
+            "slide_link": "shopify://products/liptastic-luxeline-plumping-sculptor"
+          }
+        },
+        "slide_bs1_AbCd": {
+          "type": "slide",
+          "settings": {
+            "mobile_image": "shopify://shop_images/Glow_Goals_Mobile.jpg",
+            "p1_image": "shopify://shop_images/Group_368.jpg",
+            "p1_width": 40,
+            "p2_video": "shopify://files/videos/GlowGoals_ShimmeringBodyOil-ezgif.com-gif-maker_e96e0ccb-a922-412b-85d1-983dd8b99b51.mp4",
+            "p2_width": 60,
+            "p3_width": 35,
+            "slide_link": "shopify://products/glow-goals-shimmering-body-oil"
+          }
+        },
+        "slide_bs2_EfGh": {
+          "type": "slide",
+          "settings": {
+            "mobile_image": "shopify://shop_images/Lychee_Cleanser_Mobile.jpg",
+            "p1_video": "shopify://files/videos/SkintasticBrighteningLycheeCleanserV3-Square-ezgif.com-gif-maker_2a52cabf-7138-4557-87e8-9ebffd222f8c.mp4",
+            "p1_width": 40,
+            "p2_video": "shopify://files/videos/SkintasticBrighteningLycheeCleanserV2-Square-ezgif.com-gif-maker_d2d24866-dafc-4273-a3f9-4b6a899b7dfb.mp4",
+            "p2_width": 40,
+            "p3_image": "shopify://shop_images/Rectangle_17_725d5d5b-aacc-4ccd-bb29-b143722e8d97.jpg",
+            "p3_width": 20,
+            "slide_link": "shopify://products/skintastic-brightening-konjac-lychee-polishing-cleanser"
+          }
+        },
+        "slide_bs3_IjKl": {
+          "type": "slide",
+          "settings": {
+            "mobile_image": "shopify://shop_images/Two_Timer_Mobile.jpg",
+            "p1_image": "shopify://shop_images/Two_Timer_Mascara_3_55afe1f4-b351-4778-8d2c-c99f7661cd19.png",
+            "p1_width": 100,
+            "p2_width": 50,
+            "p3_width": 35,
+            "slide_link": "shopify://products/two-timer-dual-ended-mascara"
+          }
+        }
+      },
+      "block_order": [
+        "slide_tB9heF",
+        "slide_bs1_AbCd",
+        "slide_bs2_EfGh",
+        "slide_bs3_IjKl"
+      ],
+      "name": "AI Banner Slider",
+      "settings": {
+        "autoplay_delay": 20,
+        "height_desktop": 560,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ai_split_banner_XXXXX": {
+      "type": "AI-split-banner",
+      "disabled": true,
+      "name": "AI Split Banner",
+      "settings": {
+        "left_image": "shopify://shop_images/Group_368.jpg",
+        "left_basis": 40,
+        "hide_left_mobile": true,
+        "right_video": "shopify://files/videos/Glow Goals Shimmer Body Oil V1 - Square.mp4",
+        "right_basis": 60,
+        "hide_right_mobile": false,
+        "banner_link": "shopify://products/glow-goals-shimmering-body-oil",
+        "row_reverse": false,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0
+      }
+    },
     "ai_4_grid_tab_product_kChN7W": {
       "type": "AI-4GridTabProduct",
       "blocks": {
@@ -38,10 +123,10 @@
           "settings": {
             "tab_title": "BEST SELLERS",
             "collection_1": "bestsellers",
-            "product_1": "",
-            "product_2": "",
-            "product_3": "",
-            "product_4": ""
+            "product_1": "chameleon-color-adaptor",
+            "product_2": "skintastic-airbrush-liquid-foundation",
+            "product_3": "chameleon-black-blush-2",
+            "product_4": "bump-hair-texturizing-powder"
           }
         },
         "tab_item_rGtBUE": {
@@ -59,11 +144,11 @@
           "type": "tab_item",
           "settings": {
             "tab_title": "Bundle & Save",
-            "collection_1": "",
-            "product_1": "holiday-glam-bundle",
+            "collection_1": "bundle-save",
+            "product_1": "",
             "product_2": "michelles-concealer-bronzer-bundle",
             "product_3": "michelles-beach-babe-bundle",
-            "product_4": "3ml-fragrance-bundle"
+            "product_4": ""
           }
         }
       },
@@ -72,9 +157,7 @@
         "tab_item_rGtBUE",
         "tab_item_rGtBU"
       ],
-      "custom_css": [
-        ".products-selection {padding-left: 100px; padding-right: 100px;}"
-      ],
+      "custom_css": [],
       "name": "AI 4 Grid Tab Product",
       "settings": {
         "bg_color": "#ffffff",
@@ -90,36 +173,27 @@
         "video_slide_QPGJDY": {
           "type": "video_slide",
           "settings": {
-            "video": "shopify://files/videos/Kim_Take A Brow.mov",
+            "video": "shopify://files/videos/Mary Garner Color Adaptor 05_2025.mp4",
             "video_url": "",
-            "product": "gone-in-a-swipe-center-core-foundation",
+            "product": "chameleon-color-adaptor",
             "show_product": true
           }
         },
         "video_slide_tGcdhH": {
           "type": "video_slide",
           "settings": {
-            "video": "shopify://files/videos/reelup_1ciev5w7g831764795475432_original.mp4",
+            "video": "shopify://files/videos/Allisyn_Skintastic_Foundation.mp4",
             "video_url": "",
-            "product": "gone-in-a-swipe-concealer-and-sponge-set",
+            "product": "skintastic-airbrush-liquid-foundation",
             "show_product": true
           }
         },
         "video_slide_MrTczX": {
           "type": "video_slide",
           "settings": {
-            "video": "shopify://files/videos/872643520251113195840.mp4",
+            "video": "shopify://files/videos/250716 - Laura K - GIAS Foundation Reel.mp4",
             "video_url": "",
             "product": "gone-in-a-swipe-center-core-foundation",
-            "show_product": true
-          }
-        },
-        "video_slide_mngekn": {
-          "type": "video_slide",
-          "settings": {
-            "video": "shopify://files/videos/reelup_kvrrrkkunuk1762983327807_original.mp4",
-            "video_url": "",
-            "product": "gone-in-a-swipe-concealer-sponge",
             "show_product": true
           }
         }
@@ -127,8 +201,7 @@
       "block_order": [
         "video_slide_QPGJDY",
         "video_slide_tGcdhH",
-        "video_slide_MrTczX",
-        "video_slide_mngekn"
+        "video_slide_MrTczX"
       ],
       "custom_css": [],
       "name": "AI Video Carousel",
@@ -148,8 +221,9 @@
         "collection_item_4UXi3E": {
           "type": "collection_item",
           "settings": {
-            "collection": "all-beauty",
-            "custom_title": "",
+            "collection": "beauty",
+            "custom_title": "BEAUTY",
+            "custom_image": "shopify://shop_images/BEAUTY_Category.png",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -159,7 +233,8 @@
           "type": "collection_item",
           "settings": {
             "collection": "body",
-            "custom_title": "",
+            "custom_title": "BODY CARE",
+            "media_video": "shopify://files/videos/Quenched Body Creme - Island Bliss - V2 - Vertical.mp4",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -169,7 +244,8 @@
           "type": "collection_item",
           "settings": {
             "collection": "hair",
-            "custom_title": "",
+            "custom_title": "HAIR CARE",
+            "custom_image": "shopify://shop_images/Rectangle_35_963d24ee-6f56-4e6c-a7b6-dd2c6861ef55.png",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -180,6 +256,7 @@
           "settings": {
             "collection": "fragrance",
             "custom_title": "",
+            "media_video": "shopify://files/videos/Fragrance-FullSize_79560b91-b001-4367-8e08-4cbd9ffa6a2d.mp4",
             "button_text": "SHOP NOW",
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
@@ -224,26 +301,50 @@
         "text_block_pABR84": {
           "type": "text_block",
           "settings": {
-            "content": "<p>I've NEVER used a product so wonderful! I didn't have to put on more makeup. I just put eyebrows on, a little, blush and lipstick, good to go!</p>"
+            "content": "<p>\"I haven't worn makeup in quite awhile.  Discovering the lwya brand of makeup and being clean beauty made me a believer.  These chameleon products are pure genius.\"</p>",
+            "author_name": "Nancy S.",
+            "date": "10/11/2025"
           }
         },
         "text_block_LUfVPe": {
           "type": "text_block",
           "settings": {
-            "content": "<p>This product changed my life! Amazing quality and results that I never expected. Highly recommend to everyone!</p>"
+            "content": "<p>\"I have everything of the makeup and love it.<br/>I have Gone In A Swipe and second round of the Skintastic and Chameleon.\"</p>",
+            "author_name": "Shirley C.",
+            "date": "1/29/2026"
           }
         },
         "text_block_PaUtRN": {
           "type": "text_block",
           "settings": {
-            "content": "<p>Absolutely love this! It's become an essential part of my daily routine. Can't imagine going without it now.</p>"
+            "content": "<p>\"I'm already on my third purchase. Love these products.\"</p>",
+            "author_name": "Wendi H.",
+            "date": "11/16/2025"
+          }
+        },
+        "text_block_j8zgUK": {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>\"Love LWYA products!\" </p>",
+            "author_name": "Michele C.",
+            "date": "2/23/2026"
+          }
+        },
+        "text_block_4QTEtd": {
+          "type": "text_block",
+          "settings": {
+            "content": "<p>\"I absolutely love all LAWYA products.   I'm a 75 year old woman and I was recently told by a makeup artist in our area that my makeup looked beautiful on me. \"</p>",
+            "author_name": "Cathy R.",
+            "date": "2/27/2026"
           }
         }
       },
       "block_order": [
         "text_block_pABR84",
         "text_block_LUfVPe",
-        "text_block_PaUtRN"
+        "text_block_PaUtRN",
+        "text_block_j8zgUK",
+        "text_block_4QTEtd"
       ],
       "name": "AI Rich Text Slider",
       "settings": {
@@ -252,8 +353,8 @@
         "arrow_color": "#000000",
         "padding_top": 60,
         "padding_bottom": 60,
-        "text_size_mobile": 19,
-        "text_size_desktop": 26
+        "text_size_mobile": 18,
+        "text_size_desktop": 32
       }
     },
     "ai_4_grid_tab_product_QYcjeL": {
@@ -262,21 +363,19 @@
         "tab_item_iT8xj6": {
           "type": "tab_item",
           "settings": {
-            "tab_title": "NEW ARRIVAL",
+            "tab_title": "NEW ARRIVALS",
             "collection_1": "",
-            "product_1": "love-yourself-island-bliss-duo",
-            "product_2": "two-timer-dual-ended-mascara",
-            "product_3": "skintastic-soothing-cleansing-cream",
-            "product_4": "skintastic-facefix-cloud-cream"
+            "product_1": "liptastic-luxeline-plumping-sculptor",
+            "product_2": "glow-goals-shimmering-body-oil",
+            "product_3": "skintastic-brightening-konjac-lychee-polishing-cleanser",
+            "product_4": "two-timer-dual-ended-mascara"
           }
         }
       },
       "block_order": [
         "tab_item_iT8xj6"
       ],
-      "custom_css": [
-        ".products-selection {padding-left: 100px; padding-right: 100px;}"
-      ],
+      "custom_css": [],
       "name": "AI 4 Grid Tab Collection",
       "settings": {
         "bg_color": "#ffffff",
@@ -288,13 +387,16 @@
     },
     "ai_image_text_9BBxtY": {
       "type": "AI-ImageText",
+      "custom_css": [
+        "strong {font-family: Gotham;}"
+      ],
       "name": "AI Image Text",
       "settings": {
         "section_bg_color": "#ffffff",
         "left_image": "shopify://shop_images/e0cf419abddf8e8dc8990b368928de73cf3a4e54.jpg",
         "right_bg_color": "#f5f5f5",
         "right_title": "<h4>ABOUT LWYA</h4>",
-        "right_text": "<p>We empower women to embrace their true selves, love their lives, and write their own stories.</p>",
+        "right_text": "<p><strong>LWYA, Love Who You Are, </strong>was built on a simple but radical idea: <strong>beauty should make you feel more like yourself, not less.</strong></p>",
         "right_button_text": "LEARN MORE",
         "right_button_link": "shopify://pages/about-us",
         "right_button_bg": "#000000",
@@ -322,13 +424,16 @@
         "right_button_text": "LEARN MORE",
         "right_button_link": "shopify://pages/bff-club",
         "right_button_bg": "#000000",
-        "right_button_text_color": "#ffffff"
+        "right_button_text_color": "#ffffff",
+        "right_image": "shopify://shop_images/Group_360.png"
       }
     }
   },
   "order": [
     "main",
     "video_with_text_button_6ePkpE",
+    "ai_banner_slider_hXkpRz",
+    "ai_split_banner_XXXXX",
     "ai_4_grid_tab_product_kChN7W",
     "ai_video_carousel_7z44iD",
     "ai_4gridcollection_cGAh6W",

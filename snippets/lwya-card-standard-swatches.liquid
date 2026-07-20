@@ -1,0 +1,124 @@
+{% comment %}
+  Standard color swatches for a product card.
+  Renders one dot per unique color option value; each dot links to the first matching variant.
+
+  For each color value the snippet:
+    1. Finds the "representative variant" (first variant with that color) — used for metafields
+    2. Checks if ANY variant with that color is purchasable (in stock + not disabled)
+    3. Skips the color entirely if the representative variant is marked hidden
+    4. Resolves the swatch background from color_code metafield or the global swatch config
+
+  Props: product
+{% endcomment %}
+
+{%- assign color_labels = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
+{%- assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
+
+{%- for option in product.options_with_values -%}
+  {%- comment -%} Only process color-type options {%- endcomment -%}
+  {%- assign option_is_color = false -%}
+  {%- assign option_lower = option.name | downcase -%}
+  {%- for label in color_labels -%}
+    {%- if option_lower contains label -%}
+      {%- assign option_is_color = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- unless option_is_color -%}{%- continue -%}{%- endunless -%}
+
+  {%- capture swatches_html -%}
+    {%- assign option_index = option.position | minus: 1 -%}
+
+    {%- for color_value in option.values -%}
+      {%- assign color_lower = color_value | downcase | strip -%}
+
+      {%- comment -%}
+        Scan all variants for this color value.
+        rep_variant     = first match (source of metafields like color_code, hidden)
+        any_purchasable = true if at least one variant is in-stock and not disabled
+      {%- endcomment -%}
+      {%- assign rep_variant     = null -%}
+      {%- assign rep_available   = false -%}
+      {%- assign rep_disabled    = false -%}
+      {%- assign any_purchasable = false -%}
+
+      {%- for variant in product.variants -%}
+        {%- unless variant.options[option_index] == color_value -%}{%- continue -%}{%- endunless -%}
+
+        {%- assign vd            = variant.metafields.custom.disable_variant -%}
+        {%- assign vd_str        = vd | downcase | strip -%}
+        {%- assign this_disabled = false -%}
+        {%- if vd == true or vd_str == 'true' or vd_str == '1' or vd_str == 'yes' -%}
+          {%- assign this_disabled = true -%}
+        {%- endif -%}
+
+        {%- if rep_variant == null -%}
+          {%- assign rep_variant   = variant -%}
+          {%- assign rep_available = variant.available -%}
+          {%- assign rep_disabled  = this_disabled -%}
+        {%- endif -%}
+
+        {%- if variant.available and this_disabled == false -%}
+          {%- assign any_purchasable = true -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- comment -%} Skip colors flagged as hidden on the representative variant {%- endcomment -%}
+      {%- assign h     = rep_variant.metafields.custom.hidden -%}
+      {%- assign h_str = h | downcase | strip -%}
+      {%- if h == true or h_str == 'true' or h_str == '1' or h_str == 'yes' -%}{%- continue -%}{%- endif -%}
+
+      {%- assign is_sold_out = false -%}
+      {%- unless any_purchasable -%}{%- assign is_sold_out = true -%}{%- endunless -%}
+
+      {%- comment -%} Resolve swatch background: variant metafield first, then global config {%- endcomment -%}
+      {%- assign swatch_bg  = '' -%}
+      {%- assign has_swatch = false -%}
+
+      {%- if rep_variant.metafields.custom.color_code != blank -%}
+        {%- assign swatch_bg  = rep_variant.metafields.custom.color_code -%}
+        {%- assign has_swatch = true -%}
+      {%- else -%}
+        {%- for entry in swatch_config -%}
+          {%- assign entry_parts = entry | split: ':' -%}
+          {%- assign entry_name  = entry_parts.first | downcase | strip -%}
+          {%- unless entry_name == color_lower -%}{%- continue -%}{%- endunless -%}
+
+          {%- assign entry_val = entry_parts.last | strip -%}
+          {%- if entry_val contains '#' or entry_val contains 'linear-gradient(' -%}
+            {%- assign swatch_bg = entry_val -%}
+          {%- elsif images[entry_val] != blank -%}
+            {%- assign img_url   = images[entry_val] | image_url: width: 72 -%}
+            {%- assign swatch_bg = 'url(' | append: img_url | append: ')' -%}
+          {%- else -%}
+            {%- assign swatch_bg = entry_val -%}
+          {%- endif -%}
+          {%- assign has_swatch = true -%}
+          {%- break -%}
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- unless has_swatch -%}{%- continue -%}{%- endunless -%}
+
+      {%- assign display_name = rep_variant.metafields.custom.variant_swatcher_name -%}
+      {%- if display_name == blank -%}{%- assign display_name = color_value -%}{%- endif -%}
+
+      {%- if is_sold_out -%}
+        {%- assign tooltip_label = display_name | append: ' - Sold Out' -%}
+      {%- else -%}
+        {%- assign tooltip_label = display_name -%}
+      {%- endif -%}
+      <a
+        href="{{ product.url }}?variant={{ rep_variant.id }}"
+        class="bsc-card__swatch{% if is_sold_out %} bsc-card__swatch--sold-out{% endif %} tw-group tw-relative"
+        style="background: {{ swatch_bg }};"
+      >
+        {%- render 'lwya-swatch-tooltip', tooltip_text: tooltip_label -%}
+      </a>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- unless swatches_html == blank -%}
+    <div class="bsc-card__swatches">{{ swatches_html }}</div>
+  {%- endunless -%}
+{%- endfor -%}

@@ -9,9 +9,26 @@
     >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Italianno&family=Inria+Sans:wght@400;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Italianno&family=Inria+Sans:wght@400;700&display=swap"
+        rel="stylesheet"
+      >
+    </noscript>
     {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> {% endcomment %}
-    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    <link
+      rel="preload"
+      href="{{ 'swiper-bundle.min.css' | asset_url }}"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
+    <noscript><link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}"></noscript>
     <title>
       {% if page_title == blank -%}
         {{- shop.name -}}
@@ -21,9 +38,7 @@
       {%- endif %}
     </title>
 
-    {%- if page_description -%}
-      <meta name="description" content="{{ page_description | escape }}">
-    {%- endif -%}
+    <meta name="description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
 
     <link rel="canonical" href="{{ canonical_url }}">
 
@@ -34,14 +49,21 @@
 
     {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link
+      rel="preload"
+      href="https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Gotham-Bold.woff2?v=1721802907"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    >
+    <link
+      rel="preload"
+      href="https://cdn.shopify.com/s/files/1/0669/0360/5506/files/Didot-01.woff2?v=1771006864"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    >
 
-    {%- unless settings.heading_font.system? -%}
-      <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
-    {%- endunless -%}
-
-    {%- unless settings.text_font.system? -%}
-      <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
-    {%- endunless -%}
 
     {%- render 'social-meta-tags' -%}
     {%- render 'microdata-schema' -%}
@@ -157,6 +179,7 @@
       @font-face {
         font-family: 'Ivar Text Hydro Regular';
         src: url('https://db.onlinewebfonts.com/t/22aff4497483f2c6a5e001453850b935.woff2') format('woff2');
+        font-display: swap;
       }
       .integar_font_family h2,
       .integar_font_family {
@@ -184,11 +207,13 @@
         height: 24px;
         width: 24px;
       }
-      .bg-lwya-stripes {
-        background-image: url('https://cdn.shopify.com/s/files/1/0669/0360/5506/files/LWYA_BlackFriday_Stripes_BG_1114.png?v=1763177737') !important;
-        background-repeat: no-repeat;
-        background-position: center -30px;
-        background-size: contain;
+      @media (min-width: 768px) {
+        .bg-lwya-stripes {
+          background-image: url('https://cdn.shopify.com/s/files/1/0669/0360/5506/files/LWYA_BlackFriday_Stripes_BG_1114.png?v=1763177737') !important;
+          background-repeat: no-repeat;
+          background-position: center -30px;
+          background-size: contain;
+        }
       }
     </style>
     <script>
@@ -212,21 +237,17 @@
       }
     </script>
 
-    <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
     <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
 
     {{ content_for_header }}
 
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
-    {{- 'product.css' | asset_url | stylesheet_tag: preload: true -}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    >
-    {{ 'output.css' | asset_url | stylesheet_tag }}
+    {%- if request.page_type == 'product' or request.page_type == 'collection' -%}
+      {{- 'product.css' | asset_url | stylesheet_tag: preload: true -}}
+    {%- endif -%}
+    {{- 'output.css' | asset_url | stylesheet_tag: preload: true -}}
   </head>
 
   {% liquid
@@ -248,7 +269,7 @@
   <body
     class="
       {{ features_class }} color-scheme color-scheme--{{ settings.default_color_scheme.id }} var__{{ template.suffix}} name__{{ template.name }}
-      {% if template == 'index' %} tw-relative tw-min-h-screen bg-lwya-stripes {% endif %}
+      {% if template == 'index' %} tw-relative tw-min-h-screen  {% endif %}
     "
   >
     {%- render 'shadow-dom-templates' -%}
@@ -445,9 +466,9 @@
       });
     </script>
 
-    <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
+        if (!document.querySelector('.myVideoSwiper')) return;
         new Swiper('.myVideoSwiper', {
           loop: true,
           slidesPerView: 4,
@@ -471,7 +492,7 @@
     </script>
 
     <!-- Loox Reviews: Hide empty iframe -->
-    <script>
+    {% comment %} <script>
       jQuery(window).on('load', function () {
         setTimeout(function () {
           var abc = jQuery('iframe#looxReviewsFrame').attr('height');
@@ -480,7 +501,12 @@
           }
         }, 1000);
       });
-    </script>
+    </script> {% endcomment %}
+    <!-- Loox Reviews: Hide section when no reviews (height stays 0) -->
+    <!-- Loox Reviews: Hide section when no reviews (iframe height stays 0) -->
+
+
+
 
     <style>
       {% comment %} FOR REBUY APPS {% endcomment %}

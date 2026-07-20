@@ -171,7 +171,7 @@
           }
         },
         "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq": {
-          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "type": "shopify://apps/reelup-shoppable-videos/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
           "disabled": true,
           "settings": {}
         }
@@ -403,7 +403,8 @@
         "bg_opacity": 5,
         "heading_color": "#000000",
         "padding_y": 70,
-        "padding_x": 115
+        "padding_x": 115,
+        "link_url": "https://lwya.com/pages/clean-beauty-list"
       }
     },
     "product_ingredients_4cqtbf": {
@@ -486,7 +487,7 @@
           "type": "faq_item",
           "settings": {
             "question": "{{ product.metafields.custom.question_5_.value }}",
-            "answer": "<p>Vivacity is bright, fresh, and full of life — created to feel radiant and confident.{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
+            "answer": "<p>{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
           }
         },
         "faq_item_FpYnpf": {

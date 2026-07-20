@@ -1,0 +1,29 @@
+{
+  "allowedTools": [
+    "mcp__figma__get_metadata",
+    "mcp__figma__get_design_context",
+    "mcp__figma__get_screenshot",
+    "mcp__figma__get_figjam",
+    "mcp__figma__get_variable_defs",
+    "mcp__figma__get_libraries",
+    "mcp__figma__search_design_system",
+    "mcp__figma__upload_assets",
+    "mcp__figma__whoami",
+    "mcp__shopify-admin-dev__get-products",
+    "mcp__shopify-admin-dev__get-product-by-id",
+    "mcp__shopify-admin-dev__create-product",
+    "mcp__shopify-admin-dev__update-product",
+    "mcp__shopify-admin-dev__manage-product-variants",
+    "mcp__shopify-admin-dev__manage-product-options",
+    "mcp__shopify-admin-dev__get-customers",
+    "mcp__shopify-admin-dev__get-orders",
+    "mcp__shopify-admin-prod__get-products",
+    "mcp__shopify-admin-prod__get-product-by-id",
+    "mcp__shopify-admin-prod__create-product",
+    "mcp__shopify-admin-prod__update-product",
+    "mcp__shopify-admin-prod__manage-product-variants",
+    "mcp__shopify-admin-prod__manage-product-options",
+    "mcp__shopify-admin-prod__get-customers",
+    "mcp__shopify-admin-prod__get-orders"
+  ]
+}

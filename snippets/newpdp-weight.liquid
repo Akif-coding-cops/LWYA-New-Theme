@@ -4,19 +4,18 @@
 
 {%- if product_weight != blank -%}
   <div class="tw-font-gotham-book tw-pt-[8px] tw-text-[20px] tw-leading-[20px] tw-text-[#000000]">
-    {{ product_weight | metafield_tag }}
+    {%- assign weight_lines = product_weight | split: '<br/>' -%}
+    {%- for line in weight_lines -%}
+      {%- unless line == blank -%}
+         <p class="product-weight">{{ line }}</p>
+      {%- endunless -%}
+    {%- endfor -%}
   </div>
 {%- endif -%}
 
 <style>
-  .key_features {
-    font-family: 'Gotham';
+  .product-weight {
+    line-height: 26px;
   }
-  .key-features li:not(:last-child) {
-    margin-bottom: 24px;
-  }
-  .key-features li strong{
-    font-family: 'Gotham';
-    font-weight: 700 !important;
-  }
+
 </style>

@@ -100,6 +100,7 @@
         {% paginate collection.products by product_limit %}
           {% for product in collection.products %}
             {% assign badge = product.metafields.custom.product_badge.value %}
+            {% assign product_badges = product.metafields.custom.product_badges.value %}
             <div class="product-card">
               <a href="{{ product.url }}" class="product-card__img-wrapper">
                 <img
@@ -107,7 +108,9 @@
                   alt="{{ product.title }}"
                   loading="lazy"
                 >
-                {% if badge != blank %}
+                {% if product_badges != blank and product_badges.size > 0 %}
+                  {% render 'badge', position: 'top-right', badges: product_badges %}
+                {% elsif badge != blank %}
                   {% render 'badge', position: 'top-right', text: badge.text, bg_color: badge.background_color %}
                 {% endif %}
               </a>
@@ -136,13 +139,20 @@
                   data-raters="{{ product.metafields.loox.num_reviews }}"
                 ></div>
               </div>
-              {% if product.has_only_default_variant == false %}
-                {% assign option = product.options_with_values.first %}
+             {% if product.has_only_default_variant == false %}
+              {% assign option = product.options_with_values.first %}
+              {% assign option_name_words = option.name | split: ' ' %}
+              
+              {% if option_name_words.size > 2 %}
                 <p class="card-variant-count">
-                  Available in {{ option.values.size }}
-                  {{ option.name | append: 's' }}
+                  Available in {{ option.values.size }} Shades
+                </p>
+              {% else %}
+                <p class="card-variant-count">
+                  Available in {{ option.values.size }} {{ option.name | append: 's' }}
                 </p>
               {% endif %}
+            {% endif %}
             </div>
           {% endfor %}
         {% endpaginate %}

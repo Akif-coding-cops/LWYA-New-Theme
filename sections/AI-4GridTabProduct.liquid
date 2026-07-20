@@ -66,36 +66,35 @@
           "label": "Tab Title",
           "default": "BEST SELLERS"
         },
-{
-  "type": "collection",
-  "id": "collection_1",
-  "label": "Default Collection"
-},
-{
-  "type": "header",
-  "content": "Products"
-},
-{
-  "type": "product",
-  "id": "product_1",
-  "label": "Product 1"
-},
-{
-  "type": "product",
-  "id": "product_2",
-  "label": "Product 2"
-},
-{
-  "type": "product",
-  "id": "product_3",
-  "label": "Product 3"
-},
-{
-  "type": "product",
-  "id": "product_4",
-  "label": "Product 4"
-}
-
+        {
+          "type": "collection",
+          "id": "collection_1",
+          "label": "Default Collection"
+        },
+        {
+          "type": "header",
+          "content": "Products"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product 1"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product 2"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product 3"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "Product 4"
+        }
       ]
     }
   ],
@@ -125,7 +124,7 @@
   class="ai-4grid-tab-product tw-w-full tw-flex tw-justify-center"
   style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;"
 >
-  <div class="tw-max-w-[1400px] products-selection tw-mx-auto tw-px-responsive-[16,40]">
+  <div class="tw-w-full tw-max-w-[1400px] products-selection tw-mx-auto tw-px-responsive-[16,40]">
     {%- comment -%} Premium Tab Header with Dropdown {%- endcomment -%}
     {% if section.blocks.size > 0 %}
       <div class="tw-mb-10">
@@ -144,24 +143,35 @@
               {% else %}
                 BEST SELLERS
               {% endif %}
-              {% comment %} <span
-                class="tw-absolute tw--bottom-1 tw-left-0 tw-w-full tw-h-[2px] tw-bg-black tw-transform tw-scale-x-0 group-hover:tw-scale-x-100 tw-transition-transform tw-duration-300 tw-origin-left"
-              ></span> {% endcomment %}
+              {% comment %}
+                <span
+                  class="tw-absolute tw--bottom-1 tw-left-0 tw-w-full tw-h-[2px] tw-bg-black tw-transform tw-scale-x-0 group-hover:tw-scale-x-100 tw-transition-transform tw-duration-300 tw-origin-left"
+                ></span>
+              {% endcomment %}
             </span>
             {%- comment -%} Premium Dropdown Arrow {%- endcomment -%}
             {% if section.blocks.size > 1 %}
               {% comment %} <div class="tab-arrow-wrapper-{{ section.id }} tw-w-8 tw-h-8 tw-rounded-full tw-border-2 tw-border-black tw-flex tw-items-center tw-justify-center tw-transition-all tw-duration-300 group-hover:tw-bg-black group-hover:tw-border-black"> {% endcomment %}
-              {% comment %} <svg
+              {% comment %}
+                <svg
                   class="tab-arrow-{{ section.id }} tw-w-4 tw-h-4 tw-transition-all tw-duration-300 group-hover:tw-text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
-                </svg>  {% endcomment %}
-                <svg width="40" height="40" class="tab-arrow-{{ section.id }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 15L6 9H18L12 15Z" fill="black"/>
                 </svg>
+              {% endcomment %}
+              <svg
+                width="40"
+                height="40"
+                class="tab-arrow-{{ section.id }}"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M12 15L6 9H18L12 15Z" fill="black"/>
+              </svg>
               {% comment %} </div> {% endcomment %}
             {% endif %}
           </h2>
@@ -197,8 +207,6 @@
                         >
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                         </svg>
-
-
                       </div>
                       {%- comment -%} Option Text {%- endcomment -%}
                       <span class="tw-text-[15px] tw-font-medium tw-uppercase tw-tracking-wide {% if forloop.first %}tw-text-black{% else %}tw-text-gray-600{% endif %}">
@@ -220,65 +228,122 @@
     {% for block in section.blocks %}
       {% if block.type == 'tab_item' %}
         <div
-          class="tab-panel-{{ section.id }} tw-grid {{ mobile_grid_class }} {{ desktop_grid_class }} tw-gap-responsive-[12,24] {% unless forloop.first %}tw-hidden{% endunless %}"
+          class="tab-panel-{{ section.id }} {% unless forloop.first %}tw-hidden{% endunless %}"
           data-tab-panel="{{ forloop.index0 }}"
           {{ block.shopify_attributes }}
         >
-          {% assign fallback_collection = block.settings.collection_1 %}
+          <div class="tw-relative tw-flex tw-items-center tw-gap-3">
+            {%- comment -%} Prev Arrow {%- endcomment -%}
+            <div
+              class="ai4g-prev-{{ section.id }}-{{ forloop.index0 }} tw-w-[31px] tw-h-[31px] tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-z-[3] tw-opacity-0 tw-pointer-events-none tw-transition-all hover:tw-opacity-80"
+              style="display:none"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+                <circle cx="15.5" cy="15.5" r="15.5" fill="#1a1a1a"/>
+                <path d="M18 10l-6 5.5 6 5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
 
-          {% for i in (1..4) %}
-            {% assign product_key = 'product_' | append: i %}
-            {% assign product = block.settings[product_key] %}
-
-            {%- comment -%} Calculate zero-based index safely {%- endcomment -%}
-            {% assign index = i | minus: 1 %}
-
-            {%- comment -%} Fallback to collection product {%- endcomment -%}
-            {% if product == blank and fallback_collection != blank %}
-              {% assign product = fallback_collection.products[index] %}
-            {% endif %}
-
-            {% if product != blank %}
-              <div class="product-card-{{ section.id }} tw-flex tw-flex-col tw-bg-white tw-group">
-
-                <a
-                  href="{{ product.url }}"
-                  class="tw-block tw-relative tw-overflow-hidden tw-aspect-square tw-bg-[#f5f5f5]"
-                >
-                  {% if product.featured_image %}
-                    <img
-                      src="{{ product.featured_image | image_url: width: 800 }}"
-                      alt="{{ product.title | escape }}"
-                      class="tw-w-full tw-h-full tw-object-cover group-hover:tw-scale-105 tw-transition-transform tw-duration-500"
-                      loading="lazy"
-                    >
+            {%- comment -%} Swiper {%- endcomment -%}
+            <div class="swiper ai4g-swiper-{{ section.id }}-{{ forloop.index0 }} tw-flex-1 tw-min-w-0">
+              <div class="swiper-wrapper">
+                {% assign fallback_collection = block.settings.collection_1 %}
+                {% for i in (1..4) %}
+                  {% assign product_key = 'product_' | append: i %}
+                  {% assign product = block.settings[product_key] %}
+                  {% assign index = i | minus: 1 %}
+                  {% if product == blank and fallback_collection != blank %}
+                    {% assign product = fallback_collection.products[index] %}
                   {% endif %}
-                </a>
-
-                <div class="tw-pt-4 tw-text-left">
-                  <h3 class="tw-text-[16px] tw-font-medium">
-                    {{ product.title }}
-                  </h3>
-
-                  <p class="tw-text-[14px] mt-2 tw-text-gray-600 tw-font-bold">
-                    {{ product.price | money }}
-                    {%- if product.compare_at_price > product.price -%}
-                      <s class="tw-text-[12px] tw-text-[#9b9b9b] tw-ml-[8px]">{{ product.compare_at_price | money }}</s>
-                    {%- endif -%}
-                    <a href="{{ product.url }}">
-                      <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>  
-                    </a>
-                  </p>     
-                </div>
+                  {% if product != blank %}
+                    <div class="swiper-slide product-card-{{ section.id }} tw-flex tw-flex-col tw-bg-white tw-group">
+                      <a
+                        href="{{ product.url }}"
+                        class="tw-block tw-relative tw-overflow-hidden tw-aspect-square tw-bg-[#f5f5f5]"
+                      >
+                        {% if product.featured_image %}
+                          <img
+                            src="{{ product.featured_image | image_url: width: 276, format: 'webp' }}"
+                            alt="{{ product.title | escape }}"
+                            class="tw-w-full tw-h-full tw-object-cover group-hover:tw-scale-105 tw-transition-transform tw-duration-500"
+                            loading="lazy"
+                            width="276"
+                            height="276"
+                          >
+                        {% endif %}
+                      </a>
+                      <div class="tw-pt-4 tw-text-left">
+                        <h3 class="tw-text-[16px] tw-font-medium">
+                          {{ product.title }}
+                        </h3>
+                        <p class="tw-text-[14px] mt-2 tw-text-gray-600 tw-font-bold grid-price">
+                          {{ product.price | money }}
+                          {%- if product.compare_at_price > product.price -%}
+                            <s class="tw-text-[12px] tw-text-[#9b9b9b] tw-ml-[8px]">
+                              {{- product.compare_at_price | money -}}
+                            </s>
+                          {%- endif -%}
+                          <div
+                            class="loox-rating"
+                            data-id="{{ product.id }}"
+                            data-rating="{{ product.metafields.loox.avg_rating }}"
+                            data-raters="{{ product.metafields.loox.num_reviews }}"
+                          ></div>
+                        </p>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
               </div>
-            {% endif %}
-          {% endfor %}
+            </div>
+
+            {%- comment -%} Next Arrow {%- endcomment -%}
+            <div class="ai4g-next-{{ section.id }}-{{ forloop.index0 }} tw-w-[31px] tw-h-[31px] tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-z-[3] tw-transition-all hover:tw-opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+                <circle cx="15.5" cy="15.5" r="15.5" fill="#1a1a1a"/>
+                <path d="M13 10l6 5.5-6 5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
         </div>
       {% endif %}
     {% endfor %}
   </div>
   {%- comment -%} Styles {%- endcomment -%}
   <style>
+    /* Pre-init slide layout — mirrors Swiper breakpoints to prevent CLS before JS runs */
+    #AI-4GridTabProduct-{{ section.id }} .swiper-wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    #AI-4GridTabProduct-{{ section.id }} .swiper-slide {
+      flex-shrink: 0;
+      width: 100%;
+      margin-right: 12px;
+      box-sizing: border-box;
+    }
+    @media (min-width: 480px) {
+      #AI-4GridTabProduct-{{ section.id }} .swiper-slide {
+        width: calc(50% - 6px);
+      }
+    }
+    @media (min-width: 768px) {
+      #AI-4GridTabProduct-{{ section.id }} .swiper-slide {
+        width: calc(33.333% - 10.667px);
+        margin-right: 16px;
+      }
+    }
+    @media (min-width: 1024px) {
+      #AI-4GridTabProduct-{{ section.id }} .swiper-slide {
+        {% if desktop_cols == '2' %}
+        width: calc(50% - 12px);
+        {% else %}
+        width: calc(25% - 18px);
+        {% endif %}
+        margin-right: 24px;
+      }
+    }
+
     /* Premium Dropdown Animation */
     .tab-dropdown-{{ section.id }}.show {
       opacity: 1 !important;
@@ -304,6 +369,13 @@
     /* Dropdown hover effects */
     .tab-option-{{ section.id }}:hover .tab-check-{{ section.id }} {
       border-color: #000 !important;
+    }
+    .grid-price{
+     font-family: Gotham;
+     font-size: 16px;
+     margin-top: 5px;
+     margin-bottom: 5px;
+     color: rgba(0, 0, 0, 0.6);
     }
   </style>
   {%- comment -%} JavaScript {%- endcomment -%}
@@ -345,6 +417,8 @@
         const activePanel = document.querySelector('.tab-panel-{{ section.id }}[data-tab-panel="' + index + '"]');
         if (activePanel) {
           activePanel.classList.remove('tw-hidden');
+          const panelSwipers = window['ai4gSwipers_' + sectionIdClean];
+          if (panelSwipers && panelSwipers[index]) panelSwipers[index].update();
         }
         // Update dropdown options
         const options = document.querySelectorAll('.tab-option-{{ section.id }}');
@@ -397,6 +471,77 @@
         if (dropdown && dropdownOpen && !selector.contains(e.target) && !dropdown.contains(e.target)) {
           window['toggleTabDropdown' + sectionIdClean](null);
         }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var sectionId = '{{ section.id }}';
+      var panelCount = {{ section.blocks.size }};
+      var desktopCols = {{ desktop_cols }};
+      var swipers = {};
+
+      function updateArrows(s, prevBtn, nextBtn) {
+        var allFit = s.isBeginning && s.isEnd;
+        if (prevBtn) {
+          prevBtn.style.display = allFit ? 'none' : 'flex';
+          prevBtn.classList.toggle('tw-opacity-0',           s.isBeginning);
+          prevBtn.classList.toggle('tw-pointer-events-none', s.isBeginning);
+          prevBtn.classList.toggle('tw-opacity-100',         !s.isBeginning);
+        }
+        if (nextBtn) {
+          nextBtn.style.display = allFit ? 'none' : 'flex';
+          nextBtn.classList.toggle('tw-opacity-0',           s.isEnd);
+          nextBtn.classList.toggle('tw-pointer-events-none', s.isEnd);
+          nextBtn.classList.toggle('tw-opacity-100',         !s.isEnd);
+        }
+      }
+
+      function initPanelSwiper(i) {
+        var prevBtn = document.querySelector('.ai4g-prev-' + sectionId + '-' + i);
+        var nextBtn = document.querySelector('.ai4g-next-' + sectionId + '-' + i);
+
+        var swiper = new Swiper('.ai4g-swiper-' + sectionId + '-' + i, {
+          loop: false,
+          navigation: {
+            nextEl: '.ai4g-next-' + sectionId + '-' + i,
+            prevEl: '.ai4g-prev-' + sectionId + '-' + i,
+          },
+          observer: true,
+          observeParents: true,
+          breakpoints: {
+            0:    { slidesPerView: 1, spaceBetween: 12 },
+            480:  { slidesPerView: 2,   spaceBetween: 12 },
+            768:  { slidesPerView: 3,   spaceBetween: 16 },
+            1024: { slidesPerView: desktopCols, spaceBetween: 24 }
+          },
+          on: {
+            init:        function () { updateArrows(this, prevBtn, nextBtn); },
+            slideChange: function () { updateArrows(this, prevBtn, nextBtn); },
+            resize:      function () { updateArrows(this, prevBtn, nextBtn); },
+            breakpoint:  function () { updateArrows(this, prevBtn, nextBtn); }
+          }
+        });
+
+        swipers[i] = swiper;
+      }
+
+      function initAllSwipers() {
+        for (var i = 0; i < panelCount; i++) {
+          initPanelSwiper(i);
+        }
+        window['ai4gSwipers_{{ section.id | replace: "-", "" }}'] = swipers;
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAllSwipers);
+      } else {
+        initAllSwipers();
+      }
+
+      document.addEventListener('shopify:section:load', function (e) {
+        if (e.detail.sectionId === sectionId) initAllSwipers();
       });
     })();
   </script>

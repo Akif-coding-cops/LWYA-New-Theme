@@ -51,6 +51,11 @@
       "step": 5,
       "unit": "px",
       "default": 115
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
     }
   ],
   "blocks": [
@@ -117,6 +122,28 @@
       font-family: 'Gotham-Book' !important;
       font-size: 3rem !important;
     }
+
+    @media (max-width: 767px) {
+      .lwya-promise-{{ section.id }} {
+        padding-top: 24px !important;
+        padding-bottom: 24px !important;
+      }
+      .lwya-promise-{{ section.id }} .lwya-promise-heading {
+        font-size: 17px !important;
+      }
+      .lwya-promise-{{ section.id }} .lwya-promise-icon-wrap {
+        width: 28px !important;
+        height: 28px !important;
+      }
+      .lwya-promise-{{ section.id }} .lwya-promise-icon-img {
+        max-width: 28px !important;
+        max-height: 28px !important;
+      }
+      .lwya-promise-{{ section.id }} .lwya-promise-content {
+        font-size: 9px !important;
+        margin-top: 16px !important;
+      }
+    }
   </style>
 
   <section
@@ -131,21 +158,21 @@
         {{ section.settings.heading }}
       </h2>
 
-      <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-6 tw-gap-[20px] tw-mt-[45px] md:tw-mt-[90px]">
+      <div class="tw-grid tw-grid-cols-6 tw-gap-[5px] md:tw-gap-[20px] tw-mt-[24px] md:tw-mt-[90px]">
         {% for block in section.blocks %}
           {% if block.type == 'value' %}
-            <div class="tw-flex tw-flex-col tw-items-center tw-gap-[14px]" {{ block.shopify_attributes }}>
+            <div class="tw-flex tw-flex-col tw-items-center tw-gap-[6px] md:tw-gap-[12px]" {{ block.shopify_attributes }}>
               {% if block.settings.icon != blank %}
-                <div class="tw-w-[81px] tw-h-[81px] tw-flex tw-items-center tw-justify-center">
+                <div class="tw-w-[81px] tw-h-[81px] tw-flex tw-items-center tw-justify-center lwya-promise-icon-wrap">
                   <img
                     src="{{ block.settings.icon | image_url: width: 200 }}"
                     alt="{{ block.settings.label | escape }}"
-                    class="tw-max-w-[81px] tw-max-h-[81px] tw-w-auto tw-h-auto tw-object-contain"
+                    class="tw-max-w-[81px] tw-max-h-[81px] tw-w-auto tw-h-auto tw-object-contain lwya-promise-icon-img"
                     loading="lazy"
                   >
                 </div>
               {% endif %}
-              <div class="tw-text-[14px] md:tw-text-[22px] tw-leading-[1.4] tw-text-[#000000]">
+              <div class="tw-text-[10px] md:tw-text-[22px] tw-leading-[1.4] tw-text-[#000000]">
                 {{ block.settings.label }}
               </div>
             </div>
@@ -154,7 +181,7 @@
       </div>
     </div>
   <div class="lwya-promise-content">
-      <a href="#">Click Here to see extensive list</a>
+      <a href="{{ section.settings.link_url | default: '#' }}" target="_blank" rel="noopener">Click Here to see extensive list</a>
     </div>
   </section>
 

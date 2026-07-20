@@ -1,0 +1,249 @@
+{%- if section.blocks.size > 0 -%}
+  <style>
+    :root {
+      --announcement-bar-is-sticky: {% if section.settings.enable_sticky %}1{% else %}0{% endif %};
+      {%- if section.index == 1 and section.settings.enable_sticky == false -%}
+        --header-scroll-tracker-offset: var(--announcement-bar-height);
+      {%- endif -%}
+    }
+
+    {%- if section.settings.enable_sticky -%}
+      #shopify-section-{{ section.id }} {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+      .shopify-section--header ~ #shopify-section-{{ section.id }} {
+        top: calc(var(--header-is-sticky, 0) * var(--header-height, 0px));
+        z-index: 4;
+      }
+    {%- endif -%}
+
+    .lwya-newann-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 20px;
+      min-height: 40px;
+    }
+
+    .lwya-newann-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 1400px;
+    }
+
+    .lwya-newann-swiper {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lwya-newann-swiper .swiper-wrapper {
+      align-items: center;
+    }
+    .lwya-newann-swiper .swiper-slide {
+      height: auto !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lwya-newann-swiper .swiper-slide p {
+      margin: 0;
+      font-size: {{ section.settings.mobile_font_size | divided_by: 16.0 }}rem;
+      text-align: center;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .lwya-newann-swiper .swiper-slide-active p {
+      opacity: 1;
+    }
+
+    @media screen and (min-width: 999px) {
+      .lwya-newann-swiper .swiper-slide p {
+        font-size: {{ section.settings.desktop_font_size | divided_by: 16.0 }}rem;
+      }
+    }
+
+    /* Manual dots — no Swiper pagination, so no Swiper CSS interference */
+    .lwya-newann-dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+    .lwya-newann-dot {
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.35;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .lwya-newann-dot.is-active {
+      opacity: 1;
+    }
+  </style>
+
+  <height-observer variable="announcement-bar">
+    <div class="lwya-newann-bar color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+      <div class="lwya-newann-wrapper">
+        <div class="swiper lwya-newann-swiper" id="lwya-newann-swiper-{{ section.id }}">
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              <div class="swiper-slide" {{ block.shopify_attributes }}>
+                <p class="prose heading">{{- block.settings.text -}}</p>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        {%- if section.blocks.size > 1 -%}
+          <div class="lwya-newann-dots" id="lwya-newann-dots-{{ section.id }}">
+            {%- for block in section.blocks -%}
+              <span
+                class="lwya-newann-dot{% if forloop.first %} is-active{% endif %}"
+                data-index="{{ forloop.index0 }}"
+              ></span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </height-observer>
+
+  <script>
+    (function () {
+      var el = document.getElementById('shopify-section-{{ section.id }}');
+      if (el)
+        document.documentElement.style.setProperty('--announcement-bar-height', el.clientHeight.toFixed(2) + 'px');
+    })();
+  </script>
+
+  {%- if section.blocks.size > 1 -%}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof Swiper === 'undefined') return;
+
+        var dotsContainer = document.getElementById('lwya-newann-dots-{{ section.id }}');
+        var dots = dotsContainer ? dotsContainer.querySelectorAll('.lwya-newann-dot') : [];
+
+        function setActiveDot(index) {
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle('is-active', i === index);
+          });
+        }
+
+        dots.forEach(function (dot) {
+          dot.addEventListener('click', function () {
+            swiper.slideToLoop(parseInt(dot.dataset.index));
+          });
+        });
+
+        var swiper = new Swiper('#lwya-newann-swiper-{{ section.id }}', {
+          slidesPerView: 1,
+          speed: 1000,
+          loop: true,
+          {% if section.settings.autoplay %}
+          autoplay: {
+            delay: {{ section.settings.cycle_speed | times: 1000 }},
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+          {% endif %}
+          on: {
+            slideChange: function () {
+              setActiveDot(this.realIndex);
+            },
+          },
+        });
+      });
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement Bar (New)",
+  "class": "shopify-section--announcement-bar",
+  "tag": "aside",
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Announcement Bar (New)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "t:sections.announcement_bar.blocks.message.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:sections.announcement_bar.blocks.message.text",
+          "default": "Announce something here"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "t:sections.announcement_bar.enable_sticky_bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "t:sections.announcement_bar.auto_rotate_between_messages",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "cycle_speed",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "unit": "sec",
+      "label": "t:sections.announcement_bar.cycle_speed",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "desktop_font_size",
+      "min": 9,
+      "max": 15,
+      "unit": "px",
+      "label": "t:sections.announcement_bar.desktop_text_size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "min": 9,
+      "max": 15,
+      "unit": "px",
+      "label": "t:sections.announcement_bar.mobile_text_size",
+      "default": 10
+    }
+  ]
+}
+{% endschema %}

@@ -128,8 +128,8 @@
           <div class="product-image-container tw-w-full tw-relative tw-bg-[#F8E7EB] tw-overflow-hidden {% if product_obj.images[1] %}has-second-image{% endif %}">
             <div class="tw-relative" style="padding-bottom: 100%;">
               <img
-                src="{{ product_obj.featured_image | image_url: width: 1000 }}"
-                alt="{{ product_obj.featured_image.alt | escape }}"
+                src="{{ product_obj.featured_image | image_url: width: 1000, format: 'webp' }}"
+                alt="{{ product_obj.featured_image.alt | default: product_obj.title | escape }}"
                 class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover product-image-main"
                 loading="lazy"
                 width="1000"
@@ -137,8 +137,8 @@
               >
               {% if product_obj.images[1] %}
                 <img
-                  src="{{ product_obj.images[1] | image_url: width: 1000 }}"
-                  alt="{{ product_obj.images[1].alt | escape }}"
+                  src="{{ product_obj.images[1] | image_url: width: 1000, format: 'webp' }}"
+                  alt="{{ product_obj.images[1].alt | default: product_obj.title | escape }}"
                   class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover product-image-hover tw-opacity-0"
                   loading="lazy"
                   width="1000"
@@ -250,7 +250,7 @@
           {% if first_variant %}
             <button
               type="button"
-              class="add-to-cart-btn tw-inline-block tw-px-[32px] tw-py-[14px] tw-text-[13px] tw-font-[600] tw-text-center tw-uppercase tw-tracking-wider tw-transition-all tw-duration-300"
+              class="add-to-cart-btn tw-mt-[10px] tw-inline-block tw-px-[32px] tw-py-[14px] tw-text-[13px] tw-font-[600] tw-text-center tw-uppercase tw-tracking-wider tw-transition-all tw-duration-300"
               style="background: {{ section.settings.button_bg }}; color: {{ section.settings.button_text }}; width:fit-content "
               data-variant-id="{{ first_variant.id }}"
               onclick="event.stopPropagation();"

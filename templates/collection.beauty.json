@@ -237,7 +237,7 @@
         "image_bpxVdA": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/Rectangle126_2.png",
+            "bubble_img": "shopify://shop_images/Rectangle_376.png",
             "bubble_text": "FRAGRANCE",
             "bubble_link": "https://lwya.com/collections/fragrance"
           }
@@ -251,9 +251,7 @@
         "image_KbqxjC",
         "image_bpxVdA"
       ],
-      "custom_css": [
-        ".custom-wrapper-category {display: grid !important;}"
-      ],
+      "custom_css": [],
       "name": "SS - Circle Menu",
       "settings": {
         "slider_width": 100,
@@ -269,7 +267,7 @@
         "text_custom": true,
         "text_font": "josefin_sans_n4",
         "text_size": 28,
-        "text_size_mobile": 10,
+        "text_size_mobile": 20,
         "text_height": 100,
         "text_mt": 18,
         "icon_border_color": "#121212",
@@ -283,7 +281,7 @@
         "margin_bottom": 0,
         "padding_top": 36,
         "padding_bottom": 100,
-        "padding_horizontal": 0,
+        "padding_horizontal": 2,
         "padding_horizontal_mobile": 1.5,
         "full_width": true,
         "content_width": 1500,

@@ -22,6 +22,8 @@
             src="{{ section.settings.banner_image_desktop | image_url: width: 2000 }}"
             alt="Banner"
             loading="eager"
+            width="2000"
+            height="{{ 2000 | divided_by: section.settings.banner_image_desktop.aspect_ratio | round }}"
             class="tw-w-full tw-object-cover"
           >
         {% endif %}
@@ -39,6 +41,8 @@
             src="{{ section.settings.banner_image_mobile | image_url: width: 1200 }}"
             alt="Banner"
             loading="eager"
+            width="1200"
+            height="{{ 1200 | divided_by: section.settings.banner_image_mobile.aspect_ratio | round }}"
             class="tw-w-full tw-object-cover"
           >
         {% elsif section.settings.banner_image_desktop != blank %}
@@ -46,6 +50,8 @@
             src="{{ section.settings.banner_image_desktop | image_url: width: 1200 }}"
             alt="Banner"
             loading="eager"
+            width="1200"
+            height="{{ 1200 | divided_by: section.settings.banner_image_desktop.aspect_ratio | round }}"
             class="tw-w-full tw-object-cover"
           >
         {% elsif section.settings.banner_video != blank %}
@@ -61,14 +67,14 @@
   {%- comment -%} ===== SECTION HEADER ===== {%- endcomment -%}
   {% if section.settings.section_title != blank or section.settings.section_subtitle != blank %}
     <div class="tw-mx-auto tw-px-[16px] tw-text-center tw-mb-[40px] md:tw-mb-[60px]" style="max-width: 1332px">
-      <div class="tw-flex tw-flex-col tw-gap-[30px]">
+      <div class="tw-flex tw-flex-col">
         {% if section.settings.section_title != blank %}
-          <h2 class="!tw-font-didot tw-text-[28px] md:tw-text-[42px] tw-italic caption-prod-collection">
+          <h2 class="!tw-font-gotham tw-text-[28px] md:tw-text-[42px] tw-uppercase caption-prod-collection">
             {{ section.settings.section_title }}
           </h2>
         {% endif %}
         {% if section.settings.section_subtitle != blank %}
-          <p class="tw-uppercase tw-tracking-[0.05em] tw-text-[20px] md:tw-text-[28px]">
+          <p class="tw-tracking-[0.05em] tw-text-[20px] md:tw-text-[28px]">
             {{ section.settings.section_subtitle }}
           </p>
         {% endif %}
@@ -118,7 +124,33 @@
         <div class="bsc-grid-container">
           <div class="bsc-grid">
             {% for product in sale_collection.products %}
-              {% render 'lwya-product-card', product: product, sec_settings: section.settings, show_badge: true %}
+              {%- liquid
+                assign sale_variant_count = 0
+                assign total_variant_count = product.variants.size
+                for variant in product.variants
+                  if variant.compare_at_price > variant.price and variant.compare_at_price > 0
+                    assign sale_variant_count = sale_variant_count | plus: 1
+                  endif
+                endfor
+              -%}
+
+              {%- if sale_variant_count == 0 -%}
+                {% render 'lwya-product-card', product: product, sec_settings: section.settings, show_badge: true %}
+                {%- comment -%}No variants on sale — skip entirely{%- endcomment -%}
+              {%- elsif sale_variant_count == total_variant_count -%}
+                {% render 'lwya-product-card', product: product, sec_settings: section.settings, show_badge: true %}
+              {%- else -%}
+                {%- for variant in product.variants -%}
+                  {%- if variant.compare_at_price > variant.price and variant.compare_at_price > 0 -%}
+                    {% render 'lwya-product-card',
+                      product: product,
+                      sec_settings: section.settings,
+                      show_badge: true,
+                      forced_variant: variant
+                    %}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
             {% endfor %}
           </div>
         </div>

@@ -241,7 +241,7 @@
           }
         },
         "reelup_shoppable_videos_reels_reelup_product_slider_eeWXAq": {
-          "type": "shopify://apps/reelup-shoppable-videos-reels/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
+          "type": "shopify://apps/reelup-shoppable-videos/blocks/reelup_product_slider/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b",
           "disabled": true,
           "settings": {}
         }
@@ -528,7 +528,7 @@
           "type": "faq_item",
           "settings": {
             "question": "{{ product.metafields.custom.question_5_.value }}",
-            "answer": "<p>Vivacity is bright, fresh, and full of life — created to feel radiant and confident.{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
+            "answer": "<p>{{ product.metafields.custom.question_5_description | metafield_tag }}</p>"
           }
         },
         "faq_item_icaza4": {

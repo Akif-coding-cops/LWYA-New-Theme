@@ -85,7 +85,7 @@
 
     #shopify-section-{{ section.id }} .header__primary-nav ul {
       display: flex;
-      gap: 1.5rem; 
+      gap: 1.5rem;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -104,8 +104,8 @@
 
   /* Custom cart icon styling */
   #shopify-section-{{ section.id }} .header__secondary-nav img[alt="Cart"] {
-    width: 27px !important;
-    height: 27px !important;
+    width: 27px;
+    height: auto;
     filter: contrast(1.3);
   }
 
@@ -257,6 +257,24 @@
       }
     }
   {%- endif -%}
+  /* Dropdown positioning */
+  #shopify-section-{{ section.id }} .header__primary-nav-item.has-submenu {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    z-index: 100;
+    list-style: none;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item.has-submenu:hover .dropdown-menu {
+    display: block !important;
+  }
 </style>
 
 <script>
@@ -294,14 +312,6 @@
       const overlay = searchModal?.querySelector('.custom-search-modal__overlay');
       const predictiveSearch = searchModal?.querySelector('predictive-search');
 
-      console.log('🔍 Search Modal Debug:', {
-        searchModalId,
-        hasSearchModal: !!searchModal,
-        hasSearchForm: !!searchForm,
-        formId: searchForm?.id,
-        hasPredictiveSearch: !!predictiveSearch,
-      });
-
       if (!searchTrigger || !searchModal) return;
 
       // Open modal
@@ -334,9 +344,6 @@
       // Allow form submission on Enter key
       if (searchForm) {
         searchForm.addEventListener('submit', function (e) {
-          console.log('📝 Form submit event triggered');
-          console.log('Form action:', this.action);
-          console.log('Search query:', searchInput?.value);
           // Don't prevent default - let form submit naturally
         });
       }
@@ -346,13 +353,7 @@
         predictiveSearch.addEventListener('click', function (e) {
           const viewAllButton = e.target.closest('button[form]');
           if (viewAllButton) {
-            console.log('🔘 View all results button clicked');
-            console.log('Button form attribute:', viewAllButton.getAttribute('form'));
-            console.log('Target form ID:', searchForm?.id);
-
-            // Manually trigger form submission if form attribute doesn't match
             if (searchForm && viewAllButton.getAttribute('form') !== searchForm.id) {
-              console.log('⚠️ Form ID mismatch - manually submitting form');
               e.preventDefault();
               searchForm.submit();
             }
@@ -384,7 +385,6 @@
           // Update "View all results" button form attribute
           const viewAllButton = predictiveSearch.querySelector('button[form]');
           if (viewAllButton && searchForm) {
-            console.log('🔧 Updating View all button form attribute to:', searchForm.id);
             viewAllButton.setAttribute('form', searchForm.id);
           }
         });
@@ -415,7 +415,7 @@
   >
     {%- if section.settings.background_image != blank -%}
       <img
-        src="{{ section.settings.background_image | image_url: width: 1440 }}"
+        src="{{ section.settings.background_image | image_url: width: 1440, format: 'webp' }}"
         alt="Header background"
         class="header-background-image"
         width="1440"
@@ -435,61 +435,61 @@
           {%- render 'icon' with 'hamburger', class: 'header__nav-icon' -%}
         </button>
 
-        {% comment %} {%- if menu.links.size > 0 -%}
+        {% comment %}
+          {%- if menu.links.size > 0 -%}
+            <ul class="contents unstyled-list md-max:hidden lg:flex">
+              {%- for link in menu.links -%}
+                <li class="header__primary-nav-item">
+                  <a
+                    href="{{ link.url }}"
+                    class="block h6"
+                    {% if link.current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    {{ link.title }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        {% endcomment %}
+
+        {%- if menu.links.size > 0 -%}
           <ul class="contents unstyled-list md-max:hidden lg:flex">
             {%- for link in menu.links -%}
-              <li class="header__primary-nav-item">
+              {%- assign has_dropdown = false -%}
+              {%- if link.links.size > 0 -%}{%- assign has_dropdown = true -%}{%- endif -%}
+
+              <li class="header__primary-nav-item {% if has_dropdown %}has-submenu{% endif %}">
                 <a
                   href="{{ link.url }}"
-                  class="block h6"
+                  class="block h6 flex items-center gap-1"
                   {% if link.current %}
                     aria-current="page"
                   {% endif %}
                 >
                   {{ link.title }}
+                  {% if has_dropdown %}
+                    <span class="icon-chevron-down"></span>
+                  {% endif %}
                 </a>
-              </li>
-            {%- endfor -%}
-          </ul>
-        {%- endif -%} {% endcomment %}
 
-
-        {%- if menu.links.size > 0 -%}
-  <ul class="contents unstyled-list md-max:hidden lg:flex">
-    {%- for link in menu.links -%}
-      {%- assign has_dropdown = false -%}
-      {%- if link.links.size > 0 -%}{%- assign has_dropdown = true -%}{%- endif -%}
-
-      <li class="header__primary-nav-item {% if has_dropdown %}has-submenu{% endif %}">
-        <a
-          href="{{ link.url }}"
-          class="block h6 flex items-center gap-1"
-          {% if link.current %}aria-current="page"{% endif %}
-        >
-          {{ link.title }}
-          {% if has_dropdown %}
-            <span class="icon-chevron-down"></span> {% endif %}
-        </a>
-
-        {%- if has_dropdown -%}
-          <ul class="dropdown-menu shadow-md border absolute bg-white p-4 hidden navbar-links-li" style="left:120px; ">
-            {%- for childlink in link.links -%}
-              <li class="dropdown-item py-1">
-                <a href="{{ childlink.url }}" class="text-sm hover:text-red-500">
-                  {{ childlink.title }}
-                </a>
+                {%- if has_dropdown -%}
+                  <ul class="dropdown-menu shadow-md border absolute bg-white p-4 hidden navbar-links-li">
+                    {%- for childlink in link.links -%}
+                      <li class="dropdown-item py-1">
+                        <a href="{{ childlink.url }}" class="text-sm hover:text-red-500">
+                          {{ childlink.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
               </li>
             {%- endfor -%}
           </ul>
         {%- endif -%}
-      </li>
-    {%- endfor -%}
-  </ul>
-{%- endif -%}
-
-
-
-
       </nav>
     {%- endif -%}
 
@@ -552,7 +552,7 @@
           {% endif %}
           aria-label="{{ 'header.general.cart' | t | escape }}"
         >
-          <img src="{{ 'cartnew.png' | asset_url }}" alt="Cart" width="27" height="27" style="display: block;">
+          <img src="{{ 'cartnew.png' | asset_url }}" alt="Cart" width="27" height="25" style="display: block;">
         </a>
       {%- endif -%}
     </nav>

@@ -2,16 +2,26 @@
   assign current_variant = product.selected_or_first_available_variant
 -%}
 
-<div class="tw-text-[35px] tw-leading-[28px] tw-font-bold tw-text-[#d41870] pdp-price" data-product-price>
-  {{ current_variant.price | money }}
+<div class="tw-flex tw-items-baseline tw-gap-[10px] pdp-price" data-product-price>
   {%- if current_variant.compare_at_price > current_variant.price -%}
-    <s class="tw-text-[18px] tw-text-[#9b9b9b] tw-ml-[8px]">{{ current_variant.compare_at_price | money }}</s>
+    <s class="tw-text-[35px] tw-font-bold tw-text-[#c5c5c5] tw-no-underline tw-relative pdp-price__compare">
+      {{- current_variant.compare_at_price | money -}}
+    </s>
   {%- endif -%}
+  <span class="tw-text-[35px] tw-font-bold tw-text-[#d41870]">{{ current_variant.price | money }}</span>
 </div>
 
 <style>
   .pdp-price {
     font-family: 'Gotham' !important;
     font-weight: 700;
+    leading-trim: both;
+  }
+  .pdp-price__compare {
+    text-decoration: line-through;
+    text-decoration-color: #000000;
+    text-decoration-thickness: 2px;
+    color: #c5c5c5;
+    font-family: 'Gotham' !important;
   }
 </style>

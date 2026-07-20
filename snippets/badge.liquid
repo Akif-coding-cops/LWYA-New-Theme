@@ -1,6 +1,5 @@
 {% style %}
   .bs-badge {
-    position: absolute;
     background: #000000;
     color: #ffffff;
     font-family: 'Gotham', sans-serif;
@@ -14,6 +13,9 @@
     align-items: center;
     justify-content: center;
     white-space: nowrap;
+  }
+  .bs-badge--positioned {
+    position: absolute;
     z-index: 1;
   }
   .bs-badge--top-left {
@@ -24,10 +26,39 @@
     top: 14px;
     right: 14px;
   }
+  .bs-badge--small {
+    font-size: 10px;
+    height: 24px;
+    min-width: 80px;
+    padding: 0 7px;
+  }
+  .bs-badge-stack {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    z-index: 1;
+  }
+  .bs-badge-stack--top-left {
+    top: 14px;
+    left: 14px;
+  }
+  .bs-badge-stack--top-right {
+    top: 14px;
+    right: 14px;
+  }
 {% endstyle %}
 
 {%- assign badge_pos = position | default: 'top-right' -%}
-{%- assign badge_bg_color = bg_color | default: '#000000' -%}
-{%- assign badge_text = text | default: 'BEST SELLER' -%}
+{%- assign badge_size = size | default: 'default' -%}
 
-<div class="bs-badge bs-badge--{{ badge_pos }}" style="background: {{ badge_bg_color }};">{{ badge_text }}</div>
+{%- if badges != blank and badges.size > 0 -%}
+  <div class="bs-badge-stack bs-badge-stack--{{ badge_pos }}">
+    {%- for badge_item in badges -%}
+      <div class="bs-badge{% if badge_size == 'small' %} bs-badge--small{% endif %}" style="background: {{ badge_item.background_color | default: '#000000' }};">{{ badge_item.text }}</div>
+    {%- endfor -%}
+  </div>
+{%- elsif text != blank -%}
+  {%- assign badge_bg_color = bg_color | default: '#000000' -%}
+  <div class="bs-badge bs-badge--positioned bs-badge--{{ badge_pos }}{% if badge_size == 'small' %} bs-badge--small{% endif %}" style="background: {{ badge_bg_color }};">{{ text }}</div>
+{%- endif -%}

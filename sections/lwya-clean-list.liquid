@@ -1,0 +1,432 @@
+{% style %}
+  .lwya-clean-list {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+  .lwya-clean-list__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .lwya-clean-list__heading {
+    font-family: 'Gotham', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #d41870;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .lwya-clean-list__subheading {
+    font-family: 'Gotham', sans-serif;
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .lwya-clean-list__table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .lwya-clean-list__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Gotham', sans-serif;
+    font-size: 14px;
+  }
+  .lwya-clean-list__table thead th {
+    background-color: #d41870;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 14px 16px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .lwya-clean-list__table tbody tr {
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .lwya-clean-list__table tbody tr:nth-child(even) {
+    background-color: #fdf4f8;
+  }
+  .lwya-clean-list__table tbody tr:hover {
+    background-color: #fce8f2;
+  }
+  .lwya-clean-list__table td {
+    padding: 14px 16px;
+    vertical-align: top;
+    line-height: 1.6;
+    color: #1c1c1c;
+  }
+  .lwya-clean-list__table td:first-child {
+    font-weight: 600;
+    width: 30%;
+    min-width: 180px;
+  }
+  .lwya-clean-list__table td:nth-child(2) {
+    width: 12%;
+    min-width: 110px;
+  }
+  .lwya-clean-list__table td:nth-child(3) {
+    width: 22%;
+    min-width: 160px;
+  }
+  .lwya-clean-list__table td:nth-child(4) {
+    width: 36%;
+    min-width: 200px;
+  }
+  .lwya-clean-list__badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .lwya-clean-list__badge--prohibited {
+    background-color: #fce8f2;
+    color: #d41870;
+  }
+  .lwya-clean-list__badge--restricted {
+    background-color: #fff3e0;
+    color: #e65100;
+  }
+  .lwya-clean-list__inci {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.7;
+  }
+  @media (max-width: 768px) {
+    .lwya-clean-list__heading { font-size: 26px; }
+    .lwya-clean-list__table { font-size: 13px; }
+    .lwya-clean-list__table thead th,
+    .lwya-clean-list__table td { padding: 10px 12px; }
+  }
+{% endstyle %}
+
+<section class="lwya-clean-list">
+  <div class="lwya-clean-list__container">
+    <h1 class="lwya-clean-list__heading">{{ section.settings.heading }}</h1>
+    <p class="lwya-clean-list__subheading">{{ section.settings.subheading }}</p>
+
+    <div class="lwya-clean-list__table-wrap">
+      <table class="lwya-clean-list__table">
+        <thead>
+          <tr>
+            <th>Ingredient</th>
+            <th>Status</th>
+            <th>About</th>
+            <th>Examples of INCI Names</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Acrylates</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Film formers</td>
+            <td class="lwya-clean-list__inci">Ethyl Acrylate<br>Ethyl Methacrylate<br>Butyl Methacrylate<br>Methyl Methacrylate<br>Hydroxypropyl Methacrylate<br>Tetrahydrofurfuryl Methacrylate<br>Trimethylolpropane Trimethacrylate</td>
+          </tr>
+          <tr>
+            <td>Aluminum Salts</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Anti-perspirant active ingredients</td>
+            <td class="lwya-clean-list__inci">Aluminum Chloride<br>Aluminum Chlorohydrate<br>Aluminum Chlorohydrex<br>Aluminum Dichlorohydrate<br>Aluminum Sesquichlorohydrate<br>Aluminum Zirconium Octachlorohydrate<br>Aluminum Zirconium Octachlorohydrex Gly<br>Aluminum Zirconium Pentachlorohydrate<br>Aluminum Zirconium Pentachlorohydrex Gly<br>Aluminum Zirconium Tetrachlorohydrate<br>Aluminum Zirconium Tetrachlorohydrex Gly<br>Aluminum Zirconium Trichlorohydrate<br>Aluminum Zirconium Trichlorohydrex Gly Tot</td>
+          </tr>
+          <tr>
+            <td>Animal Musk's / Fats / Oils</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Animal-derived skin conditioners</td>
+            <td class="lwya-clean-list__inci">Cetyl Tallowate<br>Tallow</td>
+          </tr>
+          <tr>
+            <td>Beeswax / Honey</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Animal-derived skin conditioners</td>
+            <td class="lwya-clean-list__inci">Beeswax<br>Honey</td>
+          </tr>
+          <tr>
+            <td>Benzophenone Based Ingredients (Oxybenzone)</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Formula stabilizers and fragrance ingredients</td>
+            <td class="lwya-clean-list__inci">Benzophenone<br>Benzophenone-1<br>Benzophenone-2<br>Benzophenone-3<br>Benzophenone-4<br>Benzophenone-5<br>Benzophenone-6<br>Benzophenone-7<br>Benzophenone-8<br>Benzophenone-9<br>Benzophenone-10<br>Benzophenone-11<br>Benzophenone-12<br>Methyl Benzophenone<br>Stearaminocarbonyl Benzophenone-4<br>Trimethylbenzophenone<br>VA/Crotonates/Methacryloxybenzophenone-1 Copolymer</td>
+          </tr>
+          <tr>
+            <td>Butoxyethanol</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Fragrance ingredient and solvent</td>
+            <td class="lwya-clean-list__inci">Butoxyethanol</td>
+          </tr>
+          <tr>
+            <td>Butylated Hydroxyanisole (BHA)</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Formula stabilizer</td>
+            <td class="lwya-clean-list__inci">BHA</td>
+          </tr>
+          <tr>
+            <td>Butylated Hydroxytoluene (BHT)</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--restricted">Restricted</span></td>
+            <td>Formula stabilizer, must be 0.5% or less of total formula</td>
+            <td class="lwya-clean-list__inci">BHT</td>
+          </tr>
+          <tr>
+            <td>Carbon Black or Black 2</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Colorants</td>
+            <td class="lwya-clean-list__inci">Carbon Black<br>Black 2</td>
+          </tr>
+          <tr>
+            <td>Carmine</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Animal-derived colorant</td>
+            <td class="lwya-clean-list__inci">Carmine</td>
+          </tr>
+          <tr>
+            <td>Coal Tar Based Ingredients</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Sanitizers and denaturants</td>
+            <td class="lwya-clean-list__inci">Coal Tar<br>Naphtha Multiple<br>High Solvent Naphtha<br>Naphtha Distillate<br>Tar</td>
+          </tr>
+          <tr>
+            <td>Cyclic Silicones (Cyclomethicones, D4, D5 and D6)</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Solvents and hair/skin conditioners. Max of &lt;0.1% as technically unavoidable impurity only</td>
+            <td class="lwya-clean-list__inci">Cyclotetrasiloxane or D4<br>Cyclopentasiloxane or D5<br>Cyclohexasiloxane or D6</td>
+          </tr>
+          <tr>
+            <td>Dihydroxyacetone</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--restricted">Restricted</span></td>
+            <td>Tanning agent, must be below 10% of total formula</td>
+            <td class="lwya-clean-list__inci">Dihydroxyacetone</td>
+          </tr>
+          <tr>
+            <td>EDTA Based Ingredients</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--restricted">Restricted</span></td>
+            <td>Restricted use as a (metal binding) agent only: Allowed up to 0.2% but only if no substitute can be found</td>
+            <td class="lwya-clean-list__inci">EDTA<br>Ethylenediaminetetraacetic Acid<br>Disodium EDTA<br>Calcium Disodium EDTA<br>Tetrasodium EDTA<br>Trisodium EDTA</td>
+          </tr>
+          <tr>
+            <td>Ethanolamines</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Formula pH adjusters</td>
+            <td class="lwya-clean-list__inci">Diethanolamine (DEA)<br>Ethanolamine (ETA)<br>Monoethanolamine (MEA)<br>Triethanolamine (TEA)</td>
+          </tr>
+          <tr>
+            <td>Ethoxylated Ingredients (including PEGs / Polyethylene Glycol)</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--restricted">Restricted</span></td>
+            <td>PEGs allowed as surfactants but only if finished formula complies with limits: Ethylene Oxide &lt;2 ppm (lip) / &lt;7 ppm (other); 1,4 Dioxane &lt;10 ppm (rinse-off) / &lt;3 ppm (leave-on)</td>
+            <td class="lwya-clean-list__inci">All ethoxylated ingredients made with ethylene oxide including Ceteareth-20, other ingredients ending in "-eth", Polysorbate-20, Polysorbate-60, and all PEGs (polyethylene glycol or ingredients with "PEG" in INCI name)</td>
+          </tr>
+          <tr>
+            <td>Formaldehyde and Formaldehyde Releasing Agents</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Anti-microbial preservatives</td>
+            <td class="lwya-clean-list__inci">2-bromo-2-nitropropane-1,3-Diol<br>5-bromo-5-nitro-1,3-Dioxane<br>Benzylhemiformal<br>Diazolidinyl Urea<br>DMDM Hydantoin<br>Formaldehyde<br>Imidazolidinyl Urea<br>Methenamine<br>Quaternium-15<br>Sodium Hydroxymethylglycinate</td>
+          </tr>
+          <tr>
+            <td>Fragrance (Parfum)</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--restricted">Restricted</span></td>
+            <td>Must meet vegan and Pink Lily Beauty Ick List requirements; Must meet IFRA safe formulation guidelines based on product type</td>
+            <td class="lwya-clean-list__inci">Acetaldehyde<br>Acetone<br>Acetonitrile<br>Benzalkonium Chloride<br>Bisphenol A (BPA)<br>Ethylenediaminetetraacetic Acid (EDTA)<br>Methylene Chloride<br>Polytetrafluoroethylene (PTFE)<br>Perfluorooctanoic Acid (PFOA)</td>
+          </tr>
+          <tr>
+            <td>Hydroquinone</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Skin whitening agent</td>
+            <td class="lwya-clean-list__inci">2-Acetylhydroquinone<br>Di-t-Butylhydroquinone<br>Diamylhydroquinone<br>Hydroquinone<br>Hydroquinone Safflowerates</td>
+          </tr>
+          <tr>
+            <td>Lanolin</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Animal-derived skin conditioning agent and formula stabilizer</td>
+            <td class="lwya-clean-list__inci">Lanolin</td>
+          </tr>
+          <tr>
+            <td>Lead Based Ingredients</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Colorants</td>
+            <td class="lwya-clean-list__inci">Lead<br>Lead Acetate</td>
+          </tr>
+          <tr>
+            <td>Mercury Based Compounds</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Preservatives</td>
+            <td class="lwya-clean-list__inci">Thimerosal</td>
+          </tr>
+          <tr>
+            <td>Methoxyethanol (Methyl Cellosolve)</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Solvent and thinning agent</td>
+            <td class="lwya-clean-list__inci">Methoxyethanol</td>
+          </tr>
+          <tr>
+            <td>Methylchloroisothiazolinone and Methylisothiazolinone</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Preservatives</td>
+            <td class="lwya-clean-list__inci">Methylchloroisothiazolinone<br>Methylisothiazolinone</td>
+          </tr>
+          <tr>
+            <td>Mineral Oil Based Ingredients</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Skin conditioners</td>
+            <td class="lwya-clean-list__inci">Mineral Oil<br>Hydrogenated Mineral Oil</td>
+          </tr>
+          <tr>
+            <td>Nanomaterials</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--restricted">Restricted</span></td>
+            <td>Colorants and sunscreen active ingredients. To be used in compliance with EU Cosmetics Regulation (e.g., Annex VI, entry 27a for Titanium Dioxide)</td>
+            <td class="lwya-clean-list__inci">Methylene Bis-Benzotriazolyl Tetramethylbutylphenol<br>Titanium Dioxide<br>Tris-Biphenyl Triazine<br>Zinc Oxide</td>
+          </tr>
+          <tr>
+            <td>Nitromusks and Polycyclic Musks</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Fragrance ingredients</td>
+            <td class="lwya-clean-list__inci">Musk Ketone<br>Hexamethylindanopyran<br>Acetyl Hexamethyl Tetralin<br>Acetyl Hexamethyl Indan<br>Dihydro Pentamethylindanone</td>
+          </tr>
+          <tr>
+            <td>Octinoxate</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Formula stabilizer and sunscreen active ingredient</td>
+            <td class="lwya-clean-list__inci">Octinoxate<br>Octyl methoxycinnamate<br>Ethylhexyl methoxycinnamate</td>
+          </tr>
+          <tr>
+            <td>Parabens</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Preservatives</td>
+            <td class="lwya-clean-list__inci">Methylparaben<br>Propylparaben<br>Butylparaben<br>Ethylparaben<br>Isobutylparaben</td>
+          </tr>
+          <tr>
+            <td>Petrolatum and Paraffin</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--restricted">Restricted</span></td>
+            <td>Skin conditioners; USP (high purity) grades only</td>
+            <td class="lwya-clean-list__inci">Petrolatum<br>Paraffin</td>
+          </tr>
+          <tr>
+            <td>PFAS Compounds</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Bulking agents and skin perception modifiers</td>
+            <td class="lwya-clean-list__inci">PFASs or PFCs, any ingredient with "perfluor" or "polyfluor" in the name (e.g. Perfluorooctanoic Acid (PFOA), Polytetrafluoroethylene (PTFE))</td>
+          </tr>
+          <tr>
+            <td>Phenoxyethanol</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--restricted">Restricted</span></td>
+            <td>Preservative at a maximum formula concentration of 1%</td>
+            <td class="lwya-clean-list__inci">Phenoxyethanol</td>
+          </tr>
+          <tr>
+            <td>Phthalates</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Denaturants</td>
+            <td class="lwya-clean-list__inci">Diethylphthalate</td>
+          </tr>
+          <tr>
+            <td>Plastic Microbeads</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Exfoliators and cleansers</td>
+            <td class="lwya-clean-list__inci">Plastic Microbeads</td>
+          </tr>
+          <tr>
+            <td>Polyacrylamide &amp; Acrylamide</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Binders and film formers</td>
+            <td class="lwya-clean-list__inci">Polyacrylamide &amp; Acrylamide</td>
+          </tr>
+          <tr>
+            <td>Resorcinol</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Stabilizer and denaturant</td>
+            <td class="lwya-clean-list__inci">Resorcinol</td>
+          </tr>
+          <tr>
+            <td>Retinyl Palmitate</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Vitamin A based skin conditioner</td>
+            <td class="lwya-clean-list__inci">Retinyl Palmitate</td>
+          </tr>
+          <tr>
+            <td>Styrene Based Ingredients</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Film formers and formula thickeners</td>
+            <td class="lwya-clean-list__inci">2,6-dihydroxyethylaminotoluene<br>Bromostyrene<br>Dea-styrene/acrylates/dvb copolymer<br>Polystyrene<br>Sodium styrene/divinylbenzene copolymer<br>Styrene<br>Styrene oxide</td>
+          </tr>
+          <tr>
+            <td>Sulfates</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Foaming and cleansing agents</td>
+            <td class="lwya-clean-list__inci">Sodium Lauryl Sulfate (SLS)<br>Sodium Laureth Sulfate (SLES)</td>
+          </tr>
+          <tr>
+            <td>Talc</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Formula base, absorbent and bulking agent</td>
+            <td class="lwya-clean-list__inci">Talc</td>
+          </tr>
+          <tr>
+            <td>Toluene Based Ingredients</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Solvents and stabilizers</td>
+            <td class="lwya-clean-list__inci">2,6-Dihydroxyethylaminotoluene<br>4-Amino-2-Hydroxytoluene<br>4-Amino-2-Hydroxytoluene Sulfate<br>4-Methoxytoluene-2,5-Diamine HCl<br>Methylstyrene/Vinyltoluene Copolymer<br>N,N-Diethyltoluene-2,5-Diamine HCl<br>Potassium Toluenesulfonate<br>Sodium Toluenesulfonate<br>Toluene<br>Toluene Sulfonic Acid<br>Toluene-2,5-Diamine<br>Toluene-2,5-Diamine Sulfate<br>Toluene-2,6-Diamine<br>Toluene-3,4-Diamine</td>
+          </tr>
+          <tr>
+            <td>Triclosan and Triclocarban</td>
+            <td><span class="lwya-clean-list__badge lwya-clean-list__badge--prohibited">Prohibited</span></td>
+            <td>Sanitizers, preservatives and odor-fighting agents</td>
+            <td class="lwya-clean-list__inci">Triclosan<br>Triclocarban</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LWYA Clean List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "LWYA Beauty — Prohibited & Restricted Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our commitment to clean beauty means every formula is free from the ingredients listed below."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "LWYA Clean List"
+    }
+  ]
+}
+{% endschema %}

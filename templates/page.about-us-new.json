@@ -64,6 +64,210 @@
         "controls_color": "#ffffff"
       }
     },
+    "about_us_belief_1": {
+      "type": "about-us-belief",
+      "name": "Our Belief",
+      "settings": {
+        "heading": "Our Belief",
+        "body_text": "<p><strong>LWYA, Love Who You Are</strong>, was built on a simple but radical idea: <strong>beauty should make you feel more like yourself, not less.</strong></p><p>We are a beauty and lifestyle brand founded by Kim Gravel, and <strong>everything we make starts with the same question, does this actually work for real women?</strong> Not models. Not curated skin. Real women, with real lives, in real lighting.</p><p>Women who are raising families, building careers, showing up every single day, and sometimes just trying to get out the door looking like they have it together.</p>",
+        "heading_color": "#d41870",
+        "text_color": "#000000",
+        "background_color": "#ffffff",
+        "heading_size": 64,
+        "heading_size_mobile": 36,
+        "text_size": 25,
+        "text_size_mobile": 16,
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_tablet": 5,
+        "padding_horizontal_mobile": 2,
+        "content_width": 1400
+      }
+    },
+    "statement_banner_EWVTDW": {
+      "type": "statement-banner",
+      "name": "Statement Banner",
+      "settings": {
+        "italic_text": "No filters. No fakes.",
+        "highlight_text": "JUST YOU.",
+        "desktop_font_size": 85,
+        "tablet_font_size": 85,
+        "mobile_font_size": 40,
+        "desktop_line_height": 107,
+        "mobile_line_height": 64,
+        "underline_thickness": 5,
+        "underline_color": "#d41870",
+        "container_width": 1400,
+        "section_padding": 60,
+        "mobile_padding": 40,
+        "desktop_padding_sides": 2,
+        "tablet_padding_sides": 1.5,
+        "mobile_padding_sides": 1,
+        "background_color": "#ffffff",
+        "text_color": "#1c1c1c",
+        "text_alignment": "center"
+      }
+    },
+    "about_us_photo_row_1": {
+      "type": "about-us-photo-row",
+      "name": "Photo Row",
+      "settings": {
+        "image_1": "shopify://shop_images/Rectangle_403.jpg",
+        "image_1_alt": "",
+        "image_2": "shopify://shop_images/Rectangle_404.jpg",
+        "image_2_alt": "",
+        "image_3": "shopify://shop_images/Rectangle_166.jpg",
+        "image_3_alt": "",
+        "gap": 6,
+        "content_width": 1400,
+        "padding_top": 24,
+        "padding_bottom": 0,
+        "background_color": "#ffffff"
+      }
+    },
+    "ss_hero_27_founder": {
+      "type": "ss-hero-27",
+      "blocks": {
+        "heading_founder_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p><em>Meet Our Founder</em></p>",
+            "heading_custom": false,
+            "heading_font": "josefin_sans_n4",
+            "heading_size": 64,
+            "heading_size_mobile": 32,
+            "heading_height": 130,
+            "heading_mt": 0,
+            "heading_mt_mobile": 0,
+            "heading_color": "#d41870"
+          }
+        },
+        "subheading_founder_1": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "KIM GRAVEL",
+            "subheading_size": 46,
+            "subheading_size_mobile": 18,
+            "subheading_tracking": 2,
+            "subheading_color": "#121212",
+            "subheading_mt": 8,
+            "subheading_mt_mobile": 6
+          }
+        },
+        "text_founder_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Kim Gravel</strong> has built an extraordinary career across many chapters — <strong>Miss Georgia, television personality, motivational speaker, author, businesswoman, and QVC host</strong> — and through every single one, her <strong>core message</strong> has always been the same: <strong>you are enough, exactly as you are.</strong></p><p>She first stepped into the national spotlight as Miss Georgia, then spent decades reaching millions of women across stages, screens, and living rooms with a truth she refused to stop telling. <strong>You are worthy. You are beautiful. You are enough.</strong></p><p><strong>LWYA is the natural extension of everything Kim has always stood for.</strong> After years on television watching women shrink themselves, apologize for taking up space, and hide behind the wrong beauty products, Kim decided to build something different.</p><p><strong>A brand that starts not with what you lack, but with who you already are.</strong> She created LWYA because <strong>she believes every woman deserves beauty products that actually work, a community that actually sees her, and a daily reminder that loving yourself is not selfish.</strong> It is essential.</p><p>LWYA is Kim's love letter to every woman who has ever stood in front of a mirror and needed someone to remind her she was beautiful. Consider this your reminder.</p>",
+            "text_custom": false,
+            "text_font": "josefin_sans_n4",
+            "text_size": 25,
+            "text_size_mobile": 16,
+            "text_height": 150,
+            "text_mt": 16,
+            "text_mt_mobile": 12,
+            "text_gap": 32,
+            "text_gap_mobile": 20,
+            "text_color": "#121212"
+          }
+        },
+        "button_founder_1": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button": "Shop now",
+            "url": "",
+            "button_custom": false,
+            "button_font": "josefin_sans_n4",
+            "button_size": 16,
+            "button_size_mobile": 14,
+            "button_height": 100,
+            "button_padding_horizontal": 32,
+            "button_padding_horizontal_mobile": 32,
+            "button_padding_vertical": 16,
+            "button_padding_vertical_mobile": 16,
+            "button_radius": 0,
+            "button_border_thickness": 1,
+            "button_mt": 24,
+            "button_mt_mobile": 20,
+            "button_style": "non_outline",
+            "button_color": "#ffffff",
+            "button_hover_color": "#121212",
+            "button_bg_color": "#d41870",
+            "button_bg_hover_color": "#ffffff",
+            "button_border_color": "#121212",
+            "button_border_hover_color": "#121212"
+          }
+        },
+        "circle_founder_1": {
+          "type": "circle",
+          "disabled": true,
+          "settings": {
+            "image_width": 100,
+            "image_width_mobile": 100,
+            "image_border_radius": 100,
+            "image_border_thickness": 2,
+            "image_border_color": "#ffffff",
+            "rotate": true,
+            "speed": 8,
+            "vertical_position": 20,
+            "vertical_position_mobile": 50,
+            "horizontal_position": 50,
+            "horizontal_position_mobile": 50,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_founder_1",
+        "subheading_founder_1",
+        "text_founder_1",
+        "button_founder_1",
+        "circle_founder_1"
+      ],
+      "name": "Meet Our Founder",
+      "settings": {
+        "layout": "image_content",
+        "layout_mobile": "image_content",
+        "layout_height": "auto",
+        "layout_fixed_height": 600,
+        "image_width": 35,
+        "layout_gap": 32,
+        "layout_gap_mobile": 10,
+        "content_padding_horizontal": 56,
+        "content_padding_horizontal_mobile": 24,
+        "content_padding_vertical": 0,
+        "content_padding_vertical_mobile": 40,
+        "content_radius": 0,
+        "content_border_thickness": 0,
+        "content_align": "left",
+        "content_align_mobile": "left",
+        "content_vertical_align": "start",
+        "image": "shopify://shop_images/Group_352.jpg",
+        "image_ratio_mobile": "original",
+        "image_radius": 0,
+        "image_border_thickness": 0,
+        "content_bg_color": "#ffffff",
+        "content_border_color": "#121212",
+        "image_border_color": "#121212",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#121212",
+        "margin_top": 48,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 1300,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": false
+      }
+    },
     "ss_hero_27_BdJ8JY": {
       "type": "ss-hero-27",
       "blocks": {
@@ -84,41 +288,42 @@
         "text_iBtpyt": {
           "type": "text",
           "settings": {
-            "text": "<p>In a world that constantly tells women who they should be, Love Who You Are is a reminder to embrace who you already are - beautiful, powerful, and deserving of love. We believe self-love isn’t a trend; it’s a transformation. <br/>Our mission is to help women rediscover their innate worth, reignite their confidence, and fall deeply in love with their own lives.</p>",
+            "text": "<p>Our products are formulated to work across skin tones, skin types, and life stages. But <strong>LWYA has always been about more than just great products and beauty.</strong></p><p><strong>It is a community. A reminder. A daily practice</strong> of choosing to love the woman you see in the mirror, not the one you think you should be. <strong>We believe confidence is not something you put on. It is something you uncover.</strong></p><p>And we are here to help you do exactly that. <strong>Welcome to LWYA. You belong here.</strong></p>",
             "text_custom": false,
             "text_font": "josefin_sans_n4",
-            "text_size": 20,
+            "text_size": 25,
             "text_size_mobile": 16,
             "text_height": 150,
             "text_mt": 16,
             "text_mt_mobile": 12,
+            "text_gap": 30,
+            "text_gap_mobile": 8,
             "text_color": "#121212"
           }
         },
         "button_hTTkbd": {
           "type": "button",
-          "disabled": true,
           "settings": {
-            "button": "Shop now",
-            "url": "",
+            "button": "SHOP OUR PRODUCTS",
+            "url": "shopify://collections/all",
             "button_custom": false,
             "button_font": "josefin_sans_n4",
-            "button_size": 16,
+            "button_size": 20,
             "button_size_mobile": 14,
             "button_height": 100,
             "button_padding_horizontal": 32,
             "button_padding_horizontal_mobile": 32,
             "button_padding_vertical": 16,
             "button_padding_vertical_mobile": 16,
-            "button_radius": 100,
+            "button_radius": 0,
             "button_border_thickness": 1,
-            "button_mt": 24,
-            "button_mt_mobile": 20,
-            "button_style": "non_outline_arrow",
+            "button_mt": 32,
+            "button_mt_mobile": 32,
+            "button_style": "non_outline",
             "button_color": "#ffffff",
-            "button_hover_color": "#121212",
+            "button_hover_color": "#ffffff",
             "button_bg_color": "#d41870",
-            "button_bg_hover_color": "#ffffff",
+            "button_bg_hover_color": "#d41870",
             "button_border_color": "#121212",
             "button_border_hover_color": "#121212"
           }
@@ -152,21 +357,21 @@
       "settings": {
         "layout": "image_content",
         "layout_mobile": "content_image",
-        "layout_height": "fixed_height",
+        "layout_height": "auto",
         "layout_fixed_height": 600,
-        "image_width": 50,
-        "layout_gap": 10,
+        "image_width": 35,
+        "layout_gap": 24,
         "layout_gap_mobile": 10,
-        "content_padding_horizontal": 30,
-        "content_padding_horizontal_mobile": 24,
+        "content_padding_horizontal": 0,
+        "content_padding_horizontal_mobile": 32,
         "content_padding_vertical": 22,
         "content_padding_vertical_mobile": 32,
         "content_radius": 16,
         "content_border_thickness": 0,
         "content_align": "left",
         "content_align_mobile": "left",
-        "content_vertical_align": "center",
-        "image": "shopify://shop_images/Group_61.png",
+        "content_vertical_align": "start",
+        "image": "shopify://shop_images/Rectangle_399.png",
         "image_ratio_mobile": "square",
         "image_radius": 16,
         "image_border_thickness": 0,
@@ -176,139 +381,12 @@
         "background_color": "#ffffff",
         "background_gradient": "",
         "border_color": "#121212",
-        "margin_top": 0,
-        "margin_bottom": 0,
+        "margin_top": 48,
+        "margin_bottom": 60,
         "margin_horizontal": 0,
         "margin_horizontal_mobile": 0,
         "padding_top": 20,
-        "padding_bottom": 0,
-        "padding_horizontal": 5,
-        "padding_horizontal_mobile": 1.5,
-        "full_width": true,
-        "content_width": 1300,
-        "border_thickness": 0,
-        "section_radius": 0,
-        "lazy": false
-      }
-    },
-    "ss_hero_27_fafgnE": {
-      "type": "ss-hero-27",
-      "blocks": {
-        "heading_HRTLky": {
-          "type": "heading",
-          "settings": {
-            "heading": "<p>Our Belief</p>",
-            "heading_custom": false,
-            "heading_font": "josefin_sans_n4",
-            "heading_size": 64,
-            "heading_size_mobile": 32,
-            "heading_height": 130,
-            "heading_mt": 0,
-            "heading_mt_mobile": 0,
-            "heading_color": "#d41870"
-          }
-        },
-        "text_bAjD6h": {
-          "type": "text",
-          "settings": {
-            "text": "<p>When you look better, you feel better—and when you feel better, you show up as your most radiant self. Every product in our line is thoughtfully designed to help women embody this truth: that beauty begins with how you feel inside. Our goal is to help you see yourself with the same love and appreciation the world already sees in you.</p>",
-            "text_custom": false,
-            "text_font": "josefin_sans_n4",
-            "text_size": 21,
-            "text_size_mobile": 16,
-            "text_height": 150,
-            "text_mt": 16,
-            "text_mt_mobile": 12,
-            "text_color": "#121212"
-          }
-        },
-        "button_dJCMmp": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button": "Shop now",
-            "url": "",
-            "button_custom": false,
-            "button_font": "josefin_sans_n4",
-            "button_size": 16,
-            "button_size_mobile": 14,
-            "button_height": 100,
-            "button_padding_horizontal": 32,
-            "button_padding_horizontal_mobile": 32,
-            "button_padding_vertical": 16,
-            "button_padding_vertical_mobile": 16,
-            "button_radius": 100,
-            "button_border_thickness": 1,
-            "button_mt": 24,
-            "button_mt_mobile": 20,
-            "button_style": "non_outline_arrow",
-            "button_color": "#ffffff",
-            "button_hover_color": "#121212",
-            "button_bg_color": "#121212",
-            "button_bg_hover_color": "#ffffff",
-            "button_border_color": "#121212",
-            "button_border_hover_color": "#121212"
-          }
-        },
-        "circle_PfGJr7": {
-          "type": "circle",
-          "disabled": true,
-          "settings": {
-            "image_width": 100,
-            "image_width_mobile": 100,
-            "image_border_radius": 100,
-            "image_border_thickness": 2,
-            "image_border_color": "#ffffff",
-            "rotate": true,
-            "speed": 8,
-            "vertical_position": 20,
-            "vertical_position_mobile": 50,
-            "horizontal_position": 50,
-            "horizontal_position_mobile": 50,
-            "hide_mobile": true
-          }
-        }
-      },
-      "block_order": [
-        "heading_HRTLky",
-        "text_bAjD6h",
-        "button_dJCMmp",
-        "circle_PfGJr7"
-      ],
-      "name": "SS - Hero #27",
-      "settings": {
-        "layout": "content_image",
-        "layout_mobile": "content_image",
-        "layout_height": "fixed_height",
-        "layout_fixed_height": 600,
-        "image_width": 45,
-        "layout_gap": 10,
-        "layout_gap_mobile": 10,
-        "content_padding_horizontal": 100,
-        "content_padding_horizontal_mobile": 24,
-        "content_padding_vertical": 32,
-        "content_padding_vertical_mobile": 32,
-        "content_radius": 16,
-        "content_border_thickness": 0,
-        "content_align": "left",
-        "content_align_mobile": "left",
-        "content_vertical_align": "center",
-        "image": "shopify://shop_images/Rectangle_139.png",
-        "image_ratio_mobile": "square",
-        "image_radius": 0,
-        "image_border_thickness": 0,
-        "content_bg_color": "#ffffff",
-        "content_border_color": "#121212",
-        "image_border_color": "#121212",
-        "background_color": "#ffffff",
-        "background_gradient": "",
-        "border_color": "#121212",
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "margin_horizontal": 0,
-        "margin_horizontal_mobile": 0,
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_bottom": 20,
         "padding_horizontal": 0,
         "padding_horizontal_mobile": 0,
         "full_width": true,
@@ -318,59 +396,25 @@
         "lazy": false
       }
     },
-    "slideshow_gxnqQQ": {
-      "type": "slideshow",
-      "blocks": {
-        "image_Myf6Kt": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Screenshot_from_2026-02-13_16-11-45.png",
-            "subheading": "",
-            "title": "",
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_text_position": "sm:place-self-center sm:text-center",
-            "content_max_width": 780,
-            "button_1_text": "",
-            "button_1_link": "",
-            "button_1_style": "solid",
-            "button_1_background": "#ffffff",
-            "button_1_text_color": "#000000",
-            "button_2_text": "",
-            "button_2_link": "",
-            "button_2_style": "link",
-            "button_2_background": "#e32c2b",
-            "button_2_text_color": "#e23a95",
-            "background": "rgba(0,0,0,0)",
-            "background_opacity": 74,
-            "text_color": "#ffffff",
-            "border_color": "",
-            "gradient_overlay": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_Myf6Kt"
-      ],
-      "name": "t:sections.slideshow.presets.slideshow.name",
+    "beauty_unfiltered_EQeUNj": {
+      "type": "beauty-unfiltered",
+      "name": "Beauty Unfiltered Section",
       "settings": {
-        "allow_transparent_header": true,
-        "show_next_section_button": true,
-        "media_size": "auto",
-        "show_initial_transition": false,
-        "autoplay": true,
-        "autoplay_pause_on_video": true,
-        "cycle_speed": 5,
-        "background": "#000000",
-        "controls_color": "#ffffff"
+        "heading-beauty-unfiltered": "Beauty Unfiltered",
+        "subheading1": "RESULTS",
+        "subheading2": "UNDENIABLE",
+        "image1": "shopify://shop_images/Rectangle_138.png",
+        "image2": "shopify://shop_images/Rectangle_137.png",
+        "padding_slides_mobile": 32
       }
     },
-    "1715376199a05084c0": {
-      "type": "apps",
+    "love_who_you_are_pq6fQC": {
+      "type": "love-who-you-are",
+      "name": "Love Who You Are Section",
       "settings": {
-        "color_scheme": "scheme-2",
-        "separate_section_with_border": true,
-        "remove_vertical_spacing": false,
-        "remove_horizontal_spacing": false
+        "heading-love-who": "Fall In love with your life.",
+        "subheading-love-who": "LOVE WHO YOU ARE",
+        "image": "shopify://shop_images/Rectangle_166.jpg"
       }
     },
     "ss_hero_27_3weQiJ": {
@@ -393,19 +437,22 @@
         "text_e6iJP9": {
           "type": "text",
           "settings": {
-            "text": "<p>At Love Who You Are, clean beauty isn’t just our standard—it’s our promise. Dermatologist tested, EU compliant, and cruelty-free, our formulas are free from harsh additives and packed with high-performance ingredients that deliver results without compromise.</p>",
+            "text": "<p>At Love Who You Are, <strong>clean beauty isn't just our standard—it's our promise.</strong> Dermatologist tested, EU compliant, and cruelty-free, <strong>our formulas are free from harsh additives and packed with high-performance ingredients that deliver results without compromise.</strong></p>",
             "text_custom": false,
             "text_font": "josefin_sans_n4",
-            "text_size": 20,
+            "text_size": 25,
             "text_size_mobile": 16,
             "text_height": 150,
             "text_mt": 16,
             "text_mt_mobile": 12,
+            "text_gap": 30,
+            "text_gap_mobile": 8,
             "text_color": "#121212"
           }
         },
         "button_mqVjwk": {
           "type": "button",
+          "disabled": true,
           "settings": {
             "button": "SHOP OUR PRODUCTS",
             "url": "shopify://collections/beauty",
@@ -458,23 +505,23 @@
       ],
       "name": "SS - Hero #27",
       "settings": {
-        "layout": "content_image",
+        "layout": "image_content",
         "layout_mobile": "content_image",
-        "layout_height": "fixed_height",
+        "layout_height": "auto",
         "layout_fixed_height": 600,
-        "image_width": 45,
+        "image_width": 35,
         "layout_gap": 10,
         "layout_gap_mobile": 10,
-        "content_padding_horizontal": 100,
-        "content_padding_horizontal_mobile": 24,
+        "content_padding_horizontal": 32,
+        "content_padding_horizontal_mobile": 16,
         "content_padding_vertical": 32,
         "content_padding_vertical_mobile": 32,
         "content_radius": 16,
         "content_border_thickness": 0,
         "content_align": "left",
         "content_align_mobile": "left",
-        "content_vertical_align": "center",
-        "image": "shopify://shop_images/Rectangle_133.png",
+        "content_vertical_align": "start",
+        "image": "shopify://shop_images/Rectangle_407.jpg",
         "image_ratio_mobile": "square",
         "image_radius": 0,
         "image_border_thickness": 0,
@@ -484,8 +531,8 @@
         "background_color": "#ffffff",
         "background_gradient": "",
         "border_color": "#121212",
-        "margin_top": 0,
-        "margin_bottom": 0,
+        "margin_top": 48,
+        "margin_bottom": 48,
         "margin_horizontal": 0,
         "margin_horizontal_mobile": 0,
         "padding_top": 0,
@@ -499,244 +546,184 @@
         "lazy": false
       }
     },
-    "ss_hero_27_hVGi7q": {
-      "type": "ss-hero-27",
+    "ai_our_values_aboutus": {
+      "type": "AI-OurValues",
       "blocks": {
-        "heading_6cjtYU": {
-          "type": "heading",
+        "value_9QNPfg": {
+          "type": "value",
           "settings": {
-            "heading": "<p><em>Our Mission</em></p>",
-            "heading_custom": false,
-            "heading_font": "josefin_sans_n4",
-            "heading_size": 64,
-            "heading_size_mobile": 32,
-            "heading_height": 130,
-            "heading_mt": 0,
-            "heading_mt_mobile": 0,
-            "heading_color": "#d41870"
+            "icon": "shopify://shop_images/bb3e422c01ed7052d624b20e15dce00c479fc413.png",
+            "label": "<p>Paraben <br/>Free</p>"
           }
         },
-        "text_kH9DRr": {
-          "type": "text",
+        "value_WrX8eB": {
+          "type": "value",
           "settings": {
-            "text": "<p>We celebrate the strength, resilience, and brilliance of women everywhere. Together, we’re not just redefining beauty—we’re changing how women see themselves. Not who they wish they were or hope to become, but who they already are: unique, extraordinary, and deeply loved.</p>",
-            "text_custom": false,
-            "text_font": "josefin_sans_n4",
-            "text_size": 20,
-            "text_size_mobile": 16,
-            "text_height": 150,
-            "text_mt": 16,
-            "text_mt_mobile": 12,
-            "text_color": "#121212"
+            "icon": "shopify://shop_images/9f4cc42e3feaa6f8404e62c473ab7f76c6b3fd23.png",
+            "label": "<p>Sulfate <br/>Free</p>"
           }
         },
-        "button_fTxwGU": {
-          "type": "button",
-          "disabled": true,
+        "value_tAzDwn": {
+          "type": "value",
           "settings": {
-            "button": "SHOP OUR PRODUCTS",
-            "url": "shopify://collections/beauty",
-            "button_custom": false,
-            "button_font": "josefin_sans_n4",
-            "button_size": 16,
-            "button_size_mobile": 14,
-            "button_height": 100,
-            "button_padding_horizontal": 32,
-            "button_padding_horizontal_mobile": 32,
-            "button_padding_vertical": 16,
-            "button_padding_vertical_mobile": 16,
-            "button_radius": 0,
-            "button_border_thickness": 1,
-            "button_mt": 24,
-            "button_mt_mobile": 20,
-            "button_style": "non_outline",
-            "button_color": "#ffffff",
-            "button_hover_color": "#121212",
-            "button_bg_color": "#d41870",
-            "button_bg_hover_color": "#ffffff",
-            "button_border_color": "#121212",
-            "button_border_hover_color": "#121212"
+            "icon": "shopify://shop_images/c7d97a8fe7ca24b571d158b4cf85c89f23c561a6.png",
+            "label": "<p>Mineral Oil <br/>Free</p>"
           }
         },
-        "circle_VJMPEN": {
-          "type": "circle",
-          "disabled": true,
+        "value_AdDLjg": {
+          "type": "value",
           "settings": {
-            "image_width": 100,
-            "image_width_mobile": 100,
-            "image_border_radius": 100,
-            "image_border_thickness": 2,
-            "image_border_color": "#ffffff",
-            "rotate": true,
-            "speed": 8,
-            "vertical_position": 20,
-            "vertical_position_mobile": 50,
-            "horizontal_position": 50,
-            "horizontal_position_mobile": 50,
-            "hide_mobile": true
+            "icon": "shopify://shop_images/2cee51a37afe2117e2c50c91077772a53c5ad478.png",
+            "label": "<p>Talc<br/>Free</p>"
+          }
+        },
+        "value_adnnWR": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/57f322f8e8eac3dde254e572819cdebde8f6c223.png",
+            "label": "<p>Leaping <br/>Bunny <br/>Certified</p>"
+          }
+        },
+        "value_mYhzxm": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/fa9855df9cf279da8d7d69fa41ba2dd2421f0cf4.png",
+            "label": "<p>Formaldehydes <br/>Free</p>"
           }
         }
       },
       "block_order": [
-        "heading_6cjtYU",
-        "text_kH9DRr",
-        "button_fTxwGU",
-        "circle_VJMPEN"
+        "value_9QNPfg",
+        "value_WrX8eB",
+        "value_tAzDwn",
+        "value_AdDLjg",
+        "value_adnnWR",
+        "value_mYhzxm"
       ],
-      "name": "SS - Hero #27",
+      "name": "LWYA Promise",
       "settings": {
-        "layout": "image_content",
-        "layout_mobile": "content_image",
-        "layout_height": "fixed_height",
-        "layout_fixed_height": 600,
-        "image_width": 50,
-        "layout_gap": 10,
-        "layout_gap_mobile": 10,
-        "content_padding_horizontal": 58,
-        "content_padding_horizontal_mobile": 24,
-        "content_padding_vertical": 32,
-        "content_padding_vertical_mobile": 32,
-        "content_radius": 16,
-        "content_border_thickness": 0,
-        "content_align": "left",
-        "content_align_mobile": "left",
-        "content_vertical_align": "center",
-        "image": "shopify://shop_images/Rectangle_132.png",
-        "image_ratio_mobile": "original",
-        "image_radius": 0,
-        "image_border_thickness": 0,
-        "content_bg_color": "#ffffff",
-        "content_border_color": "#121212",
-        "image_border_color": "#121212",
+        "heading": "The LWYA Promise",
+        "bg_color": "#d41870",
+        "bg_opacity": 5,
+        "heading_color": "#000000",
+        "padding_y": 70,
+        "padding_x": 115,
+        "link_url": "/pages/clean-beauty-list"
+      }
+    },
+    "ss_circle_menu_xxUz7H": {
+      "type": "ss-circle-menu",
+      "blocks": {
+        "image_9nKpb7": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_365.png",
+            "bubble_text": "FACE",
+            "bubble_link": "https://lwya.com/collections/face"
+          }
+        },
+        "image_Cgxbat": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle64.png",
+            "bubble_text": "EYES",
+            "bubble_link": "https://lwya.com/collections/eyes"
+          }
+        },
+        "image_VFYJ6J": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_367.png",
+            "bubble_text": "LIPS",
+            "bubble_link": "https://lwya.com/collections/lips"
+          }
+        },
+        "image_Xx8XN4": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_368.png",
+            "bubble_text": "HAIR",
+            "bubble_link": "https://lwya.com/collections/hair"
+          }
+        },
+        "image_KbqxjC": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_369.png",
+            "bubble_text": "BODY",
+            "bubble_link": "https://lwya.com/collections/body"
+          }
+        },
+        "image_bpxVdA": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Rectangle_376.png",
+            "bubble_text": "FRAGRANCE",
+            "bubble_link": "https://lwya.com/collections/fragrance"
+          }
+        }
+      },
+      "block_order": [
+        "image_9nKpb7",
+        "image_Cgxbat",
+        "image_VFYJ6J",
+        "image_Xx8XN4",
+        "image_KbqxjC",
+        "image_bpxVdA"
+      ],
+      "custom_css": [],
+      "name": "SS - Circle Menu",
+      "settings": {
+        "slider_width": 100,
+        "slider_gap": 8,
+        "slider_gap_mobile": 16,
+        "icon_size": 220,
+        "icon_size_mobile": 74,
+        "icon_space": 0,
+        "icon_space_mobile": 0,
+        "icon_border_thickness": 0,
+        "icon_square": true,
+        "use_hover": true,
+        "text_custom": true,
+        "text_font": "josefin_sans_n4",
+        "text_size": 28,
+        "text_size_mobile": 20,
+        "text_height": 100,
+        "text_mt": 18,
+        "icon_border_color": "#121212",
+        "icon_border_gradient": "",
+        "text_color": "#121212",
         "background_color": "#ffffff",
         "background_gradient": "",
         "border_color": "#121212",
-        "margin_top": 100,
+        "border_gradient": "",
+        "margin_top": 0,
         "margin_bottom": 0,
-        "margin_horizontal": 0,
-        "margin_horizontal_mobile": 0,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_horizontal": 0,
-        "padding_horizontal_mobile": 1.5,
+        "padding_top": 36,
+        "padding_bottom": 100,
+        "padding_horizontal": 2,
+        "padding_horizontal_mobile": 1,
         "full_width": true,
-        "content_width": 1300,
+        "content_width": 1500,
         "border_thickness": 0,
-        "section_radius": 0,
-        "lazy": false
-      }
-    },
-    "slideshow_md7F3E": {
-      "type": "slideshow",
-      "name": "t:sections.slideshow.presets.slideshow.name",
-      "settings": {
-        "allow_transparent_header": true,
-        "show_next_section_button": true,
-        "media_size": "auto",
-        "show_initial_transition": false,
-        "autoplay": true,
-        "autoplay_pause_on_video": true,
-        "cycle_speed": 5,
-        "background": "#000000",
-        "controls_color": "#ffffff"
-      }
-    },
-    "statement_banner_EWVTDW": {
-      "type": "statement-banner",
-      "name": "Statement Banner",
-      "settings": {
-        "italic_text": "No filters. No fakes.",
-        "highlight_text": "JUST YOU.",
-        "desktop_font_size": 85,
-        "mobile_font_size": 40,
-        "desktop_line_height": 107,
-        "mobile_line_height": 50,
-        "underline_thickness": 5,
-        "underline_color": "#d41870",
-        "container_width": 1400,
-        "section_padding": 60,
-        "mobile_padding": 40,
-        "background_color": "#ffffff",
-        "text_color": "#1c1c1c",
-        "text_alignment": "center"
-      }
-    },
-    "our_promise_PtATam": {
-      "type": "our-promise",
-      "name": "Our Promise Section",
-      "settings": {
-        "background_image": "shopify://shop_images/Rectangle_135.png",
-        "content_width": 1130,
-        "box_opacity": 0.7,
-        "title": "Our Promise",
-        "title_size": 64,
-        "mobile_title_size": 36,
-        "title_line_height": 107,
-        "title_color": "#d41870",
-        "underline_thickness": 5,
-        "underline_color": "#d41870",
-        "description": "<p>Through our carefully crafted beauty products, uplifting social content, and empowering online education, we create a supportive space where women can connect, feel seen, and be inspired to live authentically. We’re here to remind every woman that she is deserving of joy, connection, and all the beautiful experiences life has to offer.</p>",
-        "description_size": 25,
-        "mobile_description_size": 18,
-        "description_line_height": 30,
-        "description_color": "#000000",
-        "button_label": "JOIN THE MOVEMENT",
-        "button_link": "",
-        "button_size": 25,
-        "button_bg": "#e91e63",
-        "button_text_color": "#ffffff"
-      }
-    },
-    "beauty_unfiltered_EQeUNj": {
-      "type": "beauty-unfiltered",
-      "name": "Beauty Unfiltered Section",
-      "settings": {
-        "heading-beauty-unfiltered": "Beauty Unfiltered",
-        "subheading1": "RESULTS",
-        "subheading2": "UNDENIABLE",
-        "image1": "shopify://shop_images/Rectangle_138.png",
-        "image2": "shopify://shop_images/Rectangle_137.png"
-      }
-    },
-    "love_who_you_are_pq6fQC": {
-      "type": "love-who-you-are",
-      "name": "Love Who You Are Section",
-      "settings": {
-        "heading-love-who": "Fall In love with your life.",
-        "subheading-love-who": "LOVE WHO YOU ARE",
-        "image": "shopify://shop_images/Rectangle_166.png"
-      }
-    },
-    "slideshow_FWjQEF": {
-      "type": "slideshow",
-      "name": "t:sections.slideshow.presets.slideshow.name",
-      "settings": {
-        "allow_transparent_header": true,
-        "show_next_section_button": true,
-        "media_size": "auto",
-        "show_initial_transition": false,
-        "autoplay": true,
-        "autoplay_pause_on_video": true,
-        "cycle_speed": 5,
-        "background": "#000000",
-        "controls_color": "#ffffff"
+        "lazy": true,
+        "hide_mobile": false,
+        "hide_desktop": false
       }
     }
   },
   "order": [
     "main",
     "slideshow_VQap9Q",
-    "ss_hero_27_BdJ8JY",
-    "ss_hero_27_fafgnE",
-    "slideshow_gxnqQQ",
-    "1715376199a05084c0",
-    "ss_hero_27_3weQiJ",
-    "ss_hero_27_hVGi7q",
-    "slideshow_md7F3E",
+    "about_us_belief_1",
     "statement_banner_EWVTDW",
-    "our_promise_PtATam",
+    "about_us_photo_row_1",
+    "ss_hero_27_founder",
+    "ss_hero_27_BdJ8JY",
     "beauty_unfiltered_EQeUNj",
     "love_who_you_are_pq6fQC",
-    "slideshow_FWjQEF"
+    "ss_hero_27_3weQiJ",
+    "ai_our_values_aboutus",
+    "ss_circle_menu_xxUz7H"
   ]
 }

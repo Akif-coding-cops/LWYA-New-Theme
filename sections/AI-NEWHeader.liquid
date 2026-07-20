@@ -78,8 +78,8 @@
 
   /* Custom cart icon styling */
   #shopify-section-{{ section.id }} .header__secondary-nav img[alt="Cart"] {
-    width: 27px !important;
-    height: 27px !important;
+    width: 27px;
+    height: auto;
     filter: contrast(1.3);
   }
 
@@ -109,14 +109,14 @@
 
 <script>
   // Scroll detection with hysteresis to prevent flickering
-  (function() {
+  (function () {
     let isScrolled = false;
     const scrollDownThreshold = 100;
     const scrollUpThreshold = 50;
 
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
       const scrollPosition = window.scrollY;
-      
+
       if (!isScrolled && scrollPosition > scrollDownThreshold) {
         isScrolled = true;
         document.documentElement.classList.add('is-scrolling');
@@ -129,7 +129,12 @@
 </script>
 
 <height-observer variable="header">
-  <x-header {% if section.settings.hide_on_scroll and section.settings.enable_sticky %}hide-on-scroll{% endif %} class="header container color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <x-header
+    {% if section.settings.hide_on_scroll and section.settings.enable_sticky %}
+      hide-on-scroll
+    {% endif %}
+    class="header container color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
+  >
     {%- if section.settings.background_image != blank -%}
       <img
         src="{{ section.settings.background_image | image_url: width: 1440 }}"
@@ -164,21 +169,44 @@
     {%- comment -%}SECONDARY NAV{%- endcomment -%}
     <nav class="header__secondary-nav">
       {%- if section.settings.show_account_icon and shop.customer_accounts_enabled -%}
-        <a href="{{ routes.account_url }}" class="header__action-item-link tap-area" {% if request.page_type == 'customers/account' or request.page_type == 'customers/order' or request.page_type == 'customers/addresses' %}aria-current="page"{% endif %}>
+        <a
+          href="{{ routes.account_url }}"
+          class="header__action-item-link tap-area"
+          {% if request.page_type == 'customers/account'
+            or request.page_type == 'customers/order'
+            or request.page_type == 'customers/addresses'
+          %}
+            aria-current="page"
+          {% endif %}
+        >
           {%- render 'icon' with 'account', width: 20, height: 20 -%}
           <span class="sr-only">{{ 'header.general.account' | t }}</span>
         </a>
       {%- endif -%}
 
       {%- if section.settings.show_search_icon -%}
-        <button type="button" class="header__action-item-link tap-area" is="custom-button" aria-controls="search-drawer" aria-expanded="false" aria-label="{{ 'search.general.title' | t | escape }}">
+        <button
+          type="button"
+          class="header__action-item-link tap-area"
+          is="custom-button"
+          aria-controls="search-drawer"
+          aria-expanded="false"
+          aria-label="{{ 'search.general.title' | t | escape }}"
+        >
           {%- render 'icon' with 'search', width: 20, height: 20 -%}
         </button>
       {%- endif -%}
 
       {%- if section.settings.show_cart_icon -%}
-        <a href="{{ routes.cart_url }}" class="header__action-item-link tap-area" {% if settings.cart_type == 'drawer' and request.page_type != 'cart' %}is="custom-button" aria-controls="cart-drawer" aria-expanded="false"{% endif %} aria-label="{{ 'header.general.cart' | t | escape }}">
-          <img src="{{ 'cartnew.png' | asset_url }}" alt="Cart" width="27" height="27" style="display: block;">
+        <a
+          href="{{ routes.cart_url }}"
+          class="header__action-item-link tap-area"
+          {% if settings.cart_type == 'drawer' and request.page_type != 'cart' %}
+            is="custom-button" aria-controls="cart-drawer" aria-expanded="false"
+          {% endif %}
+          aria-label="{{ 'header.general.cart' | t | escape }}"
+        >
+          <img src="{{ 'cartnew.png' | asset_url }}" alt="Cart" width="27" height="25" style="display: block;">
         </a>
       {%- endif -%}
     </nav>

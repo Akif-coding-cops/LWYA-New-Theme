@@ -2,7 +2,7 @@
 
 .statement-banner {
   background-color: {{ section.settings.background_color }};
-  padding: {{ section.settings.section_padding }}px 20px;
+  padding: {{ section.settings.section_padding }}px {{ section.settings.desktop_padding_sides }}rem;
 }
 
 .statement-banner__container {
@@ -24,8 +24,8 @@
 }
 
 .statement-banner__highlight {
-  font-family: 'Gotham', sans-serif;
-  font-weight: 325;
+  font-family: 'Gotham-Book', sans-serif !important;
+  font-weight: 325 !important;
   position: relative;
   display: inline-block;
 }
@@ -42,10 +42,26 @@
 }
 
 /* MOBILE RESPONSIVE */
+@media screen and (max-width: 1400px) {
+
+  .statement-banner {
+    padding: {{ section.settings.mobile_padding }}px {{ section.settings.tablet_padding_sides }}rem;
+  }
+
+  .statement-banner__heading {
+    font-size: {{ section.settings.tablet_font_size }}px;
+    line-height: {{ section.settings.mobile_line_height }}px;
+  }
+
+  .statement-banner__highlight::after {
+    bottom: -8px;
+  }
+}
+
 @media screen and (max-width: 768px) {
 
   .statement-banner {
-    padding: {{ section.settings.mobile_padding }}px 15px;
+    padding: {{ section.settings.mobile_padding }}px {{ section.settings.mobile_padding_sides }}rem;
   }
 
   .statement-banner__heading {
@@ -56,7 +72,6 @@
   .statement-banner__highlight::after {
     bottom: -8px;
   }
-
 }
 
 {% endstyle %}
@@ -101,6 +116,15 @@
       "max": 120,
       "step": 1,
       "default": 85
+    },
+    {
+      "type": "range",
+      "id": "tablet_font_size",
+      "label": "Tablet Font Size",
+      "min": 30,
+      "max": 120,
+      "step": 1,
+      "default": 60
     },
     {
       "type": "range",
@@ -170,6 +194,36 @@
       "max": 120,
       "step": 5,
       "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_sides",
+      "label": "Desktop/Padding Sides",
+      "min": 0,
+      "max": 15,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_sides",
+      "label": "Tablet/Padding Sides",
+      "min": 0,
+      "max": 15,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_sides",
+      "label": "Mobile/Padding Sides",
+      "min": 0,
+      "max": 15,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 5
     },
     {
       "type": "color",

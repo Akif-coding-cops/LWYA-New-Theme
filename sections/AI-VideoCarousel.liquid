@@ -157,17 +157,24 @@
                   <div class="tw-relative tw-overflow-hidden tw-bg-black tw-aspect-[9/16]">
                     {%- comment -%} Video Element {%- endcomment -%}
                     {% if block.settings.video != blank %}
-                      {{
-                        block.settings.video
-                        | video_tag:
-                          autoplay: false,
-                          loop: true,
-                          muted: true,
-                          controls: true,
-                          class: 'video-item tw-w-full tw-h-full tw-object-cover',
-                          preload: 'metadata',
-                          playsinline: true
-                      }}
+                      {%- assign vid = block.settings.video -%}
+                      {%- assign vid_preview = vid.preview_image -%}
+                      <video
+                        class="video-item tw-w-full tw-h-full tw-object-cover"
+                        muted
+                        loop
+                        playsinline
+                        preload="none"
+                        controls
+                        {% if vid_preview %}
+                          poster="{{ vid_preview | image_url: width: 800, format: 'webp' }}"
+                        {% endif %}
+                        aria-label="{{ vid.alt | default: 'Product video' }}"
+                      >
+                        {%- for source in vid.sources -%}
+                          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                        {%- endfor -%}
+                      </video>
                     {% elsif block.settings.video_url != blank %}
                       {% if block.settings.video_url.type == 'youtube' %}
                         <iframe
@@ -215,7 +222,7 @@
                             {% if product_obj.featured_image %}
                               <div class="tw-w-12 tw-h-12 tw-rounded-lg tw-overflow-hidden tw-flex-shrink-0 tw-bg-white tw-shadow">
                                 <img
-                                  src="{{ product_obj.featured_image | image_url: width: 100 }}"
+                                  src="{{ product_obj.featured_image | image_url: width: 100, format: 'webp' }}"
                                   alt="{{ product_obj.title }}"
                                   class="tw-w-full tw-h-full tw-object-cover"
                                   loading="lazy"

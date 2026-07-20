@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "lwya_clean_list": {
+      "type": "lwya-clean-list",
+      "settings": {
+        "heading": "LWYA Beauty — Prohibited & Restricted Ingredients",
+        "subheading": "Our commitment to clean beauty means every formula is free from the ingredients listed below.",
+        "bg_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "lwya_clean_list"
+  ]
+}

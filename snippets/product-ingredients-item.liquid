@@ -109,6 +109,7 @@
         class="tw-w-full tw-h-full tw-object-cover"
         width="1200"
         height="1200"
+        loading="lazy"
       >
     </div>
 
@@ -203,7 +204,7 @@
                   data-target="ing-{{ i }}-{{ section_id }}-{{ index }}"
                   style="color: {{ q_color }}; font-size: 16px; font-weight: 600;"
                 >
-                  <span>{{ ing_item_title }}</span>
+                  <span>{{ ing_item_title | upcase }}</span>
                   <span class="tw-text-[22px] tw-leading-none tw-font-[600] tw-transition-all tw-duration-300 tw-ease-in-out plus-icon" style="color: {{ q_color }};">+</span>
                 </button>
                 <div id="ing-{{ i }}-{{ section_id }}-{{ index }}" class="faq-body tw-overflow-hidden tw-max-h-0">
