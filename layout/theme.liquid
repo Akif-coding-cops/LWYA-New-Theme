@@ -492,7 +492,7 @@
     </script>
 
     <!-- Loox Reviews: Hide empty iframe -->
-    <script>
+    {% comment %} <script>
       jQuery(window).on('load', function () {
         setTimeout(function () {
           var abc = jQuery('iframe#looxReviewsFrame').attr('height');
@@ -501,7 +501,12 @@
           }
         }, 1000);
       });
-    </script>
+    </script> {% endcomment %}
+    <!-- Loox Reviews: Hide section when no reviews (height stays 0) -->
+    <!-- Loox Reviews: Hide section when no reviews (iframe height stays 0) -->
+
+
+
 
     <style>
       {% comment %} FOR REBUY APPS {% endcomment %}

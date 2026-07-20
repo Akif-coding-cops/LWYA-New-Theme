@@ -9997,9 +9997,12 @@ div#shopify-section-template--20633282314498__text_with_image_cPgNKk .manufactur
 
 div#looxReviews {
   max-width: 100% !important;
-  padding: 20px;
+}
+
+iframe#looxReviewsFrame {
   padding: 20px;
   background: #F6F6F6;
+
 }
 
 #main .shopify-policy__container .rte.prose h2 {
